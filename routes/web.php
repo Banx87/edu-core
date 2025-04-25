@@ -31,13 +31,9 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:instructor'],
 });
 
 
-// Admin routes
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
-
-
+// TESTING ----------------------------------------------------------------
 // DATABASE JOINS TESTING ROUTES
+// TESTING ----------------------------------------------------------------
 use Illuminate\Support\Facades\DB;
 
 Route::get('/join', function () {
