@@ -20,6 +20,11 @@ class OrderSeeder extends Seeder
                 'total_price' => 999.99,
             ],
             [
+                'user_id' => '1',
+                'product_name' => 'Sony WH-1000XM5',
+                'total_price' => 349.99,
+            ],
+            [
                 'user_id' => '2',
                 'product_name' => 'MacBook Pro 16"',
                 'total_price' => 2499.99,
