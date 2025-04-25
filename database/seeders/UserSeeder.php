@@ -26,6 +26,12 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('salasana'),
                 'role' => 'instructor',
             ],
+            [
+                'name' => 'Michael Scott',
+                'email' => 'michael.scott@testing.com',
+                'password' => bcrypt('salasana'),
+                'role' => 'student',
+            ],
         ];
 
         User::insert($users);

@@ -36,5 +36,19 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
 
+
+// DATABASE JOINS TESTING ROUTES
+use Illuminate\Support\Facades\DB;
+
+Route::get('/join', function () {
+    // INNER JOIN
+    $usersWithOrders = DB::table('users')
+        ->join('orders', 'users.id', '=', 'orders.user_id')
+        ->select('users.name', 'orders.product_name', 'orders.total_price')
+        ->get();
+
+    dd($usersWithOrders);
+});
+
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
