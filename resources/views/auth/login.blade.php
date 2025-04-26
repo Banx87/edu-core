@@ -24,7 +24,7 @@
                                     <!-- Email Address -->
                                     <div class="col-xl-12">
                                         <div class="wsus__login_form_input">
-                                            <label>Email or Username*</label>
+                                            <label>Email*</label>
                                             <input type="email" name="email" value="{{ old('email') }}" required
                                                 placeholder="Email">
                                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
