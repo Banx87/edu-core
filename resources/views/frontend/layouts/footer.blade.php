@@ -1,4 +1,4 @@
- <footer class="footer_3" style="background: url(images/footer_3_bg.jpg);">
+ <footer class="footer_3" style="background: url(frontend/assets/images/footer_3_bg.jpg);">
      <div class="footer_3_overlay pt_120 xs_pt_100">
          <div class="wsus__footer_bottom">
              <div class="container">
@@ -6,7 +6,7 @@
                      <div class="col-lg-3 wow fadeInUp">
                          <div class="wsus__footer_3_logo_area">
                              <a class="logo" href="index.html">
-                                 <img src="images/footer_logo.png" alt="EduCore" class="img-fluid">
+                                 <img src="frontend/assets/images/footer_logo.png" alt="EduCore" class="img-fluid">
                              </a>
                              <p>Nunc in sollicitudin diam, ut bibendum malesuada sodales porttitor.</p>
                              <h2>Follow Us On</h2>
@@ -51,7 +51,8 @@
                              <ul>
                                  <li>
                                      <div class="icon">
-                                         <img src="images/call_icon_white.png" alt="Call" class="img-fluid">
+                                         <img src="frontend/assets/images/call_icon_white.png" alt="Call"
+                                             class="img-fluid">
                                      </div>
                                      <div class="text">
                                          <h4>Call us:</h4>
@@ -60,7 +61,8 @@
                                  </li>
                                  <li>
                                      <div class="icon">
-                                         <img src="images/location_icon_white.png" alt="Call" class="img-fluid">
+                                         <img src="frontend/assets/images/location_icon_white.png" alt="Call"
+                                             class="img-fluid">
                                      </div>
                                      <div class="text">
                                          <h4>Office:</h4>

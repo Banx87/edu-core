@@ -8,37 +8,44 @@
                         <ul class="d-flex flex-wrap">
                             <li>
                                 <a href="#">
-                                    <img src="images/brand_icon_1.png" alt="brand" class="img-fluid w-100">
+                                    <img src="frontend/assets/images/brand_icon_1.png" alt="brand"
+                                        class="img-fluid w-100">
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <img src="images/brand_icon_2.png" alt="brand" class="img-fluid w-100">
+                                    <img src="frontend/assets/images/brand_icon_2.png" alt="brand"
+                                        class="img-fluid w-100">
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <img src="images/brand_icon_3.png" alt="brand" class="img-fluid w-100">
+                                    <img src="frontend/assets/images/brand_icon_3.png" alt="brand"
+                                        class="img-fluid w-100">
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <img src="images/brand_icon_4.png" alt="brand" class="img-fluid w-100">
+                                    <img src="frontend/assets/images/brand_icon_4.png" alt="brand"
+                                        class="img-fluid w-100">
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <img src="images/brand_icon_5.png" alt="brand" class="img-fluid w-100">
+                                    <img src="frontend/assets/images/brand_icon_5.png" alt="brand"
+                                        class="img-fluid w-100">
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <img src="images/brand_icon_6.png" alt="brand" class="img-fluid w-100">
+                                    <img src="frontend/assets/images/brand_icon_6.png" alt="brand"
+                                        class="img-fluid w-100">
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <img src="images/brand_icon_7.png" alt="brand" class="img-fluid w-100">
+                                    <img src="frontend/assets/images/brand_icon_7.png" alt="brand"
+                                        class="img-fluid w-100">
                                 </a>
                             </li>
                         </ul>

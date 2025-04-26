@@ -34,7 +34,7 @@
     <!--============ PRELOADER START ===========-->
     <div id="preloader">
         <div class="preloader_icon">
-            <img src="images/preloader.png" alt="Preloader" class="img-fluid">
+            <img src="frontend/assets/images/preloader.png" alt="Preloader" class="img-fluid">
         </div>
     </div>
     <!--============ PRELOADER START ===========-->
