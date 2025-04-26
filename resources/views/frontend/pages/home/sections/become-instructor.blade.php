@@ -14,7 +14,7 @@
             </div>
             <div class="col-xl-5 col-md-6 wow fadeInRight">
                 <div class="wsus__become_instructor_img">
-                    <img src="frontend/assets/images/become_instructor_img.png" alt="Instructor"
+                    <img src="{{ asset('frontend/assets/images/become_instructor_img.png') }}" alt="Instructor"
                         class="img-fluid w-100">
                 </div>
             </div>

@@ -13,18 +13,18 @@
         <div class="col-xl-4 wow fadeInUp">
             <div class="wsus__single_blog_4">
                 <a href="#" class="wsus__single_blog_4_img">
-                    <img src="frontend/assets/images/blog_4_img_1.jpg" alt="Blog" class="img-fluid">
+                    <img src="{{ asset('frontend/assets/images/blog_4_img_1.jpg') }}" alt="Blog" class="img-fluid">
                     <span class="date">March 23, 2024</span>
                 </a>
                 <div class="wsus__single_blog_4_text">
                     <ul>
                         <li>
-                            <span><img src="frontend/assets/images/user_icon_black.png" alt="User"
+                            <span><img src="{{ asset('frontend/assets/images/user_icon_black.png') }}" alt="User"
                                     class="img-fluid"></span>
                             By Richard Tea
                         </li>
                         <li>
-                            <span><img src="frontend/assets/images/comment_icon_black.png" alt="Comment"
+                            <span><img src="{{ asset('frontend/assets/images/comment_icon_black.png') }}" alt="Comment"
                                     class="img-fluid"></span>
                             3 Comments
                         </li>
@@ -38,18 +38,18 @@
         <div class="col-xl-4 wow fadeInUp">
             <div class="wsus__single_blog_4">
                 <a href="#" class="wsus__single_blog_4_img">
-                    <img src="frontend/assets/images/blog_4_img_2.jpg" alt="Blog" class="img-fluid">
+                    <img src="{{ asset('frontend/assets/images/blog_4_img_2.jpg') }}" alt="Blog" class="img-fluid">
                     <span class="date">April 28, 2024</span>
                 </a>
                 <div class="wsus__single_blog_4_text">
                     <ul>
                         <li>
-                            <span><img src="frontend/assets/images/user_icon_black.png" alt="User"
+                            <span><img src="{{ asset('frontend/assets/images/user_icon_black.png') }}" alt="User"
                                     class="img-fluid"></span>
                             By Doug Lyphe
                         </li>
                         <li>
-                            <span><img src="frontend/assets/images/comment_icon_black.png" alt="Comment"
+                            <span><img src="{{ asset('frontend/assets/images/comment_icon_black.png') }}" alt="Comment"
                                     class="img-fluid"></span>
                             21 Comments
                         </li>
@@ -63,18 +63,18 @@
         <div class="col-xl-4 wow fadeInUp">
             <div class="wsus__single_blog_4">
                 <a href="#" class="wsus__single_blog_4_img">
-                    <img src="frontend/assets/images/blog_4_img_3.jpg" alt="Blog" class="img-fluid">
+                    <img src="{{ asset('frontend/assets/images/blog_4_img_3.jpg') }}" alt="Blog" class="img-fluid">
                     <span class="date">Jan 12, 2024</span>
                 </a>
                 <div class="wsus__single_blog_4_text">
                     <ul>
                         <li>
-                            <span><img src="frontend/assets/images/user_icon_black.png" alt="User"
+                            <span><img src="{{ asset('frontend/assets/images/user_icon_black.png') }}" alt="User"
                                     class="img-fluid"></span>
                             By Eleanor Fant
                         </li>
                         <li>
-                            <span><img src="frontend/assets/images/comment_icon_black.png" alt="Comment"
+                            <span><img src="{{ asset('frontend/assets/images/comment_icon_black.png') }}" alt="Comment"
                                     class="img-fluid"></span>
                             48 Comments
                         </li>
@@ -88,19 +88,19 @@
         <div class="col-xl-4 wow fadeInUp">
             <div class="wsus__single_blog_4">
                 <a href="#" class="wsus__single_blog_4_img">
-                    <img src="frontend/assets/images/blog_4_img_4.jpg" alt="Blog" class="img-fluid">
+                    <img src="{{ asset('frontend/assets/images/blog_4_img_4.jpg') }}" alt="Blog" class="img-fluid">
                     <span class="date">April 28, 2024</span>
                 </a>
                 <div class="wsus__single_blog_4_text">
                     <ul>
                         <li>
-                            <span><img src="frontend/assets/images/user_icon_black.png" alt="User"
+                            <span><img src="{{ asset('frontend/assets/images/user_icon_black.png') }}" alt="User"
                                     class="img-fluid"></span>
                             By Doug Lyphe
                         </li>
                         <li>
-                            <span><img src="frontend/assets/images/comment_icon_black.png" alt="Comment"
-                                    class="img-fluid"></span>
+                            <span><img src="{{ asset('frontend/assets/images/comment_icon_black.png') }}"
+                                    alt="Comment" class="img-fluid"></span>
                             21 Comments
                         </li>
                     </ul>

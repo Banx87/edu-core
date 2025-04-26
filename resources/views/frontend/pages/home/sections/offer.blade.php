@@ -3,7 +3,8 @@
         <div class="row justify-content-center align-items-center">
             <div class="col-xl-4 col-md-6 wow fadeInLeft">
                 <div class="wsus__offer_img">
-                    <img src="frontend/assets/images/offer_img_1.png" alt="Offer" class="img-fluid w-100">
+                    <img src="{{ asset('frontend/assets/images/offer_img_1.png') }}" alt="Offer"
+                        class="img-fluid w-100">
                 </div>
             </div>
             <div class="col-xl-6 col-md-6 wow fadeInRight">
