@@ -38,8 +38,11 @@ class RegisteredUserController extends Controller
 
         if ($request->type === 'instructor') {
             $approve_status = 'pending';
-        } else {
+            $request->validate(['document' => ['required', 'max:12000', 'mimes:pdf,doc,docx,jpg,png']]);
+        } elseif ($request->type === 'student') {
             $approve_status = 'approved';
+        } else {
+            abort(403, 'Invalid user type');
         }
 
         $user = User::create([

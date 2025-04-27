@@ -2,8 +2,8 @@
 
 @section('content')
     <!--===========================
-                                                                        SIGN UP START
-                                                                    ============================-->
+                                                                                SIGN UP START
+                                                                            ============================-->
     <section class="wsus__sign_in sign_up">
         <div class="row align-items-center">
             <div class="col-xxl-5 col-xl-6 col-lg-6 wow fadeInLeft">
@@ -82,9 +82,10 @@
 
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                             tabindex="0">
-                            <form method="POST" action="{{ route('register', ['type' => 'instructor']) }}">
+                            <form method="POST" action="{{ route('register', ['type' => 'instructor']) }}"
+                                enctype="multipart/form-data">
                                 @csrf
-                                <h2>Sign Up<span>!</span></h2>
+                                <h2>Instructor Sign Up<span>!</span></h2>
                                 <p class="new_user">Already have an account? <a href="{{ route('login') }}">Sign In</a></p>
                                 <div class="row">
                                     <div class="col-xl-12">
@@ -146,6 +147,6 @@
         <a class="back_btn" href="index.html">Back to Home</a>
     </section>
     <!--===========================
-                                                                        SIGN UP END
-                                                                    ============================-->
+                                                                                SIGN UP END
+                                                                            ============================-->
 @endsection
