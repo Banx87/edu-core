@@ -36,11 +36,18 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        if ($request->type === 'instructor') {
+            $approve_status = 'pending';
+        } else {
+            $approve_status = 'approved';
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'student'
+            'role' => 'student',
+            'approve_status' => $approve_status,
         ]);
 
         event(new Registered($user));
