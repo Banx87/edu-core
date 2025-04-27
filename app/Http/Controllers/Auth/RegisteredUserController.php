@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Traits\Fileupload;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+    use Fileupload;
     /**
      * Display the registration view.
      */
@@ -39,6 +41,7 @@ class RegisteredUserController extends Controller
         if ($request->type === 'instructor') {
             $approve_status = 'pending';
             $request->validate(['document' => ['required', 'max:12000', 'mimes:pdf,doc,docx,jpg,png']]);
+            $filePath = $this->uploadFile($request->file('document'));
         } elseif ($request->type === 'student') {
             $approve_status = 'approved';
         } else {
@@ -51,6 +54,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'role' => 'student',
             'approve_status' => $approve_status,
+            'document' => $filePath,
         ]);
 
         event(new Registered($user));
