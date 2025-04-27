@@ -23,15 +23,15 @@
 </head>
 
 <body>
-    <div class="page">
-        <script src="{{ asset('admin/assets/dist/js/demo-theme.min.js?1692870487') }}"></script>
-        {{-- SIDEBAR --}}
-        @include('admin.layouts.sidebar')
+    {{-- SIDEBAR --}}
+    @include('admin.layouts.sidebar')
+
+    <div class="page-wrapper">
 
         <!-- Navbar -->
         @include('admin.layouts.header')
-
-        <div class="page-wrapper">
+        <div class="page">
+            <script src="{{ asset('admin/assets/dist/js/demo-theme.min.js?1692870487') }}"></script>
             {{-- CONTENT --}}
             @yield('content')
 
