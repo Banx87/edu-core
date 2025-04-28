@@ -35,6 +35,8 @@
                                             <td class="text-secondary">
                                                 @if ($instructor->approve_status === 'pending')
                                                     <span class="badge bg-yellow text-yellow-fg">Pending</span>
+                                                @elseif ($instructor->approve_status === 'rejected')
+                                                    <span class="badge bg-red text-red-fg">Rejected</span>
                                                 @endif
                                             </td>
                                             <td>
@@ -50,11 +52,19 @@
                                                     </svg></i></a>
                                             </td>
                                             <td class="text-secondary">
-                                                <form action="">
-                                                    <select name="" id="" class="form-control">
-                                                        <option value="1">Approve</option>
-                                                        <option value="2">Reject</option>
-                                                        <option value="3">Pending</option>
+                                                <form
+                                                    action="{{ route('admin.instructor-request.update', $instructor->id) }}"
+                                                    class="status-{{ $instructor->id }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <select name="status" class="form-control"
+                                                        onchange="$('.status-{{ $instructor->id }}').submit()">
+                                                        <option @selected($instructor->approve_status === 'approved') value="approved">Approve
+                                                        </option>
+                                                        <option @selected($instructor->approve_status === 'rejected') value="rejected">Reject
+                                                        </option>
+                                                        <option @selected($instructor->approve_status === 'pending') value="pending">Pending
+                                                        </option>
                                                     </select>
                                                 </form>
                                             </td>
