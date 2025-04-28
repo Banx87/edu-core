@@ -11,4 +11,9 @@ class StudentDashboardController extends Controller
     {
         return view('frontend.student-dashboard.index');
     }
+
+    function becomeInstructor(): View
+    {
+        return view('frontend.student-dashboard.become-instructor.index');
+    }
 }
