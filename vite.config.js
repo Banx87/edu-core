@@ -10,6 +10,7 @@ export default defineConfig({
 				"resources/js/app.js",
 				"resources/js/admin/login.js",
 				"resources/js/admin/admin.js",
+				"resources/css/mail.css",
 			],
 			refresh: true,
 		}),

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\InstructorRequestApprovedMail;
+use App\Mail\InstructorRequestRejectedMail;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class InstructorRequestController extends Controller
 {
@@ -67,13 +70,31 @@ class InstructorRequestController extends Controller
         $instructor_request->approve_status = $request->status;
         $request->status === 'approved' ? $instructor_request->role = 'instructor' : "student";
         $instructor_request->save();
+        self::sendEmailNotification($request->status, $instructor_request);
 
         return redirect()->back();
+    }
 
-        //    $user->update([
-        //     'approve_status' => $request->status,
-
-        //    ]);
+    public static function sendEmailNotification($status, $instructor_request): void
+    {
+        switch ($status) {
+            case 'approved':
+                if (config('mail_queue.is_queue')) {
+                    Mail::to($instructor_request->email)->queue(new InstructorRequestApprovedMail());
+                } else {
+                    Mail::to($instructor_request->email)->send(new InstructorRequestApprovedMail());
+                }
+                break;
+            case 'rejected':
+                if (config('mail_queue.is_queue')) {
+                    Mail::to($instructor_request->email)->queue(new InstructorRequestRejectedMail());
+                } else {
+                    Mail::to($instructor_request->email)->send(new InstructorRequestRejectedMail());
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     /**
