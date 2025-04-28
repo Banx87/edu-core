@@ -207,7 +207,7 @@
                         </div>
                     @endif
                     <div class="text-end">
-                        <a href="{{ route('student.become-instructor') }}" class="btn btn-primary">Become an
+                        <a href="{{ route('student.become-instructor') }}" class="common_btn">Become an
                             Instructor</a>
                     </div>
                     <div class="row">

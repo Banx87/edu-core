@@ -54,7 +54,7 @@
                         </div>
                         <div class="form-footer">
                             <button type="submit"
-                                class="btn btn-primary w-100">{{ __('Email Password Reset Link') }}</button>
+                                class="common_btn w-100">{{ __('Email Password Reset Link') }}</button>
                         </div>
                     </form>
                 </div>
