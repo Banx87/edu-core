@@ -52,118 +52,156 @@
                             </div>
                         </div>
 
-                        <form method="POST" action={{ route('student.profile.update') }} " class="wsus__dashboard_profile_update">
-                                                                        @csrf
-                                                                            <div class="row">
-                                                                                <div class="col-xl-6">
-                                                                                    <div class="wsus__dashboard_profile_update_info">
-                                                                                        <label>Full name</label>
-                                                                                        <input type="text" placeholder="Enter your name" name="name" value="{{ auth()->user()->name }}">
-                                                                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-xl-6">
-                                                                                        <div class="wsus__dashboard_profile_update_info">
-                                                                                            <label>Headline</label>
-                                                                                            <input type="text" placeholder="Enter your headline" name="headline" value="{{ auth()->user()->headline }}">
-                                                                                            <x-input-error :messages="$errors->get(
-                                                                                                'headline',
-                                                                                            )" class="mt-2" />
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-xl-6">
-                                                                                    <div class="wsus__dashboard_profile_update_info">
-                                                                                        <label>Email</label>
-                                                                                        <input type="text" placeholder="Enter your email" name="email" value="{{ auth()->user()->email }}">
-                                                                                        <x-input-error :messages="$errors->get(
-                                                                                            'email',
-                                                                                        )" class="mt-2" />
-                                                                                            
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-xl-6">
-                                                                                        <div class="wsus__dashboard_profile_update_info">
-                                                                                            <label>Gender</label>
-                                                                                            <select class="form-control" type="text" placeholder="Enter your email"
-                                                                                            name="gender">
-                                                                                            <option @selected(auth()->user()->gender === 'male') value="male">Male</option>
-                                                                                            <option @selected(auth()->user()->gender === 'female') value="female">Female</option>
-                                                                                            <option @selected(auth()->user()->gender === 'other') value="other">Other</option>
-                                                                                            <option @selected(auth()->user()->gender === 'none') value="none">Don't want to say</option>
-                                                                                        </select>
-                                                                                        <x-input-error :messages="$errors->get(
-                                                                                            'gender',
-                                                                                        )" class="mt-2" />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-xl-12">
-                                                                                        <div class="wsus__dashboard_profile_update_info">
-                                                                                            <label>About Me</label>
-                                                                                            <textarea rows="7" placeholder="Tell us about yourself" name="about">{{ auth()->user()->about }}</textarea>
-                                                                                            <x-input-error :messages="$errors->get(
-                                                                                                'about',
-                                                                                            )" class="mt-2" />
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-xl-12">
-                                                                                    <div class="wsus__dashboard_profile_update_btn">
-                                                                                        <button type="submit" class="common_btn">Update Profile</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
+                        <form method="POST" action="{{ route('student.profile.update') }}"
+                            class="wsus__dashboard_profile_update">
+                            @csrf
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <label>Full name</label>
+                                        <input type="text" placeholder="Enter your name" name="name"
+                                            value="{{ auth()->user()->name }}">
+                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <label>Headline</label>
+                                        <input type="text" placeholder="Enter your headline" name="headline"
+                                            value="{{ auth()->user()->headline }}">
+                                        <x-input-error :messages="$errors->get('headline')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <label>Email</label>
+                                        <input type="text" placeholder="Enter your email" name="email"
+                                            value="{{ auth()->user()->email }}">
+                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
-                                                                    <div class="wsus__dashboard_contant">
-                                                                        <div class="wsus__dashboard_contant_top d-flex flex-wrap justify-content-between">
-                                                                            <div class="wsus__dashboard_heading">
-                                                                                <h5>Update Your Social</h5>
-                                                                                <p>Update your social media information.</p>
-                                                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <label>Gender</label>
+                                        <select class="form-control" type="text" placeholder="Enter your email"
+                                            name="gender">
+                                            <option @selected(auth()->user()->gender === 'male') value="male">Male</option>
+                                            <option @selected(auth()->user()->gender === 'female') value="female">Female</option>
+                                            <option @selected(auth()->user()->gender === 'other') value="other">Other</option>
+                                            <option @selected(auth()->user()->gender === 'none') value="none">Don't want to say</option>
+                                        </select>
+                                        <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <label>About Me</label>
+                                        <textarea rows="7" placeholder="Tell us about yourself" name="about">{{ auth()->user()->about }}</textarea>
+                                        <x-input-error :messages="$errors->get('about')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="wsus__dashboard_profile_update_btn">
+                                        <button type="submit" class="common_btn">Update Profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {{-- PASSWORD --}}
+                    <div class="wsus__dashboard_contant">
+                        <div class="wsus__dashboard_contant_top d-flex flex-wrap justify-content-between">
+                            <div class="wsus__dashboard_heading">
+                                <h5>Update Your Password.</h5>
+                                {{-- <p>Update your social media information.</p> --}}
+                            </div>
+                        </div>
+                        <form method="POST" action="{{ route('student.profile.update-password') }}"
+                            class="wsus__dashboard_profile_update">
+                            @csrf
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <input type="password" placeholder="Your current password" name="current_password">
+                                        <x-input-error :messages="$errors->get('current_password')" class="mt-2" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <input type="password" placeholder="New Password" name="password">
+                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <input type="password" placeholder="Confirm Password"
+                                            name="password_confirmation">
+                                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="wsus__dashboard_profile_update_btn">
+                                        <button type="submit" class="common_btn">Update Password</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
-                                                                        </div>
+                    {{-- SOCIAL --}}
+                    <div class="wsus__dashboard_contant">
+                        <div class="wsus__dashboard_contant_top d-flex flex-wrap justify-content-between">
+                            <div class="wsus__dashboard_heading">
+                                <h5>Update Your Social</h5>
+                                <p>Update your social media information.</p>
+                            </div>
+
+                        </div>
 
 
-                                                                        <form method="POST" action="#" class="wsus__dashboard_profile_update">
-                                                                            @csrf
-                                                                            <div class="row">
-                                                                                <div class="col-xl-12">
-                                                                                    <div class="wsus__dashboard_profile_update_info">
-                                                                                        <input type="text" placeholder="Facebook" name="facebook">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-xl-12">
-                                                                                    <div class="wsus__dashboard_profile_update_info">
-                                                                                        <input type="text" placeholder="X" name="x">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-xl-12">
-                                                                                    <div class="wsus__dashboard_profile_update_info">
-                                                                                        <input type="text" placeholder="LinkedIn" name="linkedin">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-xl-12">
-                                                                                    <div class="wsus__dashboard_profile_update_info">
-                                                                                        <input type="text" placeholder="Website" name="website">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-xl-12">
-                                                                                    <div class="wsus__dashboard_profile_update_info">
-                                                                                        <input type="text" placeholder="GitHub" name="github">
-                                                                                    </div>
-                                                                                </div>
+                        <form method="POST" action="#" class="wsus__dashboard_profile_update">
+                            @csrf
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <input type="text" placeholder="Facebook" name="facebook">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <input type="text" placeholder="X" name="x">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <input type="text" placeholder="LinkedIn" name="linkedin">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <input type="text" placeholder="Website" name="website">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <input type="text" placeholder="GitHub" name="github">
+                                    </div>
+                                </div>
 
-                                                                                <div class="col-xl-12">
-                                                                                    <div class="wsus__dashboard_profile_update_btn">
-                                                                                        <button type="submit" class="common_btn">Update Profile</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
+                                <div class="col-xl-12">
+                                    <div class="wsus__dashboard_profile_update_btn">
+                                        <button type="submit" class="common_btn">Update Profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
 @endsection
