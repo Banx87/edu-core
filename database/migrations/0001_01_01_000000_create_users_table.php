@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('headline')->nullable();
             $table->text('bio')->nullable();
-            $table->enum('gender', ['male', 'female', 'other'])->nullable();
+            $table->enum('gender', ['male', 'female', 'other', 'none'])->nullable();
             $table->string('document')->nullable();
             $table->string('facebook')->nullable();
             $table->string('x')->nullable();
