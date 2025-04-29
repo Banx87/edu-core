@@ -24,6 +24,7 @@
             <div class="row">
 
                 @include('frontend.student-dashboard.sidebar')
+
                 <div class="col-xl-9 col-md-8">
 
                     @if (auth()->user()->approve_status === 'pending')
