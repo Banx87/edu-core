@@ -3,13 +3,21 @@
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\InstructorDashboardController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+// If user is logged in, redirect to the dashboard
 Route::get('/dashboard', function () {
+    if (Auth::user()->role == 'student') {
+        return redirect()->route('student.dashboard');
+    } elseif (Auth::user()->role == 'instructor') {
+        return redirect()->route('instructor.dashboard');
+    }
+    abort(404);
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -30,6 +38,7 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'prefix' => 'student', 'as' => 'student.'], function () {
     Route::get('/dashboard', [StudentDashboardController::class, 'index'])->name('dashboard');
     Route::get('/become-instructor', [StudentDashboardController::class, 'becomeInstructor'])->name('become-instructor');
+    Route::post('/become-instructor/{user}', [StudentDashboardController::class, 'becomeInstructorUpdate'])->name('become-instructor.update');
 });
 
 /*

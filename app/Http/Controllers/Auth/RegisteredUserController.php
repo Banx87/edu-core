@@ -38,12 +38,14 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+
         if ($request->type === 'instructor') {
             $approve_status = 'pending';
             $request->validate(['document' => ['required', 'max:12000', 'mimes:pdf,doc,docx,jpg,png']]);
             $filePath = $this->uploadFile($request->file('document'));
         } elseif ($request->type === 'student') {
             $approve_status = 'approved';
+            $filePath = null;
         } else {
             abort(403, 'Invalid user type');
         }
