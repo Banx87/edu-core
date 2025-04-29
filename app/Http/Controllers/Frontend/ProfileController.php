@@ -7,6 +7,7 @@ use App\Http\Requests\Frontend\PasswordUpdateRequest;
 use App\Http\Requests\Frontend\ProfileUpdateRequest;
 use App\Http\Requests\Frontend\SocialUpdateRequest;
 use App\Models\User;
+use App\Traits\Fileupload;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
 {
+    use Fileupload;
+
     function index(): View
     {
         return view('frontend.student-dashboard.profile.index');
@@ -23,6 +26,11 @@ class ProfileController extends Controller
     function profileUpdate(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = Auth::user();
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $this->uploadFile($request->file('avatar'));
+            $this->deleteFile($user->image);
+            $user->image = $avatarPath;
+        }
         $user->name = $request->name;
         $user->email = $request->email;
         $user->headline = $request->headline;

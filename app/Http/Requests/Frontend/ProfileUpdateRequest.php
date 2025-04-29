@@ -28,7 +28,8 @@ class ProfileUpdateRequest extends FormRequest
             'about' => 'nullable|string|max:1000',
             'gender' =>
             'required',
-            'in:male,female,other,none'
+            'in:male,female,other,none',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ];
     }
