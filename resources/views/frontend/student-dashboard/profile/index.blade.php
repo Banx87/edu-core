@@ -26,7 +26,7 @@
                 @include('frontend.student-dashboard.sidebar')
 
                 <div class="col-xl-9 col-md-8 wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;">
-                    <div class="wsus__dashboard_contant">
+                    <div class="wsus__dashboard_contant wsus__dashboard_contant_border_top mt-0">
                         <div class="wsus__dashboard_contant_top d-flex flex-wrap justify-content-between">
                             <div class="wsus__dashboard_heading">
                                 <h5>Update Your Information</h5>
@@ -110,8 +110,8 @@
                         </form>
                     </div>
                     {{-- PASSWORD --}}
-                    <div class="wsus__dashboard_contant">
-                        <div class="wsus__dashboard_contant_top d-flex flex-wrap justify-content-between">
+                    <div class="wsus__dashboard_contant wsus__dashboard_contant_border_top">
+                        <div class="wsus__dashboard_contant_top  d-flex flex-wrap justify-content-between">
                             <div class="wsus__dashboard_heading">
                                 <h5>Update Your Password.</h5>
                                 {{-- <p>Update your social media information.</p> --}}
@@ -152,48 +152,57 @@
                     </div>
 
                     {{-- SOCIAL --}}
-                    <div class="wsus__dashboard_contant">
-                        <div class="wsus__dashboard_contant_top d-flex flex-wrap justify-content-between">
+                    <div class="wsus__dashboard_contant wsus__dashboard_contant_border_top">
+                        <div class="wsus__dashboard_contant_top  d-flex flex-wrap justify-content-between">
                             <div class="wsus__dashboard_heading">
                                 <h5>Update Your Social</h5>
                                 <p>Update your social media information.</p>
                             </div>
 
                         </div>
-
-
-                        <form method="POST" action="#" class="wsus__dashboard_profile_update">
+                        <form method="POST" action="{{ route('student.profile.update-social') }}"
+                            class="wsus__dashboard_profile_update">
                             @csrf
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="wsus__dashboard_profile_update_info">
-                                        <input type="text" placeholder="Facebook" name="facebook">
+                                        <input type="text" placeholder="Facebook" name="facebook"
+                                            value="{{ auth()->user()->facebook }}">
+                                        <x-input-error :messages="$errors->get('facebook')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="col-xl-12">
                                     <div class="wsus__dashboard_profile_update_info">
-                                        <input type="text" placeholder="X" name="x">
+                                        <input type="text" placeholder="X" name="x"
+                                            value="{{ auth()->user()->x }}">
+                                        <x-input-error :messages="$errors->get('x')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="col-xl-12">
                                     <div class="wsus__dashboard_profile_update_info">
-                                        <input type="text" placeholder="LinkedIn" name="linkedin">
+                                        <input type="text" placeholder="LinkedIn" name="linkedin"
+                                            value="{{ auth()->user()->linkedin }}">
+                                        <x-input-error :messages="$errors->get('linkedin')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="col-xl-12">
                                     <div class="wsus__dashboard_profile_update_info">
-                                        <input type="text" placeholder="Website" name="website">
+                                        <input type="text" placeholder="Website" name="website"
+                                            value="{{ auth()->user()->website }}">
+                                        <x-input-error :messages="$errors->get('website')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="col-xl-12">
                                     <div class="wsus__dashboard_profile_update_info">
-                                        <input type="text" placeholder="GitHub" name="github">
+                                        <input type="text" placeholder="GitHub" name="github"
+                                            value="{{ auth()->user()->github }}">
+                                        <x-input-error :messages="$errors->get('github')" class="mt-2" />
                                     </div>
                                 </div>
 
                                 <div class="col-xl-12">
                                     <div class="wsus__dashboard_profile_update_btn">
-                                        <button type="submit" class="common_btn">Update Profile</button>
+                                        <button type="submit" class="common_btn">Update Social Links</button>
                                     </div>
                                 </div>
                             </div>
