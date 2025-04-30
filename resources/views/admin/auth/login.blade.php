@@ -10,6 +10,7 @@
 
     <link href="{{ asset('admin/assets/dist/css/tabler.min.css?1692870487') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/dist/css/demo.min.css?1692870487') }}" rel="stylesheet" />
+    <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet" />
 
     <style>
         @import url('https://rsms.me/inter/inter.css');
@@ -26,12 +27,11 @@
 </head>
 
 <body class=" d-flex flex-column">
-    <script src="./dist/js/demo-theme.min.js?1692870487"></script>
     <div class="page page-center">
         <div class="container container-tight py-4">
             <div class="text-center mb-4">
                 <a href="." class="navbar-brand navbar-brand-autodark">
-                    <img src="./static/logo.svg" width="110" height="32" alt="Tabler"
+                    <img src="{{ asset('admin/assets/static/logo.svg') }}" width="110" height="32" alt="Tabler"
                         class="navbar-brand-image">
                 </a>
             </div>
