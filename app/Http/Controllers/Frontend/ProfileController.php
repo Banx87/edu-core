@@ -43,6 +43,8 @@ class ProfileController extends Controller
         $user->gender = $request->gender;
         $user->save();
 
+        notyf()->success('Profile updated successfully.');
+
         return redirect()->back()->with('success', 'Profile updated successfully.');
     }
 
@@ -52,6 +54,8 @@ class ProfileController extends Controller
         $user = Auth::user();
         $user->password = bcrypt($request->password);
         $user->save();
+
+        notyf()->success('Password updated successfully.');
 
         return redirect()->back()->with('success', 'Password updated successfully.');
     }
@@ -65,6 +69,8 @@ class ProfileController extends Controller
         $user->website = $request->website;
         $user->github = $request->github;
         $user->save();
+
+        notyf()->success('Updated successfully.');
 
         return redirect()->back()->with('success', 'Social links updated successfully.');
     }
