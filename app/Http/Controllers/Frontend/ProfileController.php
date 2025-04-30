@@ -23,6 +23,11 @@ class ProfileController extends Controller
         return view('frontend.student-dashboard.profile.index');
     }
 
+    function instructorIndex(): View
+    {
+        return view('frontend.instructor-dashboard.profile.index');
+    }
+
     function profileUpdate(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = Auth::user();
@@ -38,7 +43,7 @@ class ProfileController extends Controller
         $user->gender = $request->gender;
         $user->save();
 
-        return Redirect::route('student.profile.index')->with('success', 'Profile updated successfully.');
+        return redirect()->back()->with('success', 'Profile updated successfully.');
     }
 
     function updatePassword(PasswordUpdateRequest $request): RedirectResponse
