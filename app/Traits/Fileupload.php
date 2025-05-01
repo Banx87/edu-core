@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 
@@ -9,11 +10,15 @@ trait Fileupload
 {
     public function uploadFile(UploadedFile $file, string $directory = 'uploads'): string
     {
-        $filename = 'educore_' . time() . '_' . uniqid() . '_.' . $file->getClientOriginalExtension();
+        try {
+            $filename = 'educore_' . time() . '_' . uniqid() . '_.' . $file->getClientOriginalExtension();
 
-        // move the file to storage
-        $file->move(public_path($directory), $filename);
-        return '/' . $directory . '/' . $filename;
+            // move the file to storage
+            $file->move(public_path($directory), $filename);
+            return '/' . $directory . '/' . $filename;
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
     public function deleteFile(string $filePath): bool
