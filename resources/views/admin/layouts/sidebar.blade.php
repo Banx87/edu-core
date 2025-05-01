@@ -259,14 +259,17 @@
                                          Course Languages
                                      </a>
                                  </div>
+                                 <div class="dropdown-menu-columns">
+                                     <div class="dropdown-menu-column">
+                                         <a class="dropdown-item" href="{{ route('admin.course-levels.index') }}">
+                                             Course Levels
+                                         </a>
+                                     </div>
+                                 </div>
                              </div>
                          </div>
                      </li>
                  </ul>
              </div>
-         </div>
-         </li>
-         </ul>
-         </div>
          </div>
      </aside>
