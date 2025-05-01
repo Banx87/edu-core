@@ -7,10 +7,11 @@ export default defineConfig({
 			input: [
 				"resources/css/app.css",
 				"resources/css/frontend.css",
+				"resources/css/admin.css",
+				"resources/css/mail.css",
 				"resources/js/app.js",
 				"resources/js/admin/login.js",
 				"resources/js/admin/admin.js",
-				"resources/css/mail.css",
 			],
 			refresh: true,
 		}),

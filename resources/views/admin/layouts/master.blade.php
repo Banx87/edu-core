@@ -7,9 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dashboard</title>
+
+    {{-- Plugin CSS --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+
+
     <!-- CSS files -->
     <link href="{{ asset('admin/assets/dist/css/tabler.min.css?1692870487') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/dist/css/demo.min.css?1692870487') }}" rel="stylesheet" />
+
     <style>
         @import url('https://rsms.me/inter/inter.css');
 
@@ -23,6 +29,7 @@
     </style>
 
     @vite('resources/js/admin/admin.js')
+    @vite(['resources/css/admin.css'])
 </head>
 
 <body>
