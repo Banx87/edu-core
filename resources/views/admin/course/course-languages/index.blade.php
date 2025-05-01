@@ -78,6 +78,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="mt-3">
+                    {{ $languages->links() }}
+                </div>
             </div>
         </div>
     </div>

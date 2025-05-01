@@ -78,6 +78,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="mt-3">
+                    {{ $levels->links() }}
+                </div>
             </div>
         </div>
     </div>
