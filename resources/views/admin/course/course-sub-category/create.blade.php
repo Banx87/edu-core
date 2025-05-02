@@ -9,7 +9,7 @@
                         <h3 class="card-title">Create Sub Category</h3>
                         <div class="card-actions">
                             <a href="{{ route('admin.course-sub-categories.index', $course_category->id) }}"
-                                class="btn btn-danger">
+                                class="btn btn-pink">
                                 <i class="ti ti-arrow-left space"></i>
                                 Back
                             </a>

@@ -8,7 +8,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Create Category</h3>
                         <div class="card-actions">
-                            <a href="{{ route('admin.course-categories.index') }}" class="btn btn-danger">
+                            <a href="{{ route('admin.course-categories.index') }}" class="btn btn-pink">
                                 <i class="ti ti-arrow-left space"></i>
                                 Back
                             </a>

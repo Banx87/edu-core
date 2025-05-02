@@ -8,7 +8,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Update Language</h3>
                         <div class="card-actions">
-                            <a href="{{ route('admin.course-languages.index') }}" class="btn btn-danger">
+                            <a href="{{ route('admin.course-languages.index') }}" class="btn btn-cyan">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                     class="icon icon-tabler icons-tabler-outline icon-tabler-circle-x">

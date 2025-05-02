@@ -8,6 +8,10 @@
                     <div class="card-header">
                         <h3 class="card-title">Course Sub Categories of ({{ $course_category->name }})</h3>
                         <div class="card-actions">
+                            <a href="{{ route('admin.course-categories.index') }}" class="btn btn-pink">
+                                <i class="ti ti-arrow-left space"></i>
+                                Back
+                            </a>
                             <a href="{{ route('admin.course-sub-categories.create', $course_category->id) }}"
                                 class="btn btn-primary">
                                 <i class="ti ti-plus"></i>

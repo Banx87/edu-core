@@ -8,7 +8,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Create Language</h3>
                         <div class="card-actions">
-                            <a href="{{ route('admin.course-languages.index') }}" class="btn btn-danger">Cancel</a>
+                            <a href="{{ route('admin.course-languages.index') }}" class="btn btn-cyan">Cancel</a>
                         </div>
                     </div>
                     <div class="card-body">
