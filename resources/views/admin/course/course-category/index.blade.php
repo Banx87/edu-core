@@ -49,14 +49,17 @@
                                             <td>
                                                 {{ $category->status ? 'Active' : 'Inactive' }}
                                             </td>
-                                            <td style="min-width: 80px;">
+                                            <td style="min-width: 150px;">
                                                 <a href="{{ route('admin.course-categories.edit', $category->id) }}"
-                                                    class="btn-sm btn-primary">
+                                                    class="btn-sm btn btn-ghost-primary">
                                                     <i class="ti ti-edit"></i>
-
+                                                </a>
+                                                <a href="{{ route('admin.course-sub-categories.index', $category->id) }}"
+                                                    class="btn-sm btn btn-ghost-info">
+                                                    <i class="ti ti-list"></i>
                                                 </a>
                                                 <a href="{{ route('admin.course-categories.destroy', $category->id) }}"
-                                                    class="btn-sm text-danger delete-item">
+                                                    class="btn-sm btn btn-ghost-danger delete-item">
                                                     <i class="ti ti-trash-x"></i>
                                                 </a>
                                             </td>
