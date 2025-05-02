@@ -1,6 +1,9 @@
 <div class="mb-3">
     <label for="{{ $name }}" class="form-label text-capitalize">{{ $label ? $label : $name }}</label>
     <input type="text" class="form-control" id="{{ $id }}" name="{{ $name }}"
-        placeholder="{{ $placeholder }}" required>
+        placeholder="{{ $placeholder }}" value="{{ $value }}" required>
     <x-input-error :messages="$errors->get('{{ $name }}')" class="mt-2" />
+    @isset($hint)
+        {{ $hint }}
+    @endisset
 </div>
