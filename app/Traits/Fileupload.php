@@ -22,7 +22,7 @@ trait Fileupload
         }
     }
 
-    public function deleteFile(string $filePath): bool
+    public function deleteFile(?string $filePath): bool
     {
         $fullPath = public_path($filePath);
         if (File::exists($fullPath)) {
