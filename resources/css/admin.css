@@ -24,3 +24,29 @@ i.ti.space-left-15 {
 .space-right-10 {
 	margin-right: 10px;
 }
+
+select.form-control {
+	transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+}
+
+select:hover,
+option:hover {
+	cursor: pointer;
+	background-color: #f0f8ff; /* Light blue background */
+	color: #333; /* Dark text color for contrast */
+	border-color: #87ceeb; /* Sky blue border */
+	box-shadow: 0 0 5px rgba(135, 206, 235, 0.5); /* Subtle glow effect */
+}
+
+a > svg {
+	transition: transform 0.2s ease-in-out, fill 0.2s ease-in-out; /* Ensure smooth transition back to original scale */
+}
+
+a > svg:hover {
+	cursor: pointer;
+	transform: scale(1.2); /* Slightly enlarge the SVG */
+}
