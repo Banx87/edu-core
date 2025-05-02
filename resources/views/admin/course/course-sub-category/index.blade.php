@@ -55,15 +55,15 @@
                                                     class="btn-sm btn btn-ghost-primary">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
-                                                {{-- <a href="{{ route('admin.course-sub-categories.destroy', $category->id) }}"
+                                                <a href="{{ route('admin.course-sub-categories.destroy', ['course_category' => $category->parent_id, 'course_sub_category' => $category->id]) }}"
                                                     class="btn-sm btn btn-ghost-danger delete-item">
                                                     <i class="ti ti-trash-x"></i>
-                                                </a> --}}
+                                                </a>
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="3" class="text-center">No Subcategories found.</td>
+                                            <td colspan="5" class="text-center">No Subcategories found.</td>
                                         </tr>
                                     @endforelse
 

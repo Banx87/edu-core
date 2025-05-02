@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\CourseSubCategoryStoreRequest;
 use App\Http\Requests\Admin\CourseSubCategoryUpdateRequest;
 use App\Models\CourseCategory;
 use App\Traits\Fileupload;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -91,8 +92,19 @@ class CourseSubCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(CourseCategory $course_category, CourseCategory $course_sub_category)
     {
-        //
+        try {
+            $this->deleteFile($course_sub_category->image);
+            $course_sub_category->delete();
+            redirect()->route('admin.course-categories.index')->with('success', 'Course Category deleted successfully.');
+
+            return response()->json(['success' => 'Course Category deleted successfully.']);
+        } catch (Exception $e) {
+            logger()->error('Error deleting course Category: ' . $e->getMessage());
+            redirect()->route('admin.course-categories.index')->with('error', 'Course Category cannot be deleted.');
+
+            return response()->json(['error' => 'Course Category cannot be deleted.']);
+        }
     }
 }
