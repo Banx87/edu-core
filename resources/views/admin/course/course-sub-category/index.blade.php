@@ -29,7 +29,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @forelse ($categories as $category)
+                                    @forelse ($sub_categories as $category)
                                         <tr>
                                             <td>
                                                 <i class="{{ $category->icon }} ""></i>
@@ -51,25 +51,21 @@
                                                 {{ $category->status ? 'Active' : 'Inactive' }}
                                             </td>
                                             <td style="min-width: 150px;">
-                                                <a href="{{ route('admin.course-categories.edit', $category->id) }}"
+                                                <a href="{{ route('admin.course-sub-categories.edit', ['course_category' => $category->parent_id, 'course_sub_category' => $category->id]) }}"
                                                     class="btn-sm btn btn-ghost-primary">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
-                                                <a href="{{ route('admin.course-categories.destroy', $category->id) }}"
-                                                    class="btn-sm btn btn-ghost-info">
-                                                    <i class="ti ti-list"></i>
-                                                </a>
-                                                <a href="{{ route('admin.course-categories.destroy', $category->id) }}"
+                                                {{-- <a href="{{ route('admin.course-sub-categories.destroy', $category->id) }}"
                                                     class="btn-sm btn btn-ghost-danger delete-item">
                                                     <i class="ti ti-trash-x"></i>
-                                                </a>
+                                                </a> --}}
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="3" class="text-center">No categories found.</td>
+                                            <td colspan="3" class="text-center">No Subcategories found.</td>
                                         </tr>
-                                    @endforelse --}}
+                                    @endforelse
 
                                 </tbody>
                             </table>
@@ -77,7 +73,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    {{-- {{ $categories->links() }} --}}
+                    {{ $sub_categories->links() }}
                 </div>
             </div>
         </div>

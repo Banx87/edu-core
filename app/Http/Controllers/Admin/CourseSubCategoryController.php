@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CourseSubCategoryStoreRequest;
+use App\Http\Requests\Admin\CourseSubCategoryUpdateRequest;
 use App\Models\CourseCategory;
 use App\Traits\Fileupload;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class CourseSubCategoryController extends Controller
      */
     public function index(CourseCategory $course_category)
     {
-        return view('admin.course.course-sub-category.index', compact('course_category'));
+        $sub_categories = CourseCategory::where('parent_id', $course_category->id)->paginate(10);
+        return view('admin.course.course-sub-category.index', compact('course_category', 'sub_categories'));
     }
 
     /**
@@ -53,27 +55,37 @@ class CourseSubCategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(CourseCategory $course_category, CourseCategory $course_sub_category)
     {
-        //
+        return view('admin.course.course-sub-category.edit', compact('course_category', 'course_sub_category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CourseSubCategoryUpdateRequest $request, CourseCategory $course_category, CourseCategory $course_sub_category)
     {
-        //
+        $category = $course_sub_category;
+
+        // Handle the image upload
+        if ($request->hasFile('image')) {
+            if ($category->image) {
+                // Delete the old image
+                $this->deleteFile($category->image);
+            }
+            $imagePath = $this->uploadFile($request->file('image'));
+            $category->image = $imagePath;
+        }
+        $category->name = $request->name;
+        $category->slug = Str::slug($request->name);
+        $category->icon = $request->icon;
+        $category->set_trending = $request->set_trending ?? 0;
+        $category->status = $request->status ?? 0;
+        $category->save();
+
+        return to_route('admin.course-sub-categories.index', $course_category->id)->with('success', 'Sub Category updated successfully.');
     }
 
     /**
