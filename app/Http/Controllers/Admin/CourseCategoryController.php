@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CourseCategoryStoreRequest;
+use App\Http\Requests\Admin\CourseCategoryUpdateRequest;
 use App\Models\CourseCategory;
 use App\Traits\Fileupload;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -19,7 +21,7 @@ class CourseCategoryController extends Controller
     public function index(): View
     {
         $categories = CourseCategory::paginate(10);
-        return view('admin.course.course-categories.index', compact('categories'));
+        return view('admin.course.course-category.index', compact('categories'));
     }
 
     /**
@@ -27,15 +29,14 @@ class CourseCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.course.course-categories.create');
+        return view('admin.course.course-category.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CourseCategoryStoreRequest $request)
+    public function store(CourseCategoryStoreRequest $request): RedirectResponse
     {
-
         $imagePath = $this->uploadFile($request->file('image'));
 
         $category = new CourseCategory();
@@ -55,7 +56,7 @@ class CourseCategoryController extends Controller
         // }
 
         // notyf()->success('Course Category created successfully.');
-        return to_route('admin.course-categories.index')->with('success', 'Course Category created successfully.');
+        return to_route('admin.course-category.index')->with('success', 'Course Category created successfully.');
         // if ($category->save()) {
         // return redirect()->back()->with('success', 'Category created successfully');
         // } else {
@@ -64,34 +65,55 @@ class CourseCategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(CourseCategory $course_category): View
     {
-        //
+        return view('admin.course.course-category.edit', compact('course_category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CourseCategoryUpdateRequest $request, CourseCategory $course_category): RedirectResponse
     {
-        //
+
+        // Handle the image upload
+        $category = $course_category;
+        if ($request->hasFile('image')) {
+            if ($category->image) {
+                $this->deleteFile($category->image);
+            }
+            $imagePath = $this->uploadFile($request->file('image'));
+            $category->image = $imagePath;
+        }
+
+        $category->name = $request->name;
+        $category->slug = Str::slug($request->name);
+        $category->icon = $request->icon;
+        $category->set_trending = $request->set_trending ?? 0;
+        $category->status = $request->status ?? 0;
+        $category->save();
+
+        return to_route('admin.course-categories.index')->with('success', 'Course Category updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(CourseCategory $course_category)
     {
-        //
+        try {
+            $this->deleteFile($course_category->image);
+            $course_category->delete();
+            redirect()->route('admin.course-categories.index')->with('success', 'Course Category deleted successfully.');
+
+            return response()->json(['success' => 'Course Category deleted successfully.']);
+        } catch (\Exception $e) {
+            logger()->error('Error deleting course Category: ' . $e->getMessage());
+            redirect()->route('admin.course-categories.index')->with('error', 'Course Category cannot be deleted.');
+
+            return response()->json(['error' => 'Course Category cannot be deleted.']);
+        }
     }
 }

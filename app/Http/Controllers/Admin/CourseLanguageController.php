@@ -58,7 +58,7 @@ class CourseLanguageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CourseLanguage $course_language)
+    public function edit(CourseLanguage $course_language): View
     {
         return view('admin.course.course-languages.edit', compact('course_language'));
     }
