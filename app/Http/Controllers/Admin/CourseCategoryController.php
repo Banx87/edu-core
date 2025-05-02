@@ -49,19 +49,7 @@ class CourseCategoryController extends Controller
         $category->status = $request->status ?? 0;
         $category->save();
 
-        // if ($request->hasFile('image')) {
-        //     $imageName = time() . '.' . $request->image->extension();
-        //     $request->image->move(public_path('images/course-category'), $imageName);
-        //     $category->image = 'images/course-category/' . $imageName;
-        // }
-
-        // notyf()->success('Course Category created successfully.');
         return to_route('admin.course-category.index')->with('success', 'Course Category created successfully.');
-        // if ($category->save()) {
-        // return redirect()->back()->with('success', 'Category created successfully');
-        // } else {
-        // return redirect()->back()->with('error', 'Failed to create category');
-        // }
     }
 
     /**
