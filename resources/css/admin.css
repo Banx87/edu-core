@@ -5,3 +5,22 @@
 i.ti.space {
 	margin-right: 5px;
 }
+
+i.ti.space-left-15 {
+	margin-left: 15px;
+	/* color: rgb(224, 0, 0); */
+}
+
+.space-left-6 {
+	margin-left: 6px;
+}
+.space-left-10 {
+	margin-left: 10px;
+}
+.space-left-12 {
+	margin-left: 12px;
+}
+
+.space-right-10 {
+	margin-right: 10px;
+}

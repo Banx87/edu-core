@@ -24,7 +24,16 @@
                                         placeholder="New Category Name"></x-input-block>
                                 </div>
                                 <div class="col-md-6">
-                                    <x-input-block name="icon" placeholder="Enter Icon Class Name"></x-input-block>
+                                    <x-input-block name="icon" placeholder="Enter Icon Class Name">
+                                        <div style="margin-left: 5px;">
+                                            <x-slot name="hint">
+                                                <small class="hint" style="margin: 10px;">You can get icon class
+                                                    names
+                                                    from <a href="https://tabler.io/icons"
+                                                        target="_blank">https://tabler.io/icons</a></small>
+                                            </x-slot>
+                                        </div>
+                                    </x-input-block>
                                 </div>
                                 <div class="col-md-6">
                                     <x-input-file-block name="image"></x-input-file-block>
