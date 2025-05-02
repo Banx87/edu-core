@@ -14,7 +14,8 @@ trait Fileupload
             $filename = 'educore_' . time() . '_' . uniqid() . '_.' . $file->getClientOriginalExtension();
 
             // move the file to storage
-            $file->move(public_path($directory), $filename);
+            $file->storeAs($directory, $filename, 'public');
+
             return '/' . $directory . '/' . $filename;
         } catch (Exception $e) {
             throw $e;
@@ -23,9 +24,13 @@ trait Fileupload
 
     public function deleteFile(string $filePath): bool
     {
-        if (File::exists(public_path($filePath))) {
-            File::delete(public_path($filePath));
-            return true;
+        $fullPath = public_path($filePath);
+        if (File::exists($fullPath)) {
+            if (File::delete($fullPath)) {
+                return true;
+            } elseif (unlink($fullPath)) {
+                return true;
+            }
         }
         return false;
     }
