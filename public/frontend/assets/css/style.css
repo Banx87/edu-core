@@ -13934,7 +13934,7 @@ footer {
 	margin-top: 10px;
 }
 
-.wsus__dashboard_contant {
+.wsus__dashboard_content {
 	margin-top: 30px;
 	background: var(--colorWhite);
 	box-shadow: 0px 3px 3px 0px rgba(23, 23, 24, 0.1);
@@ -13942,7 +13942,7 @@ footer {
 	overflow: hidden;
 }
 
-.wsus__dashboard_contant_top {
+.wsus__dashboard_content_top {
 	padding: 30px 30px 25px 30px;
 	border-bottom: 1px solid var(--borderColor);
 }

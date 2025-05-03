@@ -26,8 +26,8 @@
                 @include('frontend.instructor-dashboard.sidebar')
 
                 <div class="col-xl-9 col-md-8 wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;">
-                    <div class="wsus__dashboard_contant wsus__dashboard_contant_border_top mt-0">
-                        <div class="wsus__dashboard_contant_top d-flex flex-wrap justify-content-between">
+                    <div class="wsus__dashboard_content wsus__dashboard_content_border_top mt-0">
+                        <div class="wsus__dashboard_content_top d-flex flex-wrap justify-content-between">
                             <div class="wsus__dashboard_heading">
                                 <h5>Update Your Information</h5>
                                 <p>Manage your courses and its update like live, draft and insight.</p>
@@ -111,8 +111,8 @@
                         </form>
                     </div>
                     {{-- PASSWORD --}}
-                    <div class="wsus__dashboard_contant wsus__dashboard_contant_border_top">
-                        <div class="wsus__dashboard_contant_top  d-flex flex-wrap justify-content-between">
+                    <div class="wsus__dashboard_content wsus__dashboard_content_border_top">
+                        <div class="wsus__dashboard_content_top  d-flex flex-wrap justify-content-between">
                             <div class="wsus__dashboard_heading">
                                 <h5>Update Your Password.</h5>
                                 {{-- <p>Update your social media information.</p> --}}
@@ -153,8 +153,8 @@
                     </div>
 
                     {{-- SOCIAL --}}
-                    <div class="wsus__dashboard_contant wsus__dashboard_contant_border_top">
-                        <div class="wsus__dashboard_contant_top  d-flex flex-wrap justify-content-between">
+                    <div class="wsus__dashboard_content wsus__dashboard_content_border_top">
+                        <div class="wsus__dashboard_content_top  d-flex flex-wrap justify-content-between">
                             <div class="wsus__dashboard_heading">
                                 <h5>Update Your Social</h5>
                                 <p>Update your social media information.</p>

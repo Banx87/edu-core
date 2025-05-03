@@ -26,8 +26,8 @@
                 @include('frontend.instructor-dashboard.sidebar')
 
                 <div class="col-xl-9 col-md-8 wow fadeInRight">
-                    <div class="wsus__dashboard_contant">
-                        <div class="wsus__dashboard_contant_top">
+                    <div class="wsus__dashboard_content m-0 wsus__dashboard_content_border_top">
+                        <div class="wsus__dashboard_content_top">
                             <div class="wsus__dashboard_heading relative">
                                 <h5>Courses</h5>
                                 <p>Manage your courses and its update like live, draft and insight.</p>
