@@ -30,6 +30,15 @@
                     Instructor Profile
                 </a>
             </li>
+            <li>
+                <a href="{{ route('instructor.courses.index') }}" class="">
+                    <div class="img">
+                        <img src="{{ asset('frontend/assets/images/dash_icon_1.png') }}" alt="icon"
+                            class="img-fluid w-100">
+                    </div>
+                    Courses
+                </a>
+            </li>
 
             {{-- <li>
                 <form method="POST" action="{{ route('logout') }}">
