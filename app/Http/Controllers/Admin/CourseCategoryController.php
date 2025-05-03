@@ -49,7 +49,7 @@ class CourseCategoryController extends Controller
         $category->status = $request->status ?? 0;
         $category->save();
 
-        return to_route('admin.course-category.index')->with('success', 'Course Category created successfully.');
+        return to_route('admin.course-categories.index')->with('success', 'Course Category created successfully.');
     }
 
     /**
@@ -91,6 +91,13 @@ class CourseCategoryController extends Controller
      */
     public function destroy(CourseCategory $course_category)
     {
+
+        // Check does this main category have any subcategories
+        if (CourseCategory::where('parent_id', $course_category->id)->exists()) {
+            redirect()->route('admin.course-categories.index')->with('error', 'Cannot delete a Main category, while it contains subcategories!');
+            return response()->json(['error' => 'Cannot delete a Main category, while it contains subcategories!'], 422);
+        }
+
         try {
             $this->deleteFile($course_category->image);
             $course_category->delete();
