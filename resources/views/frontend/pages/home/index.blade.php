@@ -1,103 +1,103 @@
 @extends('frontend.layouts.master')
 @section('content')
     <!--===========================
-            HERO 3 START
-        ============================-->
+                HERO 3 START
+            ============================-->
 
     @include('frontend.pages.home.sections.hero')
 
     <!--===========================
-            HERO 3 END
-        ============================-->
+                HERO 3 END
+            ============================-->
 
 
     <!--===========================
-            CATEGORY 4 START
-        ============================-->
+                CATEGORY 4 START
+            ============================-->
 
     @include('frontend.pages.home.sections.categories')
 
     <!--===========================
-            CATEGORY 4 END
-        ============================-->
+                CATEGORY 4 END
+            ============================-->
 
     <!--===========================
-            ABOUT 3 START
-        ============================-->
+                ABOUT 3 START
+            ============================-->
     @include('frontend.pages.home.sections.about')
     <!--===========================
-            ABOUT 3 END
-        ============================-->
-
-
-    <!--===========================
-            COURSES 3 START
+                ABOUT 3 END
             ============================-->
-    @include('frontend.pages.home.sections.courses')
-    <!--===========================
-            COURSES 3 END
-        ============================-->
 
 
     <!--===========================
-            OFFER START
-        ============================-->
+                COURSES 3 START
+                ============================-->
+    @include('frontend.pages.home.sections.course')
+    <!--===========================
+                COURSES 3 END
+            ============================-->
+
+
+    <!--===========================
+                OFFER START
+            ============================-->
     @include('frontend.pages.home.sections.offer')
     <!--===========================
-            OFFER END
-        ============================-->
+                OFFER END
+            ============================-->
 
 
     <!--===========================
-            BECOME INSTRUCTOR START
-        ============================-->
+                BECOME INSTRUCTOR START
+            ============================-->
     @include('frontend.pages.home.sections.become-instructor')
     <!--===========================
-            BECOME INSTRUCTOR END
-        ============================-->
+                BECOME INSTRUCTOR END
+            ============================-->
 
 
     <!--===========================
-            VIDEO START
-        ============================-->
+                VIDEO START
+            ============================-->
     @include('frontend.pages.home.sections.video')
     <!--===========================
-            VIDEO END
-        ============================-->
+                VIDEO END
+            ============================-->
 
 
     <!--===========================
-            BRAND START
-        ============================-->
+                BRAND START
+            ============================-->
     @include('frontend.pages.home.sections.brand')
     <!--===========================
-            BRAND END
-        ============================-->
+                BRAND END
+            ============================-->
 
 
     <!--===========================
-            FEATURED COURSES START
-        ============================-->
+                FEATURED COURSES START
+            ============================-->
     @include('frontend.pages.home.sections.featured-courses')
     <!--===========================
-            FEATURED COURSES END
-        ============================-->
+                FEATURED COURSES END
+            ============================-->
 
 
     <!--===========================
-            TESTIMONIAL START
-        ============================-->
+                TESTIMONIAL START
+            ============================-->
     @include('frontend.pages.home.sections.testimonials')
     <!--===========================
-            TESTIMONIAL END
-        ============================-->
+                TESTIMONIAL END
+            ============================-->
 
 
     <!--===========================
-            BLOG-CAROUSEL 4 START
-        ============================-->
+                BLOG-CAROUSEL 4 START
+            ============================-->
     @include('frontend.pages.home.sections.blog-carousel')
     <!--===========================
-            BLOG-CAROUSEL 4 END
-        ============================-->
+                BLOG-CAROUSEL 4 END
+            ============================-->
 @endsection

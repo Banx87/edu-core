@@ -10,6 +10,10 @@ class CourseController extends Controller
 {
     function index(): View
     {
-        return view('frontend.instructor-dashboard.courses.index');
+        return view('frontend.instructor-dashboard.course.index');
+    }
+    function create(): View
+    {
+        return view('frontend.instructor-dashboard.course.create');
     }
 }

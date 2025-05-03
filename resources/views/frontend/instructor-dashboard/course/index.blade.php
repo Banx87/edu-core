@@ -1,24 +1,6 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-    <section class="wsus__breadcrumb" style="background: url(images/breadcrumb_bg.jpg);">
-        <div class="wsus__breadcrumb_overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 wow fadeInUp">
-                        <div class="wsus__breadcrumb_text">
-                            <h1>Add Courses</h1>
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li>Add Courses</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="wsus__dashboard mt_90 xs_mt_70 pb_120 xs_pb_100">
         <div class="container">
             <div class="row">
@@ -31,7 +13,7 @@
                             <div class="wsus__dashboard_heading relative">
                                 <h5>Courses</h5>
                                 <p>Manage your courses and its update like live, draft and insight.</p>
-                                <a class="common_btn" href="dashboard_add_courses.html">+ add course</a>
+                                <a class="common_btn" href="{{ route('instructor.courses.create') }}">+ add course</a>
                             </div>
                         </div>
 
