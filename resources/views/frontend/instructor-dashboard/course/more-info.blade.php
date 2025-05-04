@@ -3,7 +3,7 @@
 @section('course_content')
     <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
         <div class="add_course_more_info">
-            <form action="" class="more_info_form">
+            <form action="" class="more_info_form course-form">
                 @csrf
                 <input type="hidden" name="id" value="{{ request()?->id }}">
                 <input type="hidden" name="current_step" value="2">
