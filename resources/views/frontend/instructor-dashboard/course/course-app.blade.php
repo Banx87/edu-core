@@ -36,7 +36,7 @@
                         <div class="dashboard_add_courses">
                             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <a href="" class="nav-link" type="button">Basic Infos</a>
+                                    <a href="" class="nav-link active" type="button">Basic Infos</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <a href="" class="nav-link" type="button">More Info</a>
@@ -58,3 +58,6 @@
         </div>
     </section>
 @endsection
+@push('header_scripts')
+    @vite(['resources/js/frontend/course.js'])
+@endpush
