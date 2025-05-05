@@ -6,6 +6,13 @@ var notyf = new Notyf({
 	dismissible: true,
 });
 
+var loader = `
+<div class="modal-content text-center" style="display: inline; padding: 5rem;">
+   <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+  		<span class="visually-hidden">Loading...</span>
+	</div>
+</div>`;
+
 // Course tab navigation
 $(".course-tab").on("click", function (e) {
 	e.preventDefault();
@@ -111,4 +118,24 @@ $(".preview_video_storage").on("change", function () {
 		$(".file_source").addClass("d-none");
 		$(".input_source").removeClass("d-none");
 	}
+});
+
+//  Course Contents
+
+$(".dynamic_modal_btn").on("click", function (e) {
+	e.preventDefault();
+	$("#dynamic_modal").modal("show");
+
+	$.ajax({
+		method: "GET",
+		url: base_url + "/instructor/course-content/create-chapter",
+		data: {},
+		beforeSend: function () {
+			$(".dynamic-modal-content").html(loader);
+		},
+		success: function (data) {
+			$(".dynamic-modal-content").html(data);
+		},
+		error: function (xhr, status, error) {},
+	});
 });

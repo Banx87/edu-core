@@ -62,7 +62,13 @@
 
     @yield('content')
 
+    <!-- Modal -->
+    <div class="modal fade" id="dynamic_modal" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg dynamic-modal-content">
 
+        </div>
+    </div>
     <!--===========================
         -FOOTER
     ============================-->
