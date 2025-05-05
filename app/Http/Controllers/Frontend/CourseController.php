@@ -85,19 +85,18 @@ class CourseController extends Controller
         // dd($request->all());
         switch ($request->current_step) {
             case '1':
+                $rules = [
+                    'title' => 'required|max:255|string',
+                    'seo_description' => 'nullable|max:255|string',
+                    'preview_video_storage' => 'nullable|in:youtube,vimeo,external_link,upload|string',
+                    'price' => 'required|numeric',
+                    'discount' => 'nullable|numeric',
+                    'description' => 'required',
+                    'thumbnail' => 'nullable|image|max:3000',
+                    'preview_video_source' => 'nullable'
+                ];
 
-                $request->validate(
-                    [
-                        'title' => 'required|max:255|string',
-                        'seo_description' => 'nullable|max:255|string',
-                        'preview_video_storage' => 'nullable|in:youtube,vimeo,external_link,upload|string',
-                        'price' => 'required|numeric',
-                        'discount' => 'nullable|numeric',
-                        'description' => 'required',
-                        'thumbnail' => 'nullable|image|max:3000',
-                        'preview_video_source' => 'nullable'
-                    ]
-                );
+                $request->validate($rules);
 
                 $course = Course::findOrFail($request->id);
 
@@ -114,7 +113,7 @@ class CourseController extends Controller
                 $course->discount = $request->discount;
                 $course->description = $request->description;
                 $course->preview_video_storage = $request->preview_video_storage;
-                $course->preview_video_source = $request->preview_video_source;
+                $course->preview_video_source = $request->filled('file') ? $request->file : $request->url;
                 $course->instructor_id = Auth::guard('web')->user()->id;
                 $course->save();
 
