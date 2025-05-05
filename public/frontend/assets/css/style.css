@@ -13558,15 +13558,15 @@ footer {
 	margin-bottom: 0;
 }
 
-.video_review_imput {
+.video_review_input {
 	margin-top: 55px;
 }
 
-.video_review_imput p {
+.video_review_input p {
 	margin-top: 7px;
 }
 
-.video_review_imput p span {
+.video_review_input p span {
 	color: var(--tg-heading-color);
 	text-transform: capitalize;
 	font-weight: 600;
@@ -13574,7 +13574,7 @@ footer {
 	margin-right: 10px;
 }
 
-.video_review_imput p i {
+.video_review_input p i {
 	font-size: 15px;
 	cursor: pointer;
 	transition: all linear 0.3s;
@@ -13584,11 +13584,11 @@ footer {
 	-o-transition: all linear 0.3s;
 }
 
-.video_review_imput p i:hover {
+.video_review_input p i:hover {
 	color: #f8bc24;
 }
 
-.video_review_imput form textarea {
+.video_review_input form textarea {
 	width: 100%;
 	border: 1px solid var(--bs-border-color);
 	border-radius: 10px;
@@ -15441,12 +15441,12 @@ footer {
 	color: var(--colorWhite);
 }
 
-.add_course_basic_info_imput,
+.add_course_basic_info_input,
 .add_course_more_info_input {
 	margin-bottom: 20px;
 }
 
-.add_course_basic_info_imput label,
+.add_course_basic_info_input label,
 .add_course_more_info_input label {
 	display: inline-block;
 	font-size: 15px;
@@ -15455,28 +15455,28 @@ footer {
 	margin-bottom: 3px;
 }
 
-.add_course_basic_info_imput label b {
+.add_course_basic_info_input label b {
 	text-transform: capitalize;
 	font-weight: 400;
 	font-size: 14px;
 	color: var(--paraColor);
 }
 
-.add_course_basic_info_imput input,
+.add_course_basic_info_input input,
 .add_course_more_info_input input {
 	font-size: 16px;
 }
 
-.add_course_basic_info_imput p,
+.add_course_basic_info_input p,
 .add_course_more_info_input p {
 	margin-top: 5px;
 }
 
-.add_course_basic_info_imput input[type="file"] {
+.add_course_basic_info_input input[type="file"] {
 	padding: 0;
 }
 
-.add_course_basic_info_imput input[type="file"]::file-selector-button {
+.add_course_basic_info_input input[type="file"]::file-selector-button {
 	margin-right: 20px;
 	border: none;
 	background: var(--colorPrimary);
@@ -15491,11 +15491,11 @@ footer {
 	-o-transition: background 0.3s ease-in-out;
 }
 
-.add_course_basic_info_imput input[type="file"]::file-selector-button:hover {
+.add_course_basic_info_input input[type="file"]::file-selector-button:hover {
 	background: #1245bd;
 }
 
-.add_course_basic_info_imput .nice-select {
+.add_course_basic_info_input .nice-select {
 	border-radius: 6px;
 	border: solid 1px var(--borderColor) !important;
 	height: 50px;
@@ -15507,12 +15507,12 @@ footer {
 	-o-border-radius: 6px;
 }
 
-.add_course_basic_info_imput .nice-select .current {
+.add_course_basic_info_input .nice-select .current {
 	font-size: 16px;
 	color: var(--colorBlack);
 }
 
-.add_course_basic_info_imput .nice-select:after {
+.add_course_basic_info_input .nice-select:after {
 	right: 18px;
 }
 
