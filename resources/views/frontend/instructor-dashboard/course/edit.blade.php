@@ -42,7 +42,8 @@
                         </div>
                     </div>
                     <div class="col-xl-6">
-                        <div class="add_course_basic_info_input file_source">
+                        <div
+                            class="add_course_basic_info_input file_source {{ $course->preview_video_storage === 'upload' ? '' : 'd-none' }}">
                             <label for="#">Path</label>
                             <div class="input-group">
                                 <span class="input-group-btn">
@@ -54,7 +55,8 @@
                                     value={{ $course->preview_video_source }}>
                             </div>
                         </div>
-                        <div class="add_course_basic_info_input input_source d-none">
+                        <div
+                            class="add_course_basic_info_input input_source {{ $course->preview_video_storage !== 'upload' ? '' : 'd-none' }}">
                             <label for="#">Path</label>
                             <input type="text" name="url" class="source_input"
                                 value={{ $course->preview_video_source }} />
@@ -73,8 +75,11 @@
                         </div>
                     </div>
                     <div class="col-xl-6">
-                        <div id="holder" style="margin-top:15px;max-height:100px;"></div>
-
+                        <div id="holder" style="margin-top:15px;max-height:100px;">
+                            @if ($course->preview_video_storage === 'upload')
+                                <img src="{{ asset($course->preview_video_source) }}" style="height: 5rem;">
+                            @endif
+                        </div>
                     </div>
                     <div class="col-xl-12">
                         <div class="add_course_basic_info_input mb-0">

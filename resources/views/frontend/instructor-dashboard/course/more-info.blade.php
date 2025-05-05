@@ -25,12 +25,12 @@
                     <div class="col-xl-6">
                         <div class="add_course_more_info_checkbox">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="qna" value="1"
+                                <input class="form-check-input" type="checkbox" name="qna" value="0"
                                     @checked($course?->qna === 1) id="flexCheckDefault" />
                                 <label class="form-check-label" for="flexCheckDefault">Q&A</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="certificate" value="1"
+                                <input class="form-check-input" type="checkbox" name="certificate" value="0"
                                     @checked($course?->certificate === 1) id="flexCheckDefault2" />
                                 <label class="form-check-label" for="flexCheckDefault2">Completion Certificate</label>
                             </div>
