@@ -1,9 +1,12 @@
 const base_url = $(`meta[name="base_url"]`).attr("content");
 const basic_info_url = base_url + "/instructor/courses/create";
 const update_url = base_url + "/instructor/courses/update";
+var notyf = new Notyf({
+	duration: 5000,
+	dismissible: true,
+});
 
 // Course tab navigation
-
 $(".course-tab").on("click", function (e) {
 	e.preventDefault();
 	let step = $(this).data("step");
@@ -29,7 +32,14 @@ $(".basic_info_form").on("submit", function (e) {
 				window.location.href = data.redirect;
 			}
 		},
-		error: function (xhr, status, error) {},
+		error: function (xhr, status, error) {
+			let errors = xhr.responseJSON.errors;
+
+			$.each(errors, function (key, value) {
+				notyf.error(value[0]);
+			});
+			// console.log(xhr);
+		},
 		complete: function () {},
 	});
 });
