@@ -60,7 +60,13 @@ $(".more_info_form").on("submit", function (e) {
 				window.location.href = data.redirect;
 			}
 		},
-		error: function (xhr, status, error) {},
+		error: function (xhr, status, error) {
+			let errors = xhr.responseJSON.errors;
+
+			$.each(errors, function (key, value) {
+				notyf.error(value[0]);
+			});
+		},
 		complete: function () {},
 	});
 });
@@ -81,7 +87,28 @@ $(".basic_info_update_form").on("submit", function (e) {
 				window.location.href = data.redirect;
 			}
 		},
-		error: function (xhr, status, error) {},
+		error: function (xhr, status, error) {
+			let errors = xhr.responseJSON.errors;
+
+			$.each(errors, function (key, value) {
+				notyf.error(value[0]);
+			});
+		},
 		complete: function () {},
 	});
+});
+
+// Show / hide path input on source
+$(".preview_video_storage").on("change", function () {
+	let value = $(this).val();
+	$(".source_input").val("");
+	$("#holder").html(""); // Empty the fileViewers preview image
+
+	if (value == "upload") {
+		$(".file_source").removeClass("d-none");
+		$(".input_source").addClass("d-none");
+	} else if (value !== "upload") {
+		$(".file_source").addClass("d-none");
+		$(".input_source").removeClass("d-none");
+	}
 });
