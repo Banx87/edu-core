@@ -72,6 +72,13 @@ class CourseController extends Controller
                 $course = Course::findorFail($request->id);
                 return view('frontend.instructor-dashboard.course.more-info', compact('categories', 'levels', 'languages', 'course'));
                 break;
+            case '3':
+                $categories = CourseCategory::where("status", 1)->get();
+                $levels = CourseLevels::all();
+                $languages = CourseLanguage::all();
+                $course = Course::findorFail($request->id);
+                return view('frontend.instructor-dashboard.course.course-content', compact('categories', 'levels', 'languages', 'course'));
+                break;
 
             default:
                 // return view('frontend.instructor-dashboard.course.create');
