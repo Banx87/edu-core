@@ -10,25 +10,25 @@
                 <input type="hidden" name="next_step" value ="2">
                 <div class="row">
                     <div class="col-xl-12">
-                        <div class="add_course_basic_info_imput">
+                        <div class="add_course_basic_info_input">
                             <label for="#">Title *</label>
                             <input type="text" placeholder="Title" name="title" />
                         </div>
                     </div>
                     <div class="col-xl-12">
-                        <div class="add_course_basic_info_imput">
+                        <div class="add_course_basic_info_input">
                             <label for="#">Seo description</label>
                             <input type="text" placeholder="Seo description" name="seo_description" />
                         </div>
                     </div>
                     <div class="col-xl-12">
-                        <div class="add_course_basic_info_imput">
+                        <div class="add_course_basic_info_input">
                             <label for="#">Thumbnail *</label>
                             <input type="file" name="thumbnail" />
                         </div>
                     </div>
                     <div class="col-xl-6">
-                        <div class="add_course_basic_info_imput">
+                        <div class="add_course_basic_info_input">
                             <label for="#">Preview Video Storage <b>(optional)</b></label>
                             <select class="select_js" name="preview_video_storage">
                                 <option value="">Please Select</option>
@@ -40,26 +40,26 @@
                         </div>
                     </div>
                     <div class="col-xl-6">
-                        <div class="add_course_basic_info_imput">
+                        <div class="add_course_basic_info_input">
                             <label for="#">Path</label>
                             <input type="file" name="preview_video_source" />
                         </div>
                     </div>
                     <div class="col-xl-6">
-                        <div class="add_course_basic_info_imput">
+                        <div class="add_course_basic_info_input">
                             <label for="#">Price *</label>
                             <input type="text" placeholder="Price" name="price" />
                             <p>Put 0 for free</p>
                         </div>
                     </div>
                     <div class="col-xl-6">
-                        <div class="add_course_basic_info_imput">
+                        <div class="add_course_basic_info_input">
                             <label for="#">Discount Price</label>
                             <input type="text" placeholder="Price" name="discount" />
                         </div>
                     </div>
                     <div class="col-xl-12">
-                        <div class="add_course_basic_info_imput mb-0">
+                        <div class="add_course_basic_info_input mb-0">
                             <label for="#">Description</label>
                             <textarea rows="8" placeholder="Description" name="description"></textarea>
                             <button type="submit" class="common_btn mt_20">
