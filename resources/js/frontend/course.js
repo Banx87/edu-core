@@ -1,6 +1,8 @@
 const base_url = $(`meta[name="base_url"]`).attr("content");
 const basic_info_url = base_url + "/instructor/courses/create";
 const update_url = base_url + "/instructor/courses/update";
+
+// Initialize Notyf
 var notyf = new Notyf({
 	duration: 5000,
 	dismissible: true,

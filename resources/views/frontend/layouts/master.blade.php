@@ -34,7 +34,7 @@
 
 
 
-    @vite(['resources/css/frontend.css'])
+    @vite(['resources/css/frontend.css', 'resources/js/frontend/frontend.js'])
     <!--dynamic.js-->
     @stack('header_scripts')
 </head>
@@ -141,6 +141,19 @@
 
     {{-- Dynamic JS --}}
     @stack('scripts')
+
+    <script>
+        var notyf = new Notyf({
+            duration: 5000,
+            dismissible: true,
+        });
+
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                notyf.error("{{ $error }}");
+            @endforeach
+        @endif
+    </script>
 
 
 </body>
