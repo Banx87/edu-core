@@ -17,9 +17,10 @@ class CourseContentController
 
     function storeChapter(Request $request, string $courseId): RedirectResponse
     {
+        // dd([$request->all(), $courseId]);
         $request->validate([
             'title' => 'required|max:255',
-            'course_id' => 'required|integer'
+            // 'course_id' => 'required|integer' //Pois kunnes keksin missä vika
         ]);
 
         $chapter = new CourseChapter();

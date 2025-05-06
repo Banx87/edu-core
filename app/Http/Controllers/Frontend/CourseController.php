@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CourseBasicInfoCreateRequest;
 use App\Models\Course;
 use App\Models\CourseCategory;
+use App\Models\CourseChapter;
 use App\Models\CourseLanguage;
 use App\Models\CourseLevels;
 use App\Traits\Fileupload;
@@ -73,12 +74,9 @@ class CourseController extends Controller
                 return view('frontend.instructor-dashboard.course.more-info', compact('categories', 'levels', 'languages', 'course'));
                 break;
             case '3':
-                // $categories = CourseCategory::where("status", 1)->get();
-                // $levels = CourseLevels::all();
-                // $languages = CourseLanguage::all();
-                // $course = Course::findorFail($request->id);
-                $course_id = $request->id;
-                return view('frontend.instructor-dashboard.course.course-content', compact('course_id'));
+                $courseId = $request->id;
+                $chapters = CourseChapter::where(['course_id' => $courseId, 'instructor_id' => Auth::user()->id])->get();
+                return view('frontend.instructor-dashboard.course.course-content', compact('courseId', 'chapters'));
                 break;
 
             default:
@@ -165,9 +163,17 @@ class CourseController extends Controller
                 ]);
                 break;
 
+            case '3':
+                return response([
+                    'status' => 'success',
+                    'message' => 'updated succesfully.',
+                    'redirect' => route('instructor.courses.edit',  ['id' => $request->id, 'step' => $request->next_step])
+                ]);
+                break;
                 // default:
                 //     return view('frontend.instructor-dashboard.course.create');
                 //     break;
+
         }
     }
 }
