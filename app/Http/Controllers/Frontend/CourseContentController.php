@@ -87,6 +87,26 @@ class CourseContentController
         return redirect()->back();
     }
 
+    function editChapterModal(string $id, Request $request): String
+    {
+        $editMode = true;
+        $chapter = CourseChapter::where(['id' => $id, 'instructor_id' => Auth::user()->id])->firstOrFail();
+        return view('frontend.instructor-dashboard.course.partials.course-chapter-modal', compact('chapter', 'editMode'))->render();
+    }
+    function updateChapterModal(string $id, Request $request): RedirectResponse
+    {
+        $request->validate([
+            'title' => 'required|max:255',
+        ]);
+
+        $chapter = CourseChapter::findOrFail($id);
+        $chapter->title = $request->title;
+        $chapter->save();
+
+        notyf()->success('Chapter Title Updated Successfully!');
+        return redirect()->back();
+    }
+
     function editLesson(Request $request): String
     {
         $editMode = true;
