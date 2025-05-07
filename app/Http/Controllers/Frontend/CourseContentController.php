@@ -81,6 +81,24 @@ class CourseContentController
 
         $lesson->save();
 
+        notyf()->success('Lesson created Succesfully!');
+
         return redirect()->back();
+    }
+
+    function editLesson(Request $request): String
+    {
+        // dd($request->all());
+        $lessonId = $request->lesson_id;
+        $courseId = $request->course_id;
+        $chapterId = $request->chapter_id;
+        $lesson = CourseChapterLesson::where([
+            'id' => $lessonId,
+            'chapter_id' => $chapterId,
+            'course_id' => $courseId,
+            'instructor_id' => Auth::user()->id
+        ])->first();
+
+        return view('frontend.instructor-dashboard.course.partials.chapter-lesson-modal', compact('courseId', 'chapterId', 'lesson'))->render();
     }
 }
