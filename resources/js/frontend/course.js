@@ -8,6 +8,7 @@ var notyf = new Notyf({
 	dismissible: true,
 });
 
+// MODAL SPINNER
 var loader = `
 <div class="modal-content text-center" style="display: inline; padding: 5rem;">
    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -22,8 +23,6 @@ $(".course-tab").on("click", function (e) {
 	$(".course-form").find("input[name=next_step]").val(step);
 	$(".course-form").trigger("submit");
 });
-
-//
 
 $(".basic_info_form").on("submit", function (e) {
 	e.preventDefault();
@@ -107,8 +106,8 @@ $(".basic_info_update_form").on("submit", function (e) {
 	});
 });
 
-// Show / hide path input on source
-$(".preview_video_storage").on("change", function () {
+// Show / hide path input depending on source
+$(document).on("change", ".preview_video_storage", function () {
 	let value = $(this).val();
 	$(".source_input").val("");
 	$("#holder").html(""); // Empty the fileViewers preview image
@@ -142,5 +141,31 @@ $(".dynamic_modal_btn").on("click", function (e) {
 			$(".dynamic-modal-content").html(data);
 		},
 		error: function (xhr, status, error) {},
+	});
+});
+
+$(".add_lesson").on("click", function (e) {
+	e.preventDefault();
+
+	$("#dynamic_modal").modal("show");
+
+	let courseID = $(this).data("course-id");
+	let chapterID = $(this).data("chapter-id");
+
+	$.ajax({
+		method: "GET",
+		url: base_url + "/instructor/course-content/create-lesson",
+		data: {
+			chapter_id: chapterID,
+			course_id: courseID,
+		},
+		beforeSend: function () {
+			$(".dynamic-modal-content").html(loader);
+		},
+		success: function (data) {
+			$(".dynamic-modal-content").html(data);
+		},
+		error: function () {},
+		complete: function () {},
 	});
 });

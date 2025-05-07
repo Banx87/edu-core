@@ -30,21 +30,39 @@
                     <div class="col-xl-6">
                         <div class="add_course_basic_info_input">
                             <label for="#">Preview Video Storage <b>(optional)</b></label>
-                            <select class="select_js" name="preview_video_storage">
+                            <select class="select_js preview_video_storage" name="preview_video_storage">
                                 <option value="">Please Select</option>
-                                <option value="upload">Upload</option>
-                                <option value="youtube">Youtube</option>
-                                <option value="vimeo">Vimeo</option>
-                                <option value="external_link">External Link</option>
+                                @foreach (config('course.video_sources') as $source => $name)
+                                    <option value="{{ $source }}">{{ $name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="col-xl-6">
+                    {{-- <div class="col-xl-6">
                         <div class="add_course_basic_info_input">
                             <label for="#">Path</label>
                             <input type="file" name="preview_video_source" />
                         </div>
+                    </div> --}}
+                    <div class="col-xl-6">
+                        <div class="add_course_basic_info_input file_source {{ $source == 'upload' ? '' : 'd-none' }}">
+                            <label for="#">Path</label>
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <a id="lfm" data-input="thumbnail" data-preview="holder" class="common_btn">
+                                        <i class="fa fa-picture-o"></i> Choose File
+                                    </a>
+                                </span>
+                                <input id="thumbnail" class="form-control source_input" type="text" name="file"
+                                    value={{ $source }}>
+                            </div>
+                        </div>
+                        <div class="add_course_basic_info_input input_source {{ $source != 'upload' ? '' : 'd-none' }}">
+                            <label for="#">Path</label>
+                            <input type="text" name="url" class="source_input" />
+                        </div>
                     </div>
+
                     <div class="col-xl-6">
                         <div class="add_course_basic_info_input">
                             <label for="#">Price *</label>
@@ -72,3 +90,9 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $('#lfm').filemanager('file');
+    </script>
+@endpush

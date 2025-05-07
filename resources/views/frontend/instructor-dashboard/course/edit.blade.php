@@ -34,10 +34,10 @@
                             <label for="#">Preview Video Storage <b>(optional)</b></label>
                             <select class="select_js preview_video_storage" name="preview_video_storage">
                                 <option value="">Please Select</option>
-                                <option @selected($course->preview_video_storage == 'upload') value="upload">Upload</option>
-                                <option @selected($course->preview_video_storage == 'youtube') value="youtube">Youtube</option>
-                                <option @selected($course->preview_video_storage == 'vimeo') value="vimeo">Vimeo</option>
-                                <option @selected($course->preview_video_storage == 'external') value="external_link">External Link</option>
+                                @foreach (config('course.video_sources') as $source => $name)
+                                    <option @selected($course->preview_video_storage == $source) value="{{ $source }}">{{ $name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
