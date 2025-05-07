@@ -88,7 +88,7 @@ class CourseContentController
 
     function editLesson(Request $request): String
     {
-        // dd($request->all());
+        $editMode = true;
         $lessonId = $request->lesson_id;
         $courseId = $request->course_id;
         $chapterId = $request->chapter_id;
@@ -99,6 +99,42 @@ class CourseContentController
             'instructor_id' => Auth::user()->id
         ])->first();
 
-        return view('frontend.instructor-dashboard.course.partials.chapter-lesson-modal', compact('courseId', 'chapterId', 'lesson'))->render();
+        return view('frontend.instructor-dashboard.course.partials.chapter-lesson-modal', compact('courseId', 'chapterId', 'lesson', 'editMode'))->render();
+    }
+
+    function updateLesson(Request $request, string $id): RedirectResponse
+    {
+        $rules = [
+            'title' => 'required|string|max:255',
+            'source' => 'required|string',
+            'file_type' => 'required|in:video,audio,pdf,docx,file',
+            'duration' => 'required',
+            'is_preview' => 'nullable|boolean',
+            'is_downloadable' => 'nullable|boolean',
+            'description' => 'required',
+        ];
+
+        if ($request->filled('file')) {
+            $rules['file'] = ['required'];
+        } else {
+            $rules['url'] = ['required'];
+        }
+        $request->validate($rules);
+
+        $lesson = CourseChapterLesson::findOrFail($id);
+        $lesson->title = $request->title;
+        $lesson->slug = Str::slug($request->title);
+        $lesson->storage = $request->source;
+        $lesson->file_path = $request->filled('file') ? $request->file : $request->url;
+        $lesson->file_type = $request->file_type;
+        $lesson->duration = $request->duration;
+        $lesson->is_preview = $request->filled('is_preview') ? 1 : 0;
+        $lesson->downloadable = $request->filled('is_downloadable') ? 1 : 0;
+        $lesson->description = $request->description;
+
+        $lesson->save();
+        notyf()->success('Lesson Updated Succesfully!');
+
+        return redirect()->back();
     }
 }
