@@ -7,6 +7,7 @@ use App\Models\CourseChapter;
 use App\Models\CourseChapterLesson;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -136,5 +137,22 @@ class CourseContentController
         notyf()->success('Lesson Updated Succesfully!');
 
         return redirect()->back();
+    }
+
+    function destroyLesson(string $id): Response
+    {
+        try {
+            $lesson = CourseChapterLesson::findOrFail($id);
+            $lesson->delete();
+            notyf()->success('Lesson deleted succesfully');
+            // redirect()->route('admin.course-languages.index')->with('success', 'Course Language deleted successfully.');
+
+            return response(['message' => 'Lesson deleted successfully!'], 200);
+        } catch (\Exception $e) {
+            logger()->error('Error deleting lesson: ' . $e->getMessage());
+            // redirect()->route('admin.course-languages.index')->with('error', 'Course Language cannot be deleted.');
+
+            return response(['message' => 'Something went wrong!'], 500);
+        }
     }
 }
