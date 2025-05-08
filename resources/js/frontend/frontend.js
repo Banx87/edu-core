@@ -34,13 +34,12 @@ $(function () {
 						// 	text: "Selected lesson has been deleted.",
 						// 	icon: "success",
 						// });
+						window.location.reload();
 					},
 					error: function (xhr, error, status) {
 						notyf.error(error);
 					},
-					complete() {
-						window.location.reload();
-					},
+					complete() {},
 				});
 			}
 		});

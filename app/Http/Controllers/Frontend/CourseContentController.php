@@ -107,6 +107,30 @@ class CourseContentController
         return redirect()->back();
     }
 
+    function destroyChapter(string $id): Response
+    {
+
+        // Delete chapter
+        $chapter = CourseChapter::findOrFail($id);
+        $chapter->delete;
+
+        try {
+            $chapter = CourseChapter::findOrFail($id);
+            $chapter->delete();
+            notyf()->success('Chapter deleted succesfully');
+            // redirect()->route('admin.course-languages.index')->with('success', 'Course Language deleted successfully.');
+
+            return response(['message' => 'Chapter deleted successfully!'], 200);
+        } catch (\Exception $e) {
+            logger()->error('Error deleting chapter: ' . $e->getMessage());
+            // redirect()->route('admin.course-languages.index')->with('error', 'Course Language cannot be deleted.');
+
+            return response(['message' => 'Something went wrong!'], 500);
+        }
+
+        notyf()->success('Chapter deleted succesfully');
+    }
+
     function editLesson(Request $request): String
     {
         $editMode = true;
