@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/spacing.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/jquery-ui.min.css') }}">
 
     {{-- Plugin CSS --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
@@ -131,6 +132,8 @@
     <script src="{{ asset('frontend/assets/js/video_player_youtube.js') }}"></script>
     <!--wow js-->
     <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
+    {{-- jQueryUI --}}
+    <script src="{{ asset('frontend/assets/js/jquery-ui.min.js') }}"></script>
 
     {{-- Lib JS --}}
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>

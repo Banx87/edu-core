@@ -2,6 +2,8 @@ const base_url = $(`meta[name="base_url"]`).attr("content");
 const basic_info_url = base_url + "/instructor/courses/create";
 const update_url = base_url + "/instructor/courses/update";
 
+const csrf_token = $(`meta[name="csrf_token"]`).attr("content");
+
 // Initialize Notyf
 var notyf = new Notyf({
 	duration: 5000,
@@ -222,3 +224,33 @@ $(".edit_lesson").on("click", function (e) {
 		complete: function () {},
 	});
 });
+
+if ($(".sortable_list li").length) {
+	$(".sortable_list").sortable({
+		items: "> li",
+		containment: "parent",
+		cursor: "move",
+		handle: ".dragger",
+		update: function (event, ui) {
+			let orderIds = $(this).sortable("toArray", {
+				attribute: "data-lesson-id",
+			});
+
+			let chapterId = ui.item.data("chapter-id");
+			$.ajax({
+				method: "POST",
+				url: base_url + `/instructor/course-content/${chapterId}/sort-lesson`,
+				data: {
+					_token: csrf_token,
+					order_ids: orderIds,
+				},
+				success: function (data) {
+					notyf.success(data.message);
+				},
+				error: function (xhr, error, status) {
+					notyf.error(error.error);
+				},
+			});
+		},
+	});
+}

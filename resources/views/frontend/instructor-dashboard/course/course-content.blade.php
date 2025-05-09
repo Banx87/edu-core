@@ -51,9 +51,10 @@
                         <div id="collapse-{{ $chapter->id }}" class="accordion-collapse collapse"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <ul class="item_list">
-                                    @foreach ($chapter->lessons ?? [] as $lesson)
-                                        <li>
+                                <ul class="item_list sortable_list">
+                                    @forelse ($chapter->lessons ?? [] as $lesson)
+                                        <li class="" data-lesson-id="{{ $lesson->id }}"
+                                            data-chapter-id="{{ $chapter->id }}">
                                             <span>{{ $lesson->title }}</span>
                                             <div class="add_course_content_action_btn">
                                                 <a href="javascript:;" class="edit_lesson"
@@ -63,10 +64,17 @@
                                                 <a class="delete-item"
                                                     href="{{ route('instructor.course-content.destroy-lesson', $lesson->id) }}"><i
                                                         class="fas fa-trash-alt"></i></a>
-                                                <a class="arrow" href="#"><i class="fas fa-arrows-alt"></i></a>
+                                                <a class="arrow dragger" href="javascript:;"><i
+                                                        class="fas fa-arrows-alt"></i></a>
                                             </div>
                                         </li>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">No lessons available for this chapter
+                                                yet.
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </ul>
                             </div>
                         </div>

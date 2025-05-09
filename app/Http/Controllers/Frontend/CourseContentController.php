@@ -199,4 +199,18 @@ class CourseContentController
             return response(['message' => 'Something went wrong!'], 500);
         }
     }
+
+    // Sort Chapter Lessons
+    function sortChapterLessons(Request $request, string $id)
+    {
+        $newOrdering = $request->order_ids;
+
+        foreach ($newOrdering as $order => $itemId) {
+            $lesson = CourseChapterLesson::where(['chapter_id' => $id, 'id' => $itemId])->first();
+            $lesson->order = $order + 1;
+            $lesson->save();
+        }
+
+        return response(['status' => 'success', 'message' => 'Order Updated Succesfully']);
+    }
 }
