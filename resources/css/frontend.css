@@ -57,3 +57,9 @@
 .chapter_sorter {
 	margin-top: 0.75rem;
 }
+
+.wsus__dash_course_table .image img {
+	height: 120px !important;
+	width: 160px !important;
+	object-fit: cover !important;
+}

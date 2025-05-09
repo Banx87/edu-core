@@ -36,7 +36,8 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="add_course_basic_info_input file_source">
+                    <div
+                        class="add_course_basic_info_input file_source {{ @$lesson->storage == 'upload' ? '' : 'd-none' }}">
                         <label for="#">Path</label>
                         <div class="input-group">
                             <span class="input-group-btn">
@@ -48,7 +49,8 @@
                                 value="{{ @$lesson?->file_path }}" />
                         </div>
                     </div>
-                    <div class="add_course_basic_info_input input_source d-none">
+                    <div
+                        class="add_course_basic_info_input input_source  {{ @$lesson->storage != 'upload' ? '' : 'd-none' }}">
                         <label for="#">Path</label>
                         <input type="text" name="url" class="source_input" value="{{ @$lesson?->file_path }}" />
                     </div>
