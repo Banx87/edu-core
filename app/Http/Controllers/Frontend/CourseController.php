@@ -78,7 +78,10 @@ class CourseController extends Controller
                 $chapters = CourseChapter::where(['course_id' => $courseId, 'instructor_id' => Auth::user()->id])->orderBy('order')->get();
                 return view('frontend.instructor-dashboard.course.course-content', compact('courseId', 'chapters'));
                 break;
-
+            case '4':
+                $course = Course::findorFail($request->id);
+                return view('frontend.instructor-dashboard.course.finish', compact('course'));
+                break;
             default:
                 // return view('frontend.instructor-dashboard.course.create');
                 break;
@@ -170,10 +173,30 @@ class CourseController extends Controller
                     'redirect' => route('instructor.courses.edit',  ['id' => $request->id, 'step' => $request->next_step])
                 ]);
                 break;
-                // default:
-                //     return view('frontend.instructor-dashboard.course.create');
-                //     break;
+            // default:
+            //     return view('frontend.instructor-dashboard.course.create');
+            //     break;
 
+
+            case '4':
+                $rules = [
+                    'message' => 'nullable|max:1000|string',
+                    'status' => 'required|in:active,inactive,draft',
+                ];
+
+                $request->validate($rules);
+
+                $course = Course::findOrFail($request->id);
+
+                $course->message_for_reviewer = $request->message;
+                $course->status = $request->status;
+                $course->save();
+
+                return response([
+                    'status' => 'success',
+                    'message' => 'Course created Succesfully.',
+                    'redirect' => route('instructor.courses.index')
+                ]);
         }
     }
 }

@@ -14,5 +14,11 @@ return [
         'docx' => 'Docx',
         'pdf' => 'PDF',
         'file' => 'File',
+    ],
+
+    'status' => [
+        'draft' => 'Draft',
+        'inactive' => 'Inactive',
+        'active' => 'Active',
     ]
 ];
