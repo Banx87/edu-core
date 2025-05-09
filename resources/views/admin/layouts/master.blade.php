@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="base_url" content="{{ url('/') }}">
     <title>Dashboard</title>
 
     {{-- Plugin CSS --}}
@@ -31,6 +32,8 @@
 
     @vite('resources/js/admin/admin.js')
     @vite(['resources/css/admin.css'])
+
+    @stack('header_scripts');
 </head>
 
 <body>
