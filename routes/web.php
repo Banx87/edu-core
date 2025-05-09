@@ -84,6 +84,9 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:instructor'],
     Route::delete('course-content/{id}/destroy-lesson', [CourseContentController::class, 'destroyLesson'])->name('course-content.destroy-lesson');
     Route::post('course-content/{chapter}/sort-lesson', [CourseContentController::class, 'sortChapterLessons'])->name('course-content.sort-chapter');
 
+    Route::get('course-content/{course}/sort-chapter', [CourseContentController::class, 'sortChapters'])->name('course-content.sort-chapter');
+    Route::post('course-content/{course}/sort-chapter', [CourseContentController::class, 'updateSortChapter'])->name('course-content.update-sort-chapter');
+
 
 
     // Laravel File Manager (lfi) Routes
