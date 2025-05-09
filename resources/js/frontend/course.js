@@ -64,6 +64,8 @@ $(".more_info_form").on("submit", function (e) {
 		data: formData,
 		contentType: false,
 		processData: false,
+		forcePlaceholderSize: true,
+		tolerance: "pointer",
 		beforeSend: function () {},
 		success: function (data) {
 			if (data.status == "success") {
@@ -203,9 +205,6 @@ $(".edit_lesson").on("click", function (e) {
 	let chapterId = $(this).data("chapter-id");
 	let lessonId = $(this).data("lesson-id");
 
-	console.log(courseId);
-	console.log(chapterId);
-	console.log(lessonId);
 	$.ajax({
 		method: "GET",
 		url: base_url + "/instructor/course-content/edit-lesson",
@@ -254,3 +253,26 @@ if ($(".sortable_list li").length) {
 		},
 	});
 }
+
+$(".sort_chapters_btn").on("click", function (e) {
+	e.preventDefault();
+
+	$("#dynamic_modal").modal("show");
+	let courseId = $(this).data("id");
+
+	$.ajax({
+		method: "GET",
+		url: base_url + `/instructor/course-content/${courseId}/sort-chapter`,
+		data: {},
+		beforeSend: function () {
+			$(".dynamic-modal-content").html(loader);
+		},
+		success: function (data) {
+			$(".dynamic-modal-content").html(data);
+		},
+		error: function (xhr, status, error) {
+			notyf.error(error);
+		},
+		complete: function () {},
+	});
+});
