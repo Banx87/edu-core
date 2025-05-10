@@ -25,7 +25,7 @@ class CourseController extends Controller
 
     function index(): View
     {
-        $courses = Course::with(['instructor'])->get();
+        $courses = Course::with(['instructor'])->paginate(25)->get();
         return view('admin.course.course-module.index', compact('courses'));
     }
 
