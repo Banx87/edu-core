@@ -9,6 +9,7 @@ use App\Models\CourseCategory;
 use App\Models\CourseChapter;
 use App\Models\CourseLanguage;
 use App\Models\CourseLevels;
+use App\Models\User;
 use App\Traits\Fileupload;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -43,7 +44,9 @@ class CourseController extends Controller
 
     function create(): View
     {
-        return view('admin.course.course-module.create');
+        $instructors = User::where('role', 'instructor')
+            ->where('approve_status', 'approved')->get();
+        return view('admin.course.course-module.create', compact('instructors'));
     }
 
     // DATA STORE FUNCTIONS
@@ -61,7 +64,7 @@ class CourseController extends Controller
         $course->description = $request->description;
         $course->preview_video_storage = $request->preview_video_storage;
         $course->preview_video_source = $request->preview_video_source;
-        $course->instructor_id = Auth::guard('web')->user()->id;
+        $course->instructor_id = $request->instructor;
         $course->save();
 
         // save course id on session
@@ -70,7 +73,7 @@ class CourseController extends Controller
         return response([
             'status' => 'success',
             'message' => 'updated succesfully.',
-            'redirect' => route('instructor.courses.edit',  ['id' => $course->id, 'step' => $request->next_step])
+            'redirect' => route('admin.courses.edit',  ['id' => $course->id, 'step' => $request->next_step])
         ]);
     }
 
@@ -79,23 +82,23 @@ class CourseController extends Controller
         switch ($request->step) {
             case '1':
                 $course = Course::findOrFail($request->id);
-                return view('admin.instructor-dashboard.course.edit', compact('course'));
+                return view('admin.course.course-module.edit', compact('course'));
                 break;
             case '2':
                 $categories = CourseCategory::where("status", 1)->get();
                 $levels = CourseLevels::all();
                 $languages = CourseLanguage::all();
                 $course = Course::findorFail($request->id);
-                return view('admin.instructor-dashboard.course.more-info', compact('categories', 'levels', 'languages', 'course'));
+                return view('admin.course.course-module.more-info', compact('categories', 'levels', 'languages', 'course'));
                 break;
             case '3':
                 $courseId = $request->id;
-                $chapters = CourseChapter::where(['course_id' => $courseId, 'instructor_id' => Auth::user()->id])->orderBy('order')->get();
-                return view('admin.instructor-dashboard.course.course-content', compact('courseId', 'chapters'));
+                $chapters = CourseChapter::where('course_id', $courseId)->get();
+                return view('admin.course.course-module.course-content', compact('courseId', 'chapters'));
                 break;
             case '4':
                 $course = Course::findorFail($request->id);
-                return view('admin.instructor-dashboard.course.finish', compact('course'));
+                return view('admin.course.course-module.finish', compact('course'));
                 break;
             default:
                 // return view('admin.instructor-dashboard.course.create');
@@ -177,7 +180,7 @@ class CourseController extends Controller
                 return response([
                     'status' => 'success',
                     'message' => 'updated succesfully.',
-                    'redirect' => route('instructor.courses.edit',  ['id' => $course->id, 'step' => $request->next_step])
+                    'redirect' => route('admin.courses.edit',  ['id' => $course->id, 'step' => $request->next_step])
                 ]);
                 break;
 
@@ -185,7 +188,7 @@ class CourseController extends Controller
                 return response([
                     'status' => 'success',
                     'message' => 'updated succesfully.',
-                    'redirect' => route('instructor.courses.edit',  ['id' => $request->id, 'step' => $request->next_step])
+                    'redirect' => route('admin.courses.edit',  ['id' => $request->id, 'step' => $request->next_step])
                 ]);
                 break;
             // default:
