@@ -1,6 +1,6 @@
-@extends('frontend.instructor-dashboard.course.course-app');
+@extends('admin.course.course-module.course-app');
 
-@section('course_content')
+@section('tab_content')
     <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
         <div class="add_course_more_info">
             <form action="" class="more_info_form course-form">
@@ -36,10 +36,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-xl12"></div>
+                    <div class="col-8">
                         <div class="add_course_more_info_input">
                             <label for="#">Category *</label>
-                            <select class="select_2" name="category">
+                            <select class="select2 form-select" name="category">
                                 <option value="">Please Select</option>
                                 @foreach ($categories as $category)
                                     @if ($category->subCategories->isNotEmpty())
@@ -54,6 +55,8 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-xl12"></div>
+
                     <div class="col-xl-4">
                         <div class="add_course_more_info_radio_box">
                             <h3>Level</h3>

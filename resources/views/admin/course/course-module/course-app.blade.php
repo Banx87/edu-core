@@ -1,38 +1,17 @@
-@extends('frontend.layouts.master')
+@extends('admin.layouts.master')
 
 @section('content')
-    <section class="wsus__breadcrumb" style="background: url(images/breadcrumb_bg.jpg);">
-        <div class="wsus__breadcrumb_overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 wow fadeInUp">
-                        <div class="wsus__breadcrumb_text">
-                            <h1>Add Courses</h1>
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li>Add Courses</li>
-                            </ul>
+    <div class="page-body">
+        <div class="container-xl">
+            <div class="row row-deck row-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Course Create</h3>
+                        <div class="card-actions">
+                            <a href="{{ route('admin.courses.index') }}" class="btn btn-cyan">Cancel</a>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="wsus__dashboard mt_90 xs_mt_70 pb_120 xs_pb_100">
-        <div class="container">
-            <div class="row">
-                @include('frontend.instructor-dashboard.sidebar')
-
-                <div class="col-xl-9 col-md-8 wow fadeInRight">
-                    <div class="wsus__dashboard_content">
-                        <div class="wsus__dashboard_content_top">
-                            <div class="wsus__dashboard_heading relative">
-                                <h5>Add Courses</h5>
-                                <p>Manage your courses and its update like live, draft and insight.</p>
-                            </div>
-                        </div>
-
+                    <div class="card-body">
                         <div class="dashboard_add_courses">
                             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                                 <li class="nav-item" role="presentation">
@@ -55,16 +34,22 @@
                                         type="button" data-step="4">Finish</a>
                                 </li>
                             </ul>
-                            <div class="tab-content" id="pills-tabContent">
-                                @yield('course_content')
-                            </div>
+                            @yield('tab_content')
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection
+
+@push('scripts')
+    <script type="module">
+        $('#lfm').filemanager('file', {
+            prefix: '/admin/laravel-filemanager'
+        });
+    </script>
+@endpush
 @push('header_scripts')
-    @vite(['resources/js/frontend/course.js'])
+    @vite('resources/js/admin/course.js')
 @endpush
