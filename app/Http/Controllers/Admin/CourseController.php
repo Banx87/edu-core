@@ -25,7 +25,7 @@ class CourseController extends Controller
 
     function index(): View
     {
-        $courses = Course::with(['instructor'])->get();
+        $courses = Course::with(['instructor'])->paginate(25);
         return view('admin.course.course-module.index', compact('courses'));
     }
 
@@ -140,7 +140,7 @@ class CourseController extends Controller
                 $course->description = $request->description;
                 $course->preview_video_storage = $request->preview_video_storage;
                 $course->preview_video_source = $request->filled('file') ? $request->file : $request->url;
-                $course->instructor_id = Auth::guard('web')->user()->id;
+                $course->instructor_id = $course->instructor->id;
                 $course->save();
 
                 // save course id on session
@@ -149,7 +149,7 @@ class CourseController extends Controller
                 return response([
                     'status' => 'success',
                     'message' => 'updated succesfully.',
-                    'redirect' => route('instructor.courses.edit',  ['id' => $course->id, 'step' => $request->next_step])
+                    'redirect' => route('admin.courses.edit',  ['id' => $course->id, 'step' => $request->next_step])
                 ]);
                 break;
 
