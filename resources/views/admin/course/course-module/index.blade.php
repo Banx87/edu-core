@@ -8,14 +8,14 @@
                     <div class="card-header">
                         <h3 class="card-title">Course Levels</h3>
                         <div class="card-actions">
-                            <a href="{{ route('admin.course-levels.create') }}" class="btn btn-primary">
+                            <a href="{{ route('admin.courses.create') }}" class="btn btn-primary">
                                 <svg class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <path d="M12 5l0 14"></path>
                                     <path d="M5 12l14 0"></path>
                                 </svg>
-                                Add New Course Level
+                                Add New Course
                             </a>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="3" class="text-center">No levels found.</td>
+                                            <td colspan="3" class="text-center">No courses found.</td>
                                         </tr>
                                     @endforelse
 

@@ -50,7 +50,6 @@ class CourseContentController
     function storeLesson(Request $request): RedirectResponse
     {
 
-        // dd($request->all());
         $rules = [
             'title' => 'required|string|max:255',
             'source' => 'required|string',

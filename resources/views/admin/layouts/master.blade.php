@@ -65,12 +65,12 @@
         <!-- Navbar -->
         @include('admin.layouts.header')
         <div class="page">
-            <script src="{{ asset('admin/assets/dist/js/demo-theme.min.js?1692870487') }}"></script>
+            {{-- <script src="{{ asset('admin/assets/dist/js/demo-theme.min.js?1692870487') }}"></script> --}}
             {{-- CONTENT --}}
             @yield('content')
 
             {{-- FOOTER --}}
-            @include('admin.layouts.footer');
+            @include('admin.layouts.footer')
         </div>
     </div>
 

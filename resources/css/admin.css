@@ -50,3 +50,19 @@ a > svg:hover {
 	cursor: pointer;
 	transform: scale(1.2); /* Slightly enlarge the SVG */
 }
+
+/* Styling fixes for course content creation */
+.add_course_content_action_btn {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 5px 10px;
+	position: absolute;
+	top: 6px;
+	right: 15px;
+	z-index: 9;
+}
+
+.add_course_content .accordion-header {
+	position: relative;
+}
