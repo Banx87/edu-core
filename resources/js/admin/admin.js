@@ -6,6 +6,10 @@ window.$ = window.jQuery = $;
 const csrf_token = $('meta[name="csrf-token"]').attr("content");
 let delete_url = null;
 
+$(function () {
+	$(".select2").select2();
+});
+
 $(".delete-item").on("click", function (e) {
 	e.preventDefault();
 
