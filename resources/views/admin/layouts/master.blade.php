@@ -11,7 +11,28 @@
 
     {{-- Plugin CSS --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/animated_barfiller.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/venobox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/scroll_button.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/pointer.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/jquery.calendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/range_slider.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/startRating.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/video_player.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/jquery.simple-bar-graph.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/sticky_menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/spacing.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 
     <!-- CSS files -->
@@ -30,8 +51,7 @@
         }
     </style>
 
-    @vite('resources/js/admin/admin.js')
-    @vite(['resources/css/admin.css'])
+    @vite(['resources/css/admin.css', 'resources/js/admin/admin.js'])
 
     @stack('header_scripts');
 </head>
@@ -94,8 +114,73 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="dynamic_modal" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-lg dynamic-modal-content">
+
+        </div>
+    </div>
     <script src="{{ asset('admin/assets/dist/js/tabler.min.js?1692870487') }}" defer></script>
     <script src="{{ asset('admin/assets/dist/js/demo.min.js?1692870487') }}" defer></script>
+
+    <!--jquery library js-->
+    <script src="{{ asset('frontend/assets/js/jquery-3.7.1.min.js') }}"></script>
+    <!--bootstrap js-->
+    <script src="{{ asset('frontend/assets/js/bootstrap.bundle.min.js') }}"></script>
+    <!--font-awesome js-->
+    <script src="{{ asset('frontend/assets/js/Font-Awesome.js') }}"></script>
+    <!--marquee js-->
+    <script src="{{ asset('frontend/assets/js/jquery.marquee.min.js') }}"></script>
+    <!--slick js-->
+    <script src="{{ asset('frontend/assets/js/slick.min.js') }}"></script>
+    <!--countup js-->
+    <script src="{{ asset('frontend/assets/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/jquery.countup.min.js') }}"></script>
+    <!--venobox js-->
+    <script src="{{ asset('frontend/assets/js/venobox.min.js') }}"></script>
+    <!--nice-select js-->
+    <script src="{{ asset('frontend/assets/js/jquery.nice-select.min.js') }}"></script>
+    <!--Scroll Button js-->
+    {{-- <script src="{{ asset('frontend/assets/js/scroll_button.js') }}"></script> --}}
+    <!--pointer js-->
+    <script src="{{ asset('frontend/assets/js/pointer.js') }}"></script>
+    <!--range slider js-->
+    <script src="{{ asset('frontend/assets/js/range_slider.js') }}"></script>
+    <!--barfiller js-->
+    <script src="{{ asset('frontend/assets/js/animated_barfiller.js') }}"></script>
+    <!--calendar js-->
+    <script src="{{ asset('frontend/assets/js/jquery.calendar.js') }}"></script>
+    <!--starRating js-->
+    <script src="{{ asset('frontend/assets/js/starRating.js') }}"></script>
+    <!--Bar Graph js-->
+    <script src="{{ asset('frontend/assets/js/jquery.simple-bar-graph.min.js') }}"></script>
+    <!--select2 js-->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+
+
+    <!--Video player js-->
+    <script src="{{ asset('frontend/assets/js/video_player.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/video_player_youtube.js') }}"></script>
+    <!--wow js-->
+    <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
+
+    {{-- Lib JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    {{-- File Manager --}}
+    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js" defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <!--main/custom js-->
+    {{-- <script src="{{ asset('frontend/assets/js/main.js') }}"></script> --}}
+
+
+    @stack('scripts')
+    {{-- jQueryUI --}}
+    <script src="{{ asset('frontend/assets/js/jquery-ui.min.js') }}"></script>
 
 </body>
 

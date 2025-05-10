@@ -6,8 +6,8 @@
     <div class="modal-body">
         <form
             action="{{ @$editMode
-                ? route('instructor.course-content.update-chapter', @$chapter->id)
-                : route('instructor.course-content.store-chapter', @$id) }}"
+                ? route('admin.course-content.update-chapter', @$chapter->id)
+                : route('admin.course-content.store-chapter', @$id) }}"
             method="POST">
             @csrf
             <div class="form-group">
