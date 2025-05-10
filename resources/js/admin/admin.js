@@ -1,9 +1,9 @@
 import $ from "jquery";
 window.$ = window.jQuery = $;
 
-// var notyf = new Notyf();
+var notyf = new Notyf();
 
-const csrf_token = $('meta[name="csrf-token"]').attr("content");
+const csrf_token = $('meta[name="csrf_token"]').attr("content");
 let delete_url = null;
 
 $(function () {
@@ -14,7 +14,38 @@ $(".delete-item").on("click", function (e) {
 	e.preventDefault();
 
 	let url = $(this).attr("href");
-	delete_url = url;
+	// delete_url = url;
+
+	Swal.fire({
+		title: "Are you sure?",
+		text: "You won't be able to revert this!",
+		icon: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#3085d6",
+		cancelButtonColor: "#d33",
+		confirmButtonText: "Yes, delete it!",
+	}).then((result) => {
+		if (result.isConfirmed) {
+			$.ajax({
+				method: "DELETE",
+				url: url,
+				data: { _token: csrf_token },
+				beforeSend: function () {},
+				success: function (data) {
+					// Swal.fire({
+					// 	title: "Deleted!",
+					// 	text: "Selected lesson has been deleted.",
+					// 	icon: "success",
+					// });
+					window.location.reload();
+				},
+				error: function (xhr, error, status) {
+					notyf.error(error);
+				},
+				complete() {},
+			});
+		}
+	});
 
 	$("#modal-danger").modal("show");
 });
