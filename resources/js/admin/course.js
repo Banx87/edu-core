@@ -120,6 +120,8 @@ $(function () {
 			data: formData,
 			contentType: false,
 			processData: false,
+			forcePlaceholderSize: true,
+			tolerance: "pointer",
 			beforeSend: function () {},
 			success: function (data) {
 				if (data.status === "success") {
@@ -256,6 +258,8 @@ $(function () {
 			containment: "parent",
 			cursor: "move",
 			handle: ".dragger",
+			forcePlaceholderSize: true,
+			tolerance: "pointer",
 			update: function (event, ui) {
 				let orderIds = $(this).sortable("toArray", {
 					attribute: "data-lesson-id",
@@ -273,7 +277,7 @@ $(function () {
 						notyf.success(data.message);
 					},
 					error: function (xhr, error, status) {
-						notyf.error(error.error);
+						notyf.error(error);
 					},
 				});
 			},
@@ -290,6 +294,8 @@ $(function () {
 			method: "GET",
 			url: base_url + `/admin/course-content/${courseId}/sort-chapter`,
 			data: {},
+			forcePlaceholderSize: true,
+			tolerance: "pointer",
 			beforeSend: function () {
 				$(".dynamic-modal-content").html(loader);
 			},
