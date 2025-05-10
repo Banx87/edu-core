@@ -8,16 +8,18 @@
             @csrf
             <ul class="item_list chapter_sortable_list">
                 @forelse ($chapters as $chapter)
-                    <li class="mt-2" data-course-id="{{ $chapter->course_id }}" data-chapter-id="{{ $chapter->id }}">
+                    <li class="list_item card p-3 mt-2" data-course-id="{{ $chapter->course_id }}"
+                        data-chapter-id="{{ $chapter->id }}">
                         <span>{{ $chapter->title }}</span>
                         <div class="add_course_content_action_btn">
-                            <a class="arrow dragger chapter_sorter" href="javascript:;"><i class="fas fa-arrows-alt"
-                                    aria-hidden="true"></i></a>
+                            <a class="arrow dragger chapter_sorter" href="javascript:;">
+                                <i class="ti ti-arrows-down-up"></i>
+                            </a>
                         </div>
                     </li>
                 @empty
                     <li>
-                        <span class="text-center">No chapters to found
+                        <span class="text-center">No chapters found
                         </span>
                     </li>
                 @endforelse
@@ -35,6 +37,11 @@
 
     // Sort Chapter List
     if ($(".chapter_sortable_list li").length) {
+
+        var notyf = new Notyf({
+            duration: 5000,
+            dismissible: true,
+        });
         $(".chapter_sortable_list").sortable({
             items: "li",
             containment: "parent",
@@ -51,7 +58,7 @@
 
                 $.ajax({
                     method: "POST",
-                    url: base_url + `/instructor/course-content/${courseId}/sort-chapter`,
+                    url: base_url + `/admin/course-content/${courseId}/sort-chapter`,
                     data: {
                         _token: csrf_token,
                         order_ids: orderIds,

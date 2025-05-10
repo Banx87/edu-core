@@ -59,7 +59,7 @@
     </div>
 
     {{-- MODALS --}}
-    <div class="modal modal-blur fade" id="modal-danger" tabindex="-1" role="dialog" aria-hidden="true">
+    {{-- <div class="modal modal-blur fade" id="modal-danger" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
             <div class="modal-content">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -83,12 +83,12 @@
                     <div class="w-100">
                         <div class="row">
                             <div class="col">
-                                <a href="#" class="btn w-100" data-bs-dismiss="modal">
+                                <a href="javascript:;" class="btn w-100" data-bs-dismiss="modal">
                                     Cancel
                                 </a>
                             </div>
                             <div class="col">
-                                <a href="#" class="btn btn-danger delete-confirm w-100">
+                                <a href="javascript:;" class="btn btn-danger delete-confirm w-100">
                                     Delete
                                 </a>
                             </div>
@@ -97,7 +97,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Modal -->
     <div class="modal fade" id="dynamic_modal" data-bs-keyboard="false" tabindex="-1"

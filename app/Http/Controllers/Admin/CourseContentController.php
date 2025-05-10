@@ -93,7 +93,7 @@ class CourseContentController
     function editChapterModal(string $id, Request $request): String
     {
         $editMode = true;
-        $chapter = CourseChapter::where(['id' => $id, 'instructor_id' => Auth::user()->id])->firstOrFail();
+        $chapter = CourseChapter::where('id', $id)->firstOrFail();
         return view('admin.course.course-module.partials.course-chapter-modal', compact('chapter', 'editMode'))->render();
     }
 
@@ -189,6 +189,7 @@ class CourseContentController
 
     function destroyLesson(string $id): Response
     {
+        dd($id);
         try {
             $lesson = CourseChapterLesson::findOrFail($id);
             $lesson->delete();

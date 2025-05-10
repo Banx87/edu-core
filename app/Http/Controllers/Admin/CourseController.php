@@ -93,7 +93,7 @@ class CourseController extends Controller
                 break;
             case '3':
                 $courseId = $request->id;
-                $chapters = CourseChapter::where('course_id', $courseId)->get();
+                $chapters = CourseChapter::where('course_id', $courseId)->orderBy('order')->get();
                 return view('admin.course.course-module.course-content', compact('courseId', 'chapters'));
                 break;
             case '4':
@@ -191,9 +191,6 @@ class CourseController extends Controller
                     'redirect' => route('admin.courses.edit',  ['id' => $request->id, 'step' => $request->next_step])
                 ]);
                 break;
-            // default:
-            //     return view('admin.instructor-dashboard.course.create');
-            //     break;
 
 
             case '4':
@@ -215,6 +212,9 @@ class CourseController extends Controller
                     'message' => 'Course created Succesfully.',
                     'redirect' => route('instructor.courses.index')
                 ]);
+                // default:
+                //     return view('admin.instructor-dashboard.course.create');
+                //     break;
         }
     }
 }

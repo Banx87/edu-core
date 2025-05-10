@@ -10,7 +10,7 @@
         </form>
         <div class="add_course_content">
             <div class="add_course_content_btn_area d-flex flex-wrap justify-content-between">
-                <a class="common_btn dynamic_modal_btn" href="#" data-id={{ $courseId }}>Add New Chapter</a>
+                <a class="common_btn dynamic_modal_btn" href="javascript:;" data-id={{ $courseId }}>Add New Chapter</a>
                 <a class="common_btn sort_chapters_btn" data-id={{ $courseId }} href="javascript:;">Sort Chapters</a>
             </div>
             <div class="accordion" id="accordionExample">
