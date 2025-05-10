@@ -38,7 +38,7 @@
                                 <a class="edit edit_chapter" data-course-id="{{ $chapter->course_id }}"
                                     data-chapter-id="{{ $chapter->id }}" href="#"><i class="ti ti-edit"></i></a>
                                 <a class="del delete-item"
-                                    href="{{ route('instructor.course-content.destroy-chapter', $chapter->id) }}"
+                                    href="{{ route('admin.course-content.destroy-chapter', $chapter->id) }}"
                                     data-chapter-id="{{ $chapter->id }}"><i class="ti ti-trash-x"></i></a>
                             </div>
                         </h2>
@@ -51,15 +51,15 @@
                                             data-chapter-id="{{ $chapter->id }}">
                                             <span>{{ $lesson->title }}</span>
                                             <div class="add_course_content_action_btn">
-                                                <a href="javascript:;" class="edit_lesson"
+                                                <a href="javascript:;" class="edit edit_lesson"
                                                     data-chapter-id="{{ $chapter->id }}"
                                                     data-course-id="{{ $chapter->course_id }}"
                                                     data-lesson-id="{{ $lesson->id }}"><i class="ti ti-edit"></i></a>
-                                                <a class="delete-item"
-                                                    href="{{ route('instructor.course-content.destroy-lesson', $lesson->id) }}"><i
+                                                <a class="delete-item del"
+                                                    href="{{ route('admin.course-content.destroy-lesson', $lesson->id) }}"><i
                                                         class="ti ti-trash-x"></i></a>
                                                 <a class="arrow dragger" href="javascript:;"><i
-                                                        class="ti fa-arrows-alt"></i></a>
+                                                        class="ti ti-arrows-down-up"></i></a>
                                             </div>
                                         </li>
                                     @empty
