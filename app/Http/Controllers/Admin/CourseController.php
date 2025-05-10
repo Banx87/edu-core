@@ -25,7 +25,7 @@ class CourseController extends Controller
 
     function index(): View
     {
-        $courses = Course::with(['instructor'])->paginate(25)->get();
+        $courses = Course::with(['instructor'])->get();
         return view('admin.course.course-module.index', compact('courses'));
     }
 
@@ -210,7 +210,7 @@ class CourseController extends Controller
                 return response([
                     'status' => 'success',
                     'message' => 'Course created Succesfully.',
-                    'redirect' => route('instructor.courses.index')
+                    'redirect' => route('admin.courses.index')
                 ]);
                 // default:
                 //     return view('admin.instructor-dashboard.course.create');

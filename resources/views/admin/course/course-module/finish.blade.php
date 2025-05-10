@@ -1,6 +1,6 @@
-@extends('frontend.instructor-dashboard.course.course-app');
+@extends('admin.course.course-module.course-app')
 
-@section('course_content')
+@section('tab_content')
     <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
         <div class="dashboard_add_course_finish">
             <form action="#" class="more_info_form">
@@ -14,17 +14,17 @@
                             <textarea rows="7" placeholder="Message for Reviewer" name="message">{!! @$course?->message_for_reviewer !!}</textarea>
                         </div>
                     </div>
-                    <div class="col-xl-12">
-                        <div class="add_course_more_info_input mb-0">
+                    <div class="col-xl-4 mb-3">
+                        <div class="add_course_more_info_input">
                             <label for="#">Status *</label>
-                            <select class="select_2" name="status" required>
+                            <select class="select2 form-select" name="status" required>
                                 <option value="">Please Select</option>
                                 @foreach (config('course.status') as $status => $name)
                                     <option @selected(@$course?->status == @$status) value="{{ @$status }}">{{ @$name }}
                                     </option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="common_btn mt_25">
+                            <button type="submit" class="common_btn mt-5">
                                 save
                             </button>
                         </div>
