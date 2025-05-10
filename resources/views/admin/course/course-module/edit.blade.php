@@ -32,7 +32,7 @@
                     <div class="col-xl-6">
                         <div class="add_course_basic_info_input">
                             <label for="#">Preview Video Storage <b>(optional)</b></label>
-                            <select class="select_js preview_video_storage" name="preview_video_storage">
+                            <select class="select_js preview_video_storage form-select" name="preview_video_storage">
                                 <option value="">Please Select</option>
                                 @foreach (config('course.video_sources') as $source => $name)
                                     <option @selected($course->preview_video_storage == $source) value="{{ $source }}">{{ $name }}
@@ -85,7 +85,7 @@
                         <div class="add_course_basic_info_input mb-0">
                             <label for="#">Description</label>
                             <textarea rows="8" placeholder="Description" name="description">{!! $course->description !!}</textarea>
-                            <button type="submit" class="common_btn mt_20">
+                            <button type="submit" class="common_btn mt-3">
                                 Save
                             </button>
                         </div>
@@ -95,9 +95,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        $('#lfm').filemanager('file');
-    </script>
-@endpush

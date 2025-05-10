@@ -6,7 +6,7 @@
             <div class="row row-deck row-cards">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Course Create</h3>
+                        <h3 class="card-title">Create New Course</h3>
                         <div class="card-actions">
                             <a href="{{ route('admin.courses.index') }}" class="btn btn-cyan">Cancel</a>
                         </div>
