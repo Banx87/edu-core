@@ -96,6 +96,7 @@ class CourseContentController
         $chapter = CourseChapter::where(['id' => $id, 'instructor_id' => Auth::user()->id])->firstOrFail();
         return view('admin.course.course-module.partials.course-chapter-modal', compact('chapter', 'editMode'))->render();
     }
+
     function updateChapterModal(string $id, Request $request): RedirectResponse
     {
         $request->validate([
