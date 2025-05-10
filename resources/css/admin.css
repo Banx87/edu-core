@@ -66,3 +66,31 @@ a > svg:hover {
 .add_course_content .accordion-header {
 	position: relative;
 }
+
+.item_list.chapter_sortable_list .list_item {
+	position: relative;
+}
+
+.item_list.chapter_sortable_list.ui-sortable {
+	list-style: none;
+	border: 1px solid gray;
+	padding: 14px;
+	border-radius: 5px;
+}
+
+.chapter_sorter {
+	position: relative;
+	padding: 0.5rem;
+	cursor: move;
+	/* background-color: pink; */
+	/* border-radius: 50px;
+	transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out; */
+}
+
+.chapter_sorter:hover {
+	/* background-color: lightblue; */
+}
