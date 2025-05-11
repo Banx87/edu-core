@@ -10,6 +10,9 @@
     @stack('meta_tags')
     <title>EduCore - Online Courses & Education HTML Template</title>
     <link rel="icon" type="image/png" href="frontend/assets/images/favicon.png">
+
+    {{-- Plugin CSS --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/animated_barfiller.css') }}">
@@ -29,11 +32,11 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/spacing.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}">
+    {{-- jQuery UI --}}
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/jquery-ui.min.css') }}">
 
     {{-- Plugin CSS --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
-
 
 
     @vite(['resources/css/frontend.css', 'resources/js/frontend/frontend.js'])
@@ -140,6 +143,9 @@
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Tabler Core -->
+    <script src="{{ asset('admin/assets/dist/js/tabler.min.js?1692870487') }}" defer></script>
 
     <!--main/custom js-->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
