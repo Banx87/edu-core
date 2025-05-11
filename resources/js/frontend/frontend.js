@@ -7,6 +7,11 @@ var notyf = new Notyf({
 	dismissible: true,
 });
 
+// Ez share init
+document.addEventListener("DOMContentLoaded", function () {
+	ezShare.execute();
+});
+
 $(function () {
 	// Dynamic delete popup
 	$(".delete-item").on("click", function (e) {

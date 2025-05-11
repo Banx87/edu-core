@@ -570,10 +570,16 @@
                         <div class="wsus__courses_sidebar_share_area">
                             <span>Share:</span>
                             <ul>
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li class="ez-facebook"><a href="#"><i class="ti ti-brand-facebook"
+                                            style="line-height: 1.5; font-size: 24px;"></i></a>
+                                </li>
+                                <li class="ez-linkedin"><a href="#"><i class="ti ti-brand-linkedin"
+                                            style="line-height: 1.5; font-size: 24px;"></i></a>
+                                </li>
+                                <li class="ez-x"><a href="#"><i class="ti ti-brand-x"
+                                            style="line-height: 1.5; font-size: 24px;"></i></a></li>
+                                <li class="ez-reddit"><a href="#"><i class="ti ti-brand-reddit"
+                                            style="line-height: 1.5; font-size: 24px;"></i></a></li>
                             </ul>
                         </div>
                         <div class="wsus__courses_sidebar_info">
@@ -642,3 +648,7 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/gh/shakilahmed0369/ez-share/dist/ez-share.min.js"></script>
+@endpush
