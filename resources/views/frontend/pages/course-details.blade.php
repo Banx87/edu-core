@@ -1,5 +1,13 @@
 @extends('frontend.layouts.master')
 
+@push('meta_tags')
+    <meta property="og:title" content="{{ $course->title }}">
+    <meta property="og:description" content="{{ $course->seo_description }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ asset($course->thumbnail) }}">
+    <meta property="og:type" content="Course">
+@endpush
+
 @section('content')
     <section class="wsus__breadcrumb course_details_breadcrumb"
         style="background: url({{ asset('frontend/assets/images/breadcrumb_bg.jpg') }}">
