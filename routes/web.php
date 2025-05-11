@@ -34,6 +34,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/courses', [CoursePageController::class, 'index'])->name('courses.index');
+Route::get('/course/{slug}', [CoursePageController::class, 'show'])->name('courses.show');
 
 /*
 * -------------------------------------------------------------------------
