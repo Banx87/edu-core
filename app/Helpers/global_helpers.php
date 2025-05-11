@@ -16,6 +16,11 @@ if (!function_exists('minutesToTime')) {
     {
         $hours = floor($minutes / 60);
         $minutes = $minutes % 60;
-        return sprintf('%dh %dmin', $hours, $minutes);
+
+        if ($hours < 1) {
+            return sprintf('%d min', $minutes);
+        }
+
+        return sprintf('%d h %d min', $hours, $minutes);
     }
 }
