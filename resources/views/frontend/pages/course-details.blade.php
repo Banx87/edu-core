@@ -71,11 +71,11 @@
                                     data-bs-target="#pills-contact" type="button" role="tab"
                                     aria-controls="pills-contact" aria-selected="false">Instructor</button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            {{-- <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-disabled" type="button" role="tab"
                                     aria-controls="pills-disabled" aria-selected="false">FAQs</button>
-                            </li>
+                            </li> --}}
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-disabled-tab2" data-bs-toggle="pill"
                                     data-bs-target="#pills-disabled2" type="button" role="tab"
@@ -95,103 +95,46 @@
                                 aria-labelledby="pills-profile-tab" tabindex="0">
                                 <div class="wsus__courses_curriculum box_area">
                                     <h3>Course Curriculum</h3>
-                                    <div class="accordion" id="accordionExample">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseOne" aria-expanded="true"
-                                                    aria-controls="collapseOne">
-                                                    Course Prelude & EduCore Learning Presentation
-                                                </button>
-                                            </h2>
-                                            <div id="collapseOne" class="accordion-collapse collapse show"
-                                                data-bs-parent="#accordionExample">
-                                                <div class="accordion-body">
-                                                    <ul>
-                                                        <li class="active">
-                                                            <p>Brush up on Java concepts</p>
-                                                            <span class="right_text">Preview</span>
-                                                        </li>
-                                                        <li>
-                                                            <a href="">User Experience Fundamentals Course</a>
-                                                            <span class="right_text">24 minutes</span>
-                                                        </li>
-                                                        <li>
-                                                            <p>Brisk Guide to Using Pivot Tables in Excel</p>
-                                                            <span class="right_text">7 minutes</span>
-                                                        </li>
-                                                        <li>
-                                                            <p>User-Centric Design Fundamentals</p>
-                                                            <span class="right_text">21 minutes</span>
-                                                        </li>
-                                                    </ul>
+                                    <div class="accordion" id="curriculumList">
+                                        @foreach ($course->chapters as $courseChapter)
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapse-{{ $courseChapter->id }}"
+                                                        aria-expanded="false"
+                                                        aria-controls="collapse-{{ $courseChapter->id }}">
+                                                        {{ $courseChapter->title }}
+                                                    </button>
+                                                </h2>
+                                                <div id="collapse-{{ $courseChapter->id }}"
+                                                    class="accordion-collapse collapse" data-bs-parent="#curriculumList">
+                                                    <div class="accordion-body">
+                                                        <ul>
+                                                            @forelse ($courseChapter->lessons as $lesson)
+                                                                <li
+                                                                    class="{{ $lesson->is_preview == 1 ? 'active' : '' }}">
+                                                                    <p>{{ $lesson->title }}</p>
+                                                                    @if ($lesson->is_preview == 1)
+                                                                        <a href="{{ $lesson->file_path }}"
+                                                                            data-autoplay="true" data-vbtype="video"
+                                                                            class="right_text venobox vbox-item">{{ $lesson->is_preview == 1 ? 'Preview' : minutesToTime($lesson->duration) }}
+                                                                        </a>
+                                                                    @else
+                                                                        <span
+                                                                            class="right_text">{{ minutesToTime($lesson->duration) }}</span>
+                                                                    @endif
+                                                                </li>
+                                                            @empty
+                                                                <li>
+                                                                    <p>No lessons found</p>
+                                                                </li>
+                                                            @endforelse
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                                    aria-expanded="false" aria-controls="collapseTwo">
-                                                    Essential HTML Building Elements
-                                                </button>
-                                            </h2>
-                                            <div id="collapseTwo" class="accordion-collapse collapse"
-                                                data-bs-parent="#accordionExample">
-                                                <div class="accordion-body">
-                                                    <ul>
-                                                        <li class="active">
-                                                            <p>Brush up on Java concepts</p>
-                                                            <span class="right_text">Preview</span>
-                                                        </li>
-                                                        <li>
-                                                            <a href="">User Experience Fundamentals Course</a>
-                                                            <span class="right_text">24 minutes</span>
-                                                        </li>
-                                                        <li>
-                                                            <p>Brisk Guide to Using Pivot Tables in Excel</p>
-                                                            <span class="right_text">7 minutes</span>
-                                                        </li>
-                                                        <li>
-                                                            <p>User-Centric Design Fundamentals</p>
-                                                            <span class="right_text">21 minutes</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                                    aria-expanded="false" aria-controls="collapseThree">
-                                                    Fundamental Programming Idea
-                                                </button>
-                                            </h2>
-                                            <div id="collapseThree" class="accordion-collapse collapse"
-                                                data-bs-parent="#accordionExample">
-                                                <div class="accordion-body">
-                                                    <ul>
-                                                        <li class="active">
-                                                            <p>Brush up on Java concepts</p>
-                                                            <span class="right_text">Preview</span>
-                                                        </li>
-                                                        <li>
-                                                            <a href="">User Experience Fundamentals Course</a>
-                                                            <span class="right_text">24 minutes</span>
-                                                        </li>
-                                                        <li>
-                                                            <p>Brisk Guide to Using Pivot Tables in Excel</p>
-                                                            <span class="right_text">7 minutes</span>
-                                                        </li>
-                                                        <li>
-                                                            <p>User-Centric Design Fundamentals</p>
-                                                            <span class="right_text">21 minutes</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -202,65 +145,86 @@
                                     <div class="row align-items-center">
                                         <div class="col-lg-4 col-md-6">
                                             <div class="wsus__courses_instructor_img">
-                                                <img src="images/course_instructor_img.jpg" alt="Instructor"
+                                                <img src="{{ asset($course->instructor->image) }}" alt="Instructor"
                                                     class="img-fluid">
                                             </div>
                                         </div>
                                         <div class="col-lg-8 col-md-6">
                                             <div class="wsus__courses_instructor_text">
-                                                <h4>Ravi O'Leigh</h4>
-                                                <p class="designation">IT Technician at IBM</p>
+                                                <h4>{{ $course->instructor->name }}</h4>
+                                                <p class="designation">{{ $course->instructor->headline }}</p>
                                                 <ul class="list">
                                                     <li><i class="fas fa-star"></i> <b>74,537 Reviews</b></li>
                                                     <li><strong>4.7 Rating</strong></li>
                                                     <li>
-                                                        <span><img src="images/book_icon.png" alt="book"
-                                                                class="img-fluid"></span>
-                                                        8 Courses
+                                                        <span><img
+                                                                src="{{ asset('frontend/assets/images/book_icon.png') }}"
+                                                                alt="book" class="img-fluid"></span>
+                                                        {{ $course->instructor->courses()->count() }} Courses
                                                     </li>
                                                     <li>
-                                                        <span><img src="images/user_icon_gray.png" alt="user"
-                                                                class="img-fluid"></span>
+                                                        <span><img
+                                                                src="{{ asset('frontend/assets/images/user_icon_gray.png') }}"
+                                                                alt="user" class="img-fluid"></span>
                                                         32 Students
                                                     </li>
                                                 </ul>
                                                 <ul class="badge d-flex flex-wrap">
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top"
                                                         data-bs-title="Exclusive Author">
-                                                        <img src="images/badge_1.png" alt="Badge" class="img-fluid">
+                                                        <img src="{{ asset('frontend/assets/images/badge_1.png') }}"
+                                                            alt="Badge" class="img-fluid">
                                                     </li>
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="Top Earning"><img src="images/badge_2.png"
+                                                        data-bs-title="Top Earning"><img
+                                                            src="{{ asset('frontend/assets/images/badge_2.png') }}"
                                                             alt="Badge" class="img-fluid"></li>
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="Trending"><img src="images/badge_3.png"
+                                                        data-bs-title="Trending"><img
+                                                            src="{{ asset('frontend/assets/images/badge_3.png') }}"
                                                             alt="Badge" class="img-fluid"></li>
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top"
                                                         data-bs-title="2 Years of Membership"><img
-                                                            src="images/badge_4.png" alt="Badge" class="img-fluid">
+                                                            src="{{ asset('frontend/assets/images/badge_4.png') }}"
+                                                            alt="Badge" class="img-fluid">
                                                     </li>
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top"
                                                         data-bs-title="Collector Lavel 1">
-                                                        <img src="images/badge_5.png" alt="Badge" class="img-fluid">
+                                                        <img src="{{ asset('frontend/assets/images/badge_5.png') }}"
+                                                            alt="Badge" class="img-fluid">
                                                     </li>
                                                 </ul>
                                                 <p class="description">
-                                                    Sed mi leo placerat nulla Donec pharetra rutrum ullamcorpe Ut eget
-                                                    convallis mi. Sed cursus aliquam Nula sed allium lectus fermentum
-                                                    enim Nam maximus pretium consectetu lacinia finibus.
+                                                    {{ $course->instructor->bio }}
                                                 </p>
                                                 <ul class="link d-flex flex-wrap">
-                                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                                                    @if ($course->instructor->facebook)
+                                                        <li><a href="{{ $course->instructor->facebook }}"><i
+                                                                    class="ti ti-brand-facebook"></i></a></li>
+                                                    @endif
+                                                    @if ($course->instructor->x)
+                                                        <li><a href="{{ $course->instructor->x }}"><i
+                                                                    class="ti ti-brand-x"></i></a></li>
+                                                    @endif
+                                                    @if ($course->instructor->linkedin)
+                                                        <li><a href="{{ $course->instructor->linkedin }}"><i
+                                                                    class="ti ti-brand-linkedin"></i></a></li>
+                                                    @endif
+                                                    @if ($course->instructor->github)
+                                                        <li><a href="{{ $course->instructor->github }}"><i
+                                                                    class="ti ti-brand-github"></i></a></li>
+                                                    @endif
+                                                    @if ($course->instructor->website)
+                                                        <li><a href="{{ $course->instructor->website }}"><i
+                                                                    class="ti ti-world-www"></i></a></li>
+                                                    @endif
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="pills-disabled" role="tabpanel"
+                            {{-- <div class="tab-pane fade" id="pills-disabled" role="tabpanel"
                                 aria-labelledby="pills-disabled-tab" tabindex="0">
                                 <div class="wsus__course_faq box_area">
                                     <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -350,7 +314,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="tab-pane fade" id="pills-disabled2" role="tabpanel"
                                 aria-labelledby="pills-disabled-tab2" tabindex="0">
@@ -613,8 +577,8 @@
                         <div class="wsus__courses_sidebar_instructor">
                             <div class="image_area d-flex flex-wrap align-items-center">
                                 <div class="img">
-                                    <img src="{{ asset('frontend/assets/images/testimonial_user_1.png') }}"
-                                        alt="Instructor" class="img-fluid">
+                                    <img src="{{ asset($course->instructor->image) }}" alt="Instructor"
+                                        class="img-fluid">
                                 </div>
                                 <div class="text">
                                     <h3>{{ $course->instructor->name }}</h3>

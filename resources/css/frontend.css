@@ -63,3 +63,14 @@
 	width: 160px !important;
 	object-fit: cover !important;
 }
+
+.ti {
+	font-size: 24px;
+}
+
+/* Instructor details page social links */
+ul.link li a i.ti::before {
+	display: block;
+	margin-top: 0.4rem;
+}
+/* END */
