@@ -169,7 +169,7 @@
          </div>
          <ul class="navbar-nav m-auto">
              <li class="nav-item">
-                 <a class="nav-link active" href="index.html">Home</a>
+                 <a class="nav-link active" href="{{ route('home') }}">Home</a>
              </li>
              <li class="nav-item">
                  <a class="nav-link" href="about.html">About Us</a>
@@ -177,7 +177,7 @@
              <li class="nav-item">
                  <a class="nav-link" href="#">Courses <i class="far fa-angle-down"></i></a>
                  <ul class="droap_menu">
-                     <li><a href="courses.html">Courses</a></li>
+                     <li><a href="{{ route('courses.index') }}">Courses</a></li>
                      <li><a href="courses_details.html">Course details</a></li>
                      <li><a href="course_video.html">Course video</a></li>
                  </ul>

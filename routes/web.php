@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\CourseContentController;
 use App\Http\Controllers\Frontend\CourseController;
+use App\Http\Controllers\Frontend\CoursePageController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\InstructorDashboardController;
 use App\Http\Controllers\Frontend\ProfileController;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.pages.course-page');
 });
 
 // If user is logged in, redirect to the dashboard
@@ -32,6 +33,7 @@ Route::get('/dashboard', function () {
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('home');
+Route::get('/courses', [CoursePageController::class, 'index'])->name('courses.index');
 
 /*
 * -------------------------------------------------------------------------
