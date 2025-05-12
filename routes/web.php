@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CourseContentController;
 use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Controllers\Frontend\CoursePageController;
@@ -35,6 +36,9 @@ Route::get('/dashboard', function () {
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/courses', [CoursePageController::class, 'index'])->name('courses.index');
 Route::get('/course/{slug}', [CoursePageController::class, 'show'])->name('courses.show');
+
+// Cart Routes
+Route::get('cart', [CartController::class, 'index'])->name('cart.index');
 
 /*
 * -------------------------------------------------------------------------
@@ -89,6 +93,8 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:instructor'],
 
     Route::get('course-content/{course}/sort-chapter', [CourseContentController::class, 'sortChapters'])->name('course-content.sort-chapter');
     Route::post('course-content/{course}/sort-chapter', [CourseContentController::class, 'updateSortChapter'])->name('course-content.update-sort-chapter');
+
+
 
 
 
