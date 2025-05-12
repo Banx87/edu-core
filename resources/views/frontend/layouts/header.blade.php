@@ -169,7 +169,7 @@
          </div>
          <ul class="navbar-nav m-auto">
              <li class="nav-item">
-                 <a class="nav-link active" href="{{ route('home') }}">Home</a>
+                 <a class="nav-link active" href="{{ url('/') }}">Home</a>
              </li>
              <li class="nav-item">
                  <a class="nav-link" href="about.html">About Us</a>
@@ -224,7 +224,7 @@
              </div>
              <ul>
                  <li>
-                     <a class="menu_signin" href="#">
+                     <a class="menu_signin" href="{{ route('cart.index') }}">
                          <span>
                              <img src="{{ asset('frontend/assets/images/cart_icon_black.png') }}" alt="user"
                                  class="img-fluid">
