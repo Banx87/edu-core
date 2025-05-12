@@ -2,6 +2,9 @@
 
 // Convert minutes to hours and minutes
 
+use App\Models\Cart;
+use Illuminate\Support\Facades\Auth;
+
 if (!function_exists('minutesToTime')) {
 
     /**
@@ -22,5 +25,22 @@ if (!function_exists('minutesToTime')) {
         }
 
         return sprintf('%d h %d min', $hours, $minutes);
+    }
+}
+
+
+// calculate cart total
+if (!function_exists('CartTotal')) {
+    function cartTotal()
+    {
+        $total = 0;
+        $cartItems = Cart::where('user_id', Auth::user()->id)->get();
+
+        foreach ($cartItems as $cartItem) {
+            $coursePrice = $cartItem->course->discount > 0 ? $cartItem->course->discount : $cartItem->course->price;
+            $total += $coursePrice;
+        }
+
+        return $total;
     }
 }
