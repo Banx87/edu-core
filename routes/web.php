@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CourseContentController;
 use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Controllers\Frontend\CoursePageController;
@@ -41,6 +42,9 @@ Route::get('/course/{slug}', [CoursePageController::class, 'show'])->name('cours
 Route::get('cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('add-to-cart/{course}', [CartController::class, 'addToCart'])->name('add-to-cart');
 Route::get('remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('remove-from-cart');
+
+// Payment routes
+Route::get('checkout', CheckoutController::class)->name('checkout.index'); //Invokable controller
 
 /*
 * -------------------------------------------------------------------------
