@@ -1,3 +1,5 @@
+import "./cart.js";
+
 const csrf_token = $(`meta[name="csrf_token"]`).attr("content");
 const base_url = $(`meta[name="base_url"]`).attr("content");
 const reloadUrl = base_url + "/instructor/courses/update";

@@ -39,6 +39,7 @@ Route::get('/course/{slug}', [CoursePageController::class, 'show'])->name('cours
 
 // Cart Routes
 Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('add-to-cart/{course}', [CartController::class, 'addToCart'])->name('add-to-cart');
 
 /*
 * -------------------------------------------------------------------------
