@@ -14,6 +14,9 @@ function addToCart(courseId) {
 			);
 		},
 		success: function (data) {
+			console.log(data);
+			$(".cart_count").html(data.cart_items_count);
+
 			notyf.success(data.message);
 		},
 		error: function (xhr, status, error) {

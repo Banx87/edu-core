@@ -28,13 +28,19 @@ if (!function_exists('minutesToTime')) {
     }
 }
 
+// Calculate cart total items
+function cartTotalItems()
+{
+    return Cart::where('user_id', Auth::user()?->id)->count();
+}
+
 
 // calculate cart total
 if (!function_exists('CartTotal')) {
     function cartTotal()
     {
         $total = 0;
-        $cartItems = Cart::where('user_id', Auth::user()->id)->get();
+        $cartItems = Cart::where('user_id', Auth::user()?->id)->get();
 
         foreach ($cartItems as $cartItem) {
             $coursePrice = $cartItem->course->discount > 0 ? $cartItem->course->discount : $cartItem->course->price;

@@ -33,7 +33,9 @@ class CartController extends Controller
         $cart->user_id = Auth::guard('web')->user()->id;
         $cart->save();
 
-        return response((['message' => 'Course added to cart successfully']), 200);
+        $cartItemsCount = cartTotalItems();
+
+        return response((['message' => 'Course added to cart successfully', 'cart_items_count' => $cartItemsCount]), 200); // return response((['message' => 'Course added to cart successfully']), 200);
     }
     function removeFromCart(int $id): RedirectResponse
     {
