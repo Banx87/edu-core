@@ -40,6 +40,7 @@ Route::get('/course/{slug}', [CoursePageController::class, 'show'])->name('cours
 // Cart Routes
 Route::get('cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('add-to-cart/{course}', [CartController::class, 'addToCart'])->name('add-to-cart');
+Route::get('remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('remove-from-cart');
 
 /*
 * -------------------------------------------------------------------------

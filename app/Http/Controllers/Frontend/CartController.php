@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Course;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,8 @@ class CartController extends Controller
 
     function index()
     {
-        return view('frontend.pages.cart');
+        $cart = Cart::with('course')->where('user_id', Auth::id())->paginate();
+        return view('frontend.pages.cart', compact('cart'));
     }
     function addToCart(int $id): Response
     {
@@ -32,5 +34,13 @@ class CartController extends Controller
         $cart->save();
 
         return response((['message' => 'Course added to cart successfully']), 200);
+    }
+    function removeFromCart(int $id): RedirectResponse
+    {
+        Cart::where(['id' => $id, 'user_id' => Auth::guard('web')->user()->id])->delete();
+
+        notyf()->success('Removed from cart successfully');
+        // return response((['message' => 'Removed from cart successfully']), 200);
+        return redirect()->back();
     }
 }
