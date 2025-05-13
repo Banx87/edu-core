@@ -45,7 +45,8 @@
                             <div class="card-body">
                                 <div class="tab-content">
                                     <div class="tab-pane active show" id="paypal-settings">
-                                        <form action="">
+                                        <form action="{{ route('admin.paypal-settings.update') }}" method="POST">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <label for="paypal_mode" class="form-label">Paypal Mode</label>
@@ -57,10 +58,13 @@
                                                 </div>
                                                 <div class="col-md-5">
                                                     <label for="currency" class="form-label">Currency</label>
-                                                    <select name="paypal_currency" id="paypal_currency" class="form-select">
+                                                    <select name="paypal_currency" id="paypal_currency"
+                                                        class="form-control form-select select2">
                                                         @foreach (config('gateway_currencies.paypal_currencies') as $currency => $value)
-                                                            <option value="{{ $value['code'] }}">{{ $value['name'] }}
-                                                            </option>
+                                                            <option value="{{ $value['code'] }}">{{ $value['name'] }} -
+                                                                ({{ $value['code'] }})
+                                                                - {{ $value['symbol'] }}
+                                                            </option>)
                                                         @endforeach
                                                     </select>
                                                     <x-input-error :messages="$errors->get('paypal_currency')" class="mt-2" />
@@ -91,7 +95,7 @@
                                                     <x-input-error :messages="$errors->get('paypal_app_id')" class="mt-2" />
                                                 </div>
                                             </div>
-                                            <a href="#" class="common_btn mt-5">Save Changes</a>
+                                            <button type='submit' class="common_btn mt-5">Save Changes</button>
                                         </form>
                                     </div>
 
