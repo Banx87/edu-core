@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('invoice_id');
             $table->foreignId('buyer_id')->constrained('users');
-            $table->foreignId('seller_id')->constrained('users');
             $table->enum('status', ['pending', 'processing', 'completed', 'cancelled', 'refunded', 'failed'])->default('pending');
             $table->double('total_amount');
             $table->double('paid_amount');
+            $table->string('currency');
             $table->boolean('has_coupon')->default(false);
             $table->string('coupon_code')->nullable();
             $table->double('coupon_amount')->nullable();
