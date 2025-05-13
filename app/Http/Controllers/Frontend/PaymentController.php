@@ -10,6 +10,16 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaymentController extends Controller
 {
+    function orderSuccess()
+    {
+        return view('frontend.pages.order-success');
+    }
+
+    function orderFailed()
+    {
+        return view('frontend.pages.order-cancel');
+    }
+
     function payWithPayPal(Request $request)
     {
         // dd($request->all());
@@ -45,7 +55,6 @@ class PaymentController extends Controller
 
     function payPalSuccess(Request $request)
     {
-        // dd($request->all());
         $provider = new PayPalClient();
         $provider->getAccessToken();
         $response = $provider->capturePaymentOrder($request->token);
@@ -56,7 +65,6 @@ class PaymentController extends Controller
             $transactionId = $capture['id'];
             $amountPaid = $capture['amount']['value'];
             $currency = $capture['amount']['currency_code'];
-            // dd($capture);
 
             try {
                 OrderService::storeOrder(
@@ -68,11 +76,15 @@ class PaymentController extends Controller
                     currency: $currency,
                     paymentMethod: 'paypal'
                 );
+
+                notyf()->success('Order completed successfully.');
+                return redirect()->route('order-success');
             } catch (\Throwable $e) {
                 dd($e->getMessage());
             }
-            // return redirect()->route('checkout.index')->with('success', 'Payment successful');
         }
+
+        return redirect()->route('order-failed')->with('Order failed. Something went wrong');
     }
 
     function payPalCancel(Request $request)
