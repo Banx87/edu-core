@@ -36,7 +36,7 @@ function cartTotalItems()
 
 
 // calculate cart total
-if (!function_exists('CartTotal')) {
+if (!function_exists('cartTotal')) {
     function cartTotal()
     {
         $total = 0;
@@ -48,5 +48,35 @@ if (!function_exists('CartTotal')) {
         }
 
         return $total;
+    }
+}
+
+if (!function_exists('cartTotalNoDiscount')) {
+    function cartTotalNoDiscount()
+    {
+        $total = 0;
+        $cartItems = Cart::where('user_id', Auth::user()?->id)->get();
+
+        foreach ($cartItems as $cartItem) {
+            $total += $cartItem->course->price;
+        }
+
+        return $total;
+    }
+}
+
+if (!function_exists('totalDiscount')) {
+    function totalDiscount()
+    {
+        $discount = 0;
+        $cartItems = Cart::where('user_id', Auth::user()?->id)->get();
+
+        foreach ($cartItems as $cartItem) {
+            if ($cartItem->course->discount > 0) {
+                $discount += $cartItem->course->discount;
+            }
+        }
+
+        return $discount;
     }
 }
