@@ -113,6 +113,7 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     // Payment Setting Routes
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
+    Route::post('paypal-settings/update', [PaymentSettingController::class, 'paypalSettings'])->name('paypal-settings.update');
 
     // Laravel File Manager (lfi) Routes
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {
