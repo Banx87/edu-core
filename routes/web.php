@@ -50,6 +50,9 @@ Route::get('checkout', CheckoutController::class)->name('checkout.index'); //Inv
 Route::get('paypal/payment',  [PaymentController::class, 'payWithPayPal'])->name('paypal.payment');
 Route::get('paypal/success',  [PaymentController::class, 'payPalSuccess'])->name('paypal.success');
 Route::get('paypal/cancel',  [PaymentController::class, 'payPalCancel'])->name('paypal.cancel');
+
+Route::get('order-success', [PaymentController::class, 'orderSuccess'])->name('order-success');
+Route::get('order-failed', [PaymentController::class, 'orderFailed'])->name('order-failed');
 /*
 * -------------------------------------------------------------------------
 * Student Routes
