@@ -84,7 +84,14 @@
                     <div class="col-xxl-4 col-md-7 col-lg-6 wow fadeInUp"
                         style="visibility: visible; animation-name: fadeInUp;">
                         <div class="total_price">
-                            <div class="subtotal_area">
+                            <div class="subtotal_area total_payment_price">
+                                <h4>Cart</h4>
+                                <ul>
+                                    <li>Selected courses: <span>{{ cartTotalItems() }}</span></li>
+                                    <li>Subtotal: <span>${{ cartTotalNoDiscount() }}</span></li>
+                                    <li>Discount :<span>${{ totalDiscount() }}</span></li>
+                                </ul>
+                                <hr>
                                 <h5>Total<span>${{ cartTotal() }}</span></h5>
                                 <a href="{{ route('checkout.index') }}" class="common_btn">proceed checkout</a>
                             </div>

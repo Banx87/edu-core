@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Controllers\Frontend\CoursePageController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\InstructorDashboardController;
+use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +47,9 @@ Route::get('remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->
 // Payment routes
 Route::get('checkout', CheckoutController::class)->name('checkout.index'); //Invokable controller
 
+Route::get('paypal/payment',  [PaymentController::class, 'payWithPayPal'])->name('paypal.payment');
+Route::get('paypal/success',  [PaymentController::class, 'payPalSuccess'])->name('paypal.success');
+Route::get('paypal/cancel',  [PaymentController::class, 'payPalCancel'])->name('paypal.cancel');
 /*
 * -------------------------------------------------------------------------
 * Student Routes

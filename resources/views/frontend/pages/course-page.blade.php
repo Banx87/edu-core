@@ -436,7 +436,7 @@
                                         @if ($course->discount > 0)
                                             <p><del>${{ $course->price }}</del> ${{ $course->discount }}</p>
                                         @else
-                                            <p>$course->price</p>
+                                            <p>${{ $course->price }}</p>
                                         @endif
                                     </div>
                                 </div>

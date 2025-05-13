@@ -18,40 +18,39 @@
             </div>
         </div>
     </section>
-    <!--===========================
-                                                                        BREADCRUMB END
-                                                                    ============================-->
 
-
-    <!--=============================
-                                                                        PAYMENT START
-                                                                    ==============================-->
     <section class="payment pt_95 xs_pt_75 pb_120 xs_pb_100">
         <div class="container">
             <div class="row">
                 <div class="col-xl-8 col-lg-7 wow fadeInUp">
+                    <h3 class="payment_title text-center">Select Payment Method</h3>
                     <div class="payment_area">
                         <div class="row">
                             <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
+                                <a href="route('stripe.payment')" class="payment_mathod">
                                     <img src="{{ asset('default_files/logo_stripe.png') }}" alt="stripe"
                                         class="img-fluid w-100" style="object-fit:contain !important;">
                                 </a>
                             </div>
                             <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
+                                <a href=" {{ route('paypal.payment') }} " class="payment_mathod">
                                     <img src="{{ asset('default_files/logo_paypal.png') }}" alt="paypal"
                                         class="img-fluid w-100" style="object-fit:contain !important;">
                                 </a>
                             </div>
                             <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
+                                <a href="#" class="payment_mathod">
                                     <img src="{{ asset('default_files/logo_razorpay.png') }}" alt="razorpay"
                                         class="img-fluid w-100 " style="object-fit:contain !important;">
                                 </a>
+                            </div>
+                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
+                                <div href="#" class="payment_mathod" data-bs-toggle="" data-bs-target="#exampleModal">
+                                    Fake Payment Methods
+                                    {{-- Fake payment --}}
+                                    {{-- <img src="" alt="razorpay" class="img-fluid w-100 " --}}
+                                    {{-- style="object-fit:contain !important;"> --}}
+                                </div>
                             </div>
 
                         </div>
@@ -59,13 +58,17 @@
                 </div>
                 <div class="col-xl-4 col-lg-5 wow fadeInUp">
                     <div class="total_payment_price">
-                        <h4>Total Cart <span>(05)</span></h4>
+                        <h4>Cart Total</h4>
                         <ul>
-                            <li>Subtotal :<span>$755.00</span></li>
-                            <li>Delivery :<span>$55.00</span></li>
-                            <li>Discount :<span>$75.00</span></li>
+                            <li>Selected courses: <span>{{ cartTotalItems() }}</span></li>
+                            <li>Subtotal: <span>${{ cartTotalNoDiscount() }}</span></li>
+                            <li>Discount :<span>${{ totalDiscount() }}</span></li>
                         </ul>
-                        <a href="#" class="common_btn">now payment</a>
+                        <hr>
+                        <h4>
+                            Total: <span>${{ cartTotal() }}</span>
+                        </h4>
+                        {{-- <a href="#" class="common_btn">now payment</a> --}}
                     </div>
                 </div>
             </div>
