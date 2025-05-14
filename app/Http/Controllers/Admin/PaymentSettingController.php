@@ -22,7 +22,7 @@ class PaymentSettingController extends Controller
         $validatedData = $request->validate([
             'paypal_mode' => 'required|in:live,sandbox',
             'paypal_currency' => 'required',
-            'paypal_rate' => 'required',
+            'paypal_rate' => 'required|numeric',
             'paypal_client_id' => 'required',
             'paypal_client_secret' => 'required',
             'paypal_app_id' => 'required',

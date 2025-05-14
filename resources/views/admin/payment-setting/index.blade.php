@@ -51,20 +51,22 @@
                                                 <div class="col-md-5">
                                                     <label for="paypal_mode" class="form-label">Paypal Mode</label>
                                                     <select name="paypal_mode" id="paypal_mode" class="form-select">
-                                                        <option value="sandbox">Sandbox</option>
-                                                        <option value="live">Live</option>
+                                                        <option @selected(config('gateway_settings.paypal_mode') == 'sandbox') value="sandbox">Sandbox
+                                                        </option>
+                                                        <option @selected(config('gateway_settings.paypal_mode') == 'live') value="live">Live</option>
                                                     </select>
                                                     <x-input-error :messages="$errors->get('paypal_mode')" class="mt-2" />
                                                 </div>
                                                 <div class="col-md-5">
-                                                    <label for="currency" class="form-label">Currency</label>
+                                                    <label for="paypal_currency" class="form-label">Currency</label>
                                                     <select name="paypal_currency" id="paypal_currency"
                                                         class="form-control form-select select2">
-                                                        @foreach (config('gateway_currencies.paypal_currencies') as $currency => $value)
-                                                            <option value="{{ $value['code'] }}">{{ $value['name'] }} -
-                                                                ({{ $value['code'] }})
-                                                                - {{ $value['symbol'] }}
-                                                            </option>)
+                                                        @foreach (config('gateway_currencies.paypal_currencies') as $currencyCode => $currencyDetails)
+                                                            <option @selected(config('gateway_settings.paypal_currency') == $currencyCode)
+                                                                value="{{ $currencyCode }}">
+                                                                {{ $currencyDetails['name'] }} - ({{ $currencyCode }})
+                                                                - {{ $currencyDetails['symbol'] }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                     <x-input-error :messages="$errors->get('paypal_currency')" class="mt-2" />
@@ -72,6 +74,7 @@
                                                 <div class="col-md-2">
                                                     <label for="rate" class="form-label">Rate (USD)</label>
                                                     <input type="text" id="paypal_rate" name="paypal_rate"
+                                                        value={{ config('gateway_settings.paypal_rate') }}
                                                         class="form-control">
                                                     <x-input-error :messages="$errors->get('paypal_rate')" class="mt-2"
                                                         placeholder="Enter PayPal Rate" />
@@ -79,18 +82,21 @@
                                                 <div class="col-md-4 mt-3">
                                                     <label for="client_id" class="form-label">Client ID</label>
                                                     <input type="text" id="client_id" name="paypal_client_id"
+                                                        value="{{ config('gateway_settings.paypal_client_id') }}"
                                                         class="form-control" placeholder="Enter PayPal Client ID">
                                                     <x-input-error :messages="$errors->get('client_id')" class="mt-2" />
                                                 </div>
                                                 <div class="col-md-4 mt-3">
                                                     <label for="client_secret" class="form-label">Client Secret</label>
                                                     <input type="text" id="client_secret" name="paypal_client_secret"
+                                                        value="{{ config('gateway_settings.paypal_client_secret') }}"
                                                         class="form-control" placeholder="Enter PayPal Client Secret">
                                                     <x-input-error :messages="$errors->get('paypal_client_secret')" class="mt-2" />
                                                 </div>
                                                 <div class="col-md-4 mt-3">
                                                     <label for="app_id" class="form-label">App ID</label>
                                                     <input type="text" id="app_id" name="paypal_app_id"
+                                                        value="{{ config('gateway_settings.paypal_app_id') }}"
                                                         class="form-control" placeholder="Enter PayPal App ID">
                                                     <x-input-error :messages="$errors->get('paypal_app_id')" class="mt-2" />
                                                 </div>
