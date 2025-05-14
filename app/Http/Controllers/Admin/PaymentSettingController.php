@@ -7,6 +7,7 @@ use App\Models\PaymentSetting;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PaymentSettingController extends Controller
 {
@@ -30,6 +31,8 @@ class PaymentSettingController extends Controller
         foreach ($validatedData as $key => $value) {
             PaymentSetting::updateOrCreate(['key' => $key], ['value' => $value]);
         }
+
+        Cache::forget('gatewaySettings');
 
         notyf()->success('PayPal settings updated successfully.');
         return redirect()->back();
