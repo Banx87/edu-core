@@ -17,19 +17,22 @@
                             <div class="card-header">
                                 <ul class="nav nav-tabs card-header-tabs nav-fill" data-bs-toggle="tabs">
                                     <li class="nav-item">
-                                        <a href="#paypal-settings" class="nav-link active" data-bs-toggle="tab">
+                                        <a href="#paypal_settings" id="paypal" class="nav-link paymentSettingTab"
+                                            data-bs-toggle="tab">
                                             <i class="ti ti-brand-paypal space"></i>
                                             Paypal Settings
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#stripe_settings" class="nav-link" data-bs-toggle="tab">
+                                        <a href="#stripe_settings" id="stripe" class="nav-link paymentSettingTab"
+                                            data-bs-toggle="tab">
                                             <i class="ti ti-brand-stripe space"></i>
                                             Stripe Settings
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#tabs-activity-ex5" class="nav-link" data-bs-toggle="tab">
+                                        <a href="#razorpay_settings" id="razorpay" class="nav-link paymentSettingTab"
+                                            data-bs-toggle="tab">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
@@ -42,7 +45,7 @@
                             <div class="card-body">
                                 <div class="tab-content">
                                     {{-- PAYPAL --}}
-                                    <div class="tab-pane active show" id="paypal-settings">
+                                    <div class="tab-pane fade" id="paypal_settings">
                                         <form action="{{ route('admin.paypal-settings.update') }}" method="POST">
                                             @csrf
                                             <div class="row">
@@ -105,7 +108,7 @@
                                     {{-- ************************************** --}}
 
                                     {{-- STRIPE --}}
-                                    <div class="tab-pane" id="stripe_settings">
+                                    <div class="tab-pane fade" id="stripe_settings">
                                         <form action="{{ route('admin.stripe-settings.update') }}" method="POST">
                                             @csrf
                                             <div class="row">
@@ -161,7 +164,7 @@
                                     </div>
                                     {{-- ************************************** --}}
 
-                                    <div class="tab-pane" id="tabs-activity-ex5">
+                                    <div class="tab-pane fade" id="razorpay_settings">
                                         <h4>Activity tab</h4>
                                         <div>
                                             Donec ac vitae diam amet vel leo egestas consequat rhoncus in luctus

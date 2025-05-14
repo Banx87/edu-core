@@ -73,3 +73,23 @@ $(".delete-confirm").on("click", function (e) {
 		},
 	});
 });
+
+$(function () {
+	const selectedTab = localStorage.getItem("selectedPaymentSettingTab");
+	if (selectedTab) {
+		$("#" + selectedTab + "_settings").addClass("active show");
+		$("#" + selectedTab).addClass("active show");
+	} else {
+		$("#paypal_settings, #paypal").addClass("active show");
+	}
+});
+
+$(".paymentSettingTab").on("click", function () {
+	var tabs = document.getElementsByClassName("paymentSettingTab");
+
+	for (const tab of tabs) {
+		tab.classList.remove("active", "show");
+		this.classList.add("active", "show");
+		localStorage.setItem("selectedPaymentSettingTab", this.getAttribute("id"));
+	}
+});
