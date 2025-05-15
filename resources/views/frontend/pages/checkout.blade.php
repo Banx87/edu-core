@@ -39,18 +39,16 @@
                                 </a>
                             </div>
                             <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod">
-                                    <img src="{{ asset('default_files/logo_razorpay.png') }}" alt="razorpay"
-                                        class="img-fluid w-100 " style="object-fit:contain !important;">
+                                <a href="{{ route('nordea.payment') }}" class="payment_mathod">
+                                    <img src="{{ asset('default_files/logo_nordea.png') }}" alt="nordea"
+                                        class="img-fluid w-100" style="object-fit:contain !important;">
                                 </a>
                             </div>
                             <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <div href="#" class="payment_mathod" data-bs-toggle="" data-bs-target="#exampleModal">
-                                    Fake Payment Methods
-                                    {{-- Fake payment --}}
-                                    {{-- <img src="" alt="razorpay" class="img-fluid w-100 " --}}
-                                    {{-- style="object-fit:contain !important;"> --}}
-                                </div>
+                                <a href="{{ route('razorpay.redirect') }}" class="payment_mathod">
+                                    <img src="{{ asset('default_files/logo_razorpay.png') }}" alt="razorpay"
+                                        class="img-fluid w-100 " style="object-fit:contain !important;">
+                                </a>
                             </div>
 
                         </div>

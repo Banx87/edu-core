@@ -31,15 +31,20 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#razorpay_settings" id="razorpay" class="nav-link paymentSettingTab"
+                                        <a href="#nordea_settings" id="nordea" class="nav-link paymentSettingTab"
                                             data-bs-toggle="tab">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
-                                                <path d="M3 12h4l3 8l4 -16l3 8h4" />
-                                            </svg>
+                                            <i class="ti ti-pig-money space"></i>
+                                            Nordea Settings
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="#razorpay_settings" id="razorpay" class="nav-link paymentSettingTab"
+                                            data-bs-toggle="tab">
+                                            <i class="ti ti-razor space"></i>
+                                            Razorpay Settings
+                                        </a>
+                                    </li>
+
                                 </ul>
                             </div>
                             <div class="card-body">
@@ -48,6 +53,7 @@
                                     <div class="tab-pane fade" id="paypal_settings">
                                         <form action="{{ route('admin.paypal-settings.update') }}" method="POST">
                                             @csrf
+                                            @method('PUT')
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <label for="paypal_mode" class="form-label">Paypal Mode</label>
@@ -111,6 +117,7 @@
                                     <div class="tab-pane fade" id="stripe_settings">
                                         <form action="{{ route('admin.stripe-settings.update') }}" method="POST">
                                             @csrf
+                                            @method('PUT')
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <label for="stripe_status" class="form-label">Stripe Status</label>
@@ -164,14 +171,127 @@
                                     </div>
                                     {{-- ************************************** --}}
 
-                                    <div class="tab-pane fade" id="razorpay_settings">
-                                        <h4>Activity tab</h4>
-                                        <div>
-                                            Donec ac vitae diam amet vel leo egestas consequat rhoncus in luctus
-                                            amet, facilisi sit
-                                            mauris accumsan nibh habitant senectus
-                                        </div>
+                                    {{-- NORDEA --}}
+                                    <div class="tab-pane fade" id="nordea_settings">
+                                        <form action="{{ route('admin.nordea-settings.update') }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <label for="nordea_status" class="form-label">Nordea
+                                                        Status</label>
+                                                    <select name="nordea_status" id="nordea_status" class="form-select">
+                                                        <option @selected(config('gateway_settings.nordea_status') == 'active') value="active">Active
+                                                        </option>
+                                                        <option @selected(config('gateway_settings.nordea_status') == 'inactive') value="inactive">Inactive
+                                                        </option>
+                                                    </select>
+                                                    <x-input-error :messages="$errors->get('nordea_status')" class="mt-2" />
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label for="nordea_currency" class="form-label">Currency</label>
+                                                    <select name="nordea_currency" id="nordea_currency"
+                                                        class="form-control form-select select2">
+                                                        @foreach (config('gateway_currencies.nordea_currencies') as $currencyCode => $currencyDetails)
+                                                            <option @selected(config('gateway_settings.nordea_currency') == $currencyCode)
+                                                                value="{{ $currencyCode }}">
+                                                                {{ $currencyDetails['symbol'] }} -
+                                                                {{ $currencyCode }} -
+                                                                {{ $currencyDetails['name'] }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    <x-input-error :messages="$errors->get('nordea_currency')" class="mt-2" />
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label for="nordea_rate" class="form-label">Rate (USD)</label>
+                                                    <input type="text" id="nordea_rate" name="nordea_rate"
+                                                        value="{{ config('gateway_settings.nordea_rate') }}"
+                                                        class="form-control" placeholder="Enter Nordea Rate">
+                                                    <x-input-error :messages="$errors->get('nordea_rate')" class="mt-2" />
+                                                </div>
+                                                <div class="col-md-6 mt-3">
+                                                    <label for="nordea_client_id" class="form-label">Client ID</label>
+                                                    <input type="text" id="nordea_client_id" name="nordea_client_id"
+                                                        value="{{ config('gateway_settings.nordea_client_id') }}"
+                                                        class="form-control" placeholder="Enter Nordea Key">
+                                                    <x-input-error :messages="$errors->get('nordea_client_id')" class="mt-2" />
+                                                </div>
+                                                <div class="col-md-6 mt-3">
+                                                    <label for="nordea_client_secret" class="form-label">Secret</label>
+                                                    <input type="text" id="nordea_client_secret"
+                                                        name="nordea_client_secret"
+                                                        value="{{ config('gateway_settings.nordea_client_secret') }}"
+                                                        class="form-control" placeholder="Enter Nordea Secret">
+                                                    <x-input-error :messages="$errors->get('nordea_client_secret')" class="mt-2" />
+                                                </div>
+                                            </div>
+                                            <button type='submit' class="common_btn mt-5">Save Changes</button>
+                                        </form>
                                     </div>
+                                    {{-- ************************************** --}}
+
+                                    {{-- RAZORPAY --}}
+                                    <div class="tab-pane fade" id="razorpay_settings">
+                                        <form action="{{ route('admin.razorpay-settings.update') }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <label for="razorpay_status" class="form-label">Razorpay
+                                                        Status</label>
+                                                    <select name="razorpay_status" id="razorpay_status"
+                                                        class="form-select">
+                                                        <option @selected(config('gateway_settings.razorpay_status') == 'active') value="active">Active
+                                                        </option>
+                                                        <option @selected(config('gateway_settings.razorpay_status') == 'inactive') value="inactive">Inactive
+                                                        </option>
+                                                    </select>
+                                                    <x-input-error :messages="$errors->get('razorpay_status')" class="mt-2" />
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label for="razorpay_currency" class="form-label">Currency</label>
+                                                    <select name="razorpay_currency" id="razorpay_currency"
+                                                        class="form-control form-select select2">
+                                                        @foreach (config('gateway_currencies.razorpay_currencies') as $currencyCode => $currencyDetails)
+                                                            <option @selected(config('gateway_settings.razorpay_currency') == $currencyCode)
+                                                                value="{{ $currencyCode }}">
+                                                                {{ $currencyDetails['symbol'] }} -
+                                                                {{ $currencyCode }} -
+                                                                {{ $currencyDetails['name'] }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    <x-input-error :messages="$errors->get('razorpay_currency')" class="mt-2" />
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label for="razorpay_rate" class="form-label">Rate (USD)</label>
+                                                    <input type="text" id="razorpay_rate" name="razorpay_rate"
+                                                        value="{{ config('gateway_settings.razorpay_rate') }}"
+                                                        class="form-control" placeholder="Enter Razorpay Rate">
+                                                    <x-input-error :messages="$errors->get('razorpay_rate')" class="mt-2" />
+                                                </div>
+                                                <div class="col-md-6 mt-3">
+                                                    <label for="razorpay_key" class="form-label">Client ID</label>
+                                                    <input type="text" id="razorpay_key" name="razorpay_key"
+                                                        value="{{ config('gateway_settings.razorpay_key') }}"
+                                                        class="form-control" placeholder="Enter Razorpay Key">
+                                                    <x-input-error :messages="$errors->get('razorpay_key')" class="mt-2" />
+                                                </div>
+                                                <div class="col-md-6 mt-3">
+                                                    <label for="razorpay_secret" class="form-label">Secret</label>
+                                                    <input type="text" id="razorpay_secret" name="razorpay_secret"
+                                                        value="{{ config('gateway_settings.razorpay_secret') }}"
+                                                        class="form-control" placeholder="Enter Razorpay Secret">
+                                                    <x-input-error :messages="$errors->get('razorpay_secret')" class="mt-2" />
+                                                </div>
+                                            </div>
+                                            <button type='submit' class="common_btn mt-5">Save Changes</button>
+                                        </form>
+                                    </div>
+
+                                    {{-- ************************************** --}}
+
                                 </div>
                             </div>
                         </div>
