@@ -27,14 +27,14 @@
                     <div class="payment_area">
                         <div class="row">
                             <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="route('stripe.payment')" class="payment_mathod">
-                                    <img src="{{ asset('default_files/logo_stripe.png') }}" alt="stripe"
+                                <a href=" {{ route('paypal.payment') }} " class="payment_mathod">
+                                    <img src="{{ asset('default_files/logo_paypal.png') }}" alt="paypal"
                                         class="img-fluid w-100" style="object-fit:contain !important;">
                                 </a>
                             </div>
                             <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href=" {{ route('paypal.payment') }} " class="payment_mathod">
-                                    <img src="{{ asset('default_files/logo_paypal.png') }}" alt="paypal"
+                                <a href="{{ route('stripe.payment') }}" class="payment_mathod">
+                                    <img src="{{ asset('default_files/logo_stripe.png') }}" alt="stripe"
                                         class="img-fluid w-100" style="object-fit:contain !important;">
                                 </a>
                             </div>

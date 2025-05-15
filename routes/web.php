@@ -47,9 +47,15 @@ Route::get('remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->
 // Payment routes
 Route::get('checkout', CheckoutController::class)->name('checkout.index'); //Invokable controller
 
+// Paypal
 Route::get('paypal/payment',  [PaymentController::class, 'payWithPayPal'])->name('paypal.payment');
 Route::get('paypal/success',  [PaymentController::class, 'payPalSuccess'])->name('paypal.success');
 Route::get('paypal/cancel',  [PaymentController::class, 'payPalCancel'])->name('paypal.cancel');
+
+// Stripe
+Route::get('stripe/payment',  [PaymentController::class, 'payWithStripe'])->name('stripe.payment');
+Route::get('stripe/success',  [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
+Route::get('stripe/cancel',  [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
 
 Route::get('order-success', [PaymentController::class, 'orderSuccess'])->name('order-success');
 Route::get('order-failed', [PaymentController::class, 'orderFailed'])->name('order-failed');
