@@ -57,6 +57,17 @@ Route::get('stripe/payment',  [PaymentController::class, 'payWithStripe'])->name
 Route::get('stripe/success',  [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
 Route::get('stripe/cancel',  [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
 
+// Nordea
+Route::get('nordea/payment',  [PaymentController::class, 'payWithNordea'])->name('nordea.payment');
+Route::get('nordea/success',  [PaymentController::class, 'nordeaSuccess'])->name('nordea.success');
+Route::get('nordea/cancel',  [PaymentController::class, 'nordeaCancel'])->name('nordea.cancel');
+
+//Razorpay
+Route::post('razorpay/payment',  [PaymentController::class, 'payWithRazorpay'])->name('razorpay.payment');
+Route::get('razorpay/redirect',  [PaymentController::class, 'razorpayRedirect'])->name('razorpay.redirect');
+Route::get('razorpay/success',  [PaymentController::class, 'razorpaySuccess'])->name('razorpay.success');
+Route::get('razorpay/cancel',  [PaymentController::class, 'razorpayCancel'])->name('razorpay.cancel');
+
 Route::get('order-success', [PaymentController::class, 'orderSuccess'])->name('order-success');
 Route::get('order-failed', [PaymentController::class, 'orderFailed'])->name('order-failed');
 /*

@@ -113,8 +113,10 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     // Payment Setting Routes
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
-    Route::post('paypal-settings', [PaymentSettingController::class, 'paypalSettings'])->name('paypal-settings.update');
-    Route::post('stripe-settings', [PaymentSettingController::class, 'stripeSettings'])->name('stripe-settings.update');
+    Route::put('paypal-settings', [PaymentSettingController::class, 'paypalSettings'])->name('paypal-settings.update');
+    Route::put('stripe-settings', [PaymentSettingController::class, 'stripeSettings'])->name('stripe-settings.update');
+    Route::put('razorpay-settings', [PaymentSettingController::class, 'razorpaySettings'])->name('razorpay-settings.update');
+    Route::put('nordea-settings', [PaymentSettingController::class, 'nordeaSettings'])->name('nordea-settings.update');
 
     // Laravel File Manager (lfi) Routes
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {
