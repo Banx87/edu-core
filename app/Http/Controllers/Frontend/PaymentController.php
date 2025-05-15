@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Stripe\Checkout\Session as StripeSession;
 use Stripe\Stripe;
+use Razorpay\Api\Api as RazorpayApi;
+use Razorpay\Api\Errors\Error;
+
 
 class PaymentController extends Controller
 {
@@ -19,7 +22,7 @@ class PaymentController extends Controller
 
     function orderFailed()
     {
-        return view('frontend.pages.order-cancel');
+        return view('frontend.pages.order-failed');
     }
 
     function paypalConfig(): array
@@ -51,7 +54,7 @@ class PaymentController extends Controller
         $provider = new PayPalClient($this->paypalConfig());
         $provider->getAccessToken();
 
-        $paymentAmount = cartTotal();
+        $paymentAmount = cartTotal() * config('gateway_settings.paypal_rate');
 
         $response = $provider->createOrder([
             "intent" => "CAPTURE",
@@ -88,6 +91,7 @@ class PaymentController extends Controller
             $capture = $response['purchase_units'][0]['payments']['captures'][0];
 
             $transactionId = $capture['id'];
+            $mainAmount = cartTotal();
             $amountPaid = $capture['amount']['value'];
             $currency = $capture['amount']['currency_code'];
 
@@ -96,7 +100,7 @@ class PaymentController extends Controller
                     transactionId: $transactionId,
                     buyerId: Auth::user()->id,
                     status: 'completed',
-                    totalAmount: $amountPaid,
+                    totalAmount: $mainAmount,
                     amountPaid: $amountPaid,
                     currency: $currency,
                     paymentMethod: 'paypal'
@@ -120,6 +124,7 @@ class PaymentController extends Controller
     function payWithStripe(Request $request)
     {
         Stripe::setApiKey(config('gateway_settings.stripe_secret'));
+        $amountPaid = cartTotal() * 100 * config('gateway_settings.stripe_rate');
 
         $response = StripeSession::create([
             'line_items' => [[
@@ -128,7 +133,7 @@ class PaymentController extends Controller
                     'product_data' => [
                         'name' => 'Course',
                     ],
-                    'unit_amount' => cartTotal() * 100,
+                    'unit_amount' => $amountPaid,
                 ],
                 'quantity' => cartTotalItems(),
             ]],
@@ -148,6 +153,7 @@ class PaymentController extends Controller
         if ($response->status == 'complete' && $response->payment_status == 'paid') {
 
             $currency = strtoupper($response->currency);
+            $mainAmount = cartTotal();
             $amountPaid = $response->amount_total / 100;
             $transactionId = $response->payment_intent;
 
@@ -156,7 +162,7 @@ class PaymentController extends Controller
                     transactionId: $transactionId,
                     buyerId: Auth::user()->id,
                     status: 'completed',
-                    totalAmount: $amountPaid,
+                    totalAmount: $mainAmount,
                     amountPaid: $amountPaid,
                     currency: $currency,
                     paymentMethod: 'stripe'
@@ -174,5 +180,49 @@ class PaymentController extends Controller
     function stripeCancel(Request $request)
     {
         return redirect()->route('order-failed')->with('Order failed. Something went wrong');
+    }
+
+    function payWithNordea(Request $request)
+    {
+        dd($request->all());
+    }
+
+    function payWithRazorpay(Request $request)
+    {
+        // **********************************
+        // **********************************
+        // AUTHENTICATION FAILS
+        // **********************************
+        // **********************************
+
+        $api = new RazorpayApi(config('gateway_settings.razorpay_key'), config('gateway_settings.razorpay_secret'));
+        $paymentId = $request->razorpay_payment_id;
+
+        $mainAmount = cartTotal();
+        $amountPaid = cartTotal() * 100 * config('gateway_settings.razorpay_rate');
+
+        try {
+            $response = $api->payment->fetch($paymentId)->capture(['amount' => $amountPaid]);
+            if ($response->status == 'captured') {
+
+                OrderService::storeOrder(
+                    transactionId: $response->id,
+                    buyerId: Auth::user()->id,
+                    status: 'completed',
+                    totalAmount: $mainAmount,
+                    amountPaid: $response->amount / 100,
+                    currency: $response->currency,
+                    paymentMethod: 'razorpay'
+                );
+                return redirect()->route('order-success');
+            }
+        } catch (\Throwable $e) {
+            throw $e;
+        }
+        return redirect()->route('order-failed')->with('Order failed. Something went wrong');
+    }
+    function razorPayRedirect()
+    {
+        return view('frontend.pages.razorpay-redirect');
     }
 }

@@ -57,4 +57,44 @@ class PaymentSettingController extends Controller
         notyf()->success('Stripe settings updated successfully.');
         return redirect()->back();
     }
+
+    function razorpaySettings(Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'razorpay_status' => 'required|in:active,inactive',
+            'razorpay_currency' => 'required',
+            'razorpay_rate' => 'required|numeric',
+            'razorpay_key' => 'required',
+            'razorpay_secret' => 'required',
+        ]);
+
+        foreach ($validatedData as $key => $value) {
+            PaymentSetting::updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+
+        Cache::forget('gatewaySettings');
+
+        notyf()->success('Razorpay settings updated successfully.');
+        return redirect()->back();
+    }
+    function nordeaSettings(Request $request): RedirectResponse
+    {
+
+        $validatedData = $request->validate([
+            'nordea_status' => 'required|in:active,inactive',
+            'nordea_currency' => 'required',
+            'nordea_rate' => 'required|numeric',
+            'nordea_client_id' => 'required',
+            'nordea_client_secret' => 'required',
+        ]);
+
+        foreach ($validatedData as $key => $value) {
+            PaymentSetting::updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+
+        Cache::forget('gatewaySettings');
+
+        notyf()->success('Nordea settings updated successfully.');
+        return redirect()->back();
+    }
 }
