@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InstructorRequestController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -117,6 +118,9 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::put('stripe-settings', [PaymentSettingController::class, 'stripeSettings'])->name('stripe-settings.update');
     Route::put('razorpay-settings', [PaymentSettingController::class, 'razorpaySettings'])->name('razorpay-settings.update');
     Route::put('nordea-settings', [PaymentSettingController::class, 'nordeaSettings'])->name('nordea-settings.update');
+
+    // Order Routes
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 
     // Laravel File Manager (lfi) Routes
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {
