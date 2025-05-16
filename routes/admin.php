@@ -121,6 +121,7 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     // Order Routes
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 
     // Laravel File Manager (lfi) Routes
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {
