@@ -18,7 +18,6 @@
                         <form method="POST" action="{{ route('admin.course-categories.update', $course_category->id) }}"
                             enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
                             <div class="row">
                                 <div class="col-md-6">
                                     <x-input-error :messages="$errors->get('image')" class="mt-2" />

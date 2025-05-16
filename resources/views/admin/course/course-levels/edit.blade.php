@@ -21,7 +21,6 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.course-levels.update', $course_level->id) }}">
                             @csrf
-                            @method('PUT')
                             <label for="name" class="form-label">Language Name</label>
                             <input type="text" class="form-control" id="name" name="name"
                                 placeholder="Enter Language Name" value="{{ $course_level->name }}" required>

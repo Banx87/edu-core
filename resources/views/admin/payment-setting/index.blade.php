@@ -53,7 +53,6 @@
                                     <div class="tab-pane fade" id="paypal_settings">
                                         <form action="{{ route('admin.paypal-settings.update') }}" method="POST">
                                             @csrf
-                                            @method('PUT')
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <label for="paypal_mode" class="form-label">Paypal Mode</label>
@@ -117,7 +116,7 @@
                                     <div class="tab-pane fade" id="stripe_settings">
                                         <form action="{{ route('admin.stripe-settings.update') }}" method="POST">
                                             @csrf
-                                            @method('PUT')
+                                            ')
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <label for="stripe_status" class="form-label">Stripe Status</label>
@@ -175,7 +174,7 @@
                                     <div class="tab-pane fade" id="nordea_settings">
                                         <form action="{{ route('admin.nordea-settings.update') }}" method="POST">
                                             @csrf
-                                            @method('PUT')
+                                            ')
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <label for="nordea_status" class="form-label">Nordea
@@ -235,7 +234,7 @@
                                     <div class="tab-pane fade" id="razorpay_settings">
                                         <form action="{{ route('admin.razorpay-settings.update') }}" method="POST">
                                             @csrf
-                                            @method('PUT')
+                                            ')
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <label for="razorpay_status" class="form-label">Razorpay
