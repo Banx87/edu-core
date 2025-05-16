@@ -80,3 +80,15 @@ if (!function_exists('totalDiscount')) {
         return $discount;
     }
 }
+
+function getCurrencySymbols(): array
+{
+    $currencies = config('gateway_currencies.paypal_currencies');
+
+    $currencySymbols = [];
+    foreach ($currencies as $currency) {
+        $currencySymbols[$currency['code']] = $currency['symbol'];
+    }
+
+    return $currencySymbols;
+}
