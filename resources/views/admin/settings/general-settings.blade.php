@@ -3,80 +3,59 @@
 @section('settings_content')
     <div class="col-12 col-md-9 d-flex flex-column">
         <div class="card-body">
-            <h2 class="mb-4">My Account</h2>
-            {{-- <h3 class="card-title">Profile Details</h3>
-            <div class="row align-items-center">
-                <div class="col-auto"><span class="avatar avatar-xl" style="background-image: url(./static/avatars/000m.jpg)">
-                    </span></div>
-                <div class="col-auto">
-                    <a href="#" class="btn btn-1"> Change avatar </a>
-                </div>
-                <div class="col-auto">
-                    <a href="#" class="btn btn-ghost-danger btn-3"> Delete avatar </a>
-                </div>
-            </div> --}}
-            <h3 class="card-title mt-4">Business Profile</h3>
-            <div class="row g-3">
-                <div class="col-md-9">
-                    <div class="form-label">Site Name</div>
-                    <input type="text" class="form-control" value="">
-                </div>
-                <div class="col-md-6">
-                    <div class="form-label">Phone</div>
-                    <input type="text" class="form-control" value="">
-                </div>
-                <div class="col-md-6">
-                    <div class="form-label">Location</div>
-                    <input type="text" class="form-control" value="">
-                </div>
-                <div class="col-md-4">
-                    <div class="form-label">Site Default Currency</div>
-                    <select name="" class="form-select select2" id="">
-                        <option value="">Select</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-label">Currency Icon</div>
-                    <input type="text" class="form-control" value="Peimei, China">
-                </div>
-            </div>
-            {{-- <h3 class="card-title mt-4">Email</h3>
-            <p class="card-subtitle">This contact will be shown to others publicly, so choose it
-                carefully.</p>
-            <div>
-                <div class="row g-2">
-                    <div class="col-auto">
-                        <input type="text" class="form-control w-auto" value="paweluna@howstuffworks.com">
+            <form action="{{ route('admin.general-settings.update') }}" method="POST">
+                @csrf
+                <h2 class="card-title mt-4">General Settings</h2>
+                <div class="row g-3">
+                    <div class="col-md-9">
+                        <div class="form-label">Site Name</div>
+                        <input type="text" class="form-control" value="{{ config('settings.site_title') }}"
+                            name="site_title">
+                        <x-input-error :messages="$errors->get('site_title')" class="mt-2" />
                     </div>
-                    <div class="col-auto">
-                        <a href="#" class="btn btn-1"> Change </a>
+                    <div class="col-md-6">
+                        <div class="form-label">Phone</div>
+                        <input type="text" class="form-control" value="{{ config('settings.phone') }}" name="phone">
+                        <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label">Location</div>
+                        <input type="text" class="form-control" value="{{ config('settings.location') }}"
+                            name="location">
+                        <x-input-error :messages="$errors->get('location')" class="mt-2" />
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-label">Site Default Currency</div>
+                        <select class="form-select select2" id="" name="currency">
+                            <option value="">Select</option>
+                            @foreach (config('gateway_currencies.all_currencies') as $key => $currency)
+                                <option value="{{ old('currency', $currency['code']) }}" @selected(config('settings.currency') == $currency['code'])>
+                                    {{ $currency['name'] }} ({{ $currency['code'] }})
+                                </option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('currency')" class="mt-2" />
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-label">Currency Icon</div>
+                        <select class="form-select select2" id="" name="currency_icon">
+                            <option value="">Select</option>
+                            @foreach (config('gateway_currencies.all_currencies') as $key => $currency)
+                                <option value="{{ old('currency', $currency['symbol']) }}" @selected(config('settings.currency_icon') == $currency['symbol'])>
+                                    {{ $currency['symbol'] }}
+                                    ({{ $currency['code'] }})
+                                </option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('currency_icon')" class="mt-2" />
                     </div>
                 </div>
-            </div>
-            <h3 class="card-title mt-4">Password</h3>
-            <p class="card-subtitle">You can set a permanent password if you don't want to use
-                temporary login codes.</p>
-            <div>
-                <a href="#" class="btn btn-1"> Set new password </a>
-            </div>
-            <h3 class="card-title mt-4">Public profile</h3>
-            <p class="card-subtitle">Making your profile public means that anyone on the Dashkit
-                network will be able to find you.</p>
-            <div>
-                <label class="form-check form-switch form-switch-lg">
-                    <input class="form-check-input" type="checkbox">
-                    <span class="form-check-label form-check-label-on">You're currently
-                        visible</span>
-                    <span class="form-check-label form-check-label-off">You're currently
-                        invisible</span>
-                </label>
-            </div> --}}
         </div>
         <div class="card-footer bg-transparent mt-auto">
-            <div class="btn-list justify-content-end">
-                <a href="#" class="btn btn-1"> Cancel </a>
-                <a href="#" class="btn btn-primary btn-2"> Submit </a>
+            <div class="btn-list">
+                <button type="submit" href="#" class="common_btn"> Submit </button>
             </div>
         </div>
+        </form>
     </div>
 @endsection
