@@ -18,6 +18,7 @@ class OrderController extends Controller
 
     function show(Order $order): View
     {
-        return view('admin.order.show', compact('order'));
+        $currencySymbols = getCurrencySymbols();
+        return view('admin.order.show', compact('order'), compact('currencySymbols'));
     }
 }
