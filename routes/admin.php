@@ -127,6 +127,8 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     //  Site Settings Routes
     Route::get('general-settings', [SettingsController::class, 'index'])->name('settings.general-settings');
     Route::post('general-settings', [SettingsController::class, 'updateGeneralSettings'])->name('general-settings.update');
+    Route::get('commission', [SettingsController::class, 'CommissionIndex'])->name('commission-settings.index');
+    Route::post('commission', [SettingsController::class, 'updateCommission'])->name('commission-settings.update');
     // Route::put('settings/{id}',[SettingsController::class,'update'])->name('settings.update'); {
 
 });
