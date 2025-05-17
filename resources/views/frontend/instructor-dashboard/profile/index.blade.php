@@ -119,7 +119,7 @@
                                 <p>Update your social media information.</p>
                             </div>
                         </div>
-                        <form method="POST" action="{{ route('instructor.profile.update-password') }}"
+                        <form method="POST" action="{{ route('instructor.profile.update-gateway-info') }}"
                             class="wsus__dashboard_profile_update">
                             @csrf
                             <div class="row">
@@ -133,7 +133,7 @@
                                             <option value="">Select</option>
                                             @foreach ($gateways as $gateway)
                                                 @if ($gateway->status == 1)
-                                                    <option @selected(auth()->user()->payment_gateway === $gateway->id)
+                                                    <option @selected(auth()->user()?->gatewayInfo?->payout_gateway == $gateway->gateway_name)
                                                         value="{{ $gateway->gateway_name }}"
                                                         data-hint="gateway-{{ $gateway->id }}">
                                                         {{ $gateway->gateway_name }}
@@ -145,30 +145,13 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 mt-3">
-                                    <textarea name="gateway_info" class="form-control gateway_hint" id="" cols="30" rows="10"></textarea>
+                                    <label for="gateway_info">Gateway Information</label>
+                                    <textarea name="information" class="form-control gateway_info" cols="30" rows="10">{!! Auth::user()?->gatewayInfo?->information !!}</textarea>
+                                </div>
+                                <div class="wsus__dashboard_profile_update_btn">
+                                    <button type="submit" class="common_btn">Update Information</button>
                                 </div>
                             </div>
-                            {{-- <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="wsus__dashboard_profile_update_info">
-                                        <label for=""></label>
-                                        <input type="password" placeholder="New Password" name="password">
-                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="wsus__dashboard_profile_update_info">
-                                        <input type="password" placeholder="Confirm Password"
-                                            name="password_confirmation">
-                                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                                    </div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="wsus__dashboard_profile_update_btn">
-                                        <button type="submit" class="common_btn">Update Password</button>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </form>
                     </div>
 
@@ -285,7 +268,8 @@
         $(function() {
             $('.gateway-select').on('change', function() {
                 var selectedGateway = $(this).find(':selected').data('hint');
-                $('.gateway_hint').attr('placeholder', $('.' + selectedGateway).html());
+                console.log(selectedGateway);
+                $('.gateway_info').attr('placeholder', $('.' + selectedGateway).html());
             });
         });
     </script>

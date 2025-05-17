@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\PasswordUpdateRequest;
 use App\Http\Requests\Frontend\ProfileUpdateRequest;
 use App\Http\Requests\Frontend\SocialUpdateRequest;
+use App\Models\InstructorPayoutInformation;
 use App\Models\PayoutGateway;
 use App\Models\User;
 use App\Traits\Fileupload;
@@ -62,9 +63,24 @@ class ProfileController extends Controller
         return redirect()->back()->with('success', 'Password updated successfully.');
     }
 
+    function updateGatewayInfo(Request $request)
+    {
+        InstructorPayoutInformation::updateOrCreate(
+            ['instructor_id' => Auth::user()->id],
+            [
+                'payout_gateway' => $request->gateway,
+                'information' => $request->information
+            ]
+        );
+
+        notyf()->success('Payout information updated successfully.');
+
+        return redirect()->back();
+    }
+
     function updateSocial(SocialUpdateRequest $request): RedirectResponse
     {
-        $user = Auth::user();
+        $user = auth()->user();
         $user->facebook = $request->facebook;
         $user->x = $request->x;
         $user->linkedin = $request->linkedin;
