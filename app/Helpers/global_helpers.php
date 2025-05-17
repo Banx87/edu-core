@@ -92,3 +92,11 @@ function getCurrencySymbols(): array
 
     return $currencySymbols;
 }
+
+// calculate commission
+if (!function_exists('calculateCommission')) {
+    function calculateCommission($amount, $commissionRate)
+    {
+        return ($amount * $commissionRate) / 100;
+    }
+}
