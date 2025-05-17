@@ -8,7 +8,6 @@ use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Finally_;
-use Stripe\Payout;
 
 class PayoutGatewayController extends Controller
 {
@@ -37,11 +36,13 @@ class PayoutGatewayController extends Controller
         $request->validate([
             'gateway_name' => 'required|string|max:255|unique:payout_gateways',
             'status' => 'required|boolean',
+            'hint' => 'nullable|string|max:1000',
         ]);
 
         $gateway = new PayoutGateway();
         $gateway->gateway_name = $request->input('gateway_name');
         $gateway->status = $request->input('status');
+        $gateway->hint = $request->input('hint');
         $gateway->save();
 
         notyf()->success('Payout Gateway created successfully.');
@@ -70,12 +71,14 @@ class PayoutGatewayController extends Controller
     public function update(Request $request, PayoutGateway $payout_gateway)
     {
         $request->validate([
-            'gateway_name' => 'required|string|max:255|unique:payout_gateways',
+            'gateway_name' => 'required|string|max:255',
+            'hint' => 'nullable|string|max:1000',
             'status' => 'required|boolean',
         ]);
 
         $payout_gateway->gateway_name = $request->input('gateway_name');
         $payout_gateway->status = $request->input('status');
+        $payout_gateway->hint = $request->input('hint');
         $payout_gateway->save();
 
         notyf()->success('Payout Gateway updated successfully.');

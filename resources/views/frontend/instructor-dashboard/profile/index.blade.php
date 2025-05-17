@@ -110,11 +110,67 @@
                             </div>
                         </form>
                     </div>
+
+                    {{-- BANKING --}}
+                    <div class="wsus__dashboard_content wsus__dashboard_content_border_top">
+                        <div class="wsus__dashboard_content_top  d-flex flex-wrap justify-content-between">
+                            <div class="wsus__dashboard_heading">
+                                <h5>Bank Information</h5>
+                                <p>Update your social media information.</p>
+                            </div>
+                        </div>
+                        <form method="POST" action="{{ route('instructor.profile.update-password') }}"
+                            class="wsus__dashboard_profile_update">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <label for="gateway">Select Payment Gateway</label>
+                                        <select name="gateway" id="" class="form-select select2">
+                                            <option value="">Select</option>
+                                            @foreach ($gateways as $gateway)
+                                                @if ($gateway->status == 1)
+                                                    <option @selected(auth()->user()->payment_gateway === $gateway->id)
+                                                        value="{{ $gateway->gateway_name }}">
+                                                        {{ $gateway->gateway_name }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                        <x-input-error :messages="$errors->get('current_password')" class="mt-2" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <label for=""></label>
+                                        <input type="password" placeholder="New Password" name="password">
+                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="wsus__dashboard_profile_update_info">
+                                        <input type="password" placeholder="Confirm Password"
+                                            name="password_confirmation">
+                                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="wsus__dashboard_profile_update_btn">
+                                        <button type="submit" class="common_btn">Update Password</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
                     {{-- PASSWORD --}}
                     <div class="wsus__dashboard_content wsus__dashboard_content_border_top">
                         <div class="wsus__dashboard_content_top  d-flex flex-wrap justify-content-between">
                             <div class="wsus__dashboard_heading">
-                                <h5>Update Your Password.</h5>
+                                <h5>Update Your Password</h5>
                                 {{-- <p>Update your social media information.</p> --}}
                             </div>
                         </div>
@@ -124,7 +180,8 @@
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="wsus__dashboard_profile_update_info">
-                                        <input type="password" placeholder="Your current password" name="current_password">
+                                        <input type="password" placeholder="Your current password"
+                                            name="current_password">
                                         <x-input-error :messages="$errors->get('current_password')" class="mt-2" />
                                     </div>
                                 </div>
