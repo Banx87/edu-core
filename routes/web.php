@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Controllers\Frontend\CoursePageController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\InstructorDashboardController;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
@@ -124,7 +125,12 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:instructor'],
     Route::get('course-content/{course}/sort-chapter', [CourseContentController::class, 'sortChapters'])->name('course-content.sort-chapter');
     Route::post('course-content/{course}/sort-chapter', [CourseContentController::class, 'updateSortChapter'])->name('course-content.update-sort-chapter');
 
-
+    // Order Routes
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    // Route::get('orders/{id}', [InstructorDashboardController::class, 'orderDetails'])->name('orders.details');
+    // Route::get('orders/{id}/invoice', [InstructorDashboardController::class, 'orderInvoice'])->name('orders.invoice');
+    // Route::get('orders/{id}/invoice/download', [InstructorDashboardController::class, 'orderInvoiceDownload'])->name('orders.invoice.download');
+    // Route::get('orders/{id}/invoice/print', [InstructorDashboardController::class, 'orderInvoicePrint'])->name('orders.invoice.print');
 
 
 
