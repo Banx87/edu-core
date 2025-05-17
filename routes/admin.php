@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InstructorRequestController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
+use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Route;
 
@@ -129,8 +130,9 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::post('general-settings', [SettingsController::class, 'updateGeneralSettings'])->name('general-settings.update');
     Route::get('commission', [SettingsController::class, 'CommissionIndex'])->name('commission-settings.index');
     Route::post('commission', [SettingsController::class, 'updateCommission'])->name('commission-settings.update');
-    // Route::put('settings/{id}',[SettingsController::class,'update'])->name('settings.update'); {
 
+    // Payout Gateway Routes
+    Route::resource('payout-gateway', PayoutGatewayController::class);
 });
 
 // Laravel File Manager (lfi) Routes

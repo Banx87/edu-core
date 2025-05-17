@@ -276,6 +276,16 @@
                          </a>
                      </li>
                      <li class="nav-item">
+                         <a class="nav-link" href="{{ route('admin.payout-gateway.index') }}">
+                             <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                 <i class="ti ti-lock-dollar"></i>
+                             </span>
+                             <span class="nav-link-title">
+                                 Payout Gateways
+                             </span>
+                         </a>
+                     </li>
+                     <li class="nav-item">
                          <a class="nav-link" href="{{ route('admin.settings.general-settings') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-settings"></i>

@@ -27,6 +27,9 @@ $(".delete-item").on("click", function (e) {
 	}).then((result) => {
 		if (result.isConfirmed) {
 			$.ajax({
+				headers: {
+					"X-CSRF-TOKEN": csrf_token,
+				},
 				method: "DELETE",
 				url: url,
 				data: { _token: csrf_token },
