@@ -125,13 +125,17 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="wsus__dashboard_profile_update_info">
+                                        @foreach ($gateways as $gateway)
+                                            <span class="d-none gateway-{{ $gateway->id }}">{!! $gateway->hint !!}</span>
+                                        @endforeach
                                         <label for="gateway">Select Payment Gateway</label>
-                                        <select name="gateway" id="" class="form-select select2">
+                                        <select name="gateway" id="" class="form-select select2 gateway-select">
                                             <option value="">Select</option>
                                             @foreach ($gateways as $gateway)
                                                 @if ($gateway->status == 1)
                                                     <option @selected(auth()->user()->payment_gateway === $gateway->id)
-                                                        value="{{ $gateway->gateway_name }}">
+                                                        value="{{ $gateway->gateway_name }}"
+                                                        data-hint="gateway-{{ $gateway->id }}">
                                                         {{ $gateway->gateway_name }}
                                                     </option>
                                                 @endif
@@ -140,8 +144,11 @@
                                         <x-input-error :messages="$errors->get('current_password')" class="mt-2" />
                                     </div>
                                 </div>
+                                <div class="col-md-12 mt-3">
+                                    <textarea name="gateway_info" class="form-control gateway_hint" id="" cols="30" rows="10"></textarea>
+                                </div>
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-xl-6">
                                     <div class="wsus__dashboard_profile_update_info">
                                         <label for=""></label>
@@ -161,7 +168,7 @@
                                         <button type="submit" class="common_btn">Update Password</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </form>
                     </div>
 
@@ -272,3 +279,14 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        $(function() {
+            $('.gateway-select').on('change', function() {
+                var selectedGateway = $(this).find(':selected').data('hint');
+                $('.gateway_hint').attr('placeholder', $('.' + selectedGateway).html());
+            });
+        });
+    </script>
+@endpush
