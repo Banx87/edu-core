@@ -9,9 +9,12 @@
                 <div class="row g-3">
                     <div class="col-md-4">
                         <div class="form-label">Instructor Commission Rate Per Sale (%)</div>
-                        <input type="text" class="form-control" value="{{ config('settings.commission_rate') }}"
-                            name="commission_rate" placeholder="Enter commission rate" />
-                        <x-input-error :messages="$errors->get('commission_rate')" class="mt-2" />
+                        <select name="commission_rate" class="form-select select2">
+                            @for ($i = 0; $i <= 100; $i++)
+                                <option value="{{ $i }}" @selected(config('settings.commission_rate') == $i || old('commission_rate') == $i)>
+                                    {{ $i }}%</option>
+                            @endfor
+                        </select>
                     </div>
                 </div>
         </div>

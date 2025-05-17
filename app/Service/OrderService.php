@@ -36,9 +36,10 @@ class OrderService
             foreach ($cartItems as $item) {
                 $orderItem = new OrderItem();
                 $orderItem->order_id = $order->id;
-                $orderItem->price = $item->course->price;
+                $orderItem->price = $item->course->discount > 0 ? $item->course->discount : $item->course->price;
                 $orderItem->course_id = $item->course_id;
                 $orderItem->quantity = 1;
+                $orderItem->commission_rate = config('settings.commission_rate');
                 $orderItem->save();
 
                 // Store Enrollment
@@ -48,9 +49,17 @@ class OrderService
                 $enrollment->instructor_id = $item->course->instructor_id;
                 $enrollment->save();
 
-                // Remove cart
-                $cart->delete();
+                // Add commission amount to instructor
+                $instructor = $item->course->instructor;
+                $instructor->wallet += calculateCommission(
+                    $item->course->discount > 0 ? $item->course->discount : $item->course->price,
+                    config('settings.commission_rate')
+                );
+                $instructor->save();
             }
+
+            // Remove cart
+            $cart->delete();
         } catch (\Throwable $e) {
             throw $e;
         } finally {

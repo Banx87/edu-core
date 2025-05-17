@@ -97,6 +97,12 @@ function getCurrencySymbols(): array
 if (!function_exists('calculateCommission')) {
     function calculateCommission($amount, $commissionRate)
     {
+        if ($commissionRate < 0 || $commissionRate > 100) {
+            throw new InvalidArgumentException('Commission rate must be a percentage between 0 and 100.');
+        }
+        if ($amount <= 0) {
+            throw new InvalidArgumentException('Amount must be greater than zero.');
+        }
         return ($amount * $commissionRate) / 100;
     }
 }
