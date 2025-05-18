@@ -14,38 +14,42 @@
         <ul class="wsus__dashboard_sidebar_menu">
             <li>
                 <a href="dashboard.html" class="active">
-                    <div class="img">
-                        <img src="{{ asset('frontend/assets/images/dash_icon_8.png') }}" alt="icon"
-                            class="img-fluid w-100">
+                    <div class="sidebar_icon">
+                        <i class="ti ti-file-analytics"></i>
                     </div>
                     Dashboard
                 </a>
             </li>
             <li>
                 <a href="{{ route('instructor.profile.index') }}" class="">
-                    <div class="img">
-                        <img src="{{ asset('frontend/assets/images/dash_icon_1.png') }}" alt="icon"
-                            class="img-fluid w-100">
+                    <div class="sidebar_icon">
+                        <i class="ti ti-user"></i>
                     </div>
                     Instructor Profile
                 </a>
             </li>
             <li>
                 <a href="{{ route('instructor.courses.index') }}" class="">
-                    <div class="img">
-                        <img src="{{ asset('frontend/assets/images/dash_icon_1.png') }}" alt="icon"
-                            class="img-fluid w-100">
+                    <div class="sidebar_icon">
+                        <i class="ti ti-certificate"></i>
                     </div>
                     Courses
                 </a>
             </li>
             <li>
                 <a href="{{ route('instructor.orders.index') }}" class="">
-                    <div class="img">
-                        <img src="{{ asset('frontend/assets/images/dash_icon_1.png') }}" alt="icon"
-                            class="img-fluid w-100">
+                    <div class="sidebar_icon">
+                        <i class="ti ti-clipboard-text"></i>
                     </div>
                     Orders
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('instructor.withdrawals.index') }}" class="">
+                    <div class="sidebar_icon">
+                        <i class="ti ti-cash-banknote space"></i>
+                    </div>
+                    Withdrawals
                 </a>
             </li>
 
@@ -67,7 +71,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="btn_logout">
-                        <div class="img">
+                        <div class="img sidebar_icon">
                             <img src="{{ asset('frontend/assets/images/dash_icon_16.png') }}" alt="icon"
                                 class="img-fluid w-100">
                         </div>

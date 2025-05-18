@@ -74,3 +74,19 @@ ul.link li a i.ti::before {
 	margin-top: 0.4rem;
 }
 /* END */
+
+/* Instructor dashboard sidebar */
+.sidebar_icon {
+	margin-right: 0.5rem;
+	min-width: 1.5rem;
+	max-width: 1.5rem;
+	/* height: 1.5rem; */
+	/* background: green; */
+	/* font-size: 0.1rem; */
+}
+
+.sidebar_icon img {
+	width: 1.5rem;
+	height: 1.5rem;
+	object-fit: contain !important;
+}
