@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
+use App\Http\Controllers\Frontend\WithdrawalController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -128,10 +129,11 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:instructor'],
 
     // Order Routes
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
-    // Route::get('orders/{id}', [InstructorDashboardController::class, 'orderDetails'])->name('orders.details');
-    // Route::get('orders/{id}/invoice', [InstructorDashboardController::class, 'orderInvoice'])->name('orders.invoice');
-    // Route::get('orders/{id}/invoice/download', [InstructorDashboardController::class, 'orderInvoiceDownload'])->name('orders.invoice.download');
-    // Route::get('orders/{id}/invoice/print', [InstructorDashboardController::class, 'orderInvoicePrint'])->name('orders.invoice.print');
+
+    // Withdrawal Routes
+    Route::get('withdrawals', [WithdrawalController::class, 'index'])->name('withdrawals.index');
+    Route::get('withdrawals/request-payout', [WithdrawalController::class, 'requestPayoutIndex'])->name('withdrawals.request-payout.index');
+    Route::post('withdrawals/request-payout', [WithdrawalController::class, 'requestPayout'])->name('withdrawals.request-payout.create');
 
 
 
