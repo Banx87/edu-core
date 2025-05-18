@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\WithdrawRequestController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(["middleware" => "guest:admin", "prefix" => "admin", "as" => "admin."], function () {
@@ -133,6 +134,11 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     // Payout Gateway Routes
     Route::resource('payout-gateway', PayoutGatewayController::class);
+
+    // Withdraw Request Routes
+    Route::get('withdraw-request', [WithdrawRequestController::class, 'index'])->name('withdraw-request.index');
+    Route::get('withdraw-request/{withdrawal}/details', [WithdrawRequestController::class, 'show'])->name('withdraw-request.show');
+    Route::post('withdraw-request/{withdrawal}/status', [WithdrawRequestController::class, 'updateStatus'])->name('withdraw-request.status.update');
 });
 
 // Laravel File Manager (lfi) Routes

@@ -286,6 +286,16 @@
                          </a>
                      </li>
                      <li class="nav-item">
+                         <a class="nav-link" href="{{ route('admin.withdraw-request.index') }}">
+                             <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                 <i class="ti ti-cash-move"></i>
+                             </span>
+                             <span class="nav-link-title">
+                                 Payout Requests
+                             </span>
+                         </a>
+                     </li>
+                     <li class="nav-item">
                          <a class="nav-link" href="{{ route('admin.settings.general-settings') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-settings"></i>

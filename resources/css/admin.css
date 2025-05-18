@@ -32,6 +32,9 @@ select.form-control {
 	-ms-transition: all 0.2s ease-in-out;
 	-o-transition: all 0.2s ease-in-out;
 }
+select.form-select[disabled] {
+	cursor: default;
+}
 
 select:hover,
 option:hover {
@@ -40,6 +43,13 @@ option:hover {
 	color: #333; /* Dark text color for contrast */
 	border-color: #87ceeb; /* Sky blue border */
 	box-shadow: 0 0 5px rgba(135, 206, 235, 0.5); /* Subtle glow effect */
+}
+
+select.form-select[disabled]:hover {
+	background-color: transparent;
+	color: #333;
+	border-color: #ddd;
+	box-shadow: 0 0;
 }
 
 a > svg {
