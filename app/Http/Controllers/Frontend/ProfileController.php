@@ -33,7 +33,7 @@ class ProfileController extends Controller
 
     function profileUpdate(ProfileUpdateRequest $request): RedirectResponse
     {
-        $user = Auth::user();
+        $user = User::find(Auth::id());
         if ($request->hasFile('avatar')) {
             $avatarPath = $this->uploadFile($request->file('avatar'));
             $this->deleteFile($user->image);
@@ -55,12 +55,16 @@ class ProfileController extends Controller
     {
 
         $user = Auth::user();
-        $user->password = bcrypt($request->password);
-        $user->save();
+        if ($user instanceof \App\Models\User) {
+            $user->password = bcrypt($request->password);
+            $user->save();
 
-        notyf()->success('Password updated successfully.');
-
-        return redirect()->back()->with('success', 'Password updated successfully.');
+            notyf()->success('Password updated successfully.');
+            return redirect()->back()->with('success', 'Password updated successfully.');
+        } else {
+            notyf()->error('User not found.');
+            return redirect()->back()->with('error', 'User not found.');
+        }
     }
 
     function updateGatewayInfo(Request $request)
@@ -80,7 +84,7 @@ class ProfileController extends Controller
 
     function updateSocial(SocialUpdateRequest $request): RedirectResponse
     {
-        $user = auth()->user();
+        $user = User::find(Auth::id());
         $user->facebook = $request->facebook;
         $user->x = $request->x;
         $user->linkedin = $request->linkedin;
