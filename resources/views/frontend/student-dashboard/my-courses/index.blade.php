@@ -69,13 +69,14 @@
                                                                 <span>(5.0)</span>
                                                             </p>
                                                             <a class="title"
-                                                                href="#">{{ $enrolledCourse->course->title }}</a>
+                                                                href="{{ route('student.course-player.index', $enrolledCourse->course->slug) }}">{{ $enrolledCourse->course->title }}</a>
                                                             <div class="text-muted">By
                                                                 {{ $enrolledCourse->course->instructor->name }}</div>
                                                         </td>
 
                                                         <td class="" style="padding: 30px 0px">
-                                                            <a class="common_btn">Watch</a>
+                                                            <a href="{{ route('student.course-player.index', $enrolledCourse->course->slug) }}"
+                                                                class="common_btn">Watch</a>
                                                         </td>
                                                     </tr>
                                                 @empty
