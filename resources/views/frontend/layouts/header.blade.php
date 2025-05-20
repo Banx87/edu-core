@@ -179,7 +179,7 @@
                  <ul class="droap_menu">
                      <li><a href="{{ route('courses.index') }}">Courses</a></li>
                      <li><a href="courses_details.html">Course details</a></li>
-                     <li><a href="course_video.html">Course video</a></li>
+                     <li><a href="{{ route('student.my-courses.index') }}">Course video</a></li>
                  </ul>
              </li>
              <li class="nav-item">

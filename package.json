@@ -18,6 +18,7 @@
         "vite": "^6.2.4"
     },
     "dependencies": {
+        "@devmobiliza/videojs-vimeo": "^0.6.0",
         "@tabler/icons-webfont": "^3.31.0",
         "jquery": "^3.7.1"
     }

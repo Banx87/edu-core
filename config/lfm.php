@@ -49,17 +49,18 @@ return [
         'file'  => [
             'folder_name'  => 'files',
             'startup_view' => 'list',
-            'max_size'     => 50000, // size in KB
+            'max_size'     => 1024000, // size in KB
             'thumb' => true,
             'thumb_width' => 80,
             'thumb_height' => 80,
             'valid_mime'   => [
-                'image/jpeg',
-                'image/pjpeg',
-                'image/png',
-                'image/gif',
                 'application/pdf',
                 'text/plain',
+                'video/mp4',
+                'video/avi',
+                'audio/mpeg',
+                'audio/wav',
+                'audio/mp3'
             ],
         ],
         'image' => [
@@ -163,6 +164,12 @@ return [
         'png'  => 'PNG Image',
         'ppt'  => 'Microsoft PowerPoint',
         'pptx' => 'Microsoft PowerPoint',
+        'mp4'  => 'MP4 Video',
+        'avi'  => 'AVI Video',
+        'mp3'  => 'MP3 Audio',
+        'wav'  => 'WAV Audio',
+        'txt'  => 'Text File',
+        'html' => 'HTML File',
     ],
 
     /*

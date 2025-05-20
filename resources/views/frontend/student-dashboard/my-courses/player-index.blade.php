@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="base_url" content="{{ url('/') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>EduCore - Online Courses & Education HTML Template</title>
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/frontend.css') }}" />
@@ -24,10 +26,13 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/select2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/sticky_menu.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/animate.css') }}" />
+    <link rel="stylesheet" href="./node_modules/video.js/dist/video-js.css" />
 
     <link rel=" stylesheet" href="{{ asset('frontend/assets/css/spacing.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}" />
+
+    @vite(['resources/js/frontend/player.js'])
 </head>
 
 <body class="home_3">
@@ -58,8 +63,12 @@
             </video> -->
 
             {{-- {{ $course->chapters }} --}}
-            <video id="vid1" class="video-js vjs-default-skin" controls autoplay width="640" height="264"
-                data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "https://youtu.be/fsSN6jDtJdY?si=E5_FJf6kT2d679GO"}] }'></video>
+            <div id="video-holder">
+                <video id="vid1" class="video-js" width="640" height="264"
+                    data-setup='{ "techOrder": ["vimeo"], "sources": [{ "type": "video/vimeo", "src": "https://vimeo.com/99275308"}], "vimeo": { "color": "#fbc51b"} }'>
+                </video>
+
+            </div>
 
             <div class="video_tabs_area">
                 <ul class="nav nav-pills" id="pills-tab2" role="tablist">
@@ -600,7 +609,9 @@
                             data-bs-parent="#CourseContentAccordion">
                             <div class="accordion-body">
                                 @foreach ($chapter->lessons as $lesson)
-                                    <div class="form-check">
+                                    <div class="form-check lesson" data-course-id="{{ $course->id }}"
+                                        data-lesson-id="{{ $lesson->id }}" data-chapter-id="{{ $chapter->id }}">
+                                        {{-- <input class="form-check-input" type="checkbox" value="" /> --}}
                                         <input class="form-check-input" type="checkbox" value="" />
                                         <label class="form-check-label">
                                             {{ $lesson->title }}
@@ -683,6 +694,9 @@
     <!--Video player js-->
     <script src="{{ asset('frontend/assets/js/video_player.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/video_player_youtube.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/videojs-vimeo.umd.js') }}"></script>
+    <script src="frontend/assets/js/videojs-vimeo.umd.js"></script>
+    <script src="{{ asset('frontend/assets/js/videojs-vimeo.min.js') }}"></script>
     <!--wow js-->
     <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
 

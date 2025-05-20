@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\CourseChapterLesson;
 use App\Models\Enrollment;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MyCourseController extends Controller
@@ -23,5 +25,16 @@ class MyCourseController extends Controller
         // If not, return 404
         if (!Enrollment::where('user_id', Auth::user()->id)->where('course_id', $course->id)->where('have_access', 1)->exists()) return (abort(404));
         return view('frontend.student-dashboard.my-courses.player-index', compact('course'));
+    }
+
+    function getLessonContent(Request $request)
+    {
+        $lesson = CourseChapterLesson::where([
+            'course_id' => $request->course_id,
+            'chapter_id' => $request->chapter_id,
+            'id' => $request->lesson_id
+        ])->first();
+
+        return response()->json($lesson);
     }
 }

@@ -92,6 +92,7 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
     // Course Routes
     Route::get('my-courses', [MyCourseController::class, 'index'])->name('my-courses.index');
     Route::get('course-player/{slug}', [MyCourseController::class, 'playerIndex'])->name('course-player.index');
+    Route::get('get-lesson-content', [MyCourseController::class, 'getLessonContent'])->name('get-lesson-content');
 });
 
 /*
@@ -143,7 +144,7 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:instructor'],
 
 
     // Laravel File Manager (lfi) Routes
-    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:web']], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();
     });
 });
