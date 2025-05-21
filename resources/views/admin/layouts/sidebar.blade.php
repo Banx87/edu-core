@@ -256,6 +256,16 @@
                          </div>
                      </li>
                      <li class="nav-item">
+                         <a class="nav-link" href="{{ route('admin.certificate-builder.index') }}">
+                             <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                 <i class="ti ti-file-certificate"></i>
+                             </span>
+                             <span class="nav-link-title">
+                                 Certificate Builder
+                             </span>
+                         </a>
+                     </li>
+                     <li class="nav-item">
                          <a class="nav-link" href="{{ route('admin.orders.index') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-receipt-2"></i>
