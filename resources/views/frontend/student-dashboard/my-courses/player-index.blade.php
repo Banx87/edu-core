@@ -6,7 +6,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <meta name="base_url" content="{{ url('/') }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf_token" content="{{ csrf_token() }}">
     <title>EduCore - Online Courses & Education HTML Template</title>
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/frontend.css') }}" />
@@ -26,11 +26,14 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/select2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/sticky_menu.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/animate.css') }}" />
-    <link rel="stylesheet" href="./node_modules/video.js/dist/video-js.css" />
+    {{-- <link rel="stylesheet" href="./node_modules/video.js/dist/video-js.css" /> --}}
 
     <link rel=" stylesheet" href="{{ asset('frontend/assets/css/spacing.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}" />
+
+    {{-- Plugin CSS --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
 
     @vite(['resources/js/frontend/player.js'])
 </head>
@@ -51,25 +54,16 @@
         <div class="col-12">
             <div class="wsus__course_header">
                 <a href="index.html"><i class="fas fa-angle-left"></i> Speaking English for Beginners</a>
-                <p>Your Progress: 20 of 15 (75%)</p>
+                <p>Your Progress: {{ count($watchedLessonIds) }} of {{ $lessonCount }}
+                    ({{ round((count($watchedLessonIds) / $lessonCount) * 100) }}%)</p>
             </div>
         </div>
 
         <div class="wsus__course_video_player">
-            <!-- <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
-                poster="images/video_thumb.jpg" data-setup="{}">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/webm" />
-            </video> -->
-
-            {{-- {{ $course->chapters }} --}}
             <div id="video-holder">
-                <video id="vid1" class="video-js" width="640" height="264"
-                    data-setup='{ "techOrder": ["vimeo"], "sources": [{ "type": "video/vimeo", "src": "https://vimeo.com/99275308"}], "vimeo": { "color": "#fbc51b"} }'>
-                </video>
 
             </div>
-
+            {{-- MOBILE PART --}}
             <div class="video_tabs_area">
                 <ul class="nav nav-pills" id="pills-tab2" role="tablist">
                     <li class="nav-item d-lg-none" role="presentation">
@@ -88,8 +82,8 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-profile" type="button" role="tab"
-                            aria-controls="pills-profile" aria-selected="false">
+                            data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                            aria-selected="false">
                             Q&A
                         </button>
                     </li>
@@ -183,13 +177,12 @@
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab" tabindex="0">
                         <div class="video_about">
-                            <h1>About this course</h1>
-                            <p class="short_description">
-                                In this course, you will learn the complete Laravel 9 from
-                                scratch - This course is for beginner to advanced
+                            <h1>About this lesson</h1>
+                            <p class="short_description lesson_description">
+
                             </p>
 
-                            <div class="table-responsive">
+                            {{-- <div class="table-responsive">
                                 <table class="table">
                                     <tbody>
                                         <tr>
@@ -280,7 +273,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel"
@@ -592,6 +585,8 @@
             </div>
         </div>
 
+
+        {{-- DESKTOP --}}
         <div class="wsus__course_sidebar d-none d-lg-block">
             <h2 class="video_heading">Course Content</h2>
             <div class="accordion" id="CourseContentAccordion">
@@ -607,13 +602,16 @@
                         </h2>
                         <div id="collapse-{{ $chapter->id }}" class="accordion-collapse collapse"
                             data-bs-parent="#CourseContentAccordion">
-                            <div class="accordion-body">
+                            <div class="accordion-body lesson_list">
                                 @foreach ($chapter->lessons as $lesson)
-                                    <div class="form-check lesson" data-course-id="{{ $course->id }}"
-                                        data-lesson-id="{{ $lesson->id }}" data-chapter-id="{{ $chapter->id }}">
-                                        {{-- <input class="form-check-input" type="checkbox" value="" /> --}}
-                                        <input class="form-check-input" type="checkbox" value="" />
-                                        <label class="form-check-label">
+                                    <div class="form-check lesson_container">
+                                        <input type="checkbox" class="form-check-input make_completed"
+                                            @checked(in_array($lesson->id, $watchedLessonIds)) data-chapter-id="{{ $chapter->id }}"
+                                            data-course-id="{{ $course->id }}"
+                                            data-lesson-id="{{ $lesson->id }}" />
+                                        <label class="form-check-label lesson" data-course-id="{{ $course->id }}"
+                                            data-lesson-id="{{ $lesson->id }}"
+                                            data-chapter-id="{{ $chapter->id }}">
                                             {{ $lesson->title }}
                                             <span>
                                                 <img src="{{ asset('frontend/assets/images/video_icon_black_2.png') }}"
@@ -695,13 +693,40 @@
     <script src="{{ asset('frontend/assets/js/video_player.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/video_player_youtube.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/videojs-vimeo.umd.js') }}"></script>
-    <script src="frontend/assets/js/videojs-vimeo.umd.js"></script>
-    <script src="{{ asset('frontend/assets/js/videojs-vimeo.min.js') }}"></script>
+    {{-- <script src="frontend/assets/js/videojs-vimeo.umd.js"></script> --}}
+    {{-- <script src="{{ asset('frontend/assets/js/videojs-vimeo.min.js') }}"></script> --}}
     <!--wow js-->
     <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
     <!--main/custom js-->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+
+    <script>
+        $(function() {
+
+            let lessons = $('.lesson');
+            $.each(lessons, function(index, lesson) {
+                let chapterId = $(lesson).data('chapter-id');
+                let courseId = $(lesson).data('course-id');
+                let lessonId = $(lesson).data('lesson-id');
+                // let isCompleted = $(lesson).data('is-completed');
+                if (
+                    chapterId == {{ $watchedLastTime->chapter_id }} &&
+                    courseId == {{ $watchedLastTime->course_id }} &&
+                    lessonId == {{ $watchedLastTime->lesson_id }}) {
+                    $(lesson).addClass('active');
+                    // $(lesson).find('input').prop('checked', true);
+                    $(lesson).closest('.accordion-collapse').collapse('show');
+                    $(lesson).click();
+                }
+                // if (isCompleted) {
+                //     $(lesson).find('input').prop('checked', true);
+                // }
+            })
+        })
+    </script>
 </body>
 
 </html>

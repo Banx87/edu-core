@@ -15753,3 +15753,28 @@ footer {
 	-ms-border-radius: 0px !important;
 	-o-border-radius: 0px !important;
 }
+
+/* Player */
+.lesson_list.accordion-body {
+	padding: 0 !important;
+}
+
+.lesson_list > .lesson_container {
+	padding: 0.5rem 3rem;
+	margin: 0;
+}
+
+.form-check.lesson_container {
+	margin: 0 !important;
+}
+.lesson_list .lesson_container:has(label.lesson.active) {
+	border-top: 2px solid var(--colorPrimary);
+	border-bottom: 2px solid var(--colorPrimary);
+	background-color: #efeff8;
+	font-weight: 600;
+}
+
+#video-holder iframe {
+	width: 100%;
+	height: 700px;
+}

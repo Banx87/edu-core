@@ -13,17 +13,31 @@
                 <a class="common_btn dynamic_modal_btn" href="#" data-id={{ $courseId }}>Add New Chapter</a>
                 <a class="common_btn sort_chapters_btn" data-id={{ $courseId }} href="javascript:;">Sort Chapters</a>
             </div>
-            <div class="accordion" id="accordionExample">
+            <div class="accordion" id="chapterCordion">
                 @foreach ($chapters as $chapter)
                     <div class="accordion-item">
                         <h2 class="accordion-header">
+
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse-{{ $chapter->id }}" aria-expanded="true"
                                 aria-controls="collapse-{{ $chapter->id }}">
                                 <span>{{ $chapter->title }}</span>
                             </button>
+
                             <div class="add_course_content_action_btn">
                                 <div class="dropdown">
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li>
+                                            <a class="dropdown-item" href="javascript:;"
+                                                data-chapter-id="{{ $chapter->id }}"
+                                                data-course-id="{{ $chapter->course_id }}">Edit Chapter</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="javascript:;"
+                                                data-chapter-id="{{ $chapter->id }}"
+                                                data-course-id="{{ $chapter->course_id }}">Delete Chapter</a>
+                                        </li>
+                                    </ul>
                                     <div class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
                                         <i class="far fa-plus"></i>
@@ -33,12 +47,6 @@
                                             data-course-id="{{ $chapter->course_id }}">
                                             <a class="dropdown-item" href="javascript:;">Add Lesson</a>
                                         </li>
-                                        {{-- <li>
-                                            <a class="dropdown-item" href="#">Add Document</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">Add Quiz</a>
-                                        </li> --}}
                                     </ul>
                                 </div>
                                 <a class="edit edit_chapter" data-course-id="{{ $chapter->course_id }}"

@@ -1,10 +1,17 @@
-// Variables
+/** Variables */
 const base_url = $(`meta[name="base_url"]`).attr("content");
 const csrf_token = $(`meta[name="csrf_token"]`).attr("content");
 
+var notyf = new Notyf({
+	duration: 5000,
+	dismissible: true,
+});
+
 // HTML Elements
 
-// Reusaable functions
+/** Reusaable functions */
+
+// What type of player to use
 function playerHtml(source_type, source) {
 	let player = "";
 
@@ -29,10 +36,33 @@ function playerHtml(source_type, source) {
 	return player;
 }
 
-// On DOM Load
+// Set the selected lesson as the active one.
+function updateWatchHistory(courseId, chapterId, lessonId) {
+	$.ajax({
+		method: "POST",
+		url: `${base_url}/student/update-watch-history`,
+		data: {
+			_token: csrf_token,
+			chapter_id: chapterId,
+			course_id: courseId,
+			lesson_id: lessonId,
+		},
 
+		beforeSend: function () {},
+		success: function (data) {},
+		error: function (xhr, status, error) {},
+	});
+}
+
+/**On DOM Load */
+
+// Reinitialize the video player and mount the selected lesson video
 $(".lesson").on("click", function (e) {
 	e.preventDefault();
+
+	$(".lesson").removeClass("active");
+	$(this).addClass("active");
+
 	const courseId = $(this).data("course-id");
 	const chapterId = $(this).data("chapter-id");
 	const lessonId = $(this).data("lesson-id");
@@ -45,18 +75,12 @@ $(".lesson").on("click", function (e) {
 			course_id: courseId,
 			lesson_id: lessonId,
 		},
-
-		beforeSend: function () {
-			// Show loading spinner
-			// $("#lesson-content").html(
-			// 	`<div class="text-center"><i class="fa fa-spinner fa-spin"></i></div>`
-			// );
-		},
+		beforeSend: function () {},
 		success: function (data) {
-			// Hide loading spinner
-			// $("#lesson-content").html(response);
-			// console.log(data);
 			$("#video-holder").html(playerHtml(data.storage, data.file_path));
+
+			// Load lesson description
+			$(".lesson_description").text(data.description);
 
 			// Resetting existing Player
 			if (videojs.getPlayers()["vid1"]) {
@@ -69,12 +93,35 @@ $(".lesson").on("click", function (e) {
 					this.play();
 				});
 			}
+
+			// Update watch history
+			updateWatchHistory(courseId, chapterId, lessonId);
 		},
-		error: function (xhr, status, error) {
-			// Hide loading spinner
-			// $("#lesson-content").html(
-			// 	`<div class="text-center"><i class="fa fa-exclamation-triangle"></i> ${xhr.responseText}</div>`
-			// );
+		error: function (xhr, status, error) {},
+	});
+});
+
+// Mark lesson as completed
+$(".make_completed").on("click", function (e) {
+	e.preventDefault();
+
+	const courseId = $(this).data("course-id");
+	const chapterId = $(this).data("chapter-id");
+	const lessonId = $(this).data("lesson-id");
+
+	$.ajax({
+		method: "POST",
+		url: `${base_url}/student/update-lesson-completion`,
+		data: {
+			_token: csrf_token,
+			chapter_id: chapterId,
+			course_id: courseId,
+			lesson_id: lessonId,
 		},
+		beforeSend: function () {},
+		success: function (data) {
+			notyf.success(data.message);
+		},
+		error: function (xhr, status, error) {},
 	});
 });
