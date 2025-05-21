@@ -86,6 +86,9 @@ $(function () {
 		let formData = new FormData(this);
 
 		$.ajax({
+			headers: {
+				"X-CSRF-TOKEN": csrf_token,
+			},
 			method: "POST",
 			url: update_url,
 			data: formData,
@@ -115,6 +118,9 @@ $(function () {
 		let formData = new FormData(this);
 
 		$.ajax({
+			headers: {
+				"X-CSRF-TOKEN": csrf_token,
+			},
 			method: "POST",
 			url: update_url,
 			data: formData,
@@ -161,6 +167,9 @@ $(function () {
 
 		let course_id = $(this).data("id");
 		$.ajax({
+			headers: {
+				"X-CSRF-TOKEN": csrf_token,
+			},
 			method: "GET",
 			url:
 				base_url +
@@ -183,6 +192,9 @@ $(function () {
 		let chapter_id = $(this).data("chapter-id");
 
 		$.ajax({
+			headers: {
+				"X-CSRF-TOKEN": csrf_token,
+			},
 			method: "GET",
 			url:
 				base_url +

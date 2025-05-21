@@ -49,7 +49,7 @@ return [
         'file'  => [
             'folder_name'  => 'files',
             'startup_view' => 'list',
-            'max_size'     => 1024000, // size in KB
+            'max_size'     => 10240000, // size in KB
             'thumb' => true,
             'thumb_width' => 80,
             'thumb_height' => 80,
@@ -57,10 +57,20 @@ return [
                 'application/pdf',
                 'text/plain',
                 'video/mp4',
-                'video/avi',
+                'video/mpeg',
+                'video/mpg',
+                'audio/mp3',
                 'audio/mpeg',
                 'audio/wav',
-                'audio/mp3'
+                'audio/webm',
+                'application/doc',
+                'application/docx',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/zip',
+                'application/x-rar-compressed',
+                'application/x-zip-compressed',
+
+
             ],
         ],
         'image' => [
@@ -151,6 +161,12 @@ return [
     |--------------------------------------------------------------------------
      */
 
+    'allowed_files' => [
+        'image' => ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'ico'],
+        'file'  => ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf', 'zip', 'rar', '7z', 'tar'],
+        'video' => ['mp4', 'webm', 'mov', 'avi', 'ogv'] // Added video extensions
+    ],
+
     'file_type_array'          => [
         'pdf'  => 'Adobe Acrobat',
         'doc'  => 'Microsoft Word',
@@ -164,12 +180,6 @@ return [
         'png'  => 'PNG Image',
         'ppt'  => 'Microsoft PowerPoint',
         'pptx' => 'Microsoft PowerPoint',
-        'mp4'  => 'MP4 Video',
-        'avi'  => 'AVI Video',
-        'mp3'  => 'MP3 Audio',
-        'wav'  => 'WAV Audio',
-        'txt'  => 'Text File',
-        'html' => 'HTML File',
     ],
 
     /*
