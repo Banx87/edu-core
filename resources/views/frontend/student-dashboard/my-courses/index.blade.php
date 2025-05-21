@@ -25,9 +25,8 @@
                 @include('frontend.student-dashboard.sidebar')
 
                 <div class="col-xl-9 col-md-8">
-                    <p>{{ $enrolledCourses->first()->course }}</p>
 
-                    <div class="wsus__dashboard_content">
+                    <div class="wsus__dashboard_content mt-0">
                         <div class="wsus__dashboard_content_top">
                             <div class="wsus__dashboard_heading relative">
                                 <h5>My Courses</h5>
