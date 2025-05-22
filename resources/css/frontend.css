@@ -90,3 +90,7 @@ ul.link li a i.ti::before {
 	height: 1.5rem;
 	object-fit: contain !important;
 }
+
+.details {
+	align-content: start;
+}

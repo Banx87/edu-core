@@ -64,7 +64,6 @@ class MyCourseController extends Controller
     function updateLessonCompletion(Request $request): Response
     {
         $watchedLesson = WatchHistory::where(['user_id' => Auth::user()->id, 'lesson_id' => $request->lesson_id])->first();
-
         WatchHistory::updateOrCreate(
             [
                 'user_id' => Auth::user()->id,
