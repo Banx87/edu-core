@@ -106,7 +106,7 @@ a > svg:hover {
 }
 
 /* CERTIFICATE STYLES */
-#certificate-body {
+#certificate_body {
 	aspect-ratio: 16/10;
 	text-align: center;
 	background-repeat: no-repeat;
@@ -117,19 +117,31 @@ a > svg:hover {
 #cert_title {
 	font-size: 20px;
 	font-weight: 600;
+	display: inline-block;
 }
 
 #cert_subtitle {
 	font-size: 18px;
 	font-weight: 400;
+	display: inline-block;
 }
 
 #cert_description {
 	font-size: 16px;
 	font-weight: 400;
+	max-width: 75%;
 }
 
-#signature img {
-	width: 120px !important;
-	height: 100px !important;
+#cert_signature {
+	display: inline-block;
+	object-fit: contain;
+	max-width: 350px;
+}
+
+#cert_signature img {
+	height: auto;
+}
+
+.draggable_item {
+	cursor: move;
 }

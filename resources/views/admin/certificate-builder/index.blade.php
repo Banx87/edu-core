@@ -61,12 +61,12 @@
                             <h3 class="card-title">Builder</h3>
                         </div>
                         <div class="card-body">
-                            <div id="certificate-body"
+                            <div id="certificate_body"
                                 style="background-image: url({{ asset($certificate->background) }});">
-                                <div id="cert_title">{{ $certificate->title }}</div>
-                                <div id="cert_subtitle">{{ $certificate->subtitle }}</div>
-                                <div id="cert_description">{{ $certificate->description }}</div>
-                                <div id="signature">
+                                <div id="cert_title" class="draggable_item">{{ $certificate->title }}</div>
+                                <div id="cert_subtitle" class="draggable_item">{{ $certificate->subtitle }}</div>
+                                <div id="cert_description" class="draggable_item">{{ $certificate->description }}</div>
+                                <div id="cert_signature" class="draggable_item">
                                     <img src="{{ asset($certificate->signature) }}" alt="Signature" id="signature_img"
                                         style="width: 200px; height: auto; object-fit: cover;">
                                 </div>
@@ -78,3 +78,14 @@
         </div>
     </div>
 @endsection
+
+@push('styles')
+    <style>
+        @foreach ($certificateItems as $cert_item)
+            #{{ $cert_item->element_id }} {
+                left: {{ $cert_item->x_position }}px;
+                top: {{ $cert_item->y_position }}px;
+            }
+        @endforeach
+    </style>
+@endpush

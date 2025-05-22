@@ -35,6 +35,7 @@
         }
     </style>
 
+    @stack('styles');
     @vite(['resources/css/admin.css', 'resources/js/admin/admin.js'])
 
     @stack('header_scripts');

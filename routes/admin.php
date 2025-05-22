@@ -144,6 +144,7 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     // Certificate Builder Routes
     Route::get('certificate-builder', [CertificateBuilderController::class, 'index'])->name('certificate-builder.index');
     Route::post('certificate-builder', [CertificateBuilderController::class, 'update'])->name('certificate-builder.update');
+    Route::post('certificate-item-position', [CertificateBuilderController::class, 'itemPositionUpdate'])->name('certificate-item-position.update');
 });
 
 // Laravel File Manager (lfi) Routes

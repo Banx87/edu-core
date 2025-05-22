@@ -3,6 +3,7 @@ window.$ = window.jQuery = $;
 
 var notyf = new Notyf();
 
+const base_url = $(`meta[name="base_url"]`).attr("content");
 const csrf_token = $('meta[name="csrf_token"]').attr("content");
 let delete_url = null;
 
@@ -95,4 +96,39 @@ $(".paymentSettingTab").on("click", function () {
 		this.classList.add("active", "show");
 		localStorage.setItem("selectedPaymentSettingTab", this.getAttribute("id"));
 	}
+});
+
+/* Certificate Builder */
+// Certificate builder elements draggable
+$(function () {
+	$(".draggable_item").draggable({
+		containment: "#certificate_body",
+		stop: function (event, ui) {
+			// console.log(event);
+			// console.log(ui);
+
+			// Get the ID of the dragged element
+			var id = $(this).attr("id");
+
+			console.log(id);
+
+			// Get the current position of the dragged element
+			var position = ui.position;
+
+			$.ajax({
+				method: "POST",
+				url: `${base_url}/admin/certificate-item-position`,
+				data: {
+					_token: csrf_token,
+					element_id: id,
+					x_position: position.left,
+					y_position: position.top,
+				},
+				success: function (data) {},
+				error: function (xhr, status, error) {
+					notyf.error(error);
+				},
+			});
+		},
+	});
 });
