@@ -24,7 +24,7 @@ class CertificateBuilderUpdateRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'subtitle' => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:1000',
+            'description' => 'nullable|string|max:1500',
             'background' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'signature' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CourseContentController;
@@ -95,7 +96,12 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
     Route::get('get-lesson-content', [MyCourseController::class, 'getLessonContent'])->name('get-lesson-content');
     Route::post('update-watch-history', [MyCourseController::class, 'updateWatchhistory'])->name('update-watch-history');
     Route::post('update-lesson-completion', [MyCourseController::class, 'updateLessonCompletion'])->name('update-lesson-completion');
+
+
+    // Certificate Routes
+    Route::get('certificate', [CertificateController::class, 'index'])->name('certificate.index');
 });
+
 
 /*
 * -------------------------------------------------------------------------

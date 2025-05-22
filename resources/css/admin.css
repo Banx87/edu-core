@@ -101,17 +101,30 @@ a > svg:hover {
 	-o-transition: all 0.2s ease-in-out; */
 }
 
-.chapter_sorter:hover {
-	/* background-color: lightblue; */
-}
+/* .chapter_sorter:hover { */
+/* background-color: lightblue; */
+/* } */
 
 /* CERTIFICATE STYLES */
+.card.certificate-builder {
+	width: fit-content;
+	height: fit-content;
+}
+
+.card-body.certificate-builder {
+	background: lime;
+	width: 930px;
+	height: 600px;
+	margin: 1rem;
+	padding: 0;
+}
+
 #certificate_body {
-	aspect-ratio: 16/10;
 	text-align: center;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	border-radius: 0.5rem;
+	width: 100% !important;
+	height: 100% !important;
 }
 
 #cert_title {
@@ -124,6 +137,7 @@ a > svg:hover {
 	font-size: 18px;
 	font-weight: 400;
 	display: inline-block;
+	text-decoration: underline;
 }
 
 #cert_description {
@@ -139,7 +153,10 @@ a > svg:hover {
 }
 
 #cert_signature img {
-	height: auto;
+	min-width: 150px;
+	max-width: 350px;
+	min-height: 100px;
+	max-height: 150px;
 }
 
 .draggable_item {
