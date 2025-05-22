@@ -66,16 +66,28 @@
                                                                 <i class="fas fa-star-half-alt" aria-hidden="true"></i>
                                                                 <i class="far fa-star" aria-hidden="true"></i>
                                                                 <span>(5.0)</span>
+                                                                <a href="{{ route('student.certificate.download', $enrolledCourse->course->id) }}"
+                                                                    target="_blank" class="btn btn-success btn-sm m-2 mb-0"
+                                                                    style="display: inline-flex;">
+                                                                    <i class="ti ti-certificate"
+                                                                        style="margin-right: .3rem"></i>
+                                                                    Get Certificate
+                                                                </a>
                                                             </p>
                                                             <a class="title"
                                                                 href="{{ route('student.course-player.index', $enrolledCourse->course->slug) }}">{{ $enrolledCourse->course->title }}</a>
                                                             <div class="text-muted">By
-                                                                {{ $enrolledCourse->course->instructor->name }}</div>
+                                                                {{ $enrolledCourse->course->instructor->name }}
+                                                            </div>
                                                         </td>
 
                                                         <td class="" style="padding: 30px 0px">
                                                             <a href="{{ route('student.course-player.index', $enrolledCourse->course->slug) }}"
                                                                 class="common_btn">Watch</a>
+                                                            {{-- <div class="d-flex align-items-center"> --}}
+
+
+                                                            {{-- </div> --}}
                                                         </td>
                                                     </tr>
                                                 @empty
