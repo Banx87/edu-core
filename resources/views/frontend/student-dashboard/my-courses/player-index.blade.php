@@ -55,7 +55,10 @@
             <div class="wsus__course_header">
                 <a href="{{ route('student.dashboard') }}"><i class="fas fa-angle-left"></i> Go Back</a>
                 <p>Your Progress: {{ count($watchedLessonIds) }} of {{ $lessonCount }}
-                    ({{ round((count($watchedLessonIds) / $lessonCount) * 100) }}%)</p>
+                    @if (count($watchedLessonIds) > 0 && $lessonCount > 0)
+                        ({{ round((count($watchedLessonIds) / $lessonCount) * 100) }}%)
+                    @endif
+                </p>
             </div>
         </div>
 
@@ -704,22 +707,34 @@
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 
     <script>
+        // Pass watchedLastTime to JS only if it exists
+        @if ($watchedLastTime)
+            var watchedLastTime = {
+                course_id: {{ $watchedLastTime->course_id }},
+                chapter_id: {{ $watchedLastTime->chapter_id }} || 1,
+                lesson_id: {{ $watchedLastTime->lesson_id }} || 1
+            };
+        @else
+            var watchedLastTime = null;
+        @endif
         $(function() {
-
             let lessons = $('.lesson');
             $.each(lessons, function(index, lesson) {
                 let chapterId = $(lesson).data('chapter-id');
                 let courseId = $(lesson).data('course-id');
                 let lessonId = $(lesson).data('lesson-id');
                 // let isCompleted = $(lesson).data('is-completed');
-                if (
-                    chapterId == {{ $watchedLastTime->chapter_id }} &&
-                    courseId == {{ $watchedLastTime->course_id }} &&
-                    lessonId == {{ $watchedLastTime->lesson_id }}) {
-                    $(lesson).addClass('active');
-                    // $(lesson).find('input').prop('checked', true);
-                    $(lesson).closest('.accordion-collapse').collapse('show');
-                    $(lesson).click();
+                if (watchedLastTime != null) {
+                    console.log(watchedLastTime);
+                    if (
+                        chapterId == watchedLastTime.chapter_id &&
+                        courseId == watchedLastTime.course_id &&
+                        lessonId == watchedLastTime.lesson_id) {
+                        $(lesson).addClass('active');
+                        // $(lesson).find('input').prop('checked', true);
+                        $(lesson).closest('.accordion-collapse').collapse('show');
+                        $(lesson).click();
+                    }
                 }
                 // if (isCompleted) {
                 //     $(lesson).find('input').prop('checked', true);
