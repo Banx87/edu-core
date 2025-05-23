@@ -53,6 +53,12 @@
                                                 <tr>
                                                 </tr>
                                                 @forelse($enrolledCourses as $enrolledCourse)
+                                                    @if ($enrolledCourse->course == null)
+                                                        {{-- I guess this is necessary for now, because of data deleted straight from the database. --}}
+                                                        {{-- User still has a relationship with a course that is no longer there and caused a null pointer crash. --}}
+                                                        {{-- This might not be necessary when the database is full of correct data. --}}
+                                                        @continue
+                                                    @endif
                                                     @php
                                                         $watchedLessonCount = App\Models\WatchHistory::where([
                                                             'user_id' => Auth::user()->id,
