@@ -208,8 +208,7 @@
                      </li>
                      <li class="nav-item">
                          <a class="nav-link" href="{{ route('admin.instructor-request.index') }}">
-                             <span
-                                 class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-briefcase"></i>
                              </span>
                              <span class="nav-link-title">
@@ -220,8 +219,7 @@
                      <li class="nav-item dropdown">
                          <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                              data-bs-auto-close="false" role="button" aria-expanded="false">
-                             <span
-                                 class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-exchange"></i>
                              </span>
                              <span class="nav-link-title">
@@ -294,6 +292,27 @@
                                  Payout Gateways
                              </span>
                          </a>
+                     </li>
+                     <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                             data-bs-auto-close="false" role="button" aria-expanded="false">
+                             <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                 <i class="ti ti-blocks"></i>
+                             </span>
+                             <span class="nav-link-title">
+                                 Sections
+                             </span>
+                         </a>
+                         <div class="dropdown-menu">
+                             <div class="dropdown-menu-columns">
+                                 <div class="dropdown-menu-column">
+                                     <a class="dropdown-item" href="{{ route('admin.hero.index') }}">
+                                         <i class="ti ti-stack-front" style="margin-right: .5rem;"></i>
+                                         Hero
+                                     </a>
+                                 </div>
+                             </div>
+                         </div>
                      </li>
                      <li class="nav-item">
                          <a class="nav-link" href="{{ route('admin.withdraw-request.index') }}">
