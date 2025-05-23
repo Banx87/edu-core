@@ -22,7 +22,7 @@ use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
-use App\Http\Controllers\Frontend\HeroController;
+use App\Http\Controllers\Admin\HeroController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(["middleware" => "guest:admin", "prefix" => "admin", "as" => "admin."], function () {
