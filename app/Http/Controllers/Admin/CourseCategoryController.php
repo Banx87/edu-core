@@ -83,7 +83,8 @@ class CourseCategoryController extends Controller
         $category->status = $request->status ?? 0;
         $category->save();
 
-        return to_route('admin.course-categories.index')->with('success', 'Course Category updated successfully.');
+        notyf()->success('Course Category updated successfully.');
+        return back();
     }
 
     /**
