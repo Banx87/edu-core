@@ -44,10 +44,6 @@
                                 </div>
 
                                 <div class="col-md-2">
-                                    <x-input-toggle-block name="set_trending" label="Set Trending"
-                                        description=""></x-input-toggle-block>
-                                </div>
-                                <div class="col-md-2">
                                     <x-input-toggle-block name="status" label="Status"
                                         description=""></x-input-toggle-block>
                                 </div>

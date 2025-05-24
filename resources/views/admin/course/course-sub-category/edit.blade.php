@@ -41,17 +41,6 @@
                                     </x-input-block>
                                 </div>
                                 <div class="col-md-12 d-flex" style="">
-                                    <div class="col-md-6">
-                                        <x-input-file-block name="image" :value="$course_sub_category->image"></x-input-file-block>
-                                        <div class="col-md-6 d-flex justify-content-between">
-                                            <x-input-toggle-block name="set_trending" label="Set Trending" description=""
-                                                :checked="$course_sub_category->set_trending == 1" />
-                                            <x-input-toggle-block name="status" label="Status" description=""
-                                                :checked="$course_sub_category->status == 1" />
-                                        </div>
-                                        <div class="col-md-2">
-                                        </div>
-                                    </div>
                                     <div class="col-md-6" style="padding-left: 10px;">
                                         @if ($course_sub_category->image)
                                             <x-image-preview :src="asset($course_sub_category->image)" label="Selected image" class="mb-3"
