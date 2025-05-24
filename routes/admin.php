@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutUsSectionController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
@@ -153,6 +154,14 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     /* FEATURE ROUTES */
     Route::resource('feature', FeatureController::class);
+
+    /* FEATURE ROUTES */
+    Route::resource('about-section', AboutUsSectionController::class);
+
+
+
+
+
 
     // Laravel File Manager (lfm) Routes
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {

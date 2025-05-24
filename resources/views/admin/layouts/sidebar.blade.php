@@ -320,6 +320,14 @@
                                      </a>
                                  </div>
                              </div>
+                             <div class="dropdown-menu-columns">
+                                 <div class="dropdown-menu-column">
+                                     <a class="dropdown-item" href="{{ route('admin.about-section.index') }}">
+                                         <i class="ti ti-stack-front" style="margin-right: .5rem;"></i>
+                                         About Us
+                                     </a>
+                                 </div>
+                             </div>
                          </div>
                      </li>
                      <li class="nav-item">
