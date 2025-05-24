@@ -86,7 +86,8 @@ class CourseSubCategoryController extends Controller
         $category->status = $request->status ?? 0;
         $category->save();
 
-        return to_route('admin.course-sub-categories.index', $course_category->id)->with('success', 'Sub Category updated successfully.');
+        notyf()->success('Sub Category updated successfully.');
+        return back();
     }
 
     /**

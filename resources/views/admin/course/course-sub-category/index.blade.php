@@ -25,6 +25,7 @@
                                 <thead>
                                     <tr>
                                         <th>Icon</th>
+                                        <th>Image</th>
                                         <th>Name</th>
                                         <th>Trending</th>
                                         <th>Status</th>
@@ -37,6 +38,10 @@
                                         <tr>
                                             <td>
                                                 <i class="{{ $category->icon }} ""></i>
+                                            </td>
+                                            <td style="display: flex;">
+                                                <img src="{{ asset($category->image) }}" alt="{{ $category->name }}"
+                                                    style="max-width: 50px !important; max-height: 50px !important;">
                                             </td>
                                             <td>
                                                 {{ $category->name }}
