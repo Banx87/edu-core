@@ -4,11 +4,11 @@
             <div class="col-lg-6 wow fadeInLeft">
                 <div class="wsus__about_3_img">
 
-                    <img src="{{ asset($about->image) }}" alt="About us" class="about_3_large img-fluid w-100">
+                    <img src="{{ asset($about?->image) }}" alt="About us" class="about_3_large img-fluid w-100">
 
                     <div class="text">
-                        <h4> <span>{{ $about->banner_title }}</span> {{ $about->banner_text }}</h4>
-                        <img src="{{ asset($about->banner_image) }}" alt="Photo" class="img-fluid">
+                        <h4> <span>{{ $about?->banner_title }}</span> {{ $about?->banner_text }}</h4>
+                        <img src="{{ asset($about?->banner_image) }}" alt="Photo" class="img-fluid">
                     </div>
 
                     <div class="circle_box">
@@ -22,7 +22,7 @@
                             </defs>
                             <text>
                                 <textPath xlink:href="#circle">
-                                    {{ $about->rounded_text }}
+                                    {{ $about?->rounded_text }}
                                 </textPath>
                             </text>
                         </svg>
@@ -33,19 +33,19 @@
                 <div class="wsus__about_3_text">
                     <div class="wsus__section_heading heading_left mb_15">
                         <h5>Learn More About Us</h5>
-                        <h2>{{ $about->title }}</h2>
+                        <h2>{{ $about?->title }}</h2>
                     </div>
-                    {!! $about->description !!}
-                    @if ($about->button_text != null)
-                        <a class="common_btn" href="{{ $about->button_url }}">{{ $about->button_text }}</a>
+                    {!! $about?->description !!}
+                    @if ($about?->button_text != null)
+                        <a class="common_btn" href="{{ $about?->button_url }}">{{ $about?->button_text }}</a>
                     @endif
 
-                    @if ($about->video_image != null)
+                    @if ($about?->video_image != null)
                         <div class="about_video">
-                            <img src="{{ asset($about->video_image) }}" alt="Video" class="img-fluid w-100">
+                            <img src="{{ asset($about?->video_image) }}" alt="Video" class="img-fluid w-100">
                             <span>live</span>
                             <a class="play_btn venobox" data-autoplay="true" data-vbtype="video"
-                                href="{{ $about->video_url }}">
+                                href="{{ $about?->video_url }}">
                                 <img src="{{ asset('frontend/assets/images/play_icon.png') }}" alt="Play"
                                     class="img-fluid">
                             </a>
