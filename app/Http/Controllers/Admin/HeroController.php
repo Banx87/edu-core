@@ -76,7 +76,9 @@ class HeroController extends Controller
         if ($request->hasFile('image')) {
 
             $image = $this->uploadFile($request->file('image'));
-            $this->deleteFile($request->old_image);
+            if (!empty($request->old_image) && file_exists(public_path($request->old_image))) {
+                $this->deleteFile($request->old_image);
+            }
             $data['image'] = $image;
         }
 
