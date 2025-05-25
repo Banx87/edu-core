@@ -42,6 +42,12 @@
                                     <x-input-error :messages="$errors->get('rounded_text')" class="mt-2" />
                                 </div>
 
+                                <div class="col-md-12 mb-3">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea type="text" class="form-control editor" id="description" name="description" rows="6">{!! old('description', $about?->description) !!}</textarea>
+                                    <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                                </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label for="image" class="form-label">Title Image</label>
                                     <input type="file" class="form-control" id="image" name="image"
@@ -52,12 +58,6 @@
                                         <x-image-preview src="{{ asset($about?->image) }}"
                                             style="max-width:75px; background-color:#9b9b9b;" label="current Image" />
                                     </div>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label for="description" class="form-label">Description</label>
-                                    <textarea type="text" class="form-control" id="description" name="description" rows="6">{!! old('description', $about?->description) !!}</textarea>
-                                    <x-input-error :messages="$errors->get('description')" class="mt-2" />
                                 </div>
 
                                 <hr class="mt-3">
@@ -96,8 +96,6 @@
                                 </div>
 
                                 <hr class="mt-3">
-
-
 
                                 <h3>Button Section</h3>
                                 <div class="col-md-6 mb-3">
