@@ -13,6 +13,15 @@
                             @csrf
                             @method('PUT')
                             <div class="row">
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary mb-3">
+                                        <i class="ti ti-device-floppy space"></i>
+                                        Save
+                                    </button>
+                                </div>
+
+                                <hr class="mt-2">
+
                                 <h3>1st Feature</h3>
 
                                 <div class="col-md-12">

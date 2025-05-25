@@ -62,9 +62,6 @@
 
                                 <hr class="mt-3">
 
-
-
-
                                 <h3>Banner Section</h3>
 
                                 <div class="col-md-12">
@@ -154,7 +151,7 @@
                                 <hr class="mt-3">
 
                                 <div class="col-md-4">
-                                    <button type="submit" class="btn btn-primary mt-3">
+                                    <button type="submit" class="btn btn-primary">
                                         <i class="ti ti-device-floppy space"></i>
                                         Save
                                     </button>
