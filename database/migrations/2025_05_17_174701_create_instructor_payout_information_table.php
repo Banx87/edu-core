@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('instructor_id')->constrained('users');
             $table->string('payout_gateway');
-            $table->text('information')->default('')->nullable();
+            $table->text('information')->nullable();
             $table->timestamps();
         });
     }

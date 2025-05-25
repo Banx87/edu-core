@@ -20,7 +20,7 @@ class CourseSeeder extends Seeder
             // Create courses for the instructor
             $courses = [
                 [
-                    'id' => random_int(18, 1000),
+                    'id' => 1,
                     'instructor_id' => 2,
                     'title' => 'Python for Data Analysis: From Zero to Hero',
                     'slug' => 'python-for-data-analysis-from-zero-to-hero',
@@ -45,7 +45,7 @@ class CourseSeeder extends Seeder
                     'updated_at' => now(),
                 ],
                 [
-                    'id' => random_int(18, 1000),
+                    'id' => 2,
                     'instructor_id' => 2,
                     'title' => 'UX Design Essentials: Crafting User-Centered Experiences',
                     'slug' => 'ux-design-essentials-crafting-user-centered-experiences',
@@ -70,7 +70,7 @@ class CourseSeeder extends Seeder
                     'updated_at' => now(),
                 ],
                 [
-                    'id' => random_int(18, 1000),
+                    'id' => 3,
                     'instructor_id' => 2,
                     'title' => 'Digital Marketing Masterclass: SEO, SEM & Social Media',
                     'slug' => 'digital-marketing-masterclass-seo-sem-social-media',
@@ -95,7 +95,7 @@ class CourseSeeder extends Seeder
                     'updated_at' => now(),
                 ],
                 [
-                    'id' => random_int(18, 1000),
+                    'id' => 4,
                     'instructor_id' => 2,
                     'title' => 'Full-Stack Web Development with JavaScript',
                     'slug' => 'full-stack-web-development-with-javascript',
@@ -120,7 +120,7 @@ class CourseSeeder extends Seeder
                     'updated_at' => now(),
                 ],
                 [
-                    'id' => random_int(18, 1000),
+                    'id' => 5,
                     'instructor_id' => 2,
                     'title' => 'Conversational Spanish: Beginner to Intermediate',
                     'slug' => 'conversational-spanish-beginner-to-intermediate',
@@ -145,7 +145,7 @@ class CourseSeeder extends Seeder
                     'updated_at' => now(),
                 ],
                 [
-                    'id' => random_int(18, 1000),
+                    'id' => 6,
                     'instructor_id' => 2,
                     'title' => 'Productivity & Time Management: Achieve Your Goals',
                     'slug' => 'productivity-time-management-achieve-your-goals',
