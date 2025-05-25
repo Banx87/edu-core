@@ -13,6 +13,12 @@
                             @csrf
                             @method('PUT')
                             <div class="row">
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary mb-3">
+                                        <i class="ti ti-device-floppy space"></i>
+                                        Save
+                                    </button>
+                                </div>
                                 <h3>Title Section</h3>
                                 <div class="col-md-6 mb-3">
                                     <label for="label" class="form-label">Label</label>
@@ -101,20 +107,21 @@
                                     <input type="file" class="form-control" id="image" name="image">
                                     <x-input-error :messages="$errors->get('image')" class="mt-2" />
                                 </div>
+
                                 <div class="col-md-6">
-                                    <input type="hidden" name="old_image" value="{{ $hero?->image }}">
+                                    <button type="submit" class="btn btn-primary mt-5">
+                                        <i class="ti ti-device-floppy space"></i>
+                                        Save
+                                    </button>
                                 </div>
+
                                 <div class="col-md-6">
                                     <x-image-preview src="{{ asset($hero?->image) }}"
                                         style="max-width:408px; border: 2px solid rgb(255, 255, 255);"
                                         label="Current Hero Image Preview" />
                                 </div>
-
-                                <div class="col-md-4">
-                                    <button type="submit" class="btn btn-primary mt-3">
-                                        <i class="ti ti-device-floppy space"></i>
-                                        Save
-                                    </button>
+                                <div class="col-md-6">
+                                    <input type="hidden" name="old_image" value="{{ $hero?->image }}">
                                 </div>
 
                             </div>
