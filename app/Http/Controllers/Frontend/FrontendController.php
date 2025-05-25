@@ -7,6 +7,7 @@ use App\Models\AboutUsSection;
 use App\Models\CourseCategory;
 use App\Models\Feature;
 use App\Models\Hero;
+use App\Models\LatestCourseSection;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,8 @@ class FrontendController extends Controller
 
         $about = AboutUsSection::first();
 
-        return view('frontend.pages.home.index', compact('hero', 'feature', 'featuredCategories', 'about'));
+        $latestCourses = LatestCourseSection::first();
+
+        return view('frontend.pages.home.index', compact('hero', 'feature', 'featuredCategories', 'about', 'latestCourses'));
     }
 }

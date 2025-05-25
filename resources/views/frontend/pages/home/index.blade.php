@@ -5,7 +5,7 @@
     @include('frontend.pages.home.sections.categories')
 
     @include('frontend.pages.home.sections.about')
-    {{-- @include('frontend.pages.home.sections.course') --}}
+    @include('frontend.pages.home.sections.courses')
     {{-- @include('frontend.pages.home.sections.offer') --}}
     {{-- @include('frontend.pages.home.sections.become-instructor') --}}
     {{-- @include('frontend.pages.home.sections.video') --}}
