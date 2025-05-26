@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutUsSection;
+use App\Models\BecomeInstructorSection;
 use App\Models\CourseCategory;
 use App\Models\Feature;
 use App\Models\Hero;
@@ -26,10 +27,10 @@ class FrontendController extends Controller
         }])->where(['parent_id' => null, 'set_trending' => 1])->limit(12)->get();
 
         $about = AboutUsSection::first();
-
         $latestCourses = LatestCourseSection::first();
+        $becomeInstructor = BecomeInstructorSection::first();
 
-        return view('frontend.pages.home.index', compact('hero', 'feature', 'featuredCategories', 'about', 'latestCourses'));
+        return view('frontend.pages.home.index', compact('hero', 'feature', 'featuredCategories', 'about', 'latestCourses', 'becomeInstructor'));
     }
 
     function newsletterSubscribe(Request $request): Response
