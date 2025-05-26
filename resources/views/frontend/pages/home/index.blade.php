@@ -8,7 +8,7 @@
     @include('frontend.pages.home.sections.courses')
     @include('frontend.pages.home.sections.offer')
     @include('frontend.pages.home.sections.become-instructor')
-    {{-- @include('frontend.pages.home.sections.video') --}}
+    @include('frontend.pages.home.sections.video')
     {{-- @include('frontend.pages.home.sections.brand') --}}
     {{-- @include('frontend.pages.home.sections.featured-courses') --}}
     {{-- @include('frontend.pages.home.sections.testimonials') --}}
