@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\LatestCourseSectionController;
+use App\Http\Controllers\Admin\VideoSectionController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(["middleware" => "guest:admin", "prefix" => "admin", "as" => "admin."], function () {
@@ -165,6 +166,9 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     /* BECOME INSTRUCTOR ROUTES */
     Route::resource('become-instructor-section', BecomeInstructorSectionController::class);
+
+    /* VIDEO SECTION ROUTES */
+    Route::resource('video-section', VideoSectionController::class);
 
 
 

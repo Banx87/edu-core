@@ -346,6 +346,14 @@
                                      </a>
                                  </div>
                              </div>
+                             <div class="dropdown-menu-columns">
+                                 <div class="dropdown-menu-column">
+                                     <a class="dropdown-item" href="{{ route('admin.video-section.index') }}">
+                                         <i class="ti ti-video" style="margin-right: .5rem;"></i>
+                                         Video
+                                     </a>
+                                 </div>
+                             </div>
                          </div>
                      </li>
                      <li class="nav-item">
