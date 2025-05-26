@@ -337,6 +337,15 @@
                                      </a>
                                  </div>
                              </div>
+                             <div class="dropdown-menu-columns">
+                                 <div class="dropdown-menu-column">
+                                     <a class="dropdown-item"
+                                         href="{{ route('admin.become-instructor-section.index') }}">
+                                         <i class="ti ti-stack-front" style="margin-right: .5rem;"></i>
+                                         Become Instructor Banner
+                                     </a>
+                                 </div>
+                             </div>
                          </div>
                      </li>
                      <li class="nav-item">
