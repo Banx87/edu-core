@@ -9,6 +9,14 @@ var notyf = new Notyf({
 	dismissible: true,
 });
 
+// MODAL SPINNER
+var loader = `
+<div class="modal-content text-center" style="display: inline; padding: 1.6rem;">
+   <div class="spinner-border text-primary" style="width: 1rem; height: 1rem;" role="status">
+  		<span class="visually-hidden">Loading...</span>
+	</div>
+</div>`;
+
 // Ez share init
 document.addEventListener("DOMContentLoaded", function () {
 	ezShare.execute();
@@ -50,6 +58,34 @@ $(function () {
 					complete() {},
 				});
 			}
+		});
+	});
+
+	// Subscribe to newsletter
+	$(".newsletter-form").on("submit", function (e) {
+		e.preventDefault();
+
+		let formData = $(this).serialize();
+
+		$.ajax({
+			method: "POST",
+			url: `${base_url}/newsletter-subscribe`,
+			data: formData,
+			beforeSend: function () {
+				$(".newsletter_btn").html(loader);
+				$(".newsletter_btn").attr("disabled", true);
+			},
+			success: function (data) {
+				notyf.success(data.message);
+			},
+			error: function (xhr, error, status) {
+				notyf.error(xhr.responseJSON.message);
+			},
+			complete() {
+				$(".newsletter_btn").text("Subscribe");
+				$(".newsletter_btn").attr("disabled", false);
+				$(".newsletter-form").trigger("reset");
+			},
 		});
 	});
 });
