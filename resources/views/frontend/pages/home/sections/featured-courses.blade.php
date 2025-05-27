@@ -212,7 +212,7 @@
                 </div>
             </div>
         </div>
-        <div class="quality_course_slider_item"
+        {{-- <div class="quality_course_slider_item"
             style="background: url(frontend/assets/images/quality_courses_bg.jpg);">
             <div class="col-12">
                 <div class="row align-items-center">
@@ -423,6 +423,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </section>

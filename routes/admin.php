@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\FeaturedInstructorController;
 use App\Http\Controllers\Admin\InstructorRequestController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
@@ -173,6 +174,9 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     /* BRAND SECTION ROUTES */
     Route::resource('brand-section', BrandSectionController::class);
+
+    /* FEATURED INSTRUCTOR SECTION ROUTES */
+    Route::resource('featured-instructor-section', FeaturedInstructorController::class);
 
 
 

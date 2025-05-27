@@ -311,24 +311,18 @@
                                          Hero
                                      </a>
                                  </div>
-                             </div>
-                             <div class="dropdown-menu-columns">
                                  <div class="dropdown-menu-column">
                                      <a class="dropdown-item" href="{{ route('admin.feature.index') }}">
                                          <i class="ti ti-stack-front" style="margin-right: .5rem;"></i>
                                          Features
                                      </a>
                                  </div>
-                             </div>
-                             <div class="dropdown-menu-columns">
                                  <div class="dropdown-menu-column">
                                      <a class="dropdown-item" href="{{ route('admin.about-section.index') }}">
                                          <i class="ti ti-stack-front" style="margin-right: .5rem;"></i>
                                          About Us
                                      </a>
                                  </div>
-                             </div>
-                             <div class="dropdown-menu-columns">
                                  <div class="dropdown-menu-column">
                                      <a class="dropdown-item"
                                          href="{{ route('admin.latest-courses-section.index') }}">
@@ -336,8 +330,6 @@
                                          Latest Courses
                                      </a>
                                  </div>
-                             </div>
-                             <div class="dropdown-menu-columns">
                                  <div class="dropdown-menu-column">
                                      <a class="dropdown-item"
                                          href="{{ route('admin.become-instructor-section.index') }}">
@@ -345,24 +337,26 @@
                                          Become Instructor Banner
                                      </a>
                                  </div>
-                             </div>
-                             <div class="dropdown-menu-columns">
                                  <div class="dropdown-menu-column">
                                      <a class="dropdown-item" href="{{ route('admin.video-section.index') }}">
                                          <i class="ti ti-video" style="margin-right: .5rem;"></i>
                                          Video
                                      </a>
                                  </div>
-                             </div>
-                             <div class="dropdown-menu-columns">
                                  <div class="dropdown-menu-column">
                                      <a class="dropdown-item" href="{{ route('admin.brand-section.index') }}">
                                          <i class="ti ti-video" style="margin-right: .5rem;"></i>
                                          Brand
                                      </a>
                                  </div>
+                                 <div class="dropdown-menu-column">
+                                     <a class="dropdown-item"
+                                         href="{{ route('admin.featured-instructor-section.index') }}">
+                                         <i class="ti ti-video" style="margin-right: .5rem;"></i>
+                                         Featured Instructor
+                                     </a>
+                                 </div>
                              </div>
-                         </div>
                      </li>
                      <li class="nav-item">
                          <a class="nav-link" href="{{ route('admin.withdraw-request.index') }}">
