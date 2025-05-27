@@ -133,6 +133,37 @@ $(function () {
 	});
 });
 
+/* Featured Instructor */
+
+$(function () {
+	$(".selected_instructor").on("change", function () {
+		let instructorId = $(this).val();
+
+		if (instructorId) {
+			$.ajax({
+				method: "GET",
+				url: `${base_url}/admin/get-instructor-courses/${instructorId}`,
+				beforeSend: function () {
+					$("#instructor_courses").empty();
+				},
+
+				success: function (data) {
+					$.each(data.courses, function (key, value) {
+						let option = `<option value="${value.id}">${value.title}</option>`;
+						$("#instructor_courses").append(option);
+					});
+				},
+				error: function (xhr, status, error) {
+					notyf.error(
+						xhr.responseJSON.message ||
+							"An error occurred while processing your request."
+					);
+				},
+			});
+		}
+	});
+});
+
 /* TinyMCE */
 document.addEventListener("DOMContentLoaded", function () {
 	let options = {
