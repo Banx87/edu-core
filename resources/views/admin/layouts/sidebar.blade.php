@@ -354,6 +354,14 @@
                                      </a>
                                  </div>
                              </div>
+                             <div class="dropdown-menu-columns">
+                                 <div class="dropdown-menu-column">
+                                     <a class="dropdown-item" href="{{ route('admin.brand-section.index') }}">
+                                         <i class="ti ti-video" style="margin-right: .5rem;"></i>
+                                         Brand
+                                     </a>
+                                 </div>
+                             </div>
                          </div>
                      </li>
                      <li class="nav-item">
