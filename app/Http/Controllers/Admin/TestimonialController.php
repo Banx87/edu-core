@@ -39,7 +39,7 @@ class TestimonialController extends Controller
             [
                 'name' => 'required|string|max:255',
                 'title' => 'required|string|max:255',
-                'review' => 'required|string|max:1000',
+                'review' => 'required|string|max:500',
                 'rating' => 'required|numeric|min:1|max:5',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3000',
                 'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:3000',

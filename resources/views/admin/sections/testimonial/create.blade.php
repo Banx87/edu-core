@@ -46,8 +46,9 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="review" class="form-label">Review</label>
-                                    <textarea name="review" id="review" cols="30" rows="5" class="form-control" maxlength="1000">{{ old('review') }}</textarea>
+                                    <label for="review" class="form-label">Review <small>(max 500
+                                            characters)</small></label>
+                                    <textarea name="review" id="review" cols="30" rows="5" class="form-control" maxlength="500">{{ old('review') }}</textarea>
                                     <x-input-error :messages="$errors->get('review')" class="mt-2" />
                                 </div>
 
