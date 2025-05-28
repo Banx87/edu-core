@@ -47,7 +47,7 @@
 
                             <hr class="m3">
 
-                            <button href="{{ route('admin.course-levels.create') }}" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary">
                                 <i class="ti ti-device-floppy space"></i>
                                 Update
                             </button>
