@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\LatestCourseSectionController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\VideoSectionController;
 use Illuminate\Support\Facades\Route;
 
@@ -179,7 +180,8 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::get('get-instructor-courses/{id}', [FeaturedInstructorController::class, 'getInstructorCourses'])->name('get-instructor-courses');
     Route::resource('featured-instructor-section', FeaturedInstructorController::class);
 
-
+    /* TESTIMONIAL SECTION ROUTES */
+    Route::resource('testimonial-section', TestimonialController::class);
 
 
 
