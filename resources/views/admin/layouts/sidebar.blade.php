@@ -362,6 +362,12 @@
                                          Testimonial
                                      </a>
                                  </div>
+                                 <div class="dropdown-menu-column">
+                                     <a class="dropdown-item" href="{{ route('admin.counter-section.index') }}">
+                                         <i class="ti ti-video" style="margin-right: .5rem;"></i>
+                                         Counter
+                                     </a>
+                                 </div>
                              </div>
                      </li>
                      <li class="nav-item">
