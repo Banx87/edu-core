@@ -214,7 +214,7 @@
                  </ul>
              </li>
              <li class="nav-item">
-                 <a class="nav-link" href="contact.html">contact us</a>
+                 <a class="nav-link" href="{{ url('contact') }}">contact us</a>
              </li>
          </ul>
 
