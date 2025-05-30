@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\CourseContentController;
 use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Controllers\Frontend\CoursePageController;
@@ -79,6 +80,9 @@ Route::post('newsletter-subscribe', [FrontendController::class, 'newsletterSubsc
 
 /* About Rroute*/
 Route::get('about', [FrontendController::class, 'about'])->name('about.index');
+
+/* Contact Rroute*/
+Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
 
 
 
