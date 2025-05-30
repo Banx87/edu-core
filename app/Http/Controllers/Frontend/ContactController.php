@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
+use App\Models\ContactSetting;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -10,6 +12,9 @@ class ContactController extends Controller
 {
     function index(): View
     {
-        return view('frontend.pages.contact');
+        $contactCards = Contact::where('status', 1)->get();
+        $contactSettings = ContactSetting::first();
+
+        return view('frontend.pages.contact', compact('contactCards', 'contactSettings'));
     }
 }
