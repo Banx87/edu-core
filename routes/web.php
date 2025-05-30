@@ -77,6 +77,9 @@ Route::get('order-failed', [PaymentController::class, 'orderFailed'])->name('ord
 
 Route::post('newsletter-subscribe', [FrontendController::class, 'newsletterSubscribe'])->name('newsletter.subscribe');
 
+/* About Rroute*/
+Route::get('about', [FrontendController::class, 'about'])->name('about.index');
+
 
 
 /*

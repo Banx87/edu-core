@@ -172,7 +172,7 @@
                  <a class="nav-link active" href="{{ url('/') }}">Home</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link" href="about.html">About Us</a>
+                 <a class="nav-link" href="{{ url('about') }}">About Us</a>
              </li>
              <li class="nav-item">
                  <a class="nav-link" href="#">Courses <i class="far fa-angle-down"></i></a>
