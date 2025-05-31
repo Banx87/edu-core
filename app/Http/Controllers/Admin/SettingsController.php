@@ -60,4 +60,32 @@ class SettingsController extends Controller
         notyf()->success('Settings updated successfully.');
         return redirect()->back();
     }
+
+    function smtpSetting(): View
+    {
+        return view('admin.settings.smtp-settings');
+    }
+
+    function updateSmtpSettings(Request $request): RedirectResponse
+    {
+
+        $validatedData = $request->validate([
+            // 'smtp_host' => 'required',
+            // 'smtp_port' => 'required',
+            // 'smtp_username' => 'required',
+            // 'smtp_password' => 'required',
+            // 'smtp_encryption' => 'required',
+            'sender_email' => 'required|email|max:255',
+            'receiver_email' => 'required|email|max:255',
+        ]);
+
+        foreach ($validatedData as $key => $value) {
+            Settings::updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+
+        Cache::forget('settings');
+
+        notyf()->success('SMTP Settings updated successfully.');
+        return redirect()->back();
+    }
 }
