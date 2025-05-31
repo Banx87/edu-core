@@ -24,9 +24,13 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-4 col-md-8 order-2 order-lg-1 wow fadeInLeft">
                     <div class="wsus__sidebar">
-                        <form action="#">
+                        <form action="{{ route('courses.index') }}">
+                            <div class="row mb-3">
+                                <button class="common_btn" type="submit">Search</button>
+                            </div>
                             <div class="wsus__sidebar_search">
-                                <input type="text" placeholder="Search Course">
+                                <input type="text" placeholder="Search Course" name="search"
+                                    value="{{ request()?->search }}">
                                 <button type="submit">
                                     <img src={{ asset('frontend/assets/images/search_icon.png') }} alt="Search"
                                         class="img-fluid">
@@ -35,15 +39,18 @@
 
                             <div class="wsus__sidebar_category">
                                 <h3>Categories</h3>
-                                <ul class="categoty_list">
+                                <ul class="category_list">
                                     @foreach ($categories as $category)
                                         <li class="">{{ $category->name }}
                                             <div class="wsus__sidebar_sub_category">
                                                 @foreach ($category->subCategories as $subCategory)
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefaultc1">
-                                                        <label class="form-check-label" for="flexCheckDefaultc1">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="{{ $subCategory->id }}"
+                                                            id="category-cb-{{ $subCategory->id }}" name="category[]"
+                                                            @checked(in_array($subCategory->id, request()?->category ?? []))>
+                                                        <label class="form-check-label" style="width: 100%;"
+                                                            for="category-cb-{{ $subCategory->id }}">
                                                             {{ $subCategory->name }}
                                                         </label>
                                                     </div>
@@ -58,8 +65,8 @@
                                 <h3>Difficulty Level</h3>
                                 @foreach ($course_levels as $level)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="level-{{ $level->id }}">
+                                        <input class="form-check-input" type="checkbox" value="{{ $level->id }}"
+                                            @checked(in_array($level->id, request()?->level ?? [])) name="level[]" id="level-{{ $level->id }}">
                                         <label class="form-check-label" for="level-{{ $level->id }}">
                                             {{ $level->name }}
                                         </label>
@@ -134,15 +141,18 @@
 
                             <div class="wsus__sidebar_course_lavel duration">
                                 <h3>Language</h3>
-                                @foreach ($course_languages as $language)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="language-{{ $language->id }}">
-                                        <label class="form-check-label" for="language-{{ $language->id }}">
-                                            {{ $language->name }}
-                                        </label>
-                                    </div>
-                                @endforeach
+                                <div class="row">
+                                    @foreach ($course_languages as $language)
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" type="checkbox" value="{{ $language->id }}"
+                                                @checked(in_array($language->id, request()?->language ?? [])) name="language[]"
+                                                id="language-{{ $language->id }}">
+                                            <label class="form-check-label" for="language-{{ $language->id }}">
+                                                {{ $language->name }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
 
                             <div class="wsus__sidebar_rating">
@@ -150,19 +160,27 @@
                                 <div class="range_slider"></div>
                             </div>
 
+                            <div class="row mt-5">
+                                <button class="common_btn" type="submit">Search</button>
+                            </div>
+
                         </form>
                     </div>
                 </div>
                 <div class="col-xl-9 col-lg-8 order-lg-1">
                     <div class="wsus__page_courses_header wow fadeInUp">
-                        <p>Showing <span>1-9</span> Of <span>62</span> Results</p>
-                        <form action="#">
-                            <p>Sort-by:</p>
-                            <select class="select_js">
-                                <option value="">Regular</option>
-                                <option value="">Top Rated</option>
-                                <option value="">Popular Courses</option>
-                                <option value="">Recent Courses</option>
+                        <p>Showing <span>1-{{ $courses->count() }}</span> Of <span>{{ $courses->total() }}</span> Results
+                        </p>
+
+                        <form action="{{ route('courses.index') }}">
+                            <p>Sort By</p>
+                            <select class="select_js" name="sort_by" onchange="this.form.submit()">
+                                <option @selected(request()->sort_by == '') value="">No Sorting</option>
+                                <option @selected(request()->sort_by == 'price') value="price">Price</option>
+                                <option @selected(request()->sort_by == 'discount') value="discount">Discount</option>
+                                <option @selected(request()->sort_by == 'top_rated') value="top_rated">Top Rated</option>
+                                <option @selected(request()->sort_by == 'popularity') value="popularity">Popularity</option>
+                                <option @selected(request()->sort_by == 'recently_added') value="recently_added">Recent</option>
                             </select>
                         </form>
                     </div>
@@ -239,23 +257,7 @@
                         @endforelse
                     </div>
                     <div class="wsus__pagination mt_50 wow fadeInUp">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <i class="far fa-arrow-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link active" href="#">01</a></li>
-                                <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <i class="far fa-arrow-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        {{ $courses->withQueryString()->links() }}
                     </div>
                 </div>
             </div>
