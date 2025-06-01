@@ -733,12 +733,27 @@ $(function () {
 	};
 
 	// Pregress Bar
-	$(document).ready(function () {
-		$("#bar1").barfiller({});
-		$("#bar2").barfiller({});
-		$("#bar3").barfiller({});
-		$("#bar4").barfiller({});
-		$("#bar5").barfiller({});
+	$(function () {
+		let total = 0;
+		let counts = {};
+
+		for (let i = 1; i <= 5; i++) {
+			counts[i] = $("#bar" + i + " .fill").data("count");
+			total += counts[i];
+		}
+
+		for (let i = 1; i <= 5; i++) {
+			let percent = total > 0 ? (counts[i] / total) * 100 : 0;
+			$("#bar" + i).barfiller({
+				barColor: "#ffc107",
+				duration: 1000,
+				animateOnResize: true,
+				tooltip: false,
+				symbol: "%",
+			});
+
+			$(".fill.bar" + i).css("width", percent + "%");
+		}
 	});
 
 	// Select Rating
