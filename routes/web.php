@@ -85,7 +85,8 @@ Route::get('about', [FrontendController::class, 'about'])->name('about.index');
 Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('contact', [ContactController::class, 'sendMail'])->name('send.contact');
 
-
+/* Review Rroute*/
+Route::post('review', [ContactController::class, 'storeReview'])->name('review.store');
 
 /*
 * -------------------------------------------------------------------------
