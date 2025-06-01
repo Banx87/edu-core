@@ -250,6 +250,13 @@
                                          </a>
                                      </div>
                                  </div>
+                                 <div class="dropdown-menu-columns">
+                                     <div class="dropdown-menu-column">
+                                         <a class="dropdown-item" href="{{ route('admin.reviews.index') }}">
+                                             Course Reviews
+                                         </a>
+                                     </div>
+                                 </div>
                              </div>
                          </div>
                      </li>
@@ -294,6 +301,7 @@
                              </span>
                          </a>
                      </li>
+
                      <li class="nav-item dropdown">
                          <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                              data-bs-auto-close="false" role="button" aria-expanded="false">

@@ -32,6 +32,7 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\LatestCourseSectionController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\VideoSectionController;
 use Illuminate\Support\Facades\Route;
@@ -190,15 +191,17 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     /* TESTIMONIAL SECTION ROUTES */
     Route::resource('testimonial-section', TestimonialController::class);
 
-
-    /* About Counter Section Routes */
+    /* ABOUT COUNTER SECTION ROUTES */
     Route::resource('counter-section', CounterController::class);
 
-    /* Contact Routes */
+    /* CONTACT ROUTES */
     Route::resource('contact', ContactController::class);
 
-    /* Contact Setting Routes */
+    /* CONTACT SETTING ROUTES */
     Route::resource('contact-setting', ContactSettingController::class);
+
+    /* REVIEW ROUTES */
+    Route::resource('reviews', ReviewController::class);
 
 
 
