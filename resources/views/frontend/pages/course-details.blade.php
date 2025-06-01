@@ -17,12 +17,10 @@
                     <div class="col-12 wow fadeInUp">
                         <div class="wsus__breadcrumb_text">
                             <p class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>(4 Reviews)</span>
+                                @for ($i = 1; $i <= $course->reviews()->avg('rating'); $i++)
+                                    <i class="fas fa-star"></i>
+                                @endfor
+                                <span>({{ $course->reviews->count() }} Reviews)</span>
                             </p>
                             <h1>{{ $course->title }}</h1>
                             <ul class="list">
@@ -316,6 +314,13 @@
                                 </div>
                             </div> --}}
 
+                            @php
+                                $fiveStarReviews = $course->reviews()->where('rating', 5)->count();
+                                $fourStarReviews = $course->reviews()->where('rating', 4)->count();
+                                $threeStarReviews = $course->reviews()->where('rating', 3)->count();
+                                $twoStarReviews = $course->reviews()->where('rating', 2)->count();
+                                $oneStarReviews = $course->reviews()->where('rating', 1)->count();
+                            @endphp
                             <div class="tab-pane fade" id="pills-disabled2" role="tabpanel"
                                 aria-labelledby="pills-disabled-tab2" tabindex="0">
                                 <div class="wsus__courses_review box_area">
@@ -323,38 +328,39 @@
                                     <div class="row align-items-center mb_50">
                                         <div class="col-xl-4 col-md-6">
                                             <div class="total_review">
-                                                <h2>4.7</h2>
+                                                <h2>{{ number_format($course->reviews()->avg('rating'), 2) ?? 0 }}</h2>
                                                 <p>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
+                                                    @for ($i = 1; $i <= $course->reviews()->avg('rating'); $i++)
+                                                        <i class="fas fa-star"></i>
+                                                    @endfor
                                                 </p>
-                                                <h4>3 Ratings</h4>
+                                                <h4>{{ $course->reviews()->count() }} Reviews</h4>
                                             </div>
                                         </div>
                                         <div class="col-xl-8 col-md-6">
                                             <div class="review_bar">
                                                 <div class="review_bar_single">
                                                     <p>5 <i class="fas fa-star"></i></p>
-                                                    <div id="bar1" class="barfiller">
+                                                    <div id="bar5" class="barfiller">
                                                         <div class="tipWrap">
                                                             <span class="tip"></span>
                                                         </div>
-                                                        <span class="fill" data-percentage="85"></span>
+                                                        <span class="fill bar5"
+                                                            data-count="{{ $fiveStarReviews }}"></span>
                                                     </div>
-                                                    <span class="qnty">87</span>
+                                                    <span class="qnty">{{ $fiveStarReviews }}</span>
                                                 </div>
                                                 <div class="review_bar_single">
                                                     <p>4 <i class="fas fa-star"></i></p>
-                                                    <div id="bar2" class="barfiller">
+                                                    <div id="bar4" class="barfiller">
                                                         <div class="tipWrap">
                                                             <span class="tip"></span>
                                                         </div>
-                                                        <span class="fill" data-percentage="70"></span>
+
+                                                        <span class="fill bar4"
+                                                            data-count="{{ $fourStarReviews }}"></span>
                                                     </div>
-                                                    <span class="qnty">69</span>
+                                                    <span class="qnty">{{ $fourStarReviews }}</span>
                                                 </div>
                                                 <div class="review_bar_single">
                                                     <p>3 <i class="fas fa-star"></i></p>
@@ -362,77 +368,62 @@
                                                         <div class="tipWrap">
                                                             <span class="tip"></span>
                                                         </div>
-                                                        <span class="fill" data-percentage="50"></span>
+
+                                                        <span class="fill bar3"
+                                                            data-count="{{ $threeStarReviews }}"></span>
                                                     </div>
-                                                    <span class="qnty">44</span>
+                                                    <span class="qnty">{{ $threeStarReviews }}</span>
                                                 </div>
                                                 <div class="review_bar_single">
                                                     <p>2 <i class="fas fa-star"></i></p>
-                                                    <div id="bar4" class="barfiller">
+                                                    <div id="bar2" class="barfiller">
                                                         <div class="tipWrap">
                                                             <span class="tip"></span>
                                                         </div>
-                                                        <span class="fill" data-percentage="30"></span>
+                                                        <span class="fill bar2"
+                                                            data-count="{{ $twoStarReviews }}"></span>
                                                     </div>
-                                                    <span class="qnty">29</span>
+                                                    <span class="qnty">{{ $twoStarReviews }}</span>
                                                 </div>
                                                 <div class="review_bar_single">
                                                     <p>1 <i class="fas fa-star"></i></p>
-                                                    <div id="bar5" class="barfiller">
+                                                    <div id="bar1" class="barfiller">
                                                         <div class="tipWrap">
                                                             <span class="tip"></span>
                                                         </div>
-                                                        <span class="fill" data-percentage="10"></span>
+                                                        <span class="fill bar1"
+                                                            data-count="{{ $oneStarReviews }}"></span>
                                                     </div>
-                                                    <span class="qnty">12</span>
+                                                    <span class="qnty">{{ $oneStarReviews }}</span>
                                                 </div>
 
                                             </div>
                                         </div>
                                     </div>
                                     <h3>Reviews</h3>
-                                    <div class="wsus__course_single_reviews">
-                                        <div class="wsus__single_review_img">
-                                            <img src="images/testimonial_user_1.png" alt="user" class="img-fluid">
+                                    @foreach ($reviews as $review)
+                                        <div class="wsus__course_single_reviews">
+                                            <div class="wsus__single_review_img">
+                                                <img src="{{ asset($review->user->image) }}"
+                                                    alt="{{ $review->user->name }}" class="img-fluid">
+                                            </div>
+                                            <div class="wsus__single_review_text" style="width: 100%">
+                                                <h4>{{ $review->user->name }}</h4>
+                                                <h6>
+                                                    {{ $review->created_at->diffForHumans() }}
+                                                    <span class="">
+                                                        @for ($i = 1; $i <= $review->rating; $i++)
+                                                            <i class="fas fa-star"></i>
+                                                        @endfor
+                                                    </span>
+                                                </h6>
+                                                <p>{!! $review->review !!}</p>
+                                            </div>
                                         </div>
-                                        <div class="wsus__single_review_text">
-                                            <h4>Dominic L. Ement</h4>
-                                            <h6> March 23,2024 at 8:37 pm
-                                                <span>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </span>
-                                            </h6>
-                                            <p>Donec vel mauris at lectus iaculis elementum vel vel
-                                                lacus. Sed finibus velit vitae risus imperdiet placerat. Ut posuere eros
-                                                ut molestie rhoncus. Duis eget ex elementum, ultricies dolor sed,
-                                                hendrerit diam. Donec ut blandit nunc, et tempus lorem.</p>
-                                        </div>
-                                    </div>
-                                    <div class="wsus__course_single_reviews">
-                                        <div class="wsus__single_review_img">
-                                            <img src="images/testimonial_user_2.png" alt="user" class="img-fluid">
-                                        </div>
-                                        <div class="wsus__single_review_text">
-                                            <h4>Smith jhon</h4>
-                                            <h6> March 23,2024 at 8:37 pm
-                                                <span>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </span>
-                                            </h6>
-                                            <p>Donec vel mauris at lectus iaculis elementum vel vel
-                                                lacus. Sed finibus velit vitae risus imperdiet placerat. Ut posuere eros
-                                                ut molestie rhoncus. Duis eget ex elementum, ultricies dolor sed,
-                                                hendrerit diam. Donec ut blandit nunc, et tempus lorem.</p>
-                                        </div>
-                                    </div>
+                                    @endforeach
+
+                                    <div class="pagination">{{ $reviews->links() }}</div>
+
                                 </div>
                                 @auth
                                     <div class="wsus__courses_review_input box_area mt_40">
@@ -450,7 +441,7 @@
                                                 <input type="hidden" id="course" name="course"
                                                     value="{{ $course->id }}">
                                                 <div class="col-xl-12">
-                                                    <textarea rows="7" name="review" placeholder="Review"></textarea>
+                                                    <textarea rows="7" name="review" placeholder="Review (max.1000 characters)"></textarea>
                                                 </div>
                                                 <div class="col-12 mt-3">
                                                     <button type="submit" class="common_btn">Submit Review</button>
