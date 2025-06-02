@@ -89,7 +89,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">Email address</label>
-                            <input type="email" name="email" value="{{ old('email'), $request->email }}"
+                            <input type="email" name="email" value="{{ old('email', $request->email) }}"
                                 class="form-control" placeholder="your@email.com" autocomplete="off" required>
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>

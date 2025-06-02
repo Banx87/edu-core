@@ -29,7 +29,7 @@
                                     <div class="col-xl-12">
                                         <div class="wsus__login_form_input">
                                             <label>Email*</label>
-                                            <input type="email" name="email" value="{{ old('email'), $request->email }}"
+                                            <input type="email" name="email" value="{{ old('email', $request->email) }}"
                                                 required placeholder="Email">
                                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                         </div>
