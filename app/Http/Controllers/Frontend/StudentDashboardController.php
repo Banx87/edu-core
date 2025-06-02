@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Review;
 use App\Models\User;
 use App\Traits\Fileupload;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -35,7 +37,30 @@ class StudentDashboardController extends Controller
             'document' => $filePath,
         ]);
 
-
         return redirect()->route('student.dashboard')->with('success', 'Your request to become an instructor has been submitted successfully.');
+    }
+
+    function review(): View
+    {
+        $reviews = Review::where('user_id', Auth::user()->id)->paginate(10);
+        return view('frontend.student-dashboard.review.index', compact('reviews'));
+    }
+
+    function reviewDestroy(string $id)
+    {
+        try {
+            $review = Review::where('id', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+            $review->delete();
+
+            notyf()->success('Review deleted successfully.');
+
+            return response(['message' => 'Review deleted successfully!'], 200);
+        } catch (Exception $e) {
+            logger()->error('Error deleting review: ' . $e->getMessage());
+
+            notyf()->error('Something went wrong.');
+
+            return response(['message' => 'Something went wrong!'], 500);
+        }
     }
 }
