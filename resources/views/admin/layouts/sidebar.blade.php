@@ -223,6 +223,27 @@
                                  <i class="ti ti-exchange"></i>
                              </span>
                              <span class="nav-link-title">
+                                 Header / Footer
+                             </span>
+                         </a>
+                         <div class="dropdown-menu">
+                             <div class="dropdown-menu-columns">
+                                 <div class="dropdown-menu-column">
+                                     <a class="dropdown-item" href="{{ route('admin.top-bar.index') }}">
+                                         Top Bar
+                                     </a>
+                                 </div>
+
+                             </div>
+                         </div>
+                     </li>
+                     <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                             data-bs-auto-close="false" role="button" aria-expanded="false">
+                             <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                 <i class="ti ti-exchange"></i>
+                             </span>
+                             <span class="nav-link-title">
                                  Course Management
                              </span>
                          </a>

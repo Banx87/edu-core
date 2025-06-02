@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\LatestCourseSectionController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\TopBarController;
 use App\Http\Controllers\Admin\VideoSectionController;
 use Illuminate\Support\Facades\Route;
 
@@ -202,6 +203,9 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     /* REVIEW ROUTES */
     Route::resource('reviews', ReviewController::class);
+
+    /* TOP BAR ROUTES */
+    Route::resource('top-bar', TopBarController::class);
 
 
 
