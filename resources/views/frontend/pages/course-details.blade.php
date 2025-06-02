@@ -472,12 +472,13 @@
                                 @endif
                             </div>
                             <h3 class="wsus__courses_sidebar_price">
+                                Price:
                                 @if ($course->discount > 0)
                                     <del>${{ $course->price }}</del> ${{ $course->discount }}
                                 @elseif ($course->price == 0)
                                     Free
                                 @else
-                                    $course->price
+                                    {{ $course->price }}{{ config('settings.currency_icon') }}
                                 @endif
                             </h3>
                             <div class="wsus__courses_sidebar_list_info">
