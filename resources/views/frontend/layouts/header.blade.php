@@ -19,7 +19,7 @@
                  <p> <span>{{ $topBar?->offer_name }}</span>
                      Use Code:
                      <span>{{ $topBar?->offer_code }}</span>
-                     {{ $topBar->offer_short_description }}
+                     {{ $topBar?->offer_short_description }}
                      <a href="{{ $topBar?->offer_url }}">{{ $topBar?->offer_button_text }}</a>
                  </p>
              </div>

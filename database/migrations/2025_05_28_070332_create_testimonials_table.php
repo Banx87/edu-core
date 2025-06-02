@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
             $table->integer('rating');
-            $table->varchar('review', 1000);
+            $table->text('review');
             $table->string('logo')->nullable();
             $table->string('user_image');
             $table->string('user_name');
