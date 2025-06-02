@@ -131,8 +131,6 @@ class CourseContentController
 
             return response(['message' => 'Something went wrong!'], 500);
         }
-
-        notyf()->success('Chapter deleted succesfully');
     }
 
     function editLesson(Request $request): String

@@ -129,7 +129,6 @@ class CourseController extends Controller
                     'message' => 'updated succesfully.',
                     'redirect' => route('instructor.courses.edit',  ['id' => $course->id, 'step' => $request->next_step])
                 ]);
-                break;
 
             case '2':
                 // Validation
@@ -160,7 +159,6 @@ class CourseController extends Controller
                     'message' => 'updated succesfully.',
                     'redirect' => route('instructor.courses.edit',  ['id' => $course->id, 'step' => $request->next_step])
                 ]);
-                break;
 
             case '3':
                 return response([
@@ -168,10 +166,9 @@ class CourseController extends Controller
                     'message' => 'updated succesfully.',
                     'redirect' => route('instructor.courses.edit',  ['id' => $request->id, 'step' => $request->next_step])
                 ]);
-                break;
-            // default:
-            //     return view('frontend.instructor-dashboard.course.create');
-            //     break;
+                // default:
+                //     return view('frontend.instructor-dashboard.course.create');
+                //     break;
 
 
             case '4':
