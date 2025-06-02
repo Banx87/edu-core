@@ -28,15 +28,15 @@
                                         placeholder="Enter your phone number" value="{{ old('phone', $topBar?->phone) }}">
                                     <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                                 </div>
+                                <hr class="mt-3">
+                                <h4 class="card-title">Offer</h4>
                                 <div class="col-md-6 mb-3 mb-4">
-                                    <label for="offer_name" class="form-label">Name</label>
+                                    <label for="offer_name" class="form-label">Offer Name</label>
                                     <input type="text" class="form-control" id="offer_name" name="offer_name"
                                         placeholder="Enter the name of the offer"
                                         value="{{ old('offer_name', $topBar?->offer_name) }}">
                                     <x-input-error :messages="$errors->get('offer_name')" class="mt-2" />
                                 </div>
-                                <hr class="mt-3">
-                                <h4 class="card-title">Offer</h4>
                                 <div class="col-md-6 mb-3">
                                     <label for="offer_short_description" class="form-label">Description</label>
                                     <input type="text" class="form-control" id="offer_short_description"
