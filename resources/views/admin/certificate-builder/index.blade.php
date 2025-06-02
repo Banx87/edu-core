@@ -32,31 +32,31 @@
                                 <div class="form-group mb-3">
                                     <label for="title" class="form-label">Title</label>
                                     <input type="text" class="form-control" placeholder="Enter Certificate Title"
-                                        name="title" value="{{ old('title', $certificate->title) }}" />
+                                        name="title" value="{{ old('title', $certificate?->title) }}" />
                                     <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="subtitle" class="form-label">Subtitle</label>
                                     <input type="text" class="form-control" placeholder="Enter Certificate Subtitle"
-                                        name="subtitle" value="{{ old('subtitle', $certificate->subtitle) }}" />
+                                        name="subtitle" value="{{ old('subtitle', $certificate?->subtitle) }}" />
                                     <x-input-error :messages="$errors->get('subtitle')" class="mt-2" />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" placeholder="Enter Certificate Description" name="description" rows="6">{{ old('description', $certificate->description) }}</textarea>
+                                    <textarea class="form-control" placeholder="Enter Certificate Description" name="description" rows="6">{{ old('description', $certificate?->description) }}</textarea>
                                     <x-input-error :messages="$errors->get('description')" class="mt-2" />
                                 </div>
                                 <div class="form-group mb-3">
-                                    @if ($certificate->background)
-                                        <x-image-preview src="{{ asset($certificate->background) }}" label="" />
+                                    @if (!empty($certificate?->background))
+                                        <x-image-preview src="{{ asset($certificate?->background) }}" label="" />
                                     @endif
                                     <label for="background" class="form-label">Background</label>
                                     <input type="file" name="background" class="form-control">
                                     <x-input-error :messages="$errors->get('background')" class="mt-2" />
                                 </div>
                                 <div class="form-group mb-3">
-                                    @if ($certificate->signature)
-                                        <x-image-preview src="{{ asset($certificate->signature) }}" label="" />
+                                    @if (!empty($certificate?->signature))
+                                        <x-image-preview src="{{ asset($certificate?->signature) }}" label="" />
                                     @endif
                                     <label for="signature" class="form-label">Signature</label>
                                     <input type="file" name="signature" class="form-control">
@@ -76,13 +76,15 @@
                         </div>
                         <div class="card-body certificate-builder">
                             <div id="certificate_body"
-                                style="background-image: url({{ asset($certificate->background) }});">
-                                <div id="cert_title" class="draggable_item">{{ $certificate->title }}</div>
-                                <div id="cert_subtitle" class="draggable_item">{{ $certificate->subtitle }}</div>
-                                <div id="cert_description" class="draggable_item">{{ $certificate->description }}</div>
+                                style="background-image: url({{ asset($certificate?->background) }});">
+                                <div id="cert_title" class="draggable_item">{{ $certificate?->title }}</div>
+                                <div id="cert_subtitle" class="draggable_item">{{ $certificate?->subtitle }}</div>
+                                <div id="cert_description" class="draggable_item">{{ $certificate?->description }}</div>
                                 <div id="cert_signature" class="draggable_item">
-                                    <img src="{{ asset($certificate->signature) }}" alt="Signature" id="signature_img"
-                                        style="width: 200px; height: auto; object-fit: cover;">
+                                    @if (!empty($certificate?->signature))
+                                        <img src="{{ asset($certificate?->signature) }}" alt="Signature" id="signature_img"
+                                            style="width: 200px; height: auto; object-fit: cover;">
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -91,15 +93,3 @@
             </div>
         </div>
     </div>
-@endsection
-
-@push('styles')
-    <style>
-        @foreach ($certificateItems as $cert_item)
-            #{{ $cert_item->element_id }} {
-                left: {{ $cert_item->x_position }}px;
-                top: {{ $cert_item->y_position }}px;
-            }
-        @endforeach
-    </style>
-@endpush

@@ -39,7 +39,7 @@ class OrderService
                 $orderItem->price = $item->course->discount > 0 ? $item->course->discount : $item->course->price;
                 $orderItem->course_id = $item->course_id;
                 $orderItem->quantity = 1;
-                $orderItem->commission_rate = config('settings.commission_rate');
+                $orderItem->commission = config('settings.commission_rate');
                 $orderItem->save();
 
                 // Store Enrollment

@@ -23,7 +23,6 @@
                                         <th>Title</th>
                                         <th>Status</th>
                                         <th>Action</th>
-                                        <th class="w-1"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,7 +49,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="3" class="text-center">No levels found.</td>
+                                            <td colspan="4" class="text-center">No levels found.</td>
                                         </tr>
                                     @endforelse
 

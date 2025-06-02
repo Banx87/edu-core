@@ -57,6 +57,7 @@
                                                     action="{{ route('admin.instructor-request.update', $instructor->id) }}"
                                                     class="status-{{ $instructor->id }}" method="POST">
                                                     @csrf
+                                                    @method('PUT')
                                                     <select name="status" class="form-control"
                                                         onchange="$('.status-{{ $instructor->id }}').submit()">
                                                         <option @selected($instructor->approve_status === 'approved') value="approved">Approve

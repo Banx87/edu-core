@@ -1,43 +1,51 @@
 @extends('frontend.layouts.master')
 
 @push('meta_tags')
-    <meta property="og:title" content="{{ $course->title }}">
-    <meta property="og:description" content="{{ $course->seo_description }}">
+    <meta property="og:title" content="{{ $course->title ?? '' }}">
+    <meta property="og:description" content="{{ $course->seo_description ?? '' }}">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ asset($course->thumbnail) }}">
+    <meta property="og:image" content="{{ asset($course->thumbnail ?? '') }}">
     <meta property="og:type" content="Course">
 @endpush
 
 @section('content')
     <section class="wsus__breadcrumb course_details_breadcrumb"
-        style="background: url({{ asset('frontend/assets/images/breadcrumb_bg.jpg') }}">
+        style="background: url({{ asset('frontend/assets/images/breadcrumb_bg.jpg') }})">
         <div class="wsus__breadcrumb_overlay">
             <div class="container">
                 <div class="row">
                     <div class="col-12 wow fadeInUp">
                         <div class="wsus__breadcrumb_text">
                             <p class="rating">
-                                @for ($i = 1; $i <= $course->reviews()->avg('rating'); $i++)
+                                @php $avgRating = $course->reviews()->avg('rating') ?? 0; @endphp
+                                @for ($i = 1; $i <= $avgRating; $i++)
                                     <i class="fas fa-star"></i>
                                 @endfor
-                                <span>({{ $course->reviews->count() }} Reviews)</span>
+                                <span>({{ $course->reviews->count() ?? 0 }} Reviews)</span>
                             </p>
-                            <h1>{{ $course->title }}</h1>
+                            <h1>{{ $course->title ?? '' }}</h1>
                             <ul class="list">
                                 <li>
-                                    <span><img src="{{ asset($course->instructor->image) }}"
-                                            alt="{{ $course->instructor->name }}" class="img-fluid"></span>
-                                    By {{ $course->instructor->name }}
+                                    <span>
+                                        <img src="{{ asset($course->instructor->image ?? 'frontend/assets/images/default-user.png') }}"
+                                            alt="{{ $course->instructor->name ?? 'Instructor' }}" class="img-fluid">
+                                    </span>
+                                    By {{ $course->instructor->name ?? 'N/A' }}
                                 </li>
                                 <li>
-                                    <span><img src="{{ asset('frontend/assets/images/globe_icon_blue.png') }}"
-                                            alt="Globe" class="img-fluid"></span>
-                                    {{ $course->category->name }}
+                                    <span>
+                                        <img src="{{ asset('frontend/assets/images/globe_icon_blue.png') }}" alt="Globe"
+                                            class="img-fluid">
+                                    </span>
+                                    {{ $course->category->name ?? 'N/A' }}
                                 </li>
                                 <li>
-                                    <span><img src="{{ asset('frontend/assets/images/calendar_blue.png') }}" alt="Calendar"
-                                            class="img-fluid"></span>
-                                    Last updated {{ date('F Y', strtotime($course->updated_at)) }}
+                                    <span>
+                                        <img src="{{ asset('frontend/assets/images/calendar_blue.png') }}" alt="Calendar"
+                                            class="img-fluid">
+                                    </span>
+                                    Last updated
+                                    {{ $course->updated_at ? date('F Y', strtotime($course->updated_at)) : '' }}
                                 </li>
                             </ul>
                         </div>
@@ -69,11 +77,6 @@
                                     data-bs-target="#pills-contact" type="button" role="tab"
                                     aria-controls="pills-contact" aria-selected="false">Instructor</button>
                             </li>
-                            {{-- <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-disabled" type="button" role="tab"
-                                    aria-controls="pills-disabled" aria-selected="false">FAQs</button>
-                            </li> --}}
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-disabled-tab2" data-bs-toggle="pill"
                                     data-bs-target="#pills-disabled2" type="button" role="tab"
@@ -86,7 +89,7 @@
                                 aria-labelledby="pills-home-tab" tabindex="0">
                                 <div class="wsus__courses_overview box_area">
                                     <h3>Course Description</h3>
-                                    <p>{!! $course->description !!}</p>
+                                    <p>{!! $course->description ?? '' !!}</p>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel"
@@ -94,7 +97,7 @@
                                 <div class="wsus__courses_curriculum box_area">
                                     <h3>Course Curriculum</h3>
                                     <div class="accordion" id="curriculumList">
-                                        @foreach ($course->chapters as $courseChapter)
+                                        @foreach ($course->chapters ?? [] as $courseChapter)
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header">
                                                     <button class="accordion-button collapsed" type="button"
@@ -102,25 +105,25 @@
                                                         data-bs-target="#collapse-{{ $courseChapter->id }}"
                                                         aria-expanded="false"
                                                         aria-controls="collapse-{{ $courseChapter->id }}">
-                                                        {{ $courseChapter->title }}
+                                                        {{ $courseChapter->title ?? '' }}
                                                     </button>
                                                 </h2>
                                                 <div id="collapse-{{ $courseChapter->id }}"
                                                     class="accordion-collapse collapse" data-bs-parent="#curriculumList">
                                                     <div class="accordion-body">
                                                         <ul>
-                                                            @forelse ($courseChapter->lessons as $lesson)
+                                                            @forelse ($courseChapter->lessons ?? [] as $lesson)
                                                                 <li
-                                                                    class="{{ $lesson->is_preview == 1 ? 'active' : '' }}">
-                                                                    <p>{{ $lesson->title }}</p>
-                                                                    @if ($lesson->is_preview == 1)
-                                                                        <a href="{{ $lesson->file_path }}"
+                                                                    class="{{ ($lesson->is_preview ?? 0) == 1 ? 'active' : '' }}">
+                                                                    <p>{{ $lesson->title ?? '' }}</p>
+                                                                    @if (($lesson->is_preview ?? 0) == 1)
+                                                                        <a href="{{ $lesson->file_path ?? '#' }}"
                                                                             data-autoplay="true" data-vbtype="video"
-                                                                            class="right_text venobox vbox-item">{{ $lesson->is_preview == 1 ? 'Preview' : minutesToTime($lesson->duration) }}
+                                                                            class="right_text venobox vbox-item">{{ ($lesson->is_preview ?? 0) == 1 ? 'Preview' : (isset($lesson->duration) ? minutesToTime($lesson->duration) : '') }}
                                                                         </a>
                                                                     @else
                                                                         <span
-                                                                            class="right_text">{{ minutesToTime($lesson->duration) }}</span>
+                                                                            class="right_text">{{ isset($lesson->duration) ? minutesToTime($lesson->duration) : '' }}</span>
                                                                     @endif
                                                                 </li>
                                                             @empty
@@ -143,14 +146,14 @@
                                     <div class="row align-items-center">
                                         <div class="col-lg-4 col-md-6">
                                             <div class="wsus__courses_instructor_img">
-                                                <img src="{{ asset($course->instructor->image) }}" alt="Instructor"
-                                                    class="img-fluid">
+                                                <img src="{{ asset($course->instructor->image ?? 'frontend/assets/images/default-user.png') }}"
+                                                    alt="Instructor" class="img-fluid">
                                             </div>
                                         </div>
                                         <div class="col-lg-8 col-md-6">
                                             <div class="wsus__courses_instructor_text">
-                                                <h4>{{ $course->instructor->name }}</h4>
-                                                <p class="designation">{{ $course->instructor->headline }}</p>
+                                                <h4>{{ $course->instructor->name ?? '' }}</h4>
+                                                <p class="designation">{{ $course->instructor->headline ?? '' }}</p>
                                                 <ul class="list">
                                                     <li><i class="fas fa-star"></i> <b>74,537 Reviews</b></li>
                                                     <li><strong>4.7 Rating</strong></li>
@@ -158,7 +161,8 @@
                                                         <span><img
                                                                 src="{{ asset('frontend/assets/images/book_icon.png') }}"
                                                                 alt="book" class="img-fluid"></span>
-                                                        {{ $course->instructor->courses()->count() }} Courses
+                                                        {{ $course->instructor && method_exists($course->instructor, 'courses') ? $course->instructor->courses()->count() : 0 }}
+                                                        Courses
                                                     </li>
                                                     <li>
                                                         <span><img
@@ -193,26 +197,26 @@
                                                     </li>
                                                 </ul>
                                                 <p class="description">
-                                                    {{ $course->instructor->bio }}
+                                                    {{ $course->instructor->bio ?? '' }}
                                                 </p>
                                                 <ul class="link d-flex flex-wrap">
-                                                    @if ($course->instructor->facebook)
+                                                    @if (!empty($course->instructor->facebook))
                                                         <li><a href="{{ $course->instructor->facebook }}"><i
                                                                     class="ti ti-brand-facebook"></i></a></li>
                                                     @endif
-                                                    @if ($course->instructor->x)
+                                                    @if (!empty($course->instructor->x))
                                                         <li><a href="{{ $course->instructor->x }}"><i
                                                                     class="ti ti-brand-x"></i></a></li>
                                                     @endif
-                                                    @if ($course->instructor->linkedin)
+                                                    @if (!empty($course->instructor->linkedin))
                                                         <li><a href="{{ $course->instructor->linkedin }}"><i
                                                                     class="ti ti-brand-linkedin"></i></a></li>
                                                     @endif
-                                                    @if ($course->instructor->github)
+                                                    @if (!empty($course->instructor->github))
                                                         <li><a href="{{ $course->instructor->github }}"><i
                                                                     class="ti ti-brand-github"></i></a></li>
                                                     @endif
-                                                    @if ($course->instructor->website)
+                                                    @if (!empty($course->instructor->website))
                                                         <li><a href="{{ $course->instructor->website }}"><i
                                                                     class="ti ti-world-www"></i></a></li>
                                                     @endif
@@ -222,104 +226,13 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="tab-pane fade" id="pills-disabled" role="tabpanel"
-                                aria-labelledby="pills-disabled-tab" tabindex="0">
-                                <div class="wsus__course_faq box_area">
-                                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                                    aria-controls="flush-collapseOne">
-                                                    How long it take to create a video course?
-                                                </button>
-                                            </h2>
-                                            <div id="flush-collapseOne" class="accordion-collapse collapse show"
-                                                data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
-                                                    Sed mi leo, accumsan vel ante at, viverra placerat nulla. Donec
-                                                    pharetra rutrum
-                                                    ullamcorpe Ut eget convallis mi. Sed cursus aliquam eitu Nula sed
-                                                    allium lectus
-                                                    fermentum enim Nam maximus pretium consectetu lacinia finibus ipsum,
-                                                    eget
-                                                    fermentum nulla Pellentesque id facilisis magna dictum.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
-                                                    aria-expanded="false" aria-controls="flush-collapseTwo">
-                                                    What kind of support does EduCore provide?
-                                                </button>
-                                            </h2>
-                                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                                data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
-                                                    Sed mi leo, accumsan vel ante at, viverra placerat nulla. Donec
-                                                    pharetra rutrum
-                                                    ullamcorpe Ut eget convallis mi. Sed cursus aliquam eitu Nula sed
-                                                    allium lectus
-                                                    fermentum enim Nam maximus pretium consectetu lacinia finibus ipsum,
-                                                    eget
-                                                    fermentum nulla Pellentesque id facilisis magna dictum.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
-                                                    aria-expanded="false" aria-controls="flush-collapseThree">
-                                                    How long do I get support & updates?
-                                                </button>
-                                            </h2>
-                                            <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                                data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">Placeholder content for this accordion,
-                                                    Sed mi leo, accumsan vel ante at, viverra placerat nulla. Donec
-                                                    pharetra rutrum
-                                                    ullamcorpe Ut eget convallis mi. Sed cursus aliquam eitu Nula sed
-                                                    allium lectus
-                                                    fermentum enim Nam maximus pretium consectetu lacinia finibus ipsum,
-                                                    eget
-                                                    fermentum nulla Pellentesque id facilisis magna dictum.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseThree3"
-                                                    aria-expanded="false" aria-controls="flush-collapseThree">
-                                                    How can I contact a school directly?
-                                                </button>
-                                            </h2>
-                                            <div id="flush-collapseThree3" class="accordion-collapse collapse"
-                                                data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
-                                                    Sed mi leo, accumsan vel ante at, viverra placerat nulla. Donec
-                                                    pharetra rutrum
-                                                    ullamcorpe Ut eget convallis mi. Sed cursus aliquam eitu Nula sed
-                                                    allium lectus
-                                                    fermentum enim Nam maximus pretium consectetu lacinia finibus ipsum,
-                                                    eget
-                                                    fermentum nulla Pellentesque id facilisis magna dictum.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
 
                             @php
-                                $fiveStarReviews = $course->reviews()->where('rating', 5)->count();
-                                $fourStarReviews = $course->reviews()->where('rating', 4)->count();
-                                $threeStarReviews = $course->reviews()->where('rating', 3)->count();
-                                $twoStarReviews = $course->reviews()->where('rating', 2)->count();
-                                $oneStarReviews = $course->reviews()->where('rating', 1)->count();
+                                $fiveStarReviews = $course->reviews()->where('rating', 5)->count() ?? 0;
+                                $fourStarReviews = $course->reviews()->where('rating', 4)->count() ?? 0;
+                                $threeStarReviews = $course->reviews()->where('rating', 3)->count() ?? 0;
+                                $twoStarReviews = $course->reviews()->where('rating', 2)->count() ?? 0;
+                                $oneStarReviews = $course->reviews()->where('rating', 1)->count() ?? 0;
                             @endphp
                             <div class="tab-pane fade" id="pills-disabled2" role="tabpanel"
                                 aria-labelledby="pills-disabled-tab2" tabindex="0">
@@ -328,13 +241,14 @@
                                     <div class="row align-items-center mb_50">
                                         <div class="col-xl-4 col-md-6">
                                             <div class="total_review">
-                                                <h2>{{ number_format($course->reviews()->avg('rating'), 2) ?? 0 }}</h2>
+                                                <h2>{{ number_format($course->reviews()->avg('rating') ?? 0, 2) }}</h2>
                                                 <p>
-                                                    @for ($i = 1; $i <= $course->reviews()->avg('rating'); $i++)
+                                                    @php $avgRating = $course->reviews()->avg('rating') ?? 0; @endphp
+                                                    @for ($i = 1; $i <= $avgRating; $i++)
                                                         <i class="fas fa-star"></i>
                                                     @endfor
                                                 </p>
-                                                <h4>{{ $course->reviews()->count() }} Reviews</h4>
+                                                <h4>{{ $course->reviews()->count() ?? 0 }} Reviews</h4>
                                             </div>
                                         </div>
                                         <div class="col-xl-8 col-md-6">
@@ -401,28 +315,28 @@
                                         </div>
                                     </div>
                                     <h3>Reviews</h3>
-                                    @foreach ($reviews as $review)
+                                    @foreach ($reviews ?? [] as $review)
                                         <div class="wsus__course_single_reviews">
                                             <div class="wsus__single_review_img">
-                                                <img src="{{ asset($review->user->image) }}"
-                                                    alt="{{ $review->user->name }}" class="img-fluid">
+                                                <img src="{{ asset($review->user->image ?? 'frontend/assets/images/default-user.png') }}"
+                                                    alt="{{ $review->user->name ?? 'User' }}" class="img-fluid">
                                             </div>
                                             <div class="wsus__single_review_text" style="width: 100%">
-                                                <h4>{{ $review->user->name }}</h4>
+                                                <h4>{{ $review->user->name ?? '' }}</h4>
                                                 <h6>
-                                                    {{ $review->created_at->diffForHumans() }}
+                                                    {{ $review->created_at ? $review->created_at->diffForHumans() : '' }}
                                                     <span class="">
-                                                        @for ($i = 1; $i <= $review->rating; $i++)
+                                                        @for ($i = 1; $i <= ($review->rating ?? 0); $i++)
                                                             <i class="fas fa-star"></i>
                                                         @endfor
                                                     </span>
                                                 </h6>
-                                                <p>{!! $review->review !!}</p>
+                                                <p>{!! $review->review ?? '' !!}</p>
                                             </div>
                                         </div>
                                     @endforeach
 
-                                    <div class="pagination">{{ $reviews->links() }}</div>
+                                    <div class="pagination">{{ $reviews->links() ?? '' }}</div>
 
                                 </div>
                                 @auth
@@ -439,7 +353,7 @@
                                             <div class="row">
                                                 <input type="hidden" id="rating" name="rating" value="">
                                                 <input type="hidden" id="course" name="course"
-                                                    value="{{ $course->id }}">
+                                                    value="{{ $course->id ?? '' }}">
                                                 <div class="col-xl-12">
                                                     <textarea rows="7" name="review" placeholder="Review (max.1000 characters)"></textarea>
                                                 </div>
@@ -462,8 +376,9 @@
                     <div class="col-lg-4 col-md-8 wow fadeInRight">
                         <div class="wsus__courses_sidebar">
                             <div class="wsus__courses_sidebar_video">
-                                <img src="{{ asset($course->thumbnail) }}" alt="Video" class="img-fluid">
-                                @if ($course->preview_video_source != null)
+                                <img src="{{ asset($course->thumbnail ?? 'frontend/assets/images/default-course.png') }}"
+                                    alt="Video" class="img-fluid">
+                                @if (!empty($course->preview_video_source))
                                     <a class="play_btn venobox vbox-item" data-autoplay="true" data-vbtype="video"
                                         href="{{ asset($course->preview_video_source) }}">
                                         <img src="{{ asset('frontend/assets/images/play_icon_white.png') }}"
@@ -473,12 +388,12 @@
                             </div>
                             <h3 class="wsus__courses_sidebar_price">
                                 Price:
-                                @if ($course->discount > 0)
-                                    <del>${{ $course->price }}</del> ${{ $course->discount }}
-                                @elseif ($course->price == 0)
+                                @if (($course->discount ?? 0) > 0)
+                                    <del>${{ $course->price ?? 0 }}</del> ${{ $course->discount ?? 0 }}
+                                @elseif (($course->price ?? 0) == 0)
                                     Free
                                 @else
-                                    {{ $course->price }}{{ config('settings.currency_icon') }}
+                                    {{ $course->price ?? 0 }}{{ config('settings.currency_icon') }}
                                 @endif
                             </h3>
                             <div class="wsus__courses_sidebar_list_info">
@@ -489,7 +404,7 @@
                                                     alt="clock" class="img-fluid"></span>
                                             Course Duration
                                         </p>
-                                        {{ minutesToTime($course->duration) }}
+                                        {{ isset($course->duration) ? minutesToTime($course->duration) : '' }}
                                     </li>
                                     <li>
                                         <p>
@@ -497,7 +412,7 @@
                                                     alt="network" class="img-fluid"></span>
                                             Skill Level
                                         </p>
-                                        {{ $course->level->name }}
+                                        {{ $course->level->name ?? '' }}
                                     </li>
                                     <li>
                                         <p>
@@ -513,7 +428,7 @@
                                                     alt="Language" class="img-fluid"></span>
                                             Language
                                         </p>
-                                        {{ $course->language->name }}
+                                        {{ $course->language->name ?? '' }}
                                     </li>
                                 </ul>
                                 <a class="common_btn" href="#">Enroll The Course <i
@@ -543,15 +458,16 @@
                                     <li>
                                         <span><img src="{{ asset('frontend/assets/images/video_icon_black.png') }}"
                                                 alt="video" class="img-fluid"></span>
-                                        {{ minutesToTime($course->duration) }} of Video Lectures
+                                        {{ isset($course->duration) ? minutesToTime($course->duration) : '' }} of Video
+                                        Lectures
                                     </li>
                                     <li>
                                         <span><img
                                                 src="{{ asset('frontend/assets/images/file_download_icon_black.png') }}"
                                                 alt="download" class="img-fluid"></span>
-                                        {{ $course->downloadable_resources }} Downloadable Resources File
+                                        {{ $course->downloadable_resources ?? 0 }} Downloadable Resources File
                                     </li>
-                                    @if ($course->certificate == 1)
+                                    @if (($course->certificate ?? 0) == 1)
                                         <li>
                                             <span><img
                                                     src="{{ asset('frontend/assets/images/certificate_icon_black.png') }}"
@@ -570,11 +486,11 @@
                             <div class="wsus__courses_sidebar_instructor">
                                 <div class="image_area d-flex flex-wrap align-items-center">
                                     <div class="img">
-                                        <img src="{{ asset($course->instructor->image) }}" alt="Instructor"
-                                            class="img-fluid">
+                                        <img src="{{ asset($course->instructor->image ?? 'frontend/assets/images/default-user.png') }}"
+                                            alt="Instructor" class="img-fluid">
                                     </div>
                                     <div class="text">
-                                        <h3>{{ $course->instructor->name }}</h3>
+                                        <h3>{{ $course->instructor->name ?? '' }}</h3>
                                         <p><span>Instructor</span> Level 2</p>
                                     </div>
                                 </div>
