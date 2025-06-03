@@ -233,7 +233,11 @@
                                          Top Bar
                                      </a>
                                  </div>
-
+                                 <div class="dropdown-menu-column">
+                                     <a class="dropdown-item" href="{{ route('admin.footer.index') }}">
+                                         Footer Content
+                                     </a>
+                                 </div>
                              </div>
                          </div>
                      </li>
