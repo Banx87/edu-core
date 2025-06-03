@@ -45,9 +45,9 @@ Route::get('/courses', [CoursePageController::class, 'index'])->name('courses.in
 Route::get('/course/{slug}', [CoursePageController::class, 'show'])->name('courses.show');
 
 // Cart Routes
-Route::get('cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('add-to-cart/{course}', [CartController::class, 'addToCart'])->name('add-to-cart');
-Route::get('remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('remove-from-cart');
+Route::get('cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
+Route::post('add-to-cart/{course}', [CartController::class, 'addToCart'])->name('add-to-cart')->middleware('auth');
+Route::get('remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('remove-from-cart')->middleware('auth');
 
 // Payment routes
 Route::get('checkout', CheckoutController::class)->name('checkout.index'); //Invokable controller

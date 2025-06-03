@@ -48,7 +48,9 @@
                                                         <input class="form-check-input" type="checkbox"
                                                             value="{{ $subCategory->id }}"
                                                             id="category-cb-{{ $subCategory->id }}" name="category[]"
-                                                            @checked(in_array($subCategory->id, request()?->category ?? []))>
+                                                            @checked(is_array(request()->category)
+                                                                    ? in_array($subCategory->id, request()?->category ?? [])
+                                                                    : $subCategory->id == request()->category)>
                                                         <label class="form-check-label" style="width: 100%;"
                                                             for="category-cb-{{ $subCategory->id }}">
                                                             {{ $subCategory->name }}

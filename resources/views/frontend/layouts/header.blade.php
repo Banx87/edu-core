@@ -1,5 +1,6 @@
  @php
      $topBar = App\Models\TopBar::first();
+     $categories = App\Models\CourseCategory::whereNull('parent_id')->where('status', 1)->get();
  @endphp
 
  <header class="header_3">
@@ -71,111 +72,27 @@
              </div>
              Category
              <ul>
-                 <li>
-                     <a href="#">
-                         <span>
-                             <img src="{{ asset('frontend/assets/images/menu_category_icon_1.png') }}" alt="Category"
-                                 class="img-fluid">
-                         </span>
-                         Development
-                     </a>
-                     <ul class="category_sub_menu">
-                         <li><a href="#">Web Design</a></li>
-                         <li><a href="#">Web Development</a></li>
-                         <li><a href="#">UI/UX Design</a></li>
-                         <li><a href="#">Graphic Design</a></li>
-                     </ul>
-                 </li>
-                 <li>
-                     <a href="#">
-                         <span>
-                             <img src="{{ asset('frontend/assets/images/menu_category_icon_2.png') }}" alt="Category"
-                                 class="img-fluid">
-                         </span>
-                         Business
-                     </a>
-                     <ul class="category_sub_menu">
-                         <li><a href="#">Web Design</a></li>
-                         <li><a href="#">Web Development</a></li>
-                         <li><a href="#">UI/UX Design</a></li>
-                         <li><a href="#">Graphic Design</a></li>
-                     </ul>
-                 </li>
-                 <li>
-                     <a href="#">
-                         <span>
-                             <img src="{{ asset('frontend/assets/images/menu_category_icon_3.png') }}" alt="Category"
-                                 class="img-fluid">
-                         </span>
-                         Marketing
-                     </a>
-                     <ul class="category_sub_menu">
-                         <li><a href="#">Web Design</a></li>
-                         <li><a href="#">Web Development</a></li>
-                         <li><a href="#">UI/UX Design</a></li>
-                         <li><a href="#">Graphic Design</a></li>
-                     </ul>
-                 </li>
-                 <li>
-                     <a href="#">
-                         <span>
-                             <img src="{{ asset('frontend/assets/images/menu_category_icon_4.png') }}" alt="Category"
-                                 class="img-fluid">
-                         </span>
-                         Lifestyle
-                     </a>
-                     <ul class="category_sub_menu">
-                         <li><a href="#">Web Design</a></li>
-                         <li><a href="#">Web Development</a></li>
-                         <li><a href="#">UI/UX Design</a></li>
-                         <li><a href="#">Graphic Design</a></li>
-                     </ul>
-                 </li>
-                 <li>
-                     <a href="#">
-                         <span>
-                             <img src="{{ asset('frontend/assets/images/menu_category_icon_5.png') }}" alt="Category"
-                                 class="img-fluid">
-                         </span>
-                         Health & Fitness
-                     </a>
-                     <ul class="category_sub_menu">
-                         <li><a href="#">Web Design</a></li>
-                         <li><a href="#">Web Development</a></li>
-                         <li><a href="#">UI/UX Design</a></li>
-                         <li><a href="#">Graphic Design</a></li>
-                     </ul>
-                 </li>
-                 <li>
-                     <a href="#">
-                         <span>
-                             <img src="{{ asset('frontend/assets/images/menu_category_icon_6.png') }}" alt="Category"
-                                 class="img-fluid">
-                         </span>
-                         Design
-                     </a>
-                     <ul class="category_sub_menu">
-                         <li><a href="#">Web Design</a></li>
-                         <li><a href="#">Web Development</a></li>
-                         <li><a href="#">UI/UX Design</a></li>
-                         <li><a href="#">Graphic Design</a></li>
-                     </ul>
-                 </li>
-                 <li>
-                     <a href="#">
-                         <span>
-                             <img src="{{ asset('frontend/assets/images/menu_category_icon_7.png') }}" alt="Category"
-                                 class="img-fluid">
-                         </span>
-                         Academics
-                     </a>
-                     <ul class="category_sub_menu">
-                         <li><a href="#">Web Design</a></li>
-                         <li><a href="#">Web Development</a></li>
-                         <li><a href="#">UI/UX Design</a></li>
-                         <li><a href="#">Graphic Design</a></li>
-                     </ul>
-                 </li>
+                 @foreach ($categories as $category)
+                     <li>
+                         <a href="javascript:;">
+                             <span>
+                                 <img src="{{ asset($category->image) }}" alt="{{ $category->name }}"
+                                     class="img-fluid">
+                             </span>
+                             {{ $category->name }}
+                         </a>
+                         @if ($category->subCategories->count() > 0)
+                             <ul class="category_sub_menu">
+                                 @foreach ($category->subCategories as $subCategory)
+                                     <li><a
+                                             href="{{ route('courses.index', ['category' => $subCategory->id]) }}">{{ $subCategory->name }}</a>
+                                     </li>
+                                 @endforeach
+                             </ul>
+                         @endif
+                     </li>
+                 @endforeach
+
              </ul>
          </div>
          <ul class="navbar-nav m-auto">
@@ -183,46 +100,9 @@
                  <a class="nav-link active" href="{{ url('/') }}">Home</a>
              </li>
              <li class="nav-item">
+                 <a href="{{ route('courses.index') }}">Courses</a>
+             <li class="nav-item">
                  <a class="nav-link" href="{{ url('about') }}">About Us</a>
-             </li>
-             <li class="nav-item">
-                 <a class="nav-link" href="#">Courses <i class="far fa-angle-down"></i></a>
-                 <ul class="droap_menu">
-                     <li><a href="{{ route('courses.index') }}">Courses</a></li>
-                     <li><a href="courses_details.html">Course details</a></li>
-                     <li><a href="{{ route('student.my-courses.index') }}">Course video</a></li>
-                 </ul>
-             </li>
-             <li class="nav-item">
-                 <a class="nav-link" href="#">pages <i class="far fa-angle-down"></i></a>
-                 <ul class="droap_menu">
-                     <li><a href="category.html">Categories</a></li>
-                     <li><a href="cart_view.html">cart view</a></li>
-                     <li><a href="checkout.html">checkout</a></li>
-                     <li><a href="payment.html">payment</a></li>
-                     <li><a href="pricing.html">pricing</a></li>
-                     <li><a href="student_reviews.html">student review</a></li>
-                     <li><a href="instructor.html">Instructor</a></li>
-                     <li><a href="instructor_details.html">Instructor details</a></li>
-                     <li><a href="instructor_finder.html">Instructor finder</a></li>
-                     <li><a href="error.html">error</a></li>
-                     <li><a href="faq.html">faq</a></li>
-                     <li><a href="sign_in.html">sign in</a></li>
-                     <li><a href="sign_up.html">sign up</a></li>
-                     <li><a href="forum.html">forum</a></li>
-                     <li><a href="forum_categories.html">forum Categories</a></li>
-                     <li><a href="forum_create_topic.html">forum create topic</a></li>
-                     <li><a href="forum_single_topic.html">forum single topic</a></li>
-                     <li><a href="dashboard.html">Dashboard</a></li>
-                 </ul>
-             </li>
-             <li class="nav-item">
-                 <a class="nav-link" href="#">blog <i class="far fa-angle-down"></i></a>
-                 <ul class="droap_menu">
-                     <li><a href="blogs.html">blog grid view</a></li>
-                     <li><a href="blog_list.html">blog list view</a></li>
-                     <li><a href="blog_details.html">blog details</a></li>
-                 </ul>
              </li>
              <li class="nav-item">
                  <a class="nav-link" href="{{ url('contact') }}">contact us</a>
@@ -240,7 +120,7 @@
                              <img src="{{ asset('frontend/assets/images/cart_icon_black.png') }}" alt="user"
                                  class="img-fluid">
                          </span>
-                         <b class="cart_count">{{ cartTotalItems() }} grdg</b>
+                         <b class="cart_count">{{ cartTotalItems() }} </b>
                      </a>
                  </li>
                  <li>
@@ -249,7 +129,7 @@
                              <img src="{{ asset('frontend/assets/images/user_icon_black.png') }}" alt="user"
                                  class="img-fluid">
                          </span>
-                         admin
+                         {{ Auth::user()->name }}
                      </a>
                  </li>
                  <li>
@@ -261,8 +141,8 @@
      </div>
  </nav>
  <div class="wsus__menu_3_search_area">
-     <form action="#">
-         <input type="text" placeholder="Search School, Online.....">
+     <form action="{{ route('courses.index') }}">
+         <input type="text" placeholder="Search course, Online....." name="search">
          <button class="common_btn" type="submit">Search</button>
          <span class="close_search"><i class="far fa-times"></i></span>
      </form>
