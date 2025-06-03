@@ -56,16 +56,11 @@
     <!--============ PRELOADER START ===========-->
 
 
-    <!--===========================
-        HEADER START
-    ============================-->
     @include('frontend.layouts.header')
-    <!--===========================
-        HEADER END
-    ===========================-->
-
 
     @yield('content')
+
+    @include('frontend.layouts.footer')
 
     <!-- Modal -->
     <div class="modal fade" id="dynamic_modal" data-bs-keyboard="false" tabindex="-1"
@@ -74,16 +69,6 @@
 
         </div>
     </div>
-    <!--===========================
-        -FOOTER
-    ============================-->
-
-    @include('frontend.layouts.footer')
-
-    <!--===========================
-        FOOTER 3 END
-    ============================-->
-
 
     <!--================================
         SCROLL BUTTON START
