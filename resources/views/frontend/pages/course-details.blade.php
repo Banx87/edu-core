@@ -315,7 +315,7 @@
                                         </div>
                                     </div>
                                     <h3>Reviews</h3>
-                                    @foreach ($reviews ?? [] as $review)
+                                    @foreach ($reviews as $review)
                                         <div class="wsus__course_single_reviews">
                                             <div class="wsus__single_review_img">
                                                 <img src="{{ asset($review->user->image ?? 'frontend/assets/images/default-user.png') }}"

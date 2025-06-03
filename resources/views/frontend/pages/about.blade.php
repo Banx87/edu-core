@@ -39,10 +39,10 @@
                             <svg viewBox="0 0 100 100">
                                 <defs>
                                     <path id="circle" d="
-                                            M 50, 50
-                                            m -37, 0
-                                            a 37,37 0 1,1 74,0
-                                            a 37,37 0 1,1 -74,0">
+                                                        M 50, 50
+                                                        m -37, 0
+                                                        a 37,37 0 1,1 74,0
+                                                        a 37,37 0 1,1 -74,0">
                                     </path>
                                 </defs>
                                 <text>
@@ -188,26 +188,26 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6 wow fadeInUp">
                         <div class="wsus__single_counter">
-                            <h2><span class="counter">{{ $counters->counter_one }}</span>k+</h2>
-                            <p>{{ $counters->title_one }}</p>
+                            <h2><span class="counter">{{ $counters?->counter_one }}</span>k+</h2>
+                            <p>{{ $counters?->title_one }}</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 wow fadeInUp">
                         <div class="wsus__single_counter">
-                            <h2><span class="counter">{{ $counters->counter_two }}</span>+</h2>
-                            <p>{{ $counters->title_two }}</p>
+                            <h2><span class="counter">{{ $counters?->counter_two }}</span>+</h2>
+                            <p>{{ $counters?->title_two }}</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 wow fadeInUp">
                         <div class="wsus__single_counter">
-                            <h2><span class="counter">{{ $counters->counter_three }}</span>+</h2>
-                            <p>{{ $counters->title_three }}</p>
+                            <h2><span class="counter">{{ $counters?->counter_three }}</span>+</h2>
+                            <p>{{ $counters?->title_three }}</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 wow fadeInUp">
                         <div class="wsus__single_counter">
-                            <h2><span class="counter">{{ $counters->counter_four }}</span>k</h2>
-                            <p>{{ $counters->title_four }}</p>
+                            <h2><span class="counter">{{ $counters?->counter_four }}</span>k</h2>
+                            <p>{{ $counters?->title_four }}</p>
                         </div>
                     </div>
                 </div>
@@ -256,12 +256,6 @@
 
         </div>
     </section>
-    {{-- ********** --}}
-
-
-    <!--===========================
-                                                                                                            BLOG 4 START
-                                                                                                        ============================-->
     <section class="blog_4 mt_110 xs_mt_90 pt_120 xs_pt_100 pb_120 xs_pb_100">
         <div class="container">
             <div class="row">
