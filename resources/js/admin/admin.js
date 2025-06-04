@@ -164,6 +164,12 @@ $(function () {
 	});
 });
 
+$(function () {
+	$('input[name="image_type"]').on("change", function () {
+		$(".icon_input").toggleClass("d-none");
+		$(".image_select").toggleClass("d-none");
+	});
+});
 /* TinyMCE */
 document.addEventListener("DOMContentLoaded", function () {
 	let options = {
