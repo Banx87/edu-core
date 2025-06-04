@@ -164,11 +164,23 @@ $(function () {
 	});
 });
 
+// Social Link image type toggle
 $(function () {
 	$('input[name="image_type"]').on("change", function () {
 		$(".icon_input").toggleClass("d-none");
 		$(".image_select").toggleClass("d-none");
 	});
+});
+
+$(function () {
+	// Make sure that the proper file input is available at page load
+	if ($('input[name="image_type"]').prop("checked")) {
+		$(".icon_input").removeClass("d-none");
+		$(".image_select").addClass("d-none");
+	} else {
+		$(".icon_input").addClass("d-none");
+		$(".image_select").removeClass("d-none");
+	}
 });
 /* TinyMCE */
 document.addEventListener("DOMContentLoaded", function () {

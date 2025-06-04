@@ -16,8 +16,8 @@ class SocialLinkController extends Controller
      */
     public function index(): View
     {
-        $socialLinks = SocialLink::first();
-        return view('admin.social-link.index');
+        $socialLinks = SocialLink::all();
+        return view('admin.social-link.index', compact('socialLinks'));
     }
 
     /**
@@ -79,9 +79,9 @@ class SocialLinkController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(SocialLink $social_link): View
     {
-        //
+        return view('admin.social-link.edit', compact('social_link'));
     }
 
     /**
@@ -89,7 +89,39 @@ class SocialLinkController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'url' => 'required|url',
+            'icon' => 'nullable|regex:/^ti ti(-[a-zA-Z0-9_-]+)*$/'
+        ], [
+            'icon.regex' => 'The icon must be a valid icon name. (ti ti-*)',
+            'status.boolean' => 'The status field must be a boolean.',
+            'url.required' => 'The url field is required.'
+        ]);
+
+        if ($request->has('image_type')) {
+            $validatedData['icon'] = $request->icon;
+        } else if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagePath = $this->uploadFile($image);
+            $validatedData['icon'] = $imagePath;
+        }
+        if ($request->has('image_type') || $request->hasFile('image')) {
+            // Delete the old picture from the server
+            if (!empty($request->{"old_image"}) && file_exists(public_path($request->{"old_image"}))) {
+                $this->deleteFile($request->{"old_image"});
+            }
+        }
+
+        $validatedData['status'] = $request->has('status') ? 1 : 0;
+        $validatedData['url'] = $request->url;
+
+        SocialLink::updateOrCreate(
+            ['id' => $id],
+            $validatedData
+        );
+
+        notyf()->success('Social link Updated successfully.');
+        return to_route('admin.social-links.index');
     }
 
     /**
