@@ -3,7 +3,7 @@
     <label for="{{ $name }}" class="form-check form-switch">
         <input name="{{ $name }}" type="checkbox" class="form-check-input" value="1"
             @checked($checked) />
-        <span class="form-check-label">
+        <span class="form-check-label" style="margin-inline: .5rem;">
             {{ $description }}
         </span>
     </label>
