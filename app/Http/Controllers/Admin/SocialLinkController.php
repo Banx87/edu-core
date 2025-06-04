@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\SocialLink;
 use App\Traits\Fileupload;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -127,8 +128,21 @@ class SocialLinkController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(SocialLink $social_link)
     {
-        //
+        try {
+            $social_link->delete();
+            if (file_exists(public_path($social_link->icon))) {
+                $this->deleteFile($social_link->icon);
+            }
+            redirect()->route('admin.social-links.index')->with('success', 'Social Link deleted successfully.');
+            notyf()->success('Social Link deleted successfully.');
+            return response()->json(['success' => 'Social Link deleted successfully.']);
+        } catch (Exception $e) {
+            logger()->error('Error deleting Social Link: ' . $e->getMessage());
+            redirect()->route('admin.social-links.index')->with('error', 'Social Link cannot be deleted.');
+            notyf()->error($e->getMessage());
+            return response()->json(['error' => 'Social Link cannot be deleted.']);
+        }
     }
 }

@@ -29,7 +29,7 @@
                                     @forelse ($socialLinks as $social)
                                         <tr>
                                             <td style="background-color: #cfcfcf; width: 65px !important;">
-                                                @if (preg_match('/\.(png|jpg|jpeg|gif|bmp|svg)$/i', $social->icon))
+                                                @if (preg_match('/\.(png|jpg|jpeg|gif|bmp|svg|webp)$/i', $social->icon))
                                                     <img src="{{ asset($social->icon) }}" alt="{{ $social->name }}"
                                                         style="width: 25px !important">
                                                 @else
@@ -58,7 +58,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5" class="text-center">No categories found.</td>
+                                            <td colspan="4" class="text-center">No categories found.</td>
                                         </tr>
                                     @endforelse
 
