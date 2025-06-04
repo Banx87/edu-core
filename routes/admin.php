@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\WithdrawRequestController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\LatestCourseSectionController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\SocialLinkController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TopBarController;
 use App\Http\Controllers\Admin\VideoSectionController;
@@ -210,6 +211,9 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     /* FOOTER ROUTES */
     Route::resource('footer', FooterController::class);
+
+    /* FOOTER ROUTES */
+    Route::resource('social-links', SocialLinkController::class);
 
 
 

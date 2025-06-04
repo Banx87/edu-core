@@ -129,7 +129,9 @@
                              <img src="{{ asset('frontend/assets/images/user_icon_black.png') }}" alt="user"
                                  class="img-fluid">
                          </span>
-                         {{ Auth::user()->name }}
+                         @if (Auth::user())
+                             {{ Auth::user()->name }}
+                         @endif
                      </a>
                  </li>
                  <li>
