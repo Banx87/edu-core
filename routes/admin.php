@@ -24,6 +24,8 @@ use App\Http\Controllers\Admin\CourseSubCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\FeaturedInstructorController;
+use App\Http\Controllers\Admin\FooterColumnOneController;
+use App\Http\Controllers\Admin\FooterColumnTwoController;
 use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\InstructorRequestController;
 use App\Http\Controllers\Admin\OrderController;
@@ -38,6 +40,8 @@ use App\Http\Controllers\Admin\SocialLinkController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TopBarController;
 use App\Http\Controllers\Admin\VideoSectionController;
+use App\Models\FooterColumnOne;
+use App\Models\FooterColumnTwo;
 use Illuminate\Support\Facades\Route;
 
 Route::group(["middleware" => "guest:admin", "prefix" => "admin", "as" => "admin."], function () {
@@ -211,8 +215,10 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     /* FOOTER ROUTES */
     Route::resource('footer', FooterController::class);
+    Route::resource('footer-column-one', FooterColumnOneController::class);
+    Route::resource('footer-column-two', FooterColumnTwoController::class);
 
-    /* FOOTER ROUTES */
+    /* SOCIAL LINKS ROUTES */
     Route::resource('social-links', SocialLinkController::class);
 
 
