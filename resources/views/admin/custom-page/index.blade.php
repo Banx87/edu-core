@@ -21,43 +21,55 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Slug</th>
+                                        <th>Show In Nav</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @forelse ($columnOne as $column)
+                                    @forelse ($customPages as $page)
                                         <tr>
                                             <td>
-                                                {{ $column->title }}
+                                                {{ $page->title }}
                                             </td>
                                             <td>
-                                                {{ $column->url }}
+                                                <code class="text-danger">
+                                                    {{ url('/') }}/pages/{{ $page->slug }}
+                                                </code>
                                             </td>
                                             <td>
-                                                @if ($column->status == 1)
+                                                @if ($page->show_in_nav == 1)
                                                     <span class="badge bg-lime text-lime-fg">Yes</span>
                                                 @else
                                                     <span class="badge bg-pink text-red-fg">No</span>
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.footer-column-one.edit', $column->id) }}"
-                                                    class="btn-sm btn-primary"><i class="ti ti-edit"></i></a>
-                                                <a href="{{ route('admin.footer-column-one.destroy', $column->id) }}"
-                                                    class="btn-sm text-danger delete-item"><i class="ti ti-trash-x"></i></a>
+                                                @if ($page->status == 1)
+                                                    <span class="badge bg-lime text-lime-fg">Yes</span>
+                                                @else
+                                                    <span class="badge bg-pink text-red-fg">No</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('admin.custom-page.edit', $page->id) }}"
+                                                    class="btn-sm btn-primary"><i class="ti ti-edit"></i>
+                                                </a>
+                                                <a href="{{ route('admin.custom-page.destroy', $page->id) }}"
+                                                    class="btn-sm text-danger delete-item"><i class="ti ti-trash-x"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
                                             <td colspan="4" class="text-center">No Columns found.</td>
                                         </tr>
-                                    @endforelse --}}
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
                         <div class="mt-4">
-                            {{-- $customPages->links() --}}
+                            {{ $customPages->links() }}
                         </div>
                     </div>
                 </div>

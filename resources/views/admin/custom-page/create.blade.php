@@ -22,7 +22,12 @@
                                     <x-input-toggle-block name="status" label="Status" description="" :checked="old('status')">
                                     </x-input-toggle-block>
                                 </div>
-                                <div class="col-md-11">
+                                <div class="col-md-2">
+                                    <x-input-toggle-block name="show_in_nav" label="Show In Navigation" description=""
+                                        :checked="old('show_in_nav')">
+                                    </x-input-toggle-block>
+                                </div>
+                                <div class="col-md-12">
                                     <x-input-block name="title" label="Title" placeholder="Enter Title"></x-input-block>
                                 </div>
                                 <div class="col-md-12">

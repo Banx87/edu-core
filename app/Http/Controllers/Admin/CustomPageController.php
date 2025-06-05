@@ -16,7 +16,8 @@ class CustomPageController extends Controller
      */
     public function index(): View
     {
-        return view('admin.custom-page.index');
+        $customPages = CustomPage::paginate(15);
+        return view('admin.custom-page.index', compact('customPages'));
     }
 
     /**
@@ -40,6 +41,7 @@ class CustomPageController extends Controller
         $page->seo_title = $request->seo_title;
         $page->seo_description = $request->seo_description;
         $page->status = $request->status ?? 0;
+        $page->show_in_nav = $request->show_in_nav ?? 0;
         $page->save();
 
         notyf()->success('Page created successfully.');
