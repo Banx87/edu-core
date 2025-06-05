@@ -78,15 +78,18 @@ Route::get('order-failed', [PaymentController::class, 'orderFailed'])->name('ord
 
 Route::post('newsletter-subscribe', [FrontendController::class, 'newsletterSubscribe'])->name('newsletter.subscribe');
 
-/* About Rroute*/
+/* About Routes*/
 Route::get('about', [FrontendController::class, 'about'])->name('about.index');
 
-/* Contact Rroute*/
+/* Contact Routes*/
 Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('contact', [ContactController::class, 'sendMail'])->name('send.contact');
 
-/* Review Rroute*/
+/* Review Routes*/
 Route::post('review', [CoursePageController::class, 'storeReview'])->name('review.store');
+
+/* Custom Page Routes*/
+Route::get('pages/{slug}', [FrontendController::class, 'customPage'])->name('custom-page');
 
 /*
 * -------------------------------------------------------------------------
