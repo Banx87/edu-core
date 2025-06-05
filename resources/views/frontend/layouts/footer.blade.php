@@ -1,5 +1,8 @@
 @php
     $footer = App\Models\Footer::first();
+    $social_links = App\Models\SocialLink::where('status', 1)->get();
+    $footerOne = App\Models\FooterColumnOne::where('status', 1)->get();
+    $footerTwo = App\Models\FooterColumnTwo::where('status', 1)->get();
 @endphp
 <footer class="footer_3" style="background: url(frontend/assets/images/footer_3_bg.jpg);">
     <div class="footer_3_overlay pt_120 xs_pt_100">
@@ -15,9 +18,20 @@
                             <p>{{ $footer->description }}</p>
                             <h2>Follow Us On</h2>
                             <ul class="d-flex flex-wrap">
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                @foreach ($social_links as $social_link)
+                                    <li>
+                                        <a href="{{ $social_link->url }}" target="_blank"
+                                            style="display: flex; justify-content: center; align-items: center;">
+                                            @if (preg_match('/\.(png|jpg|jpeg|gif|bmp|svg)$/i', $social_link->icon))
+                                                <img src="{{ asset($social_link->icon) }}"
+                                                    alt="{{ $social_link->name }}"
+                                                    style="width: 24px !important; height: 24px !important">
+                                            @else
+                                                <i class="{{ $social_link->icon }}"></i>
+                                            @endif
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -25,11 +39,9 @@
                         <div class="wsus__footer_link">
                             <h2>Courses</h2>
                             <ul>
-                                <li><a href="#">Life Coach</a></li>
-                                <li><a href="#">Business Coach</a></li>
-                                <li><a href="#">Health Coach</a></li>
-                                <li><a href="#">Development</a></li>
-                                <li><a href="#">SEO Optimize</a></li>
+                                @foreach ($footerOne as $footerLink)
+                                    <li><a href="{{ $footerLink->url }}">{{ $footerLink->title }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -37,11 +49,9 @@
                         <div class="wsus__footer_link">
                             <h2>Programs</h2>
                             <ul>
-                                <li><a href="#">The Arts</a></li>
-                                <li><a href="#">Human Sciences</a></li>
-                                <li><a href="#">Economics</a></li>
-                                <li><a href="#">Natural Sciences</a></li>
-                                <li><a href="#">Business</a></li>
+                                @foreach ($footerTwo as $footerLink)
+                                    <li><a href="{{ $footerLink->url }}">{{ $footerLink->title }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
