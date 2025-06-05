@@ -20,7 +20,6 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <x-input-block name="url" label="Link Url" placeholder="Link Url"></x-input-block>
-                                    <x-input-error :messages="$errors->get('url')" class="" />
 
                                 </div>
 
