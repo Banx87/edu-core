@@ -282,6 +282,16 @@
                          </a>
                      </li>
                      <li class="nav-item">
+                         <a class="nav-link" href="{{ route('admin.custom-page.index') }}">
+                             <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                 <i class="ti ti-lock-dollar"></i>
+                             </span>
+                             <span class="nav-link-title">
+                                 Custom Pages
+                             </span>
+                         </a>
+                     </li>
+                     <li class="nav-item">
                          <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-cash-register"></i>

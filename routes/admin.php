@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseLanguageController;
 use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
+use App\Http\Controllers\Admin\CustomPageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\FeaturedInstructorController;
@@ -40,8 +41,6 @@ use App\Http\Controllers\Admin\SocialLinkController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TopBarController;
 use App\Http\Controllers\Admin\VideoSectionController;
-use App\Models\FooterColumnOne;
-use App\Models\FooterColumnTwo;
 use Illuminate\Support\Facades\Route;
 
 Route::group(["middleware" => "guest:admin", "prefix" => "admin", "as" => "admin."], function () {
@@ -220,6 +219,9 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     /* SOCIAL LINKS ROUTES */
     Route::resource('social-links', SocialLinkController::class);
+
+    /* CUSTOM PAGE ROUTES */
+    Route::resource('custom-page', CustomPageController::class);
 
 
 
