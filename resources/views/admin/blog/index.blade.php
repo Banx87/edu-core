@@ -19,6 +19,7 @@
                             <table class="table table-vcenter card-table">
                                 <thead>
                                     <tr>
+                                        <th>Image</th>
                                         <th>Title</th>
                                         <th>Slug</th>
                                         <th>Status</th>
@@ -28,8 +29,12 @@
                                 <tbody>
                                     @forelse ($blogs as $blog)
                                         <tr>
+                                            <td style="background-color: aliceblue; width: 100px;">
+                                                <img src="{{ asset($blog->image) }}" style="width: 75px !important;"
+                                                    alt="$blog->title" />
+                                            </td>
                                             <td>
-                                                {{ $blog->name }}
+                                                {{ $blog->title }}
                                             </td>
                                             <td>
                                                 {{ $blog->slug }}
@@ -40,11 +45,11 @@
                                                     : '<span class="badge bg-pink text-red-fg">Inactive</span>' !!}
                                             </td>
                                             <td style="min-width: 150px;">
-                                                <a href="{{ route('admin.blog-categories.edit', $blog->id) }}"
+                                                <a href="{{ route('admin.blogs.edit', $blog->id) }}"
                                                     class="btn-sm btn btn-ghost-primary">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
-                                                <a href="{{ route('admin.blog-categories.destroy', $blog->id) }}"
+                                                <a href="{{ route('admin.blogs.destroy', $blog->id) }}"
                                                     class="btn-sm btn btn-ghost-danger delete-item">
                                                     <i class="ti ti-trash-x"></i>
                                                 </a>
@@ -52,7 +57,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4" class="text-center">No categories found.</td>
+                                            <td colspan="5" class="text-center">No categories found.</td>
                                         </tr>
                                     @endforelse
 
