@@ -28,6 +28,20 @@ if (!function_exists('minutesToTime')) {
     }
 }
 
+if (!function_exists('user')) {
+    function user()
+    {
+        return auth('web')->user();
+    }
+}
+
+if (!function_exists('adminUser')) {
+    function adminUser()
+    {
+        return auth('admin')->user();
+    }
+}
+
 // Calculate cart total items
 function cartTotalItems()
 {
