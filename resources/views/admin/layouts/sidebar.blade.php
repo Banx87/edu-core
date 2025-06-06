@@ -282,24 +282,35 @@
                          </a>
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link" href="{{ route('admin.custom-page.index') }}">
+                         <a class="nav-link" href="{{ route('admin.withdraw-request.index') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                 <i class="ti ti-lock-dollar"></i>
+                                 <i class="ti ti-cash-move"></i>
                              </span>
                              <span class="nav-link-title">
-                                 Custom Pages
+                                 Payout Requests
                              </span>
                          </a>
                      </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
+
+                     <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                             data-bs-auto-close="false" role="button" aria-expanded="false">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                 <i class="ti ti-cash-register"></i>
+                                 <i class="ti ti-exchange"></i>
                              </span>
                              <span class="nav-link-title">
-                                 Payment Settings
+                                 Content Management
                              </span>
                          </a>
+                         <div class="dropdown-menu">
+                             <div class="dropdown-menu-columns">
+                                 <div class="dropdown-menu-column">
+                                     <a class="dropdown-item" href="{{ route('admin.blog-categories.index') }}">
+                                         Blog Category
+                                     </a>
+                                 </div>
+                             </div>
+                         </div>
                      </li>
                      <li class="nav-item">
                          <a class="nav-link" href="{{ route('admin.payout-gateway.index') }}">
@@ -311,6 +322,7 @@
                              </span>
                          </a>
                      </li>
+
 
                      <li class="nav-item dropdown">
                          <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
@@ -414,6 +426,7 @@
                              </div>
                          </div>
                      </li>
+
                      <li class="nav-item dropdown">
                          <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                              data-bs-auto-close="false" role="button" aria-expanded="false">
@@ -455,12 +468,22 @@
                          </div>
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link" href="{{ route('admin.withdraw-request.index') }}">
+                         <a class="nav-link" href="{{ route('admin.custom-page.index') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                 <i class="ti ti-cash-move"></i>
+                                 <i class="ti ti-lock-dollar"></i>
                              </span>
                              <span class="nav-link-title">
-                                 Payout Requests
+                                 Custom Pages
+                             </span>
+                         </a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
+                             <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                 <i class="ti ti-cash-register"></i>
+                             </span>
+                             <span class="nav-link-title">
+                                 Payment Settings
                              </span>
                          </a>
                      </li>
