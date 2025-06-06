@@ -19,38 +19,32 @@
                             <table class="table table-vcenter card-table">
                                 <thead>
                                     <tr>
-                                        <th>Icon</th>
-                                        <th>Url</th>
+                                        <th>Title</th>
+                                        <th>Slug</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @forelse ($socialLinks as $social)
+                                    @forelse ($categories as $category)
                                         <tr>
-                                            <td style="background-color: #cfcfcf; width: 65px !important;">
-                                                @if (preg_match('/\.(png|jpg|jpeg|gif|bmp|svg|webp)$/i', $social->icon))
-                                                    <img src="{{ asset($social->icon) }}" alt="{{ $social->name }}"
-                                                        style="width: 25px !important">
-                                                @else
-                                                    <i class="{{ $social->icon }}" style="font-size: 25px !important "></i>
-                                                @endif
-
+                                            <td>
+                                                {{ $category->name }}
                                             </td>
                                             <td>
-                                                {{ $social->url }}
+                                                {{ $category->slug }}
                                             </td>
                                             <td class="">
-                                                {!! $social->status
-                                                    ? '<span class="badge bg-lime text-lime-fg">Yes</span>'
-                                                    : '<span class="badge bg-pink text-red-fg">No</span>' !!}
+                                                {!! $category->status
+                                                    ? '<span class="badge bg-lime text-lime-fg">Active</span>'
+                                                    : '<span class="badge bg-pink text-red-fg">Inactive</span>' !!}
                                             </td>
                                             <td style="min-width: 150px;">
-                                                <a href="{{ route('admin.social-links.edit', $social->id) }}"
+                                                <a href="{{ route('admin.blog-categories.edit', $category->id) }}"
                                                     class="btn-sm btn btn-ghost-primary">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
-                                                <a href="{{ route('admin.social-links.destroy', $social->id) }}"
+                                                <a href="{{ route('admin.blog-categories.destroy', $category->id) }}"
                                                     class="btn-sm btn btn-ghost-danger delete-item">
                                                     <i class="ti ti-trash-x"></i>
                                                 </a>
@@ -60,12 +54,15 @@
                                         <tr>
                                             <td colspan="4" class="text-center">No categories found.</td>
                                         </tr>
-                                    @endforelse --}}
+                                    @endforelse
 
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                </div>
+                <div class="mt-3">
+                    {{ $categories->links() }}
                 </div>
             </div>
         </div>

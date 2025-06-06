@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
+use Exception;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -15,7 +17,8 @@ class BlogCategoryController extends Controller
      */
     public function index(): View
     {
-        return view('admin.blog.category.index');
+        $categories = BlogCategory::paginate(15);
+        return view('admin.blog.category.index', compact('categories'));
     }
 
     /**
@@ -59,15 +62,28 @@ class BlogCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = BlogCategory::findOrFail($id);
+        return view('admin.blog.category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
-        //
+        $request->validate([
+            'title' => 'nullable|string|max:255|unique:blog_categories,name,' . $id,
+            'status' => 'boolean',
+        ]);
+
+        $category = BlogCategory::findOrFail($id);
+        $category->name = $request->title;
+        $category->slug = Str::slug($request->title);
+        $category->status = $request->status ?? 0;
+        $category->save();
+
+        notyf()->success('Blog Updated created successfully.');
+        return to_route('admin.blog-categories.index');
     }
 
     /**
@@ -75,6 +91,14 @@ class BlogCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $category = BlogCategory::findOrFail($id);
+            $category->delete();
+            notyf()->success('Blog Category deleted successfully.');
+            return response(['message' => 'Deleted sucesfully!!'], 200);
+        } catch (Exception $e) {
+            logger('Blog Category Edit Error >> ' . $e);
+            return response(['message' => 'Something went wrong!'], 500);
+        }
     }
 }
