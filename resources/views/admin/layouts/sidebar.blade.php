@@ -306,7 +306,12 @@
                              <div class="dropdown-menu-columns">
                                  <div class="dropdown-menu-column">
                                      <a class="dropdown-item" href="{{ route('admin.blog-categories.index') }}">
-                                         Blog Category
+                                         Blog Categories
+                                     </a>
+                                 </div>
+                                 <div class="dropdown-menu-column">
+                                     <a class="dropdown-item" href="{{ route('admin.blogs.index') }}">
+                                         Blogs
                                      </a>
                                  </div>
                              </div>
