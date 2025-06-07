@@ -57,7 +57,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5" class="text-center">No categories found.</td>
+                                            <td colspan="5" class="text-center">No blogs posts found.</td>
                                         </tr>
                                     @endforelse
 

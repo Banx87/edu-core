@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CertificateController;
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\ContactController;
@@ -90,6 +91,10 @@ Route::post('review', [CoursePageController::class, 'storeReview'])->name('revie
 
 /* Custom Page Routes*/
 Route::get('pages/{slug}', [FrontendController::class, 'customPage'])->name('custom-page');
+
+/* Blog Routes*/
+Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 /*
 * -------------------------------------------------------------------------
