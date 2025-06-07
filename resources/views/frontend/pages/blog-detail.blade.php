@@ -1,5 +1,13 @@
 @extends('frontend.layouts.master')
 
+@push('meta_tags')
+    <meta property="og:title" content="{{ $blog->title ?? '' }}">
+    <meta property="og:description" content="{{ $blog->seo_description ?? '' }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ asset($blog->image ?? '') }}">
+    <meta property="og:type" content="Blog">
+@endpush
+
 @section('content')
     <section class="wsus__breadcrumb" style="background: url(images/breadcrumb_bg.jpg);">
         <div class="wsus__breadcrumb_overlay">
@@ -21,7 +29,6 @@
 
     <section class="wsus__blog_details mt_120 xs_mt_100 pb_120 xs_pb_100">
         <div class="container">
-            <pre>{{ print_r($blog->getAttributes(), true) }}</pre>
             <div class="row">
                 <div class="col-lg-8 wow fadeInLeft">
                     <div class="wsus__blog_details_area">
@@ -74,18 +81,27 @@
                             </ul> --}}
                             <ul class="share d-flex flex-wrap align-items-center">
                                 <li><span>share:</span></li>
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                                <li class="ez-facebook"><a href="#"><i class="ti ti-brand-facebook"
+                                            style="line-height: 1.5; font-size: 24px;"></i></a>
+                                </li>
+                                <li class="ez-linkedin"><a href="#"><i class="ti ti-brand-linkedin"
+                                            style="line-height: 1.5; font-size: 24px;"></i></a>
+                                </li>
+                                <li class="ez-x"><a href="#"><i class="ti ti-brand-x"
+                                            style="line-height: 1.5; font-size: 24px;"></i></a></li>
+                                <li class="ez-reddit"><a href="#"><i class="ti ti-brand-reddit"
+                                            style="line-height: 1.5; font-size: 24px;"></i></a></li>
+                            </ul>
+                            <ul>
                             </ul>
                         </div>
                         <div class="wsus__blog_det_author">
                             <div class="img">
-                                <img src="images/blog_details_author_img.jpg" alt="Author" class="img-fluid">
+                                <img src="{{ $blog->author->image ? asset($blog->author->image) : asset('default_files/avatar.png') }}"
+                                    alt="Author" class="img-fluid">
                             </div>
                             <div class="text">
-                                <h3>Ravi O'Leigh</h3>
+                                <h3>{{ $blog->author->name }}</h3>
                                 <h5>Digital Marketing</h5>
                                 <p>Sed mi leo, accumsan vel ante at, viverra placerat nulla. Donec pharetra rutrum sed
                                     allium lectus fermentum enim Nam maximus.</p>
@@ -171,80 +187,49 @@
                 </div>
                 <div class="col-lg-4 wow fadeInRight">
                     <div class="wsus__blog_sidebar wsus__sidebar">
-                        <form action="#" class="wsus__sidebar_search">
-                            <input type="text" placeholder="Search Here...">
+                        <form action="{{ route('blog.index') }}" method="get" class="wsus__sidebar_search">
+                            <input type="text" name="search" placeholder="Search Here...">
                             <button type="submit">
-                                <img src="images/search_icon.png" alt="Search" class="img-fluid">
+                                <img src="{{ asset('frontend/assets/images/search_icon.png') }}" alt="Search"
+                                    class="img-fluid">
                             </button>
                         </form>
                         <div class="wsus__sidebar_recent_post">
                             <h3>Recent Posts</h3>
                             <ul class="d-flex flex-wrap">
-                                <li>
-                                    <a href="#" class="img">
-                                        <img src="images/blog_4_img_1.jpg" alt="Blog" class="img-fluid">
-                                    </a>
-                                    <div class="text">
-                                        <p>
-                                            <span>
-                                                <img src="images/calendar_blue.png" alt="Clander" class="img-fluid">
-                                            </span>
-                                            March 23, 2024
-                                        </p>
-                                        <a href="#" class="title">Launch into UI Design with Tips For Efficient
-                                            Progress</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="img">
-                                        <img src="images/blog_4_img_2.jpg" alt="Blog" class="img-fluid">
-                                    </div>
-                                    <div class="text">
-                                        <p>
-                                            <span>
-                                                <img src="images/calendar_blue.png" alt="Clander" class="img-fluid">
-                                            </span>
-                                            June 15, 2024
-                                        </p>
-                                        <a href="#" class="title">Simplified Approach to Realistic Lip Drawing in 7
-                                            Steps.</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="img">
-                                        <img src="images/blog_4_img_3.jpg" alt="Blog" class="img-fluid">
-                                    </div>
-                                    <div class="text">
-                                        <p>
-                                            <span>
-                                                <img src="images/calendar_blue.png" alt="Clander" class="img-fluid">
-                                            </span>
-                                            October 27, 2024
-                                        </p>
-                                        <a href="#" class="title">Exploring the GREP Command For File Discovery in
-                                            Linux.</a>
-                                    </div>
-                                </li>
+                                @forelse ($recentBlogs as $blog)
+                                    <li>
+                                        <a href="{{ route('blog.show', $blog->slug) }}" class="img">
+                                            <img src="{{ $blog->image }}" alt="Image for blog {{ $blog->title }}"
+                                                class="img-fluid">
+                                        </a>
+                                        <div class="text">
+                                            <p>
+                                                <span>
+                                                    <img src="{{ asset('frontend/assets/images/calendar_blue.png') }}"
+                                                        alt="Calendar" class="img-fluid">
+                                                </span>
+                                                {{ date('M d, Y', strtotime($blog->created_at)) }}
+                                            </p>
+                                            <a href="{{ route('blog.show', $blog->slug) }}"
+                                                class="title">{{ $blog->title }}</a>
+                                        </div>
+                                    </li>
+                                @empty
+                                    <li>No blogs found</li>
+                                @endforelse
                             </ul>
                         </div>
                         <div class="wsus__sidebar_blog_category">
                             <h3>Categories</h3>
                             <ul>
-                                <li>
-                                    <a href="#">Business <span>(07)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Data Science <span>(14)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Marketing <span>(27)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Health & Fitness <span>(31)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Finance <span>(12)</span></a>
-                                </li>
+                                @foreach ($blogCategories as $category)
+                                    <li>
+                                        <a href="{{ route('blog.index', ['category' => $category->slug]) }}">{{ $category->name }}
+                                            <span>({{ $category->blogs_count }})</span>
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="wsus__sidebar_blog_tags">
@@ -265,3 +250,7 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/gh/shakilahmed0369/ez-share/dist/ez-share.min.js"></script>
+@endpush

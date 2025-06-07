@@ -4,14 +4,26 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\BlogCategory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    function index(): View
+    function index(Request $request): View
     {
-        $blogs = Blog::where('status', 1)->paginate();
+        $blogs = Blog::where('status', 1)
+            ->when($request->filled('search'), function ($query) use ($request) {
+                $query->where('title', 'like', '%' . $request->search . '%')
+                    ->orWhere('content', 'like', '%' . $request->search . '%');
+            })
+            ->when($request->has('category') && $request->filled('category'), function ($query) use ($request) {
+                $slug = $request->category;
+                $query->whereHas('category', function ($q) use ($slug) {
+                    $q->where('slug', $slug);
+                });
+            })
+            ->paginate();
         return view('frontend.pages.blog', compact('blogs'));
     }
 
@@ -22,6 +34,16 @@ class BlogController extends Controller
             ->where('status', 1)
             ->firstOrFail();
 
-        return view('frontend.pages.blog-detail', compact('blog'));
+        $recentBlogs = Blog::where('status', 1)
+            ->where('slug', '!=', $slug)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        $blogCategories = BlogCategory::withCount('blogs')
+            ->where('status', 1)
+            ->get();
+
+        return view('frontend.pages.blog-detail', compact('blog', 'recentBlogs', 'blogCategories'));
     }
 }

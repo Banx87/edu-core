@@ -23,6 +23,7 @@
                                         <th>Title</th>
                                         <th>Slug</th>
                                         <th>Status</th>
+                                        <th>Created At</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -44,6 +45,9 @@
                                                     ? '<span class="badge bg-lime text-lime-fg">Active</span>'
                                                     : '<span class="badge bg-pink text-red-fg">Inactive</span>' !!}
                                             </td>
+                                            <td>
+                                                {{ date('F d, Y', strtotime($blog->created_at)) }}
+                                            </td>
                                             <td style="min-width: 150px;">
                                                 <a href="{{ route('admin.blogs.edit', $blog->id) }}"
                                                     class="btn-sm btn btn-ghost-primary">
@@ -57,7 +61,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5" class="text-center">No blogs posts found.</td>
+                                            <td colspan="6" class="text-center">No blogs posts found.</td>
                                         </tr>
                                     @endforelse
 
