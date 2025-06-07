@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -29,7 +30,7 @@ class BlogController extends Controller
 
     function show(string $slug): View
     {
-        $blog = Blog::with(['author', 'category'])
+        $blog = Blog::with(['author', 'category', 'comments'])
             ->where('slug', $slug)
             ->where('status', 1)
             ->firstOrFail();
@@ -45,5 +46,22 @@ class BlogController extends Controller
             ->get();
 
         return view('frontend.pages.blog-detail', compact('blog', 'recentBlogs', 'blogCategories'));
+    }
+
+    function storeComment(Request $request, string $id): RedirectResponse
+    {
+        $request->validate([
+            'comment' => 'required|string',
+        ]);
+
+        $blog = Blog::findOrFail($id);
+        $blog->comments()->create([
+            'comment' => $request->comment,
+            'user_id' => user()->id,
+            'blog_id' => $blog->id
+        ]);
+
+        notyf()->success('Comment added successfully.');
+        return redirect()->back();
     }
 }

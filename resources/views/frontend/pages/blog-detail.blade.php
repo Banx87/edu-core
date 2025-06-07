@@ -63,7 +63,7 @@
                                         <img src="{{ asset('frontend/assets/images/comment_icon_gray.png') }}"
                                             alt="bookmark" class="img-fluid">
                                     </span>
-                                    3 Comments
+                                    {{ $blog->comments()->count() }} Comments
                                 </li>
                             </ul>
                             <h2>{{ $blog->title }}</h2>
@@ -115,74 +115,46 @@
                         </div>
                         <div class="wsus__blog_comment_area mt_75">
                             <h2>Comments</h2>
-                            <div class="wsus__blog_single_comment">
-                                <div class="img">
-                                    <img src="images/testimonial_user_1.png" alt="Comments" class="img-fluid">
+                            @foreach ($blog->comments()->orderBy('created_at', 'desc')->get() ?? [] as $comment)
+                                <div class="wsus__blog_single_comment">
+                                    <div class="img">
+                                        <img src="{{ $comment->user->image ? asset($comment->user->image) : asset('default_files/avatar.png') }}"
+                                            alt="Comments" class="img-fluid">
+                                    </div>
+                                    <div class="text">
+                                        <h4>{{ $comment->user->name }}</h4>
+                                        <h6>{{ date('F j, Y \a\t g:i A', strtotime($comment->created_at)) }}</h6>
+                                        <p>{{ $comment->comment }}</p>
+                                    </div>
                                 </div>
-                                <div class="text">
-                                    <h4>Ravi O'Leigh</h4>
-                                    <h6>March 23, 2024 at 12:30 pm <a href="#"><i class="fas fa-reply"></i></a></h6>
-                                    <p>Nulla a ipsum nibh. Fusce purus elit, tristique vitae enim sed, auctor placerat
-                                        est. Maecenas consequat nibh consequat malesuada fringilla, mauris lorem dapibus
-                                        metus, non imperdiet nunc erat ultricies est. Praesent ames nec lorem sit amet
-                                        leo consequat rutrum non nibh sem eget metus.</p>
-                                </div>
-                            </div>
-                            <div class="wsus__blog_single_comment single_comment_reply">
-                                <div class="img">
-                                    <img src="images/testimonial_user_2.png" alt="Comments" class="img-fluid">
-                                </div>
-                                <div class="text">
-                                    <h4>Doug Lyphe</h4>
-                                    <h6>June 25, 2024 at 08:45 pm <a href="#"><i class="fas fa-reply"></i></a></h6>
-                                    <p>Nulla a ipsum nibh. Fusce purus elit, tristique vitae enim sed, auctor placerat
-                                        est. Maecenas consequat nibh consequat malesuada fringilla, mauris lorem dapibus
-                                        metus, non imperdiet nunc erat ultricies est. Praesent ames nec lorem sit amet
-                                        leo consequat rutrum non nibh sem eget metus.</p>
-                                </div>
-                            </div>
-                            <div class="wsus__blog_single_comment">
-                                <div class="img">
-                                    <img src="images/testimonial_user_3.png" alt="Comments" class="img-fluid">
-                                </div>
-                                <div class="text">
-                                    <h4>Doug Lyphe</h4>
-                                    <h6>June 25, 2024 at 08:45 pm <a href="#"><i class="fas fa-reply"></i></a></h6>
-                                    <p>Nulla a ipsum nibh. Fusce purus elit, tristique vitae enim sed, auctor placerat
-                                        est. Maecenas consequat nibh consequat malesuada fringilla, mauris lorem dapibus
-                                        metus, non imperdiet nunc erat ultricies est. Praesent ames nec lorem sit amet
-                                        leo consequat rutrum non nibh sem eget metus.</p>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
-                        <div class="wsus__blog_comment_input_area mt_75">
-                            <h2>Post a Comment</h2>
-                            <p>Your email address will not be published. Required fields are marked *</p>
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-xl-6">
-                                        <input type="text" placeholder="Name">
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <input type="email" placeholder="Email">
-                                    </div>
-                                    <div class="col-xl-12">
-                                        <textarea rows="5" placeholder="Leave a reply"></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                Save my name, email, and website in this browser for the next time I
-                                                comment.
-                                            </label>
+                        @auth
+                            <div class="wsus__blog_comment_input_area mt_75">
+                                <h2>Post a Comment</h2>
+                                <form action="{{ route('blog.comment.store', $blog->id) }}">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <p>
+                                                Hey, {{ auth()->user()->name }}
+                                            </p>
+                                            <p>
+                                                Please leave a comment below.
+                                            </p>
                                         </div>
-                                        <button type="submit" class="common_btn">Post Comment</button>
+                                        <div class="col-xl-12 mb-1">
+                                            <textarea class="mt-0" rows="5" placeholder="Leave a comment" name="comment"></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="common_btn">Post Comment</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
+                        @else
+                            <div class="alert alert-info mt-5">Please login to comment</div>
+                        @endauth
                     </div>
                 </div>
                 <div class="col-lg-4 wow fadeInRight">

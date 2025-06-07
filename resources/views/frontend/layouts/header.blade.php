@@ -106,6 +106,9 @@
                  <a class="nav-link" href="{{ url('about') }}">About Us</a>
              </li>
              <li class="nav-item">
+                 <a class="nav-link" href="{{ url('blog') }}">Blogs</a>
+             </li>
+             <li class="nav-item">
                  <a class="nav-link" href="{{ url('contact') }}">contact us</a>
              </li>
              @foreach ($customPages as $page)
