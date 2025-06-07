@@ -14,4 +14,14 @@ class BlogController extends Controller
         $blogs = Blog::where('status', 1)->paginate();
         return view('frontend.pages.blog', compact('blogs'));
     }
+
+    function show(string $slug): View
+    {
+        $blog = Blog::with(['author', 'category'])
+            ->where('slug', $slug)
+            ->where('status', 1)
+            ->firstOrFail();
+
+        return view('frontend.pages.blog-detail', compact('blog'));
+    }
 }

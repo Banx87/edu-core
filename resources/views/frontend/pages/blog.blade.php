@@ -32,8 +32,8 @@
                             <div class="wsus__single_blog_4_text">
                                 <ul>
                                     <li>
-                                        <span><img src="{{ asset('frontend/assets/images/user_icon_black.png') }}"
-                                                alt="User" class="img-fluid"></span>
+                                        <span><img src="{{ asset($blog->author->image) }}" alt="User"
+                                                class="img-fluid"></span>
                                         By {{ $blog->author->name }}
                                     </li>
                                     <li>
@@ -42,9 +42,10 @@
                                         3 Comments
                                     </li>
                                 </ul>
-                                <a href="#" class="title">{{ $blog->title }}</a>
+                                <a href="{{ route('blog.show', $blog->slug) }}" class="title">{{ $blog->title }}</a>
                                 <p>{{ Str::limit(strip_tags($blog->content), 150) }}</p>
-                                <a href="#" class="common_btn">Read More <i class="far fa-arrow-right"></i></a>
+                                <a href="{{ route('blog.show', $blog->slug) }}" class="common_btn">Read More <i
+                                        class="far fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
