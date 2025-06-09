@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-    <section class="wsus__breadcrumb" style="background: url({{ asset('frontend/assets/images/breadcrumb_bg.jpg') }});">
+    <section class="wsus__breadcrumb" style="background: url({{ asset('frontend/assets/images/breadcrumb_bg.jpg') }}));">
         <div class="wsus__breadcrumb_overlay">
             <div class="container">
                 <div class="row">

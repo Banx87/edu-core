@@ -1,7 +1,7 @@
 <section class="wsus__quality_courses mt_120 xs_mt_100">
     <div class="row quality_course_slider">
         <div class="quality_course_slider_item"
-            style="background: url({{ asset('frontend/assets/images/quality_courses_bg.jpg') }});">
+            style="background: url({{ asset('frontend/assets/images/quality_courses_bg.jpg') }}));">
             <div class="col-12">
                 <div class="row align-items-center">
                     <div class="col-xxl-5 col-xl-4 col-md-6 col-lg-7 wow fadeInLeft">

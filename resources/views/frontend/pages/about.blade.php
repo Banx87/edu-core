@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- BREADCRUMB --}}
-    <section class="wsus__breadcrumb" style="background: url(images/breadcrumb_bg.jpg);">
+    <section class="wsus__breadcrumb" style="background: url({{ asset(config('settings.site_breadcrumb')) }});">
         <div class="wsus__breadcrumb_overlay">
             <div class="container">
                 <div class="row">
@@ -39,10 +39,10 @@
                             <svg viewBox="0 0 100 100">
                                 <defs>
                                     <path id="circle" d="
-                                                        M 50, 50
-                                                        m -37, 0
-                                                        a 37,37 0 1,1 74,0
-                                                        a 37,37 0 1,1 -74,0">
+                                                                    M 50, 50
+                                                                    m -37, 0
+                                                                    a 37,37 0 1,1 74,0
+                                                                    a 37,37 0 1,1 -74,0">
                                     </path>
                                 </defs>
                                 <text>
@@ -184,7 +184,8 @@
     {{-- Counter --}}
     <section class="wsus__about_counter wsus__counter mt_120 xs_mt_100">
         <div class="container">
-            <div class="wsus__counter_bg" style="background: url({{ asset('frontend/assets/images/counter_bg.jpg') }});">
+            <div class="wsus__counter_bg"
+                style="background: url({{ asset('frontend/assets/images/counter_bg.jpg') }}));">
                 <div class="row">
                     <div class="col-lg-3 col-md-6 wow fadeInUp">
                         <div class="wsus__single_counter">

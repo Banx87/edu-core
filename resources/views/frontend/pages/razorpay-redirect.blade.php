@@ -22,10 +22,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const button = document.querySelector('.razorpay-payment-button');
-            button.style.display = 'none';
-            button.click();
-        });
+        const button = document.querySelector('.razorpay-payment-button');
+        button.style.display = 'none';
+        button.click();
+        }));
     </script>
 </body>
 

@@ -12,7 +12,7 @@
                     <div class="col-lg-3 wow fadeInUp">
                         <div class="wsus__footer_3_logo_area">
                             <a class="logo" href="index.html">
-                                <img src="{{ asset('frontend/assets/images/footer_logo.png') }}" alt="EduCore"
+                                <img src="{{ asset(config('settings.site_footer_logo')) }}" alt="EduCore"
                                     class="img-fluid">
                             </a>
                             <p>{{ $footer->description }}</p>

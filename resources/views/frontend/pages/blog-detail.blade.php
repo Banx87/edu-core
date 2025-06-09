@@ -9,7 +9,7 @@
 @endpush
 
 @section('content')
-    <section class="wsus__breadcrumb" style="background: url(images/breadcrumb_bg.jpg);">
+    <section class="wsus__breadcrumb" style="background: url({{ asset(config('settings.site_breadcrumb')) }});">
         <div class="wsus__breadcrumb_overlay">
             <div class="container">
                 <div class="row">
