@@ -4,7 +4,9 @@
         <div class="list-group list-group-transparent">
             <a href="{{ route('admin.settings.general-settings') }}"
                 class="list-group-item list-group-item-action d-flex align-items-center active">General Settings</a>
-            <a href="{{ route('admin.commission-settings.index') }}"
+            <a href="{{ route('admin.settings.logo.index') }}"
+                class="list-group-item list-group-item-action d-flex align-items-center active">Logo & Favicon</a>
+            <a href="{{ route('admin.settings.commissions.index') }}"
                 class="list-group-item list-group-item-action d-flex align-items-center">Commission Settings</a>
             <a href="{{ route('admin.settings.smtp-settings') }}"
                 class="list-group-item list-group-item-action d-flex align-items-center">SMTP Settings</a>

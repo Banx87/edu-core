@@ -3,7 +3,7 @@
 @section('settings_content')
     <div class="col-12 col-md-9 d-flex flex-column">
         <div class="card-body">
-            <form action="{{ route('admin.commission-settings.update') }}" method="POST">
+            <form action="{{ route('admin.settings.commissions.update') }}" method="POST">
                 @csrf
                 <h2 class="card-title mt-4">Commission Settings</h2>
                 <div class="row g-3">
