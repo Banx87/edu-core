@@ -71,13 +71,15 @@ class SettingsController extends Controller
     {
 
         $validatedData = $request->validate([
-            // 'smtp_host' => 'required',
-            // 'smtp_port' => 'required',
-            // 'smtp_username' => 'required',
-            // 'smtp_password' => 'required',
-            // 'smtp_encryption' => 'required',
             'sender_email' => 'required|email|max:255',
             'receiver_email' => 'required|email|max:255',
+            'mail_mailer' => 'required|string|max:255',
+            'mail_host' => 'required|string|max:255',
+            'mail_port' => 'required|numeric',
+            'mail_username' => 'required|string|max:255',
+            'mail_password' => 'required|string|max:255',
+            'mail_encryption' => 'required|string|max:255',
+            'mail_queue' => 'required|string|in:on,off',
         ]);
 
         foreach ($validatedData as $key => $value) {
