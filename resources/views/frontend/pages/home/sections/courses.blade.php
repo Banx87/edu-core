@@ -47,75 +47,9 @@
                     tabindex="0">
                     <div class="row">
                         @foreach ($course->courses()->latest()->take(8)->get() as $course)
-                            <div class="col-xl-3 col-md-6 col-lg-4">
-                                <div class="wsus__single_courses_3">
-                                    <div class="wsus__single_courses_3_img">
-                                        <img src="{{ asset($course->thumbnail) }}" alt="{{ $course->title }}"
-                                            class="img-fluid">
-                                        {{-- <ul>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('frontend/assets/images/love_icon_black.png') }}"
-                                                        alt="Love" class="img-fluid">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('frontend/assets/images/compare_icon_black.png') }}"
-                                                        alt="Compare" class="img-fluid">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('frontend/assets/images/cart_icon_black_2.png') }}"
-                                                        alt="Cart" class="img-fluid">
-                                                </a>
-                                            </li>
-                                        </ul> --}}
-                                        <span class="time"><i class="far fa-clock"></i> 15 Hours</span>
-                                    </div>
-                                    <div class="wsus__single_courses_text_3">
-                                        <div class="rating_area">
-                                            <!-- <a href="#" class="category">Design</a> -->
-                                            <p class="rating">
-                                                @if ($course->reviews()->avg('rating') > 0)
-                                                    @for ($i = 0; $i < $course->reviews()->avg('rating'); $i++)
-                                                        <i class="fas fa-star" style="color: rgb(255, 199, 13)"></i>
-                                                    @endfor
-                                                    <span>({{ number_format($course->reviews()->avg('rating'), 1) }}
-                                                        Rating)</span>
-                                                @else
-                                                    <span>No Reviews Yet</span>
-                                                @endif
-                                            </p>
-                                        </div>
-
-                                        <a class="title"
-                                            href="{{ route('courses.show', $course->slug) }}">{{ $course->title }}</a>
-                                        <ul>
-                                            <li>{{ $course->lessons()->count() }} Lessons</li>
-                                            <li>{{ $course->enrollments->count() }} Students</li>
-                                        </ul>
-                                        <a class="author" href="#">
-                                            <div class="img">
-                                                <img src={{ asset($course->instructor->image) }} alt="Author"
-                                                    class="img-fluid">
-                                            </div>
-                                            <h4>{{ $course->instructor->name }}</h4>
-                                        </a>
-                                    </div>
-                                    <div class="wsus__single_courses_3_footer">
-                                        <a class="common_btn add_to_cart" href="javascript:;"
-                                            data-course-id={{ $course->id }}>Enroll <i
-                                                class="far fa-arrow-right"></i></a>
-                                        @if ($course->discount > 0)
-                                            <p><del>${{ $course->price }}</del> ${{ $course->discount }}</p>
-                                        @else
-                                            <p>${{ $course->price }}</p>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
+                            <x-course-card variant="compact" :thumbnail="$course->thumbnail" :title="$course->title" :duration="$course->duration"
+                                :url="route('courses.show', $course->slug)" :instructor="$course->instructor" :price="$course->price" :discount="$course->discount"
+                                :lessons="$course->lessons()->count()" :students="$course->enrollments->count()" :rating="$course->reviews()->avg('rating')" :id="$course->id" />
                         @endforeach
                     </div>
                     <div class="row mt_60 wow fadeInUp">
