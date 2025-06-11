@@ -46,15 +46,13 @@
                     id="pills-{{ $course->id }}" role="tabpanel" aria-labelledby="pills-{{ $course->id }}-tab"
                     tabindex="0">
                     <div class="row">
-                        {{-- {{ $course->courses()->take(8) }} --}}
-                        {{-- @foreach ($course->courses() as $item) --}}
                         @foreach ($course->courses()->latest()->take(8)->get() as $course)
                             <div class="col-xl-3 col-md-6 col-lg-4">
                                 <div class="wsus__single_courses_3">
                                     <div class="wsus__single_courses_3_img">
                                         <img src="{{ asset($course->thumbnail) }}" alt="{{ $course->title }}"
                                             class="img-fluid">
-                                        <ul>
+                                        {{-- <ul>
                                             <li>
                                                 <a href="#">
                                                     <img src="{{ asset('frontend/assets/images/love_icon_black.png') }}"
@@ -73,27 +71,30 @@
                                                         alt="Cart" class="img-fluid">
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                         <span class="time"><i class="far fa-clock"></i> 15 Hours</span>
                                     </div>
                                     <div class="wsus__single_courses_text_3">
                                         <div class="rating_area">
                                             <!-- <a href="#" class="category">Design</a> -->
                                             <p class="rating">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <span>(4.8 Rating)</span>
+                                                @if ($course->reviews()->avg('rating') > 0)
+                                                    @for ($i = 0; $i < $course->reviews()->avg('rating'); $i++)
+                                                        <i class="fas fa-star" style="color: rgb(255, 199, 13)"></i>
+                                                    @endfor
+                                                    <span>({{ number_format($course->reviews()->avg('rating'), 1) }}
+                                                        Rating)</span>
+                                                @else
+                                                    <span>No Reviews Yet</span>
+                                                @endif
                                             </p>
                                         </div>
 
                                         <a class="title"
                                             href="{{ route('courses.show', $course->slug) }}">{{ $course->title }}</a>
                                         <ul>
-                                            <li>24 Lessons</li>
-                                            <li>38 Student</li>
+                                            <li>{{ $course->lessons()->count() }} Lessons</li>
+                                            <li>{{ $course->enrollments->count() }} Students</li>
                                         </ul>
                                         <a class="author" href="#">
                                             <div class="img">
@@ -116,424 +117,6 @@
                                 </div>
                             </div>
                         @endforeach
-
-                        {{-- <div class="col-xl-3 col-md-6 col-lg-4">
-                        <div class="wsus__single_courses_3">
-                            <div class="wsus__single_courses_3_img">
-                                <img src="{{ asset('frontend/assets/images/courses_3_img_2.jpg') }}" alt="Courses"
-                                    class="img-fluid">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/love_icon_black.png') }}"
-                                                alt="Love" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/compare_icon_black.png') }}"
-                                                alt="Compare" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/cart_icon_black_2.png') }}"
-                                                alt="Cart" class="img-fluid">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <span class="time"><i class="far fa-clock"></i> 24 Hours</span>
-                            </div>
-                            <div class="wsus__single_courses_text_3">
-                                <div class="rating_area">
-                                    <!-- <a href="#" class="category">Business</a> -->
-                                    <p class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>(4.9 Rating)</span>
-                                    </p>
-                                </div>
-
-                                <a class="title" href="#">50 Tips For Designing an Exceptional
-                                    Online Learning Progress.</a>
-                                <ul>
-                                    <li>32 Lessons</li>
-                                    <li>48 Student</li>
-                                </ul>
-                                <a class="author" href="#">
-                                    <div class="img">
-                                        <img src="{{ asset('frontend/assets/images/author_img_2.jpg') }}"
-                                            alt="Author" class="img-fluid">
-                                    </div>
-                                    <h4>Hugh Millie-Yate</h4>
-                                </a>
-                            </div>
-                            <div class="wsus__single_courses_3_footer">
-                                <a class="common_btn" href="#">Enroll <i class="far fa-arrow-right"></i></a>
-                                <p>$239.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 col-lg-4">
-                        <div class="wsus__single_courses_3">
-                            <div class="wsus__single_courses_3_img">
-                                <img src="{{ asset('frontend/assets/images/courses_3_img_3.jpg') }}" alt="Courses"
-                                    class="img-fluid">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/love_icon_black.png') }}"
-                                                alt="Love" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/compare_icon_black.png') }}"
-                                                alt="Compare" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/cart_icon_black_2.png') }}"
-                                                alt="Cart" class="img-fluid">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <span class="time"><i class="far fa-clock"></i> 17 Hours</span>
-                            </div>
-                            <div class="wsus__single_courses_text_3">
-                                <div class="rating_area">
-                                    <!-- <a href="#" class="category">Marketing</a> -->
-                                    <p class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>(4.8 Rating)</span>
-                                    </p>
-                                </div>
-
-                                <a class="title" href="#">Holistic Internet-Based Instruction
-                                    Mastery Program.</a>
-                                <ul>
-                                    <li>37 Lessons</li>
-                                    <li>56 Student</li>
-                                </ul>
-                                <a class="author" href="#">
-                                    <div class="img">
-                                        <img src="{{ asset('frontend/assets/images/author_img_2.jpg') }}"
-                                            alt="Author" class="img-fluid">
-                                    </div>
-                                    <h4>Dominic L. Ement</h4>
-                                </a>
-                            </div>
-                            <div class="wsus__single_courses_3_footer">
-                                <a class="common_btn" href="#">Enroll <i class="far fa-arrow-right"></i></a>
-                                <p>$199.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 col-lg-4">
-                        <div class="wsus__single_courses_3">
-                            <div class="wsus__single_courses_3_img">
-                                <img src="{{ asset('frontend/assets/images/courses_3_img_4.jpg') }}" alt="Courses"
-                                    class="img-fluid">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/love_icon_black.png') }}"
-                                                alt="Love" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/compare_icon_black.png') }}"
-                                                alt="Compare" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/cart_icon_black_2.png') }}"
-                                                alt="Cart" class="img-fluid">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <span class="time"><i class="far fa-clock"></i> 15 Hours</span>
-                            </div>
-                            <div class="wsus__single_courses_text_3">
-                                <div class="rating_area">
-                                    <!-- <a href="#" class="category">Design</a> -->
-                                    <p class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>(4.8 Rating)</span>
-                                    </p>
-                                </div>
-
-                                <a class="title" href="#">Complete Blender Creator Learn 3D Modelling.</a>
-                                <ul>
-                                    <li>24 Lessons</li>
-                                    <li>38 Student</li>
-                                </ul>
-                                <a class="author" href="#">
-                                    <div class="img">
-                                        <img src="{{ asset('frontend/assets/images/author_img_2.jpg') }}"
-                                            alt="Author" class="img-fluid">
-                                    </div>
-                                    <h4>Hermann P. Schnitzel</h4>
-                                </a>
-                            </div>
-                            <div class="wsus__single_courses_3_footer">
-                                <a class="common_btn" href="#">Enroll <i class="far fa-arrow-right"></i></a>
-                                <p><del>$254</del> $156.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 col-lg-4">
-                        <div class="wsus__single_courses_3">
-                            <div class="wsus__single_courses_3_img">
-                                <img src="{{ asset('frontend/assets/images/courses_3_img_9.jpg') }}" alt="Courses"
-                                    class="img-fluid">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/love_icon_black.png') }}"
-                                                alt="Love" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/compare_icon_black.png') }}"
-                                                alt="Compare" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/cart_icon_black_2.png') }}"
-                                                alt="Cart" class="img-fluid">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <span class="time"><i class="far fa-clock"></i> 15 Hours</span>
-                            </div>
-                            <div class="wsus__single_courses_text_3">
-                                <div class="rating_area">
-                                    <!-- <a href="#" class="category">Design</a> -->
-                                    <p class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>(4.8 Rating)</span>
-                                    </p>
-                                </div>
-
-                                <a class="title" href="#">Complete Blender Creator Learn 3D Modelling.</a>
-                                <ul>
-                                    <li>24 Lessons</li>
-                                    <li>38 Student</li>
-                                </ul>
-                                <a class="author" href="#">
-                                    <div class="img">
-                                        <img src="{{ asset('frontend/assets/images/author_img_2.jpg') }}"
-                                            alt="Author" class="img-fluid">
-                                    </div>
-                                    <h4>Hermann P. Schnitzel</h4>
-                                </a>
-                            </div>
-                            <div class="wsus__single_courses_3_footer">
-                                <a class="common_btn" href="#">Enroll <i class="far fa-arrow-right"></i></a>
-                                <p><del>$254</del> $156.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 col-lg-4">
-                        <div class="wsus__single_courses_3">
-                            <div class="wsus__single_courses_3_img">
-                                <img src="{{ asset('frontend/assets/images/courses_3_img_6.jpg') }}" alt="Courses"
-                                    class="img-fluid">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/love_icon_black.png') }}"
-                                                alt="Love" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/compare_icon_black.png') }}"
-                                                alt="Compare" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/cart_icon_black_2.png') }}"
-                                                alt="Cart" class="img-fluid">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <span class="time"><i class="far fa-clock"></i> 24 Hours</span>
-                            </div>
-                            <div class="wsus__single_courses_text_3">
-                                <div class="rating_area">
-                                    <!-- <a href="#" class="category">Business</a> -->
-                                    <p class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>(4.9 Rating)</span>
-                                    </p>
-                                </div>
-
-                                <a class="title" href="#">50 Tips For Designing an Exceptional
-                                    Online Learning Progress.</a>
-                                <ul>
-                                    <li>32 Lessons</li>
-                                    <li>48 Student</li>
-                                </ul>
-                                <a class="author" href="#">
-                                    <div class="img">
-                                        <img src="{{ asset('frontend/assets/images/author_img_2.jpg') }}"
-                                            alt="Author" class="img-fluid">
-                                    </div>
-                                    <h4>Hugh Millie-Yate</h4>
-                                </a>
-                            </div>
-                            <div class="wsus__single_courses_3_footer">
-                                <a class="common_btn" href="#">Enroll <i class="far fa-arrow-right"></i></a>
-                                <p>$239.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 col-lg-4">
-                        <div class="wsus__single_courses_3">
-                            <div class="wsus__single_courses_3_img">
-                                <img src="{{ asset('frontend/assets/images/courses_3_img_7.jpg') }}" alt="Courses"
-                                    class="img-fluid">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/love_icon_black.png') }}"
-                                                alt="Love" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/compare_icon_black.png') }}"
-                                                alt="Compare" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/cart_icon_black_2.png') }}"
-                                                alt="Cart" class="img-fluid">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <span class="time"><i class="far fa-clock"></i> 17 Hours</span>
-                            </div>
-                            <div class="wsus__single_courses_text_3">
-                                <div class="rating_area">
-                                    <!-- <a href="#" class="category">Marketing</a> -->
-                                    <p class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>(4.8 Rating)</span>
-                                    </p>
-                                </div>
-
-                                <a class="title" href="#">Holistic Internet-Based Instruction
-                                    Mastery Program.</a>
-                                <ul>
-                                    <li>37 Lessons</li>
-                                    <li>56 Student</li>
-                                </ul>
-                                <a class="author" href="#">
-                                    <div class="img">
-                                        <img src="{{ asset('frontend/assets/images/author_img_2.jpg') }}"
-                                            alt="Author" class="img-fluid">
-                                    </div>
-                                    <h4>Dominic L. Ement</h4>
-                                </a>
-                            </div>
-                            <div class="wsus__single_courses_3_footer">
-                                <a class="common_btn" href="#">Enroll <i class="far fa-arrow-right"></i></a>
-                                <p>$199.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 col-lg-4">
-                        <div class="wsus__single_courses_3">
-                            <div class="wsus__single_courses_3_img">
-                                <img src="{{ asset('frontend/assets/images/courses_3_img_8.jpg') }}" alt="Courses"
-                                    class="img-fluid">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/love_icon_black.png') }}"
-                                                alt="Love" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/compare_icon_black.png') }}"
-                                                alt="Compare" class="img-fluid">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('frontend/assets/images/cart_icon_black_2.png') }}"
-                                                alt="Cart" class="img-fluid">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <span class="time"><i class="far fa-clock"></i> 15 Hours</span>
-                            </div>
-                            <div class="wsus__single_courses_text_3">
-                                <div class="rating_area">
-                                    <!-- <a href="#" class="category">Design</a> -->
-                                    <p class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>(4.8 Rating)</span>
-                                    </p>
-                                </div>
-
-                                <a class="title" href="#">Complete Blender Creator Learn 3D Modelling.</a>
-                                <ul>
-                                    <li>24 Lessons</li>
-                                    <li>38 Student</li>
-                                </ul>
-                                <a class="author" href="#">
-                                    <div class="img">
-                                        <img src="{{ asset('frontend/assets/images/author_img_2.jpg') }}"
-                                            alt="Author" class="img-fluid">
-                                    </div>
-                                    <h4>Hermann P. Schnitzel</h4>
-                                </a>
-                            </div>
-                            <div class="wsus__single_courses_3_footer">
-                                <a class="common_btn" href="#">Enroll <i class="far fa-arrow-right"></i></a>
-                                <p><del>$254</del> $156.00</p>
-                            </div>
-                        </div>
-                    </div> --}}
                     </div>
                     <div class="row mt_60 wow fadeInUp">
                         <div class="col-12 text-center">
