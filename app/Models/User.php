@@ -60,4 +60,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(InstructorPayoutInformation::class, 'instructor_id', 'id');
     }
+
+    function students(): HasMany
+    {
+        return $this->hasMany(Enrollment::class, 'instructor_id', 'id');
+    }
+
+    function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, '', 'id');
+    }
 }

@@ -155,8 +155,25 @@
                                                 <h4>{{ $course->instructor->name ?? '' }}</h4>
                                                 <p class="designation">{{ $course->instructor->headline ?? '' }}</p>
                                                 <ul class="list">
-                                                    <li><i class="fas fa-star"></i> <b>74,537 Reviews</b></li>
-                                                    <li><strong>4.7 Rating</strong></li>
+                                                    @php
+                                                        $coursesId = $course->instructor
+                                                            ->courses()
+                                                            ->pluck('id')
+                                                            ->toArray();
+                                                        $reviewsCount = \App\Models\Review::whereIn(
+                                                            'course_id',
+                                                            $coursesId,
+                                                        )->count();
+                                                        $instructorAverageRating = number_format(
+                                                            \App\Models\Review::whereIn('course_id', $coursesId)->avg(
+                                                                'rating',
+                                                            ),
+                                                            1,
+                                                        );
+                                                    @endphp
+                                                    <li><i class="fas fa-star"></i> <b>{{ $reviewsCount }} Reviews</b>
+                                                    </li>
+                                                    <li><strong> {{ $instructorAverageRating }} Rating</strong></li>
                                                     <li>
                                                         <span><img
                                                                 src="{{ asset('frontend/assets/images/book_icon.png') }}"
@@ -168,7 +185,8 @@
                                                         <span><img
                                                                 src="{{ asset('frontend/assets/images/user_icon_gray.png') }}"
                                                                 alt="user" class="img-fluid"></span>
-                                                        32 Students
+                                                        {{ $course->instructor->students()->count() ?? 0 }}
+                                                        Students
                                                     </li>
                                                 </ul>
                                                 <ul class="badge d-flex flex-wrap">
