@@ -1,7 +1,7 @@
  @if ($variant == 'compact')
-     <div class="col-xl-3 col-md-6 col-lg-4">
+     <div class="col-xl-3 col-md-6 col-lg-4 wow fadeInUp">
      @else
-         <div class="col-xxl-3 col-xl-4 col-md-6 col-lg-5">
+         <div class="col-xl-4 col-md-6 wow fadeInUp">
  @endif
  <div class="col-12">
      <div class="wsus__single_courses_3">
