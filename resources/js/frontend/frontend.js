@@ -5,8 +5,19 @@ const base_url = $(`meta[name="base_url"]`).attr("content");
 const reloadUrl = base_url + "/instructor/courses/update";
 
 var notyf = new Notyf({
-	duration: 5000,
-	dismissible: true,
+	types: [
+		{
+			type: "info",
+			background: "#356df1",
+			icon: true,
+			position: {
+				x: "center",
+				y: "top",
+			},
+			duration: 5000,
+			dismissible: true,
+		},
+	],
 });
 
 // MODAL SPINNER
@@ -86,6 +97,14 @@ $(function () {
 				$(".newsletter_btn").attr("disabled", false);
 				$(".newsletter-form").trigger("reset");
 			},
+		});
+	});
+
+	// Notify that the feature is not implemented yet
+	$(".TODO").on("click", function (e) {
+		notyf.open({
+			type: "info",
+			message: "This feature is not implemented yet.",
 		});
 	});
 });
