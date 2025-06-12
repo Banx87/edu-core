@@ -17,7 +17,7 @@
                     <div class="col-12 wow fadeInUp">
                         <div class="wsus__breadcrumb_text">
                             <p class="rating">
-                                @php $avgRating = $course->reviews()->avg('rating') ?? 0; @endphp
+                                @php $avgRating = $course->reviews()->avg('rating') ?? ""; @endphp
                                 @for ($i = 1; $i <= $avgRating; $i++)
                                     <i class="fas fa-star"></i>
                                 @endfor

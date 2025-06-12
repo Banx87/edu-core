@@ -2,6 +2,22 @@
 const base_url = $(`meta[name="base_url"]`).attr("content");
 const csrf_token = $(`meta[name="csrf_token"]`).attr("content");
 
+var notyf = new Notyf({
+	types: [
+		{
+			type: "info",
+			background: "#356df1",
+			icon: true,
+			position: {
+				x: "center",
+				y: "top",
+			},
+			duration: 5000,
+			dismissible: true,
+		},
+	],
+});
+
 // Reusable functions
 function addToCart(courseId) {
 	$.ajax({
@@ -21,10 +37,13 @@ function addToCart(courseId) {
 		},
 		error: function (xhr, status, error) {
 			let errors = xhr.responseJSON;
-
-			$.each(errors, function (key, value) {
-				notyf.error(errors.message);
-			});
+			if (errors.type == "info") {
+				notyf.open({ type: "info", message: errors.message });
+			} else {
+				$.each(errors, function (key, value) {
+					notyf.error(errors.message);
+				});
+			}
 		},
 		complete: function () {
 			$(`.add_to_cart[data-course-id="${courseId}"]`).html(

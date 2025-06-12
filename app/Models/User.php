@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class, '', 'id');
     }
+
+    function enrollments(): HasMany
+    {
+        return $this->hasMany(Enrollment::class, 'user_id', 'id');
+    }
 }

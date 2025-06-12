@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPSTORM_META\type;
+
 class CartController extends Controller
 {
 
@@ -21,10 +23,13 @@ class CartController extends Controller
     function addToCart(int $id): Response
     {
         if (!Auth::guard('web')->check()) {
-            return response((['message' => 'Please login first']), 401);
+            return response(['message' => 'Please login first'], 401);
+        }
+        if (Auth::user()->enrollments()->where(['course_id' => $id])->exists()) {
+            return response(['type' => 'info', 'message' => 'You have already enrolled in this course'], 401);
         }
         if (Cart::where(['course_id' => $id, 'user_id' => Auth::guard('web')->user()->id])->exists()) {
-            return response((['message' => 'Course already added to cart']), 401);
+            return response(['message' => 'Course already added to cart'], 401);
         }
 
         $course = Course::findOrFail($id);
