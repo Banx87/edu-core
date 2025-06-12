@@ -436,9 +436,9 @@
                                         <p>
                                             <span><img src="{{ asset('frontend/assets/images/user_icon_black_2.png') }}"
                                                     alt="User" class="img-fluid"></span>
-                                            Student Enrolled
+                                            Students Enrolled
                                         </p>
-                                        47
+                                        {{ $course->enrollments()->count() ?? 0 }}
                                     </li>
                                     <li>
                                         <p>
@@ -449,11 +449,13 @@
                                         {{ $course->language->name ?? '' }}
                                     </li>
                                 </ul>
-                                <a class="common_btn" href="#">Enroll The Course <i
-                                        class="far fa-arrow-right"></i></a>
+                                <a class="common_btn add_to_cart" data-course-id={{ $course->id }}
+                                    href="javascript:;">Add to
+                                    Cart <i class="far fa-arrow-right"></i></a>
                             </div>
                             <div class="wsus__courses_sidebar_share_btn d-flex flex-wrap justify-content-between">
-                                <a href="#" class="common_btn"><i class="far fa-heart"></i> Add to Wishlist</a>
+                                <a href="#" class="common_btn TODO"><i class="far fa-heart"></i> Add to
+                                    Wishlist</a>
                             </div>
                             <div class="wsus__courses_sidebar_share_area">
                                 <span>Share:</span>
@@ -509,7 +511,7 @@
                                     </div>
                                     <div class="text">
                                         <h3>{{ $course->instructor->name ?? '' }}</h3>
-                                        <p><span>Instructor</span> Level 2</p>
+                                        <p><span>Instructor</span></p>
                                     </div>
                                 </div>
                                 <ul class="d-flex flex-wrap">
