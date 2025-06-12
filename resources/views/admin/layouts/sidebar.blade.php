@@ -196,18 +196,18 @@
              </div>
              <div class="collapse navbar-collapse" id="sidebar-menu">
                  <ul class="navbar-nav pt-lg-3">
-                     <li class="nav-item">
+                     <li class="nav-item {{ sidebarItemActive(['admin.dashboard']) }}">
                          <a class="nav-link" href="{{ route('admin.dashboard') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-home"></i>
                              </span>
                              <span class="nav-link-title">
-                                 Home
+                                 Dashboard
                              </span>
                          </a>
                      </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="{{ route('admin.instructor-request.index') }}">
+                     <li class="nav-item {{ sidebarItemActive(['admin.instructor-request.*']) }}">
+                         <a class="nav-link " href="{{ route('admin.instructor-request.index') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-briefcase"></i>
                              </span>
@@ -216,8 +216,9 @@
                              </span>
                          </a>
                      </li>
-                     <li class="nav-item dropdown">
-                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                     <li
+                         class="nav-item dropdown {{ sidebarItemActive(['admin.courses.*', 'admin.course-categories.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.reviews.*']) }}">
+                         <a class="nav-link dropdown-toggle show" href="#navbar-base" data-bs-toggle="dropdown"
                              data-bs-auto-close="false" role="button" aria-expanded="false">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-exchange"></i>
@@ -229,30 +230,35 @@
                          <div class="dropdown-menu">
                              <div class="dropdown-menu-columns">
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.courses.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.courses.*']) }}"
+                                         href="{{ route('admin.courses.index') }}">
                                          Courses
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.course-categories.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.course-categories.*']) }}"
+                                         href="{{ route('admin.course-categories.index') }}">
                                          Course Categories
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.course-languages.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.course-languages.*']) }}"
+                                         href="{{ route('admin.course-languages.index') }}">
                                          Course Languages
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-columns">
                                      <div class="dropdown-menu-column">
-                                         <a class="dropdown-item" href="{{ route('admin.course-levels.index') }}">
+                                         <a class="dropdown-item {{ sidebarItemActive(['admin.course-levels.*']) }}"
+                                             href="{{ route('admin.course-levels.index') }}">
                                              Course Levels
                                          </a>
                                      </div>
                                  </div>
                                  <div class="dropdown-menu-columns">
                                      <div class="dropdown-menu-column">
-                                         <a class="dropdown-item" href="{{ route('admin.reviews.index') }}">
+                                         <a class="dropdown-item {{ sidebarItemActive(['admin.reviews.*']) }}"
+                                             href="{{ route('admin.reviews.index') }}">
                                              Course Reviews
                                          </a>
                                      </div>
@@ -261,8 +267,8 @@
                          </div>
                      </li>
 
-                     <li class="nav-item">
-                         <a class="nav-link" href="{{ route('admin.certificate-builder.index') }}">
+                     <li class="nav-item {{ sidebarItemActive(['admin.certificate-builder.*']) }}">
+                         <a class="nav-link " href="{{ route('admin.certificate-builder.index') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-file-certificate"></i>
                              </span>
@@ -271,8 +277,8 @@
                              </span>
                          </a>
                      </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="{{ route('admin.orders.index') }}">
+                     <li class="nav-item {{ sidebarItemActive(['admin.orders.*']) }}">
+                         <a class="nav-link " href="{{ route('admin.orders.index') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-receipt-2"></i>
                              </span>
@@ -281,8 +287,8 @@
                              </span>
                          </a>
                      </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="{{ route('admin.withdraw-request.index') }}">
+                     <li class="nav-item {{ sidebarItemActive(['admin.withdraw-request.*']) }}">
+                         <a class="nav-link " href="{{ route('admin.withdraw-request.index') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-cash-move"></i>
                              </span>
@@ -292,7 +298,8 @@
                          </a>
                      </li>
 
-                     <li class="nav-item dropdown">
+                     <li
+                         class="nav-item dropdown  {{ sidebarItemActive(['admin.blog-categories.*', 'admin.blogs.*']) }}">
                          <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                              data-bs-auto-close="false" role="button" aria-expanded="false">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -305,20 +312,22 @@
                          <div class="dropdown-menu">
                              <div class="dropdown-menu-columns">
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.blog-categories.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.blog-categories.*']) }}"
+                                         href="{{ route('admin.blog-categories.index') }}">
                                          Blog Categories
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.blogs.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.blogs.*']) }}"
+                                         href="{{ route('admin.blogs.index') }}">
                                          Blogs
                                      </a>
                                  </div>
                              </div>
                          </div>
                      </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="{{ route('admin.payout-gateway.index') }}">
+                     <li class="nav-item {{ sidebarItemActive(['admin.payout-gateway.*']) }}">
+                         <a class="nav-link " href="{{ route('admin.payout-gateway.index') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-lock-dollar"></i>
                              </span>
@@ -329,7 +338,19 @@
                      </li>
 
 
-                     <li class="nav-item dropdown">
+                     <li
+                         class="nav-item dropdown  {{ sidebarItemActive([
+                             'admin.hero.*',
+                             'admin.feature.*',
+                             'admin.about-section.*',
+                             'admin.latest-courses-section.*',
+                             'admin.become-instructor-section.*',
+                             'admin.video-section.*',
+                             'admin.brand-section.*',
+                             'admin.featured-instructor-section.*',
+                             'admin.testimonial-section.*',
+                             'admin.counter-section.*',
+                         ]) }}">
                          <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                              data-bs-auto-close="false" role="button" aria-expanded="false">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -342,71 +363,79 @@
                          <div class="dropdown-menu">
                              <div class="dropdown-menu-columns">
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.hero.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.hero.*']) }}"
+                                         href="{{ route('admin.hero.index') }}">
                                          <i class="ti ti-stack-front" style="margin-right: .5rem;"></i>
                                          Hero
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.feature.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.feature.*']) }}"
+                                         href="{{ route('admin.feature.index') }}">
                                          <i class="ti ti-stack-front" style="margin-right: .5rem;"></i>
                                          Features
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.about-section.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.about-section.*']) }}"
+                                         href="{{ route('admin.about-section.index') }}">
                                          <i class="ti ti-stack-front" style="margin-right: .5rem;"></i>
                                          About Us
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item"
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.latest-courses-section.*']) }}"
                                          href="{{ route('admin.latest-courses-section.index') }}">
                                          <i class="ti ti-stack-front" style="margin-right: .5rem;"></i>
                                          Latest Courses
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item"
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.become-instructor-section.*']) }}"
                                          href="{{ route('admin.become-instructor-section.index') }}">
                                          <i class="ti ti-stack-front" style="margin-right: .5rem;"></i>
                                          Become Instructor Banner
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.video-section.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.video-section.*']) }}"
+                                         href="{{ route('admin.video-section.index') }}">
                                          <i class="ti ti-video" style="margin-right: .5rem;"></i>
                                          Video
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.brand-section.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.brand-section.*']) }}"
+                                         href="{{ route('admin.brand-section.index') }}">
                                          <i class="ti ti-video" style="margin-right: .5rem;"></i>
                                          Brand
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item"
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.featured-instructor-section.*']) }}"
                                          href="{{ route('admin.featured-instructor-section.index') }}">
                                          <i class="ti ti-video" style="margin-right: .5rem;"></i>
                                          Featured Instructor
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.testimonial-section.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.testimonial-section.*']) }}"
+                                         href="{{ route('admin.testimonial-section.index') }}">
                                          <i class="ti ti-video" style="margin-right: .5rem;"></i>
                                          Testimonial
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.counter-section.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.counter-section.*']) }}"
+                                         href="{{ route('admin.counter-section.index') }}">
                                          <i class="ti ti-video" style="margin-right: .5rem;"></i>
                                          Counter
                                      </a>
                                  </div>
                              </div>
                      </li>
-                     <li class="nav-item dropdown">
+                     <li
+                         class="nav-item dropdown  {{ sidebarItemActive(['admin.contact.*', 'admin.contact-setting.*']) }}">
                          <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                              data-bs-auto-close="false" role="button" aria-expanded="false">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -419,12 +448,14 @@
                          <div class="dropdown-menu">
                              <div class="dropdown-menu-columns">
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.contact.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.contact.*']) }}"
+                                         href="{{ route('admin.contact.index') }}">
                                          Contact Cards
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.contact-setting.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.contact-setting.*']) }}"
+                                         href="{{ route('admin.contact-setting.index') }}">
                                          Contact Settings
                                      </a>
                                  </div>
@@ -432,7 +463,14 @@
                          </div>
                      </li>
 
-                     <li class="nav-item dropdown">
+                     <li
+                         class="nav-item dropdown {{ sidebarItemActive([
+                             'admin.top-bar.*',
+                             'admin.footer.*',
+                             'admin.footer-column-one.*',
+                             'admin.footer-column-two.*',
+                             'admin.social-links.*',
+                         ]) }}">
                          <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                              data-bs-auto-close="false" role="button" aria-expanded="false">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -445,34 +483,39 @@
                          <div class="dropdown-menu">
                              <div class="dropdown-menu-columns">
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.top-bar.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.top-bar.*']) }}"
+                                         href="{{ route('admin.top-bar.index') }}">
                                          Top Bar
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.footer.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.footer.*']) }}"
+                                         href="{{ route('admin.footer.index') }}">
                                          Footer Content
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.footer-column-one.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.footer-column-one.*']) }}"
+                                         href="{{ route('admin.footer-column-one.index') }}">
                                          Footer Column One
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.footer-column-two.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.footer-column-two.*']) }}"
+                                         href="{{ route('admin.footer-column-two.index') }}">
                                          Footer Column Two
                                      </a>
                                  </div>
                                  <div class="dropdown-menu-column">
-                                     <a class="dropdown-item" href="{{ route('admin.social-links.index') }}">
+                                     <a class="dropdown-item {{ sidebarItemActive(['admin.social-links.*']) }}"
+                                         href="{{ route('admin.social-links.index') }}">
                                          Social Links
                                      </a>
                                  </div>
                              </div>
                          </div>
                      </li>
-                     <li class="nav-item">
+                     <li class="nav-item  {{ sidebarItemActive(['admin.custom-page.index']) }}">
                          <a class="nav-link" href="{{ route('admin.custom-page.index') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-lock-dollar"></i>
@@ -482,8 +525,8 @@
                              </span>
                          </a>
                      </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
+                     <li class="nav-item {{ sidebarItemActive(['admin.payment-settings.index']) }}">
+                         <a class="nav-link " href="{{ route('admin.payment-settings.index') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-cash-register"></i>
                              </span>
@@ -492,8 +535,8 @@
                              </span>
                          </a>
                      </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="{{ route('admin.settings.general-settings') }}">
+                     <li class="nav-item {{ sidebarItemActive(['admin.settings.general-settings']) }}">
+                         <a class="nav-link " href="{{ route('admin.settings.general-settings') }}">
                              <span class="nav-link-icon d-md-none d-lg-inline-block">
                                  <i class="ti ti-settings"></i>
                              </span>

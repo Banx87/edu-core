@@ -120,3 +120,13 @@ if (!function_exists('calculateCommission')) {
         return ($amount * $commissionRate) / 100;
     }
 }
+
+// Sidebar item active
+if (!function_exists('sidebarItemActive')) {
+    function sidebarItemActive(array $routes,)
+    {
+        foreach ($routes as $route) {
+            if (request()->routeIs($route)) return 'active';
+        }
+    }
+}

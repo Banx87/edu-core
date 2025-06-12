@@ -13,7 +13,7 @@
         </div>
         <ul class="wsus__dashboard_sidebar_menu">
             <li>
-                <a href="dashboard.html" class="active">
+                <a href="{{ route('instructor.dashboard') }}" class="{{ sidebarItemActive(['instructor.dashboard']) }}">
                     <div class="sidebar_icon">
                         <i class="ti ti-file-analytics"></i>
                     </div>
@@ -21,7 +21,8 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('instructor.profile.index') }}" class="">
+                <a href="{{ route('instructor.profile.index') }}"
+                    class="{{ sidebarItemActive(['instructor.profile.index']) }}">
                     <div class="sidebar_icon">
                         <i class="ti ti-user"></i>
                     </div>
@@ -29,7 +30,8 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('instructor.courses.index') }}" class="">
+                <a href="{{ route('instructor.courses.index') }}"
+                    class="{{ sidebarItemActive(['instructor.courses.index']) }}">
                     <div class="sidebar_icon">
                         <i class="ti ti-certificate"></i>
                     </div>
@@ -37,7 +39,8 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('instructor.orders.index') }}" class="">
+                <a href="{{ route('instructor.orders.index') }}"
+                    class="{{ sidebarItemActive(['instructor.orders.index']) }}">
                     <div class="sidebar_icon">
                         <i class="ti ti-clipboard-text"></i>
                     </div>
@@ -45,7 +48,8 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('instructor.withdrawals.index') }}" class="">
+                <a href="{{ route('instructor.withdrawals.index') }}"
+                    class="{{ sidebarItemActive(['instructor.withdrawals.index']) }}">
                     <div class="sidebar_icon">
                         <i class="ti ti-cash-banknote space"></i>
                     </div>

@@ -6,7 +6,7 @@
             <div class="row row-deck row-cards">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Hero Page</h3>
+                        <h3 class="card-title">Feature Page</h3>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.feature.update', 1) }}" enctype="multipart/form-data">

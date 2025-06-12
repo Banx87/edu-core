@@ -162,3 +162,40 @@ a > svg:hover {
 .draggable_item {
 	cursor: move;
 }
+
+.nav-item.dropdown.active > .dropdown-menu {
+	display: block;
+}
+
+.nav-item,
+.dropdown-item,
+.nav-item > a:hover:has(.nav-link-title) .nav-link-title {
+	transition: all 0.15s ease-in-out;
+	-webkit-transition: all 0.15s ease-in-out;
+	-moz-transition: all 0.15s ease-in-out;
+	-ms-transition: all 0.15s ease-in-out;
+	-o-transition: all 0.15s ease-in-out;
+}
+
+.nav-item.active:has(.nav-link-title) .nav-link-title {
+	color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.nav-item > a:hover,
+.nav-item > a:focus,
+.dropdown-item.active,
+.dropdown-item:hover {
+	background-color: rgba(0, 0, 0, 0.486) !important;
+}
+
+.nav-item > a:hover:has(.nav-link-title) .nav-link-title {
+	color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.nav-item.active:not(:has(.dropdown)) {
+	background-color: rgba(0, 0, 0, 0.486) !important;
+}
+
+.nav-item.dropdown.active {
+	background-color: transparent !important;
+}
