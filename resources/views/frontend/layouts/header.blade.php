@@ -144,7 +144,15 @@
                      </a>
                  </li>
                  <li>
-                     <a class="common_btn" href="{{ route('login') }}">Sign In</a>
+                     @if (!auth()->guard('web')->check())
+                         <a class="common_btn" href="{{ route('login') }}">Sign In</a>
+                     @endif
+                     @if (user()?->role == 'student')
+                         <a class="common_btn" href="{{ route('student.dashboard') }}">Dashboard</a>
+                     @endif
+                     @if (user()?->role == 'instructor')
+                         <a class="common_btn" href="{{ route('instructor.dashboard') }}">Dashboard</a>
+                     @endif
                  </li>
              </ul>
          </div>

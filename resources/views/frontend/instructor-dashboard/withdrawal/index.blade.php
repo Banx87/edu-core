@@ -31,8 +31,9 @@
                             <div class="wsus__dashboard_heading relative">
                                 <h5>Withrawals</h5>
                                 <p>Manage your payouts here.</p>
-                                <a class="common_btn" href="{{ route('instructor.withdrawals.request-payout') }}"><i
-                                        class="ti ti-plus space"></i> Request Payout</a>
+                                <a class="common_btn d-flex align-items-center"
+                                    href="{{ route('instructor.withdrawals.request-payout.index') }}"><i
+                                        class="ti ti-plus space" style="margin-right: 5px;"></i> Request Payout</a>
                             </div>
                         </div>
 
