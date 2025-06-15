@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\InstructorRequestController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
+use App\Http\Controllers\Admin\ProfileUpdateController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
 use App\Http\Controllers\Admin\HeroController;
@@ -90,6 +91,11 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     Route::get('dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
+
+    // Profile Update Route
+    Route::get('profile', [ProfileUpdateController::class, 'index'])->name('profile.index');
+    Route::post('profile', [ProfileUpdateController::class, 'profileUpdate'])->name('profile.update');
+    Route::post('update-password', [ProfileUpdateController::class, 'passwordUpdate'])->name('password.update');
 
 
     // Instructor Request Routes
