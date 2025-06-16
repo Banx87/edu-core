@@ -42,7 +42,7 @@
                         </svg>
                         <span class="badge bg-red"></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
+                    {{-- <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Last updates</h3>
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="nav-item dropdown">
