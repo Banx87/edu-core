@@ -556,6 +556,16 @@
                              </span>
                          </a>
                      </li>
+                     <li class="nav-item {{ sidebarItemActive(['admin.database-reset.index']) }}">
+                         <a class="nav-link " href="{{ route('admin.database-reset.index') }}">
+                             <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                 <i class="ti ti-database-off"></i>
+                             </span>
+                             <span class="nav-link-title">
+                                 Database Reset
+                             </span>
+                         </a>
+                     </li>
                  </ul>
              </div>
          </div>

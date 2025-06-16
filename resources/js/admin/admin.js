@@ -78,6 +78,43 @@ $(".delete-confirm").on("click", function (e) {
 	});
 });
 
+// Database reset with confirmation
+$(".database-reset-submit").on("submit", function (e) {
+	e.preventDefault();
+	Swal.fire({
+		title: "Are you sure?",
+		text: "You won't be able to revert this!",
+		icon: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#3085d6",
+		cancelButtonColor: "#d33",
+		confirmButtonText: "Yes, reset it!",
+	}).then((result) => {
+		if (result.isConfirmed) {
+			$.ajax({
+				method: "DELETE",
+				url: base_url + "/admin/database-reset",
+				data: { _token: csrf_token },
+				beforeSend: function () {
+					$("#db_reset_btn").text("Resetting...");
+				},
+				success: function (data) {
+					window.location.reload();
+				},
+				error: function (xhr, status, error) {
+					let errorMessage = xhr.responseJSON;
+					notyf.error(errorMessage.message);
+				},
+				complete: function () {
+					$("#db_reset_btn").text("Reset Entire Database");
+				},
+			});
+			// console.log("is confirmed");
+			// window.location.href = $(this).attr("href");
+		}
+	});
+});
+
 $(function () {
 	const selectedTab = localStorage.getItem("selectedPaymentSettingTab");
 	if (selectedTab) {
@@ -109,8 +146,6 @@ $(function () {
 
 			// Get the ID of the dragged element
 			var id = $(this).attr("id");
-
-			console.log(id);
 
 			// Get the current position of the dragged element
 			var position = ui.position;

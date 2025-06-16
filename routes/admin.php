@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
 use App\Http\Controllers\Admin\CustomPageController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DatabaseResetController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\FeaturedInstructorController;
 use App\Http\Controllers\Admin\FooterColumnOneController;
@@ -237,6 +238,10 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     /* CUSTOM PAGE ROUTES */
     Route::resource('custom-page', CustomPageController::class);
+
+    // DATABBASE CLEAR ROUTES
+    Route::get('database-reset', [DatabaseResetController::class, 'index'])->name('database-reset.index');
+    Route::delete('database-reset', [DatabaseResetController::class, 'destroy'])->name('database-reset.destroy');
 
 
 
