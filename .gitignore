@@ -44,3 +44,5 @@ frontend_template
 uploads
 /files
 files
+db_backup
+/db_backup
