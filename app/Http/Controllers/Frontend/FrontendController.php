@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\AboutUsSection;
 use App\Models\BecomeInstructorSection;
+use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Counter;
 use App\Models\Course;
@@ -41,6 +42,7 @@ class FrontendController extends Controller
         $featuredInstructors = FeaturedInstructor::first();
         $featuredInstructorCourses = Course::whereIn('id', json_decode($featuredInstructors?->featured_courses ?? '[]'))->get();
         $testimonials = Testimonial::all();
+        $blogs = Blog::where('status', 1)->latest()->limit(6)->get();
 
         return view('frontend.pages.home.index', compact(
             'hero',
@@ -53,7 +55,8 @@ class FrontendController extends Controller
             'brands',
             'featuredInstructors',
             'featuredInstructorCourses',
-            'testimonials'
+            'testimonials',
+            'blogs'
         ));
     }
 
@@ -62,8 +65,10 @@ class FrontendController extends Controller
         $about = AboutUsSection::first();
         $counters = Counter::first();
         $testimonials = Testimonial::all();
+        $blogs = Blog::where('status', 1)->latest()->limit(6)->get();
 
-        return view('frontend.pages.about', compact('about', 'counters', 'testimonials'));
+
+        return view('frontend.pages.about', compact('about', 'counters', 'testimonials', 'blogs'));
     }
 
     function newsletterSubscribe(Request $request): Response

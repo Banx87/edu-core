@@ -12,5 +12,5 @@
     @include('frontend.pages.home.sections.brand')
     @include('frontend.pages.home.sections.featured-courses')
     @include('frontend.pages.home.sections.testimonials')
-    {{-- @include('frontend.pages.home.sections.blog-carousel') --}}
+    @include('frontend.pages.home.sections.blog-carousel')
 @endsection

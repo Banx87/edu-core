@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AboutUsSectionUpdateRequest;
 use App\Models\AboutUsSection;
+use App\Models\Blog;
+use App\Models\Counter;
+use App\Models\Testimonial;
 use App\Traits\Fileupload;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -19,7 +22,11 @@ class AboutUsSectionController extends Controller
     public function index(): View
     {
         $about = AboutUsSection::first();
-        return view('admin.sections.about-section.index', compact('about'));
+        $counter = Counter::first();
+        $testimonials = Testimonial::all();
+        $blogs = Blog::where('status', 1)->latest()->limit(6)->get();
+
+        return view('admin.sections.about-section.index', compact('about', 'counter', 'testimonials', 'blogs'));
     }
 
     /**
