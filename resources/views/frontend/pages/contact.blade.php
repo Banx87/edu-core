@@ -26,10 +26,10 @@
                     <div class="col-xl-3 col-md-6 col-lg-4 wow fadeInUp">
                         <div class="wsus__contact_info">
                             <div class="icon">
-                                <img src="{{ $contactCard->icon }}" alt="contact" class="img-fluid">
+                                <img src="{{ $contactCard?->icon }}" alt="contact" class="img-fluid">
                             </div>
-                            <h4>{{ $contactCard->title }}</h4>
-                            <p>{{ $contactCard->line_one }} {{ $contactCard->line_two }}</p>
+                            <h4>{{ $contactCard?->title }}</h4>
+                            <p>{{ $contactCard?->line_one }} {{ $contactCard?->line_two }}</p>
                         </div>
                     </div>
                 @endforeach
@@ -39,7 +39,7 @@
                 <div class="row align-items-center">
                     <div class="col-xl-4 col-lg-5 d-md-none d-lg-block">
                         <div class="wsus__contact_form_img">
-                            <img src="{{ asset($contactSettings->image) }}" alt="contact" class="img-fluid">
+                            <img src="{{ asset($contactSettings?->image) }}" alt="contact" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-xl-8 col-lg-7">
@@ -51,19 +51,19 @@
                             <div class="row">
                                 <div class="col-xl-6 col-md-6">
                                     <input type="text" name="name" placeholder="Name*">
-                                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                    <x-input-error :messages="$errors?->get('name')" class="mt-2" />
                                 </div>
                                 <div class="col-xl-6 col-md-6">
                                     <input type="email" name="email" placeholder="Email*">
-                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    <x-input-error :messages="$errors?->get('email')" class="mt-2" />
                                 </div>
                                 <div class="col-md-12">
                                     <input type="subject" name="subject" placeholder="Subject*">
-                                    <x-input-error :messages="$errors->get('subject')" class="mt-2" />
+                                    <x-input-error :messages="$errors?->get('subject')" class="mt-2" />
                                 </div>
                                 <div class="col-xl-12">
                                     <textarea rows="5" name="contact_message" placeholder="Message*"></textarea>
-                                    <x-input-error :messages="$errors->get('contact_message')" class="mt-2" />
+                                    <x-input-error :messages="$errors?->get('contact_message')" class="mt-2" />
 
                                     <button type="submit" class="common_btn">Submit Now</button>
                                 </div>
@@ -73,9 +73,9 @@
                 </div>
             </div>
         </div>
-        @if ($contactSettings->map_url)
+        @if ($contactSettings?->map_url)
             <div class="wsus__contact_map mt_120 xs_mt_100 wow fadeInUp">
-                <iframe src="{{ $contactSettings->map_url }}" width="600" height="450" style="border:0;"
+                <iframe src="{{ $contactSettings?->map_url }}" width="600" height="450" style="border:0;"
                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         @endif

@@ -8,11 +8,11 @@
                         <div class="wsus__quality_courses_text">
                             <div class="wsus__section_heading heading_left mb_30">
                                 <h5>100% QUALITY COURSES</h5>
-                                <h2>{{ $featuredInstructors->title }}</h2>
+                                <h2>{{ $featuredInstructors?->title }}</h2>
                             </div>
-                            {!! $featuredInstructors->description !!}
+                            {!! $featuredInstructors?->description !!}
                             <a class="common_btn"
-                                href={{ $featuredInstructors->button_url }}>{{ $featuredInstructors->button_text }} <i
+                                href={{ $featuredInstructors?->button_url }}>{{ $featuredInstructors?->button_text }} <i
                                     class="far fa-arrow-right"></i></a>
                         </div>
                     </div>

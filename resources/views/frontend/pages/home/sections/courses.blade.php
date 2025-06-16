@@ -1,10 +1,10 @@
 @php
     $categories = [
-        'categoryOne' => App\Models\CourseCategory::where('id', $latestCourses->category_one)->first(),
-        'categoryTwo' => App\Models\CourseCategory::where('id', $latestCourses->category_two)->first(),
-        'categoryThree' => App\Models\CourseCategory::where('id', $latestCourses->category_three)->first(),
-        'categoryFour' => App\Models\CourseCategory::where('id', $latestCourses->category_four)->first(),
-        'categoryFive' => App\Models\CourseCategory::where('id', $latestCourses->category_five)->first(),
+        'categoryOne' => App\Models\CourseCategory::where('id', $latestCourses?->category_one)->first(),
+        'categoryTwo' => App\Models\CourseCategory::where('id', $latestCourses?->category_two)->first(),
+        'categoryThree' => App\Models\CourseCategory::where('id', $latestCourses?->category_three)->first(),
+        'categoryFour' => App\Models\CourseCategory::where('id', $latestCourses?->category_four)->first(),
+        'categoryFive' => App\Models\CourseCategory::where('id', $latestCourses?->category_five)->first(),
     ];
 
 @endphp
@@ -28,10 +28,10 @@
                         @foreach ($categories as $index => $category)
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link {{ $index == 'categoryOne' ? ' active' : '' }}"
-                                    id="pills-{{ $category->id }}-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-{{ $category->id }}" type="button" role="tab"
-                                    aria-controls="pills-{{ $category->id }}"
-                                    aria-selected="{{ $index == 'categoryOne' ? 'true' : 'false' }}">{{ $category->name }}
+                                    id="pills-{{ $category?->id }}-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-{{ $category?->id }}" type="button" role="tab"
+                                    aria-controls="pills-{{ $category?->id }}"
+                                    aria-selected="{{ $index == 'categoryOne' ? 'true' : 'false' }}">{{ $category?->name }}
                                 </button>
                             </li>
                         @endforeach
@@ -43,14 +43,16 @@
         <div class="tab-content" id="pills-tabContent">
             @foreach ($categories as $categoryCourse => $course)
                 <div class="tab-pane fade {{ $categoryCourse == 'categoryOne' ? 'show active' : '' }}"
-                    id="pills-{{ $course->id }}" role="tabpanel" aria-labelledby="pills-{{ $course->id }}-tab"
+                    id="pills-{{ $course?->id }}" role="tabpanel" aria-labelledby="pills-{{ $course?->id }}-tab"
                     tabindex="0">
                     <div class="row">
-                        @foreach ($course->courses()->latest()->take(8)->get() as $course)
-                            <x-course-card variant="compact" :thumbnail="$course->thumbnail" :title="$course->title" :duration="$course->duration"
-                                :url="route('courses.show', $course->slug)" :instructor="$course->instructor" :price="$course->price" :discount="$course->discount"
-                                :lessons="$course->lessons()->count()" :students="$course->enrollments->count()" :rating="$course->reviews()->avg('rating')" :id="$course->id" />
-                        @endforeach
+                        @if ($course)
+                            @foreach ($course->courses()->latest()->take(8)->get() as $course)
+                                <x-course-card variant="compact" :thumbnail="$course->thumbnail" :title="$course->title" :duration="$course->duration"
+                                    :url="route('courses.show', $course->slug)" :instructor="$course->instructor" :price="$course->price" :discount="$course->discount"
+                                    :lessons="$course->lessons()->count()" :students="$course->enrollments->count()" :rating="$course->reviews()->avg('rating')" :id="$course->id" />
+                            @endforeach
+                        @endif($course)
                     </div>
                     <div class="row mt_60 wow fadeInUp">
                         <div class="col-12 text-center">
