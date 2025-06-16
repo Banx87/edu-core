@@ -19,18 +19,21 @@ class UserSeeder extends Seeder
                 'email' => 'john_doe@gmail.com',
                 'password' => bcrypt('salasana'),
                 'role' => 'student',
+                'approve_status' => 'approved'
             ],
             [
                 'name' => 'Opettaja',
                 'email' => 'instructor@gmail.com',
                 'password' => bcrypt('salasana'),
                 'role' => 'instructor',
+                'approve_status' => 'approved'
             ],
             [
                 'name' => 'Michael Scott',
                 'email' => 'michael.scott@testing.com',
                 'password' => bcrypt('salasana'),
                 'role' => 'student',
+                'approve_status' => 'pending'
             ],
         ];
 
