@@ -2,12 +2,8 @@
 
 @section('content')
     <style>
-        .row {
-            overflow-x: scroll;
-        }
-
-        .container-xl {
-            max-width: 1500px;
+        .builder {
+            overflow: scroll !important;
         }
     </style>
     <div class="page-body">
@@ -18,7 +14,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Content</h3>
-
                         </div>
                         <div class="card-body">
                             <div class="alert alert-info">
@@ -43,7 +38,7 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" placeholder="Enter Certificate Description" name="description" rows="6">{{ old('description', $certificate?->description) }}</textarea>
+                                    <textarea class="form-control editor" placeholder="Enter Certificate Description" name="description" rows="6">{{ old('description', $certificate?->description) }}</textarea>
                                     <x-input-error :messages="$errors->get('description')" class="mt-2" />
                                 </div>
                                 <div class="form-group mb-3">
@@ -69,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 builder">
                     <div class="card certificate-builder">
                         <div class="card-header no-print">
                             <h3 class="card-title">Builder</h3>
@@ -79,7 +74,8 @@
                                 style="background-image: url({{ asset($certificate?->background) }});">
                                 <div id="cert_title" class="draggable_item">{{ $certificate?->title }}</div>
                                 <div id="cert_subtitle" class="draggable_item">{{ $certificate?->subtitle }}</div>
-                                <div id="cert_description" class="draggable_item">{{ $certificate?->description }}</div>
+                                <div id="cert_description" class="draggable_item">{{ $certificate?->description }}
+                                </div>
                                 <div id="cert_signature" class="draggable_item">
                                     @if (!empty($certificate?->signature))
                                         <img src="{{ asset($certificate?->signature) }}" alt="Signature" id="signature_img"
@@ -93,3 +89,4 @@
             </div>
         </div>
     </div>
+@endsection

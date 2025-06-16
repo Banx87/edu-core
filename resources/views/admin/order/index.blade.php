@@ -21,7 +21,6 @@
                                         <th>Currency</th>
                                         <th>Status</th>
                                         <th>Actions</th>
-                                        <th class="w-1"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,7 +66,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="3" class="text-center">No orders found.</td>
+                                            <td colspan="7" class="text-center">No orders found.</td>
                                         </tr>
                                     @endforelse
 

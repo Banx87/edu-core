@@ -59,18 +59,14 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="3" class="text-center">No levels found.</td>
+                                            <td colspan="4" class="text-center">No levels found.</td>
                                         </tr>
                                     @endforelse
-
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                {{-- <div class="mt-3">
-                    {{ $brands->links() }}
-                </div> --}}
             </div>
         </div>
     </div>
