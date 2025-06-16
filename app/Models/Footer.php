@@ -9,7 +9,7 @@ class Footer extends Model
 {
     use HasFactory;
 
-    protected $table = 'footer';
+    protected $table = 'footers';
 
     protected $fillable = [
         'description',
