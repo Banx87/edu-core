@@ -47,15 +47,6 @@
 <body class="home_3">
 
 
-    <!--============ PRELOADER START ===========-->
-    <div id="preloader">
-        <div class="preloader_icon">
-            <img src="frontend/assets/images/preloader.png" alt="Preloader" class="img-fluid">
-        </div>
-    </div>
-    <!--============ PRELOADER START ===========-->
-
-
     @include('frontend.layouts.header')
 
     @yield('content')

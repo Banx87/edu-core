@@ -52,7 +52,7 @@
                                     :url="route('courses.show', $course->slug)" :instructor="$course->instructor" :price="$course->price" :discount="$course->discount"
                                     :lessons="$course->lessons()->count()" :students="$course->enrollments->count()" :rating="$course->reviews()->avg('rating')" :id="$course->id" />
                             @endforeach
-                        @endif($course)
+                        @endif
                     </div>
                     <div class="row mt_60 wow fadeInUp">
                         <div class="col-12 text-center">
