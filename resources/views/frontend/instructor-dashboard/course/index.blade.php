@@ -17,7 +17,7 @@
                             </div>
                         </div>
 
-                        <form action="#" class="wsus__dash_course_searchbox">
+                        {{-- <form action="#" class="wsus__dash_course_searchbox">
                             <div class="input">
                                 <input type="text" placeholder="Search our Courses">
                                 <button><i class="far fa-search"></i></button>
@@ -29,7 +29,7 @@
                                     <option value="">Choose 2</option>
                                 </select>
                             </div>
-                        </form>
+                        </form> --}}
 
                         <div class="wsus__dash_course_table">
                             <div class="row">
@@ -64,18 +64,27 @@
                                                         </td>
                                                         <td class="details">
                                                             <p class="rating">
-                                                                <i class="fas fa-star" aria-hidden="true"></i>
-                                                                <i class="fas fa-star" aria-hidden="true"></i>
-                                                                <i class="fas fa-star" aria-hidden="true"></i>
-                                                                <i class="fas fa-star-half-alt" aria-hidden="true"></i>
-                                                                <i class="far fa-star" aria-hidden="true"></i>
-                                                                <span>(5.0)</span>
+                                                                @for ($i = 1; $i <= 5; $i++)
+                                                                    @if ($i <= $course->reviews()->avg('rating'))
+                                                                        <i class="ti ti-star-filled"
+                                                                            style="font-size: 17px"></i>
+                                                                    @else
+                                                                        <i class="ti ti-star" style="font-size: 17px"></i>
+                                                                    @endif
+                                                                @endfor
+                                                                @if ($course->reviews()->avg('rating') > 0)
+                                                                    <span>({{ number_format($course->reviews()->avg('rating'), 1) }}
+                                                                        Rating)</span>
+                                                                @else
+                                                                    <span>No Reviews Yet</span>
+                                                                @endif
                                                             </p>
+
                                                             <a class="title" href="#">{{ $course->title }}</a>
 
                                                         </td>
                                                         <td class="sale">
-                                                            <p>3400</p>
+                                                            <p>{{ $course->enrollments()->count() }}</p>
                                                         </td>
                                                         <td class="status">
                                                             <p class="active">{{ $course->status }}</p>

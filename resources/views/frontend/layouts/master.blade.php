@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -45,7 +45,6 @@
 </head>
 
 <body class="home_3">
-
 
     @include('frontend.layouts.header')
 
@@ -119,6 +118,7 @@
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('admin/assets/dist/libs/tinymce/tinymce.min.js') }}" defer></script>
 
     <!-- Tabler Core -->
     <script src="{{ asset('admin/assets/dist/js/tabler.min.js?1692870487') }}" defer></script>
@@ -141,7 +141,6 @@
             @endforeach
         @endif
     </script>
-
 
 </body>
 
