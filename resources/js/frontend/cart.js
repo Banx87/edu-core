@@ -20,6 +20,8 @@ var notyf = new Notyf({
 
 // Reusable functions
 function addToCart(courseId) {
+	var btn_text = $(`.add_to_cart[data-course-id="${courseId}"]`).html();
+
 	$.ajax({
 		method: "POST",
 		url: base_url + "/add-to-cart/" + courseId,
@@ -46,9 +48,7 @@ function addToCart(courseId) {
 			}
 		},
 		complete: function () {
-			$(`.add_to_cart[data-course-id="${courseId}"]`).html(
-				'Add to Cart <i class="far fa-arrow-right"></i>'
-			);
+			$(`.add_to_cart[data-course-id="${courseId}"]`).html(btn_text);
 		},
 	});
 }

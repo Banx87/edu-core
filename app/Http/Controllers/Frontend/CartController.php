@@ -31,6 +31,9 @@ class CartController extends Controller
         if (Cart::where(['course_id' => $id, 'user_id' => Auth::guard('web')->user()->id])->exists()) {
             return response(['message' => 'Course already added to cart'], 401);
         }
+        if (user()?->role == 'instructor') {
+            return response(['message' => 'Please use a student account to add course to cart '], 401);
+        }
 
         $course = Course::findOrFail($id);
         $cart = new Cart();

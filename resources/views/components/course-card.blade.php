@@ -39,7 +39,7 @@
              </a>
          </div>
          <div class="wsus__single_courses_3_footer">
-             <a class="common_btn add_to_cart" href="javascript:;" data-course-id={{ $id }}>Enroll <i
+             <a class="common_btn add_to_cart" href="javascript:;" data-course-id={{ $id }}>Add To Cart <i
                      class="far fa-arrow-right"></i></a>
              @if ($discount > 0)
                  <p><del>${{ $price }}</del> ${{ $discount }}</p>
