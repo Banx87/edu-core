@@ -8,7 +8,8 @@
                     <div class="card-header">
                         <h3 class="card-title">Update Sub Category of ( {{ $course_category->name }} )</h3>
                         <div class="card-actions">
-                            <a href="{{ route('admin.course-categories.index') }}" class="btn btn-pink">
+                            <a href="{{ route('admin.course-sub-categories.index', $course_category->id) }}"
+                                class="btn btn-pink">
                                 <i class="ti ti-arrow-left space"></i>
                                 Back
                             </a>
@@ -41,10 +42,17 @@
                                         </div>
                                     </x-input-block>
                                 </div>
+                                <div class="col-md-2 mb-3">
+                                    <x-input-toggle-block name="status" label="Status"
+                                        description=""></x-input-toggle-block>
+                                </div>
                                 <div class="col-md-12 d-flex" style="">
+                                    <div class="col-md-6">
+                                        <x-input-file-block name="image"></x-input-file-block>
+                                    </div>
                                     <div class="col-md-6" style="padding-left: 10px;">
                                         @if ($course_sub_category->image)
-                                            <x-image-preview :src="asset($course_sub_category->image)" label="Selected image" class="mb-3"
+                                            <x-image-preview :src="asset($course_sub_category->image)" label="Current image" class="mb-3"
                                                 style="max-width:200px; border: 2px solid rgb(255, 255, 255);"></x-image-preview>
                                         @else
                                             <div class="d-flex" style="padding-block: 35px; ">No Image Selected</div>
@@ -53,7 +61,7 @@
                                 </div>
                             </div>
                             <div class="">
-                                <button href="{{ route('admin.course-categories.index') }}" class="btn btn-primary mt-3">
+                                <button type="submit" class="btn btn-primary mt-3">
                                     <i class="ti ti-device-floppy space"></i>
                                     Update Sub Category
                                 </button>

@@ -27,7 +27,6 @@
                                         <th>Icon</th>
                                         <th>Image</th>
                                         <th>Name</th>
-                                        <th>Trending</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                         <th class="w-1"></th>
@@ -46,11 +45,11 @@
                                             <td>
                                                 {{ $category->name }}
                                             </td>
-                                            <td class="">
+                                            {{-- <td class="">
                                                 {!! $category->set_trending
                                                     ? '<span class="badge bg-lime text-lime-fg space-left-10"> Yes</span>'
                                                     : '<span class="badge bg-pink text-red-fg space-left-12"> No </span>' !!}
-                                            </td>
+                                            </td> --}}
                                             <td class="">
                                                 {!! $category->status
                                                     ? '<span class="badge bg-lime text-lime-fg"> Active</span>'
