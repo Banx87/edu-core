@@ -3,13 +3,17 @@
         <h4 class="subheader">Platform settings</h4>
         <div class="list-group list-group-transparent">
             <a href="{{ route('admin.settings.general-settings') }}"
-                class="list-group-item list-group-item-action d-flex align-items-center active">General Settings</a>
+                class="list-group-item list-group-item-action d-flex align-items-center {{ sidebarItemActive(['admin.settings.general-settings']) }}">General
+                Settings</a>
             <a href="{{ route('admin.settings.logo.index') }}"
-                class="list-group-item list-group-item-action d-flex align-items-center">Logo & Favicon</a>
+                class="list-group-item list-group-item-action d-flex align-items-center {{ sidebarItemActive(['admin.settings.logo.index']) }}">Logo
+                & Favicon</a>
             <a href="{{ route('admin.settings.commissions.index') }}"
-                class="list-group-item list-group-item-action d-flex align-items-center">Commission Settings</a>
+                class="list-group-item list-group-item-action d-flex align-items-center {{ sidebarItemActive(['admin.settings.commissions.index']) }}">Commission
+                Settings</a>
             <a href="{{ route('admin.settings.smtp-settings') }}"
-                class="list-group-item list-group-item-action d-flex align-items-center">SMTP Settings</a>
+                class="list-group-item list-group-item-action d-flex align-items-center {{ sidebarItemActive(['admin.settings.smtp-settings']) }}">SMTP
+                Settings</a>
             {{-- <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">Connected
                 Apps</a>
             <a href="./settings-plan.html"

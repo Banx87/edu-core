@@ -75,7 +75,7 @@
              <ul>
                  @foreach ($categories as $category)
                      <li>
-                         <a href="javascript:;">
+                         <a href="{{ route('courses.index', ['main_category' => $category->slug]) }}">
                              <span>
                                  <img src="{{ asset($category->image) }}" alt="{{ $category->name }}"
                                      class="img-fluid">
@@ -98,22 +98,26 @@
          </div>
          <ul class="navbar-nav m-auto">
              <li class="nav-item">
-                 <a class="nav-link active" href="{{ url('/') }}">Home</a>
+                 <a class="nav-link {{ sidebarItemActive(['/', 'home']) }}" href="{{ url('/') }}">Home</a>
              </li>
              <li class="nav-item">
-                 <a href="{{ route('courses.index') }}">Courses</a>
-             <li class="nav-item">
-                 <a class="nav-link" href="{{ url('about') }}">About Us</a>
+                 <a class="nav-link {{ sidebarItemActive(['courses.index']) }}"
+                     href="{{ route('courses.index') }}">Courses</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link" href="{{ url('blog') }}">Blogs</a>
+                 <a class="nav-link {{ sidebarItemActive(['about.index']) }}" href="{{ url('about') }}">About Us</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link" href="{{ url('contact') }}">contact us</a>
+                 <a class="nav-link {{ sidebarItemActive(['blog.index']) }}" href="{{ url('blog') }}">Blogs</a>
+             </li>
+             <li class="nav-item">
+                 <a class="nav-link {{ sidebarItemActive(['contact.index']) }}" href="{{ url('contact') }}">contact
+                     us</a>
              </li>
              @foreach ($customPages as $page)
                  <li class="nav-item">
-                     <a class="nav-link" href="{{ route('custom-page', $page->slug) }}">{{ $page->title }}</a>
+                     <a class="nav-link {{ sidebarItemActive([$page->slug]) }}"
+                         href="{{ route('custom-page', $page->slug) }}">{{ $page->title }}</a>
                  </li>
              @endforeach
          </ul>

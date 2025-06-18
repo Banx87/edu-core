@@ -49,7 +49,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4" class="text-center">No levels found.</td>
+                                            <td colspan="4" class="text-center">No Data found.</td>
                                         </tr>
                                     @endforelse
 

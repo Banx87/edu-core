@@ -19,7 +19,7 @@
                             <div class="alert alert-info">
                                 <h4 class="alert-heading">Default Variables</h4>
                                 <div class="alert-info">[student_name], [course_name], [date], [platform_name],
-                                    ['instructor_name']</div>
+                                    [instructor_name]</div>
                             </div>
                             <form action="{{ route('admin.certificate-builder.update') }}" method="POST"
                                 enctype="multipart/form-data">
