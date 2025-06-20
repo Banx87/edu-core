@@ -76,7 +76,7 @@
                     </div>
                     <div class="col-xl-6">
                         <div id="holder" style="margin-top:15px;max-height:100px;">
-                            @if ($course->preview_video_storage === 'upload')
+                            @if ($course->preview_video_storage == 'upload')
                                 <img src="{{ asset($course->preview_video_source) }}" style="height: 5rem;">
                             @endif
                         </div>

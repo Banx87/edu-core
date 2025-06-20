@@ -39,10 +39,10 @@
                             <svg viewBox="0 0 100 100">
                                 <defs>
                                     <path id="circle" d="
-                                                                                    M 50, 50
-                                                                                    m -37, 0
-                                                                                    a 37,37 0 1,1 74,0
-                                                                                    a 37,37 0 1,1 -74,0">
+                                                                                            M 50, 50
+                                                                                            m -37, 0
+                                                                                            a 37,37 0 1,1 74,0
+                                                                                            a 37,37 0 1,1 -74,0">
                                     </path>
                                 </defs>
                                 <text>
@@ -232,13 +232,13 @@
         <div class="row testimonial_slider">
             @foreach ($testimonials as $testimonial)
                 <div class="col-xl-4 wow fadeInUp">
-                    <div class="wsus__single_testimonial" style="min-height: 460px !important;">
+                    <div class="wsus__single_testimonial">
                         <p class="rating">
                             @for ($i = $testimonial->rating; $i > 0; $i--)
                                 <i class="fas fa-star"></i>
                             @endfor
                         </p>
-                        <p class="description" style="min-height: 210px !important;">{{ $testimonial->review }}</p>
+                        <p class="description" style="">{{ $testimonial->review }}</p>
                         <div class="testimonial_logo">
                             <img src="{{ asset($testimonial->logo) }}" alt="Testimonial" class="img-fluid">
                         </div>

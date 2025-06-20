@@ -45,7 +45,7 @@
 
                                                     </th>
                                                     <th class="sale">
-                                                        STUDENT
+                                                        STUDENTS
                                                     </th>
                                                     <th class="status">
                                                         STATUS

@@ -7,7 +7,7 @@
                         <h5>Become An Instructor</h5>
                         <h2>{{ $becomeInstructor?->title }}</h2>
                     </div>
-                    <p>{{ $becomeInstructor?->description }}</p>
+                    <p>{!! $becomeInstructor?->description !!}</p>
                     <a class="common_btn"
                         href="{{ $becomeInstructor?->button_url }}">{{ $becomeInstructor?->button_text }}
                         <i class="far fa-arrow-right"></i></a>

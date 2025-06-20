@@ -29,10 +29,10 @@
                                     @forelse ($columnTwo as $column)
                                         <tr>
                                             <td>
-                                                {{ $column->title }}
+                                                {{ old('title', $column->title) }}
                                             </td>
                                             <td>
-                                                {{ $column->url }}
+                                                {{ old('url', $column->url) }}
                                             </td>
                                             <td>
                                                 @if ($column->status == 1)

@@ -22,9 +22,9 @@
         </div>
 
         <div class="row wow fadeInUp">
-            <div class="col-xxl-6 col-xl-8 m-auto">
+            <div class="col-md-12 col-sm-8 m-auto">
                 <div class="wsus__filter_area mb_15">
-                    <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
+                    <ul class="nav nav-pills " id="pills-tab" role="tablist">
                         @foreach ($categories as $index => $category)
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link {{ $index == 'categoryOne' ? ' active' : '' }}"

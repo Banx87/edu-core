@@ -6,7 +6,7 @@
             <div class="row row-deck row-cards">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Course Levels</h3>
+                        <h3 class="card-title">Courses</h3>
                         <div class="card-actions">
                             <a href="{{ route('admin.courses.create') }}" class="btn btn-primary">
                                 <i class="ti ti-plus mr-3"></i>
@@ -21,6 +21,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Instructor</th>
+                                        <th>Category</th>
                                         <th>Price</th>
                                         <th>Status</th>
                                         <th>Approved</th>
@@ -36,6 +37,9 @@
                                             </td>
                                             <td>
                                                 {{ $course->instructor->name }}
+                                            </td>
+                                            <td>
+                                                {{ $course->category->name }}
                                             </td>
                                             <td>
                                                 {{ $course->instructor->price }}
