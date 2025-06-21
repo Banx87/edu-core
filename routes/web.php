@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
+use App\Http\Controllers\Frontend\StudentOrderController;
 use App\Http\Controllers\Frontend\WithdrawalController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -127,6 +128,24 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
     // Review Routes
     Route::get('review', [StudentDashboardController::class, 'review'])->name('review.index');
     Route::delete('review/{id}', [StudentDashboardController::class, 'reviewDestroy'])->name('review.destroy');
+
+    Route::get('orders', [StudentOrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/{order}', [StudentOrderController::class, 'show'])->name('orders.show');
+    Route::get('orders/{order}/invoice', [StudentOrderController::class, 'invoice'])->name('orders.invoice');
+    // TODO
+    // Route::get('orders/{id}/download-invoice', [StudentOrderController::class, 'downloadInvoice'])->name('orders.download-invoice');
+    // Route::get('orders/{id}/receipt', [StudentOrderController::class, 'receipt'])->name('orders.receipt');
+    // Route::get('orders/{id}/download-receipt', [StudentOrderController::class, 'downloadReceipt'])->name('orders.download-receipt');
+    // Route::get('orders/{id}/refund', [StudentOrderController::class, 'refund'])->name('orders.refund');
+    // Route::post('orders/{id}/refund-request', [StudentOrderController::class, 'refundRequest'])->name('orders.refund-request');
+    // Route::get('orders/{id}/refund-history', [StudentOrderController::class, 'refundHistory'])->name('orders.refund-history');
+    // Route::get('orders/{id}/refund-history/download', [StudentOrderController::class, 'downloadRefundHistory'])->name('orders.download-refund-history');
+    // Route::get('orders/{id}/refund-history/print', [StudentOrderController::class, 'printRefundHistory'])->name('orders.print-refund-history');
+    // Route::get('orders/{id}/invoice-history', [StudentOrderController::class, 'invoiceHistory'])->name('orders.invoice-history');
+    // Route::get('orders/{id}/invoice-history/download', [StudentOrderController::class, 'downloadInvoiceHistory'])->name('orders.download-invoice-history');
+    // Route::get('orders/{id}/invoice-history/print', [StudentOrderController::class, 'printInvoiceHistory'])->name('orders.print-invoice-history');
+    // Route::get('orders/{id}/receipt-history', [StudentOrderController::class, 'receiptHistory'])->name('orders.receipt-history');
+    // Route::get('orders/{id}/receipt-history/download', [StudentOrderController::class, 'downloadReceiptHistory'])->name('orders.download-receipt-history');
 });
 
 

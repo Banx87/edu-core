@@ -70,24 +70,70 @@
                     <div class="row">
                         <div class="col-xl-4 col-sm-6 wow fadeInUp">
                             <div class="wsus__dash_earning">
-                                <h6>REVENUE</h6>
-                                <h3>$2456.34</h3>
-                                <p>Earning this month</p>
+                                <h6>ENROLLED COURSES</h6>
+                                <h3>{{ $userCourses }}</h3>
+                                <p>Courses you are enrolled in</p>
                             </div>
                         </div>
                         <div class="col-xl-4 col-sm-6 wow fadeInUp">
                             <div class="wsus__dash_earning">
-                                <h6>STUDENTS ENROLLMENTS</h6>
-                                <h3>16,450</h3>
-                                <p>Progress this month</p>
+                                <h6>TOTAL REVIEWS</h6>
+                                <h3>{{ $reviewCount }}</h3>
+                                <p>Total number of reviews</p>
                             </div>
                         </div>
                         <div class="col-xl-4 col-sm-6 wow fadeInUp">
                             <div class="wsus__dash_earning">
-                                <h6>COURSES RATING</h6>
-                                <h3>4.70</h3>
-                                <p>Rating this month</p>
+                                <h6>TOTAL ORDERS</h6>
+                                <h3>{{ $orderCount }}</h3>
+                                <p>Total number of orders</p>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-md-12 wow fadeInRight mt-4"
+                        style="visibility: visible; animation-name: fadeInRight;">
+                        <div class="wsus__dashboard_content wsus__dashboard_content_border_top mt-0">
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <th>No.</th>
+                                    <th>Invoice</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    @forelse ($orders as $order)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $order->invoice_id }}</td>
+                                            <td>{{ $order->paid_amount . ' ' . $order->currency }}</td>
+                                            <td>
+                                                @if ($order->status === 'completed')
+                                                    <span class="badge bg-success">Paid</span>
+                                                @elseif ($order->status === 'unpaid')
+                                                    <span class="badge bg-danger">Unpaid</span>
+                                                @elseif ($order->status === 'pending')
+                                                    <span class="badge bg-warning">Pending</span>
+                                                @elseif ($order->status === 'processing')
+                                                    <span class="badge bg-info">Processing</span>
+                                                @elseif ($order->status === 'refunded')
+                                                    <span class="badge bg-secondary">Refunded</span>
+                                                @elseif ($order->status === 'cancelled')
+                                                    <span class="badge bg-dark">Cancelled</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('student.orders.show', $order?->id) }}"
+                                                    class="btn btn-sm btn-primary">View</a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">No orders found</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
