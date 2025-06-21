@@ -57,10 +57,10 @@
                         </div>
                     @endif
                     @if (Auth::user()->role === 'instructor' && Auth::user()->approve_status === 'approved')
-                        <div class="text-end mb-3">
+                        {{-- <div class="text-end mb-3">
                             <a href="{{ route('instructor.dashboard') }}" class="common_btn">Switch to Instructor Dashboard
                                 View</a>
-                        </div>
+                        </div> --}}
                     @else
                         <div class="text-end">
                             <a href="{{ route('student.become-instructor') }}" class="common_btn">Become an
@@ -70,27 +70,78 @@
                     <div class="row">
                         <div class="col-xl-4 col-sm-6 wow fadeInUp">
                             <div class="wsus__dash_earning">
+                                <h6>PENDING COURSES</h6>
+                                <h3>{{ $pendingCourses }}</h3>
+                                <p>Courses pending approval</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-sm-6 wow fadeInUp">
+                            <div class="wsus__dash_earning">
+                                <h6>APPROVED COURSES</h6>
+                                <h3>{{ $approvedCourses }}</h3>
+                                <p>Courses approved</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-sm-6 wow fadeInUp">
+                            <div class="wsus__dash_earning">
+                                <h6>REJECTED COURSES</h6>
+                                <h3>{{ $rejectedCourses }}</h3>
+                                <p>Courses rejected</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-sm-6 wow fadeInUp">
+                            <div class="wsus__dash_earning">
                                 <h6>REVENUE</h6>
-                                <h3>$2456.34</h3>
+                                <h3>${{ number_format($monthlySalesEarnings, 2) }}</h3>
                                 <p>Earning this month</p>
                             </div>
                         </div>
                         <div class="col-xl-4 col-sm-6 wow fadeInUp">
                             <div class="wsus__dash_earning">
-                                <h6>STUDENTS ENROLLMENTS</h6>
-                                <h3>16,450</h3>
-                                <p>Progress this month</p>
+                                <h6>STUDENT ENROLLMENTS</h6>
+                                <h3>{{ $totalStudents }}</h3>
+                                <p>Your total student count</p>
                             </div>
                         </div>
                         <div class="col-xl-4 col-sm-6 wow fadeInUp">
                             <div class="wsus__dash_earning">
-                                <h6>COURSES RATING</h6>
-                                <h3>4.70</h3>
-                                <p>Rating this month</p>
+                                <h6>TOTAL EARNINGS</h6>
+                                <h3>${{ number_format($totalEarnings, 2) }}</h3>
+                                <p>All earnings as an instructor</p>
                             </div>
                         </div>
                     </div>
+                    <div class="col-xl-12 col-md-12 wow fadeInRight mt-4"
+                        style="visibility: visible; animation-name: fadeInRight;">
+                        <div class="wsus__dashboard_content wsus__dashboard_content_border_top mt-0">
 
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <th>Course Name</th>
+                                    <th>Purchased By</th>
+                                    <th>Price</th>
+                                    <th>Commission</th>
+                                    <th>Instructor Share</th>
+                                </thead>
+                                <tbody>
+                                    @forelse ($orderItems as $orderItem)
+                                        <tr>
+                                            <td>{{ $orderItem->course->title }}</td>
+                                            <td>{{ $orderItem->order->customer->name }}</td>
+                                            <td>{{ $orderItem->price }}</td>
+                                            <td>{{ $orderItem->commission ?? 0 }}%</td>
+                                            <td>{{ calculateCommission($orderItem->price, $orderItem->commission) }}
+                                                {{ $orderItem->order->currency }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">No orders found</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
