@@ -25,9 +25,11 @@ class CertificateBuilderController extends Controller
 
     function update(CertificateBuilderUpdateRequest $request): RedirectResponse
     {
+
+        // dd($request->all());
         $data =  [
             'title' => $request->title,
-            'subtitle' => $request->subtitle,
+            'sub_title' => $request->subtitle,
             'description' => $request->description,
         ];
 

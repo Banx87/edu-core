@@ -31,10 +31,10 @@
                                     <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="subtitle" class="form-label">Subtitle</label>
+                                    <label for="sub_title" class="form-label">Subtitle</label>
                                     <input type="text" class="form-control" placeholder="Enter Certificate Subtitle"
-                                        name="subtitle" value="{{ old('subtitle', $certificate?->subtitle) }}" />
-                                    <x-input-error :messages="$errors->get('subtitle')" class="mt-2" />
+                                        name="subtitle" value="{{ old('sub_title', $certificate?->sub_title) }}" />
+                                    <x-input-error :messages="$errors->get('sub_title')" class="mt-2" />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="description" class="form-label">Description</label>

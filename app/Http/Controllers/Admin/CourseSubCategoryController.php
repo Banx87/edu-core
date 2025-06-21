@@ -48,7 +48,7 @@ class CourseSubCategoryController extends Controller
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
         $category->icon = $request->icon;
-        $category->set_trending = $request->set_trending ?? 0;
+        $category->show_at_trending = $request->show_at_trending ?? 0;
         $category->status = $request->status ?? 0;
         $category->save();
 
@@ -83,7 +83,7 @@ class CourseSubCategoryController extends Controller
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
         $category->icon = $request->icon;
-        $category->set_trending = $request->set_trending ?? 0;
+        $category->show_at_trending = $request->show_at_trending ?? 0;
         $category->status = $request->status ?? 0;
         $category->save();
 

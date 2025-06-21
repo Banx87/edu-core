@@ -11,9 +11,9 @@
                                 <h2>{{ $featuredInstructors?->title }}</h2>
                             </div>
                             {!! $featuredInstructors?->description !!}
-                            <a class="common_btn" style="margin-top: 30px;"
-                                href={{ $featuredInstructors?->button_url }}>{{ $featuredInstructors?->button_text }} <i
-                                    class="far fa-arrow-right"></i></a>
+                            <a class="common_btn" style="margin-top: 30px;" href="{{ route('courses.index') }}"
+                                {{-- href={{ $featuredInstructors?->button_url }} --}}>
+                                {{ $featuredInstructors?->button_text }} <i class="far fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-xxl-4 col-xl-4 col-md-6 col-lg-6 d-none d-xl-block wow fadeInUp">

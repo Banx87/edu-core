@@ -25,7 +25,7 @@ class CourseSubCategoryUpdateRequest extends FormRequest
             'image' => 'nullable|image|max:2048',
             'name' => 'required|string|max:255|unique:course_categories,name,' . $this->course_sub_category->id,
             'icon' => 'required|string|max:40',
-            'set_trending' => 'nullable|boolean',
+            'show_at_trending' => 'nullable|boolean',
             'status' => 'nullable|boolean',
         ];
     }

@@ -4,7 +4,7 @@
         <img src="{{ asset('frontend/assets/images/play_icon_white.png') }}" alt="Play" class="img-fluid">
     </a>
     <div class="text wow fadeInLeft">
-        {!! $video?->description !!}
+        <p>{{ strip_tags($video?->description) }}</p>
         <a href="{{ $video?->button_url }}">{{ $video?->button_text }} <i class="far fa-arrow-right"></i></a>
     </div>
 </section>

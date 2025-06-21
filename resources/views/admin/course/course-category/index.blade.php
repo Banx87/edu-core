@@ -37,7 +37,7 @@
                                                 {{ $category->name }}
                                             </td>
                                             <td class="">
-                                                {!! $category->set_trending
+                                                {!! $category->show_at_trending
                                                     ? '<span class="badge bg-lime text-lime-fg space-left-10"> Yes</span>'
                                                     : '<span class="badge bg-pink text-red-fg space-left-12"> No </span>' !!}
                                             </td>

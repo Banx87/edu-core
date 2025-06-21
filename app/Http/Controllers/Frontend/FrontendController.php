@@ -32,7 +32,7 @@ class FrontendController extends Controller
             $query->whereHas('courses', function ($query) {
                 $query->where(['status' => 'active', 'is_approved' => 'approved']);
             });
-        }])->where(['parent_id' => null, 'set_trending' => 1])->limit(12)->get();
+        }])->where(['parent_id' => null, 'show_at_trending' => 1])->limit(12)->get();
 
         $about = AboutUsSection::first();
         $latestCourses = LatestCourseSection::first();

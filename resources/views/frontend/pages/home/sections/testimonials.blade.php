@@ -24,11 +24,11 @@
                     </div>
                     <div class="wsus__testimonial_footer">
                         <div class="img">
-                            <img src="{{ asset($testimonial->user_image) }}" alt="user" class="img-fluid">
+                            <img src="{{ asset($testimonial->image) }}" alt="user" class="img-fluid">
                         </div>
                         <h3>
-                            {{ $testimonial->user_name }}
-                            <span>{{ $testimonial->user_title }}</span>
+                            {{ $testimonial->name }}
+                            <span>{{ $testimonial->title }}</span>
                         </h3>
                     </div>
                 </div>

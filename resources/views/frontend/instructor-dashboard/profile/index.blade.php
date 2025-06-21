@@ -9,7 +9,7 @@
                         <div class="wsus__breadcrumb_text">
                             <h1>Instructor Dashboard</h1>
                             <ul>
-                                <li><a href={{ url('/') }}">Home</a></li>
+                                <li><a href={{ url('/') }}>Home</a></li>
                                 <li>Instructor Dashboard</li>
                             </ul>
                         </div>
@@ -44,7 +44,8 @@
                             @csrf
                             <div class="wsus__dashboard_profile wsus__dashboard_profile_avatar px-0">
                                 <div class="img">
-                                    <img src="{{ asset(auth()->user()->image) }}" alt="profile" class="img-fluid w-100">
+                                    <img src="{{ asset(auth()->user()->image ?? 'default_files/avatar.png') }}"
+                                        alt="profile" class="img-fluid w-100">
                                     <label for="profile_photo">
                                         <img src="{{ asset('frontend/assets/images/dash_camera.png') }}" alt="camera"
                                             class="img-fluid w-100">

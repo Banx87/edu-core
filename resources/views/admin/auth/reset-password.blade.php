@@ -125,9 +125,10 @@
                             </label>
 
                             <div class="input-group input-group-flat">
-                                <input type="password" name="confirm_password" class="form-control confirm_password"
-                                    placeholder="Your password" autocomplete="off" required>
-                                <span class="input-group-text toggle-password" id=confirm_password>
+                                <input type="password" name="password_confirmation"
+                                    class="form-control password_confirmation" placeholder="Your password"
+                                    autocomplete="off" required>
+                                <span class="input-group-text toggle-password" id=password_confirmation>
                                     <a href="javascript:;" class="link-secondary" title="Show password"
                                         data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"

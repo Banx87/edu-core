@@ -21,28 +21,28 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="name" class="form-label">Name</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Enter Name" value="{{ old('name', $testimonial->user_name) }}">
+                                        placeholder="Enter Name" value="{{ old('name', $testimonial->name) }}">
                                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                 </div>
 
                                 <div class="col-md-5 mb3">
-                                    <label for="user_image" class="form-label">User Image</label>
+                                    <label for="image" class="form-label">User Image</label>
                                     <input type="file" class="form-control" id="image" name="image"
-                                        value="{{ old('user_image', $testimonial->user_image) }}">
-                                    <x-input-error :messages="$errors->get('user_image')" class="mt-2" />
+                                        value="{{ old('image', $testimonial->image) }}">
+                                    <x-input-error :messages="$errors->get('image')" class="mt-2" />
                                     <input type="hidden" name="old_image" value="{{ $testimonial->image }}">
 
                                 </div>
 
                                 <div class="col-md-1 mb-3">
-                                    <x-image-preview src="{{ old('user_image', $testimonial?->user_image) }}"
+                                    <x-image-preview src="{{ old('image', $testimonial?->image) }}"
                                         style="max-width:75px; background-color:#9b9b9b" label="" />
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label for="title" class="form-label">Title</label>
                                     <input type="text" class="form-control" id="title" name="title"
-                                        placeholder="Enter Title" value="{{ old('title', $testimonial->user_title) }}">
+                                        placeholder="Enter Title" value="{{ old('title', $testimonial->title) }}">
                                     <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 </div>
 

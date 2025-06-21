@@ -17,7 +17,7 @@
                         <img src="{{ asset($blog->image) }}" alt="Blog" class="img-fluid">
                         <span class="date">{{ date('M d, Y', strtotime($blog->created_at)) }}</span>
                     </a>
-                    <div class="wsus__single_blog_4_text">
+                    <div class="wsus__single_blog_4_text w-100">
                         <ul>
                             <li>
                                 <span><img
@@ -31,8 +31,9 @@
                                 {{ $blog->comments()->count() }} Comments
                             </li>
                         </ul>
-                        <a href="{{ route('blog.show', $blog->slug) }}" class="title">{{ $blog->title }}</a>
-                        <p>{{ Str::limit(strip_tags($blog->content), 150) }}</p>
+                        <a href="{{ route('blog.show', $blog->slug) }}"
+                            class="title">{{ Str::limit(strip_tags(html_entity_decode($blog->title)), 50) }}</a>
+                        <p>{{ Str::limit(strip_tags(html_entity_decode($blog->content)), 150) }}</p>
                         <a href="{{ route('blog.show', $blog->slug) }}" class="common_btn">Read More <i
                                 class="far fa-arrow-right"></i></a>
                     </div>

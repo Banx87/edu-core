@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('description')->nullable();
             $table->foreignId('parent_id')->nullable()->constrained('course_categories')->onDelete('cascade');
-            $table->boolean('set_trending')->default(false);
+            $table->boolean('show_at_trending')->default(false);
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

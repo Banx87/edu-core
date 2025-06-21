@@ -6,7 +6,7 @@
             <div class="row row-deck row-cards">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Update Social Link</h3>
+                        <h3 class="card-title">Update Blog Category</h3>
                         <div class="card-actions">
                             <a href="{{ route('admin.blog-categories.index') }}" class="btn btn-pink">
                                 <i class="ti ti-arrow-left space"></i>

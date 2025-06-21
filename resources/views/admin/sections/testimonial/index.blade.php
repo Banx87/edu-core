@@ -32,12 +32,11 @@
                                     @forelse ($testimonials as $testimonial)
                                         <tr>
                                             <td>
-                                                <img src="{{ asset($testimonial->user_image) }}"
-                                                    alt="{{ $testimonial->name }}" class="img-fluid w-100"
-                                                    style="max-width: 50px" />
+                                                <img src="{{ asset($testimonial->image) }}" alt="{{ $testimonial->name }}"
+                                                    class="img-fluid w-100" style="max-width: 50px" />
                                             </td>
-                                            <td>{{ $testimonial->user_name }}</td>
-                                            <td>{{ $testimonial->user_title }}</td>
+                                            <td>{{ $testimonial->name }}</td>
+                                            <td>{{ $testimonial->title }}</td>
                                             <td style="min-width: 145px">
                                                 @for ($i = 0; $i < $testimonial->rating; $i++)
                                                     <i class="ti ti-star" style="color: gold; font-size: 15px"></i>
