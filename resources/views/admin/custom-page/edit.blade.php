@@ -25,8 +25,8 @@
                                     </x-input-toggle-block>
                                 </div>
                                 <div class="col-md-2">
-                                    <x-input-toggle-block name="show_in_nav" label="Show In Navigation" description=""
-                                        :checked="old('show_in_nav', $custom_page->show_in_nav == 1)">
+                                    <x-input-toggle-block name="show_at_nav" label="Show In Navigation" description=""
+                                        :checked="old('show_at_nav', $custom_page->show_at_nav == 1)">
                                     </x-input-toggle-block>
                                 </div>
                                 <div class="col-md-12">

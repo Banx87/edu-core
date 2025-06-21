@@ -38,7 +38,7 @@
                                                 </code>
                                             </td>
                                             <td>
-                                                @if ($page->show_in_nav == 1)
+                                                @if ($page->show_at_nav == 1)
                                                     <span class="badge bg-lime text-lime-fg">Yes</span>
                                                 @else
                                                     <span class="badge bg-pink text-red-fg">No</span>

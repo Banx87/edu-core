@@ -43,7 +43,7 @@ class CustomPageController extends Controller
         $page->seo_title = $request->seo_title;
         $page->seo_description = $request->seo_description;
         $page->status = $request->status ?? 0;
-        $page->show_in_nav = $request->show_in_nav ?? 0;
+        $page->show_at_nav = $request->show_at_nav ?? 0;
         $page->save();
 
         notyf()->success('Page created successfully.');
@@ -80,7 +80,7 @@ class CustomPageController extends Controller
         $custom_page->seo_title = $request->seo_title;
         $custom_page->seo_description = $request->seo_description;
         $custom_page->status = $request->status ?? 0;
-        $custom_page->show_in_nav = $request->show_in_nav ?? 0;
+        $custom_page->show_at_nav = $request->show_at_nav ?? 0;
         $custom_page->save();
 
         notyf()->success('Page Updated successfully.');

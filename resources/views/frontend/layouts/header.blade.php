@@ -1,7 +1,7 @@
  @php
      $topBar = App\Models\TopBar::first();
      $categories = App\Models\CourseCategory::whereNull('parent_id')->where('status', 1)->get();
-     $customPages = App\Models\CustomPage::where('status', 1)->where('show_in_nav', 1)->get();
+     $customPages = App\Models\CustomPage::where('status', 1)->where('show_at_nav', 1)->get();
  @endphp
 
  <header class="header_3">
