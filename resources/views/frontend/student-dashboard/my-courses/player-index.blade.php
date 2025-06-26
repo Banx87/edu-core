@@ -110,16 +110,16 @@
                         aria-labelledby="pills-home-tab2" tabindex="0">
                         <div class="video_course_content">
                             <div class="wsus__course_sidebar">
-                                <h2 class="video_heading">Coursedfgfdg Content</h2>
+                                <h2 class="video_heading">Course Content</h2>
                                 <div class="accordion" id="accordionExample">
 
-                                    <h1>JEKKE</h1>
+                                    <h1>Mobile Version still in development</h1>
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#collapseOne4409" aria-expanded="true"
                                                 aria-controls="collapseOne4409">
-                                                <b>Introduction gfdg</b>
+                                                <b>Introduction</b>
                                                 <span>5/5</span>
                                             </button>
                                         </h2>
@@ -725,7 +725,7 @@
                 let lessonId = $(lesson).data('lesson-id');
                 // let isCompleted = $(lesson).data('is-completed');
                 if (watchedLastTime != null) {
-                    console.log(watchedLastTime);
+                    // console.log(watchedLastTime);
                     if (
                         chapterId == watchedLastTime.chapter_id &&
                         courseId == watchedLastTime.course_id &&

@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained('orders');
             $table->foreignId('course_id');
-            $table->integer('qty')->default(1);
+            $table->integer('quantity')->default(1);
             $table->double('price');
             $table->double('commission')->nullable()->default(0);
             $table->enum('item_type', ['course'])->default('course');
-            $table->integer('quantity');
             $table->timestamps();
         });
     }

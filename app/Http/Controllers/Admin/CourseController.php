@@ -83,23 +83,23 @@ class CourseController extends Controller
             case '1':
                 $course = Course::findOrFail($request->id);
                 return view('admin.course.course-module.edit', compact('course'));
-                break;
+
             case '2':
                 $categories = CourseCategory::where("status", 1)->get();
                 $levels = CourseLevels::all();
                 $languages = CourseLanguage::all();
                 $course = Course::findorFail($request->id);
                 return view('admin.course.course-module.more-info', compact('categories', 'levels', 'languages', 'course'));
-                break;
+
             case '3':
                 $courseId = $request->id;
                 $chapters = CourseChapter::where('course_id', $courseId)->orderBy('order')->get();
                 return view('admin.course.course-module.course-content', compact('courseId', 'chapters'));
-                break;
+
             case '4':
                 $course = Course::findorFail($request->id);
                 return view('admin.course.course-module.finish', compact('course'));
-                break;
+
             default:
                 // return view('admin.instructor-dashboard.course.create');
                 break;
@@ -151,7 +151,6 @@ class CourseController extends Controller
                     'message' => 'updated succesfully.',
                     'redirect' => route('admin.courses.edit',  ['id' => $course->id, 'step' => $request->next_step])
                 ]);
-                break;
 
             case '2':
                 // Validation
@@ -182,7 +181,7 @@ class CourseController extends Controller
                     'message' => 'updated succesfully.',
                     'redirect' => route('admin.courses.edit',  ['id' => $course->id, 'step' => $request->next_step])
                 ]);
-                break;
+
 
             case '3':
                 return response([
@@ -190,7 +189,6 @@ class CourseController extends Controller
                     'message' => 'updated succesfully.',
                     'redirect' => route('admin.courses.edit',  ['id' => $request->id, 'step' => $request->next_step])
                 ]);
-                break;
 
 
             case '4':

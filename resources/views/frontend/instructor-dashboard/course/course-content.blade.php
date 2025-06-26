@@ -17,13 +17,11 @@
                 @foreach ($chapters as $chapter)
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse-{{ $chapter->id }}" aria-expanded="true"
                                 aria-controls="collapse-{{ $chapter->id }}">
                                 <span>{{ $chapter->title }}</span>
                             </button>
-
                             <div class="add_course_content_action_btn">
                                 <div class="dropdown">
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
